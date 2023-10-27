@@ -1,0 +1,44 @@
+--- a/hw/kdrive/ephyr/ephyr.c	2023-03-29 05:55:03.000000000 -0700
++++ b/hw/kdrive/ephyr/ephyr.c	2023-09-18 06:36:22.221899456 -0700
+@@ -658,7 +658,7 @@
+     if (EphyrWantNoHostGrab) {
+         hostx_set_win_title(screen, "xephyr");
+     } else {
+-        hostx_set_win_title(screen, "(ctrl+shift grabs mouse and keyboard)");
++        hostx_set_win_title(screen, "(ctrl+f1 grabs mouse and keyboard)");
+     }
+     pScreen->CreateColormap = ephyrCreateColormap;
+ 
+@@ -1021,12 +1021,8 @@
+         keysyms = xcb_key_symbols_alloc(conn);
+ 
+     if (!EphyrWantNoHostGrab &&
+-        (((xcb_key_symbols_get_keysym(keysyms, key->detail, 0) == XK_Shift_L
+-          || xcb_key_symbols_get_keysym(keysyms, key->detail, 0) == XK_Shift_R)
+-         && (key->state & XCB_MOD_MASK_CONTROL)) ||
+-        ((xcb_key_symbols_get_keysym(keysyms, key->detail, 0) == XK_Control_L
+-          || xcb_key_symbols_get_keysym(keysyms, key->detail, 0) == XK_Control_R)
+-         && (key->state & XCB_MOD_MASK_SHIFT)))) {
++        ((xcb_key_symbols_get_keysym(keysyms, key->detail, 0) == XK_F1) && 
++	 (key->state & XCB_MOD_MASK_CONTROL))) {
+         KdScreenInfo *screen = screen_from_window(key->event);
+         EphyrScrPriv *scrpriv = screen->driver;
+ 
+@@ -1035,7 +1031,7 @@
+             xcb_ungrab_pointer(conn, XCB_TIME_CURRENT_TIME);
+             grabbed_screen = -1;
+             hostx_set_win_title(screen,
+-                                "(ctrl+shift grabs mouse and keyboard)");
++                                "(ctrl+f1 grabs mouse and keyboard)");
+         }
+         else if (!mod1_down) {
+             /* Attempt grab */
+@@ -1072,7 +1068,7 @@
+                     grabbed_screen = scrpriv->mynum;
+                     hostx_set_win_title
+                         (screen,
+-                         "(ctrl+shift releases mouse and keyboard)");
++                         "(ctrl+f1 releases mouse and keyboard)");
+                 }
+             }
+         }
