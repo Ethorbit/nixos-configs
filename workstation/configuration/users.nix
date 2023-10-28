@@ -1,6 +1,6 @@
 { config, ... }:
 {
-	#age.identityPaths = [ "/root/.ssh/id_ed25519" ];
+	age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   	age.secrets."users/root/password" = { file = ../secrets/users.root.pass.age; };
 	age.secrets."users/ethorbit/password" = { file = ../secrets/users.ethorbit.pass.age; };
 
