@@ -1,6 +1,10 @@
 {
-    boot.loader.grub.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
-    # Change this to the boot device(s) specified in hardware-configuration.nix
-    boot.loader.grub.devices = [ "/dev/disk/by-uuid/261F-3B88" ];
+    boot = {
+        consoleLogLevel = 3;
+        initrd.verbose = true;
+        loader = {
+            efi.canTouchEfiVariables = true;
+            systemd-boot.enable = true;
+        };
+    };
 }
