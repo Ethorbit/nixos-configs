@@ -1,4 +1,3 @@
-# TODO: install docker 24.0.0
 # TODO: install docker-compose version 2.18.1
 
 {
