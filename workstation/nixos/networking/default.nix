@@ -7,6 +7,8 @@
     ];
 
     networking = {
+        usePredictableInterfaceNames = false;
+    
         networkmanager = {
             enable = true;
             dns = "none";
@@ -27,7 +29,7 @@
 `               id=br-wired-port
                 uuid=3c7e302b-d082-4ad2-901c-99bd62676134
                 type=ethernet
-                interface-name=enp2s0
+                interface-name=eth0
                 master=253203db-c363-42bc-88d9-6e9bd8a808d3
                 slave-type=bridge
 

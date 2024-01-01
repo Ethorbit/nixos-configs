@@ -25,7 +25,7 @@
             
             iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
             iptables -A INPUT -i lo -j ACCEPT
-            iptables -A INPUT -i enp2s0 -j ACCEPT
+            iptables -A INPUT -i eth0 -j ACCEPT
             iptables -A INPUT -i virbr0 -j ACCEPT
             iptables -A INPUT -i br-wired -s 192.168.254.0/24 -j ACCEPT
             iptables -A INPUT -j LOG
@@ -58,8 +58,8 @@
             iptables -A BR_WIRED_AI_FW -p udp --dport 53 -j ACCEPT
             iptables -A BR_WIRED_AI_FW -j DROP
             
-            iptables -A FORWARD -i br-wired -o enp2s0 -j ACCEPT
-            iptables -A FORWARD -i enp2s0 -o br-wired -j ACCEPT
+            iptables -A FORWARD -i br-wired -o eth0 -j ACCEPT
+            iptables -A FORWARD -i eth0 -o br-wired -j ACCEPT
             iptables -A FORWARD -m mac --mac-source 52:54:00:a0:0d:4e -i br-wired -o br-wired -j BR_WIRED_AI_FW
             iptables -A FORWARD -j LIBVIRT_FWX
             iptables -A FORWARD -j LIBVIRT_FWI
