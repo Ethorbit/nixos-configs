@@ -6,7 +6,6 @@
         (import ./derivations/updated-docker.nix { inherit pkgs; inherit lib; }).docker_24_0_0
         (import ./derivations/updated-docker-compose.nix { inherit pkgs; inherit lib; })
         git
-        grub2
         sudo
         lxcfs
         envsubst
