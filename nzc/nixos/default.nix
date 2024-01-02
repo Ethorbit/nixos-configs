@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ./hardware-configuration.nix
+        ./hardware.nix
         ./bootloader.nix
         ./packages
         ./users.nix

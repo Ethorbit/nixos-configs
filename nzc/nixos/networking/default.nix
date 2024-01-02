@@ -1,9 +1,11 @@
-{ config, ... }
+{ config, ... }:
 
 {
     imports = [
         ./firewall.nix
     ];
 
-    networking.usePredictableInterfaceNames = false;
+    networking = {
+        usePredictableInterfaceNames = false;
+    };
 }
