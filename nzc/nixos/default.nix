@@ -3,7 +3,7 @@
 {
     imports = [
         ./hardware.nix
-        ./bootloader.nix
+        ./boot.nix
         ./packages
         ./users.nix
         ./services.nix

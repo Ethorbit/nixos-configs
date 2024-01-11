@@ -1,14 +1,49 @@
 { config, lib, ... }:
 
 {
-    age.secrets."networking/vpn/ip" = { file = ../secrets/networking/vpn/ip.age; };
-    age.secrets."networking/vpn/private.key" = { file = ../secrets/networking/vpn/private.key.age; };
+    age.secrets."networking/vpn/private.key" = {
+        file = ../secrets/networking/vpn/private.key.age;
+        owner = "systemd-network";
+    };
+    
+    age.secrets."networking/vpn/preshared.key" = {
+        file = ../secrets/networking/vpn/preshared.key.age;
+        owner = "systemd-network";
+    };
+ 
+    systemd.network.networks."wg0" = {
+        matchConfig = {
+            Name = "wg0";
+        };
 
-    networking.wireguard.interfaces."wg0" = {
-        ips = [ "10.66.66.2/24" ];
-        listenPort = 51820;
-        privateKeyFile = (builtins.readFile age.secrets."networking/vpn/privateKey".path);
-        endpoint = ''${(builtins.readFile age.secrets."networking/vpn/ip".path)}:51820'';
-        persistentKeepalive = 25;
+        networkConfig = {
+            Address = "10.66.66.2/32";
+        };
+    };
+    
+    systemd.network.netdevs = {
+        "wg0" = {
+            enable = true;
+
+            netdevConfig = {
+                Name = "wg0";
+                Kind = "wireguard";
+            };
+
+            wireguardConfig = {
+                PrivateKeyFile = config.age.secrets."networking/vpn/private.key".path;
+                ListenPort = 58300;
+            };
+
+            wireguardPeers = [{
+                wireguardPeerConfig = {
+                    PublicKey = "tJczUpqDMK8LfLgd7PglO0mNsZcow3SS1SxyVncgs2E=";
+                    PresharedKeyFile = config.age.secrets."networking/vpn/preshared.key".path;
+                    AllowedIPs = [ "0.0.0.0/0" ];
+                    Endpoint = "51.81.202.114:58300";
+                    PersistentKeepalive = 25;
+                };
+            }];
+        };
     };
 }
