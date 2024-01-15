@@ -6,6 +6,8 @@ in
     "workstation/secrets/users/root/pass.age".publicKeys = [ ethorbit ];
     "workstation/secrets/users/ethorbit/pass.age".publicKeys = [ ethorbit ];
     "nzc/nixos/secrets/users/nzc/pass.age".publicKeys = [ ethorbit ];
+    "nzc/nixos/secrets/networking/firewall/ISP_CIDR_one.age".publicKeys = [ ethorbit ];
+    "nzc/nixos/secrets/networking/firewall/ISP_CIDR_two.age".publicKeys = [ ethorbit ];
     "nzc/nixos/selfhosted/secrets/networking/vpn/private.key.age".publicKeys = [ ethorbit ];
     "nzc/nixos/selfhosted/secrets/networking/vpn/preshared.key.age".publicKeys = [ ethorbit ];
 }
