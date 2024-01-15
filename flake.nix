@@ -41,6 +41,7 @@
                 system = "x86_64-linux";
                 modules = [
                     ./nzc/nixos/selfhosted
+                    ./options.nix
                     agenix.nixosModules.default
                 ];
             };

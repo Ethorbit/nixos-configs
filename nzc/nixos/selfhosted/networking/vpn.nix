@@ -2,15 +2,27 @@
 
 {
     options = with lib; {
-        custom.vpn = {
-            ip = mkOption {
-                type = types.str;
-                default = "51.81.202.114";
-            };
+        ethorbit = {
+            nzc.vpn = {
+                ip = mkOption {
+                    type = types.str;
+                    default = "51.81.202.114";
+                };
 
-            port = mkOption {
-                type = types.str;
-                default = "58300";
+                port = mkOption {
+                    type = types.str;
+                    default = "58300";
+                };
+
+                defaultGateway = mkOption {
+                    type = types.str;
+                    default = "10.66.66.1";
+                };
+                
+                privateCIDR = mkOption {
+                    type = types.str;
+                    default = "10.66.66.2/24";
+                };
             };
         };
     };
@@ -32,8 +44,8 @@
                     routes = [
                         {
                             routeConfig = {
-                                Gateway = "192.168.254.254";
-                                Destination = config.custom.vpn.ip;
+                                Gateway = config.ethorbit.network.router.defaultGateway;
+                                Destination = config.ethorbit.nzc.vpn.ip;
                             };
                         }
                     ];
@@ -47,7 +59,7 @@
                     addresses = [
                         {
                             addressConfig = {
-                                Address = "10.66.66.2/24";
+                                Address = "${config.ethorbit.nzc.vpn.privateCIDR}";
                             };
                         }
                     ];
@@ -55,12 +67,12 @@
                     routes = [
                         {
                             routeConfig = {
-                                Destination = "10.66.66.0/24";
+                                Destination = "${config.ethorbit.nzc.vpn.privateCIDR}";
                             };
                         }
                         {
                             routeConfig = {
-                                Gateway = "10.66.66.1";
+                                Gateway = "${config.ethorbit.nzc.vpn.defaultGateway}";
                             };
                         }
                     ];
@@ -79,7 +91,7 @@
 
                     wireguardConfig = {
                         PrivateKeyFile = config.age.secrets."networking/vpn/private.key".path;
-                        ListenPort = config.custom.vpn.port;
+                        ListenPort = config.ethorbit.nzc.vpn.port;
                     };
 
                     wireguardPeers = [{
@@ -87,7 +99,7 @@
                             PublicKey = "tJczUpqDMK8LfLgd7PglO0mNsZcow3SS1SxyVncgs2E=";
                             PresharedKeyFile = config.age.secrets."networking/vpn/preshared.key".path;
                             AllowedIPs = [ "0.0.0.0/0" ];
-                            Endpoint = "${config.custom.vpn.ip}:${config.custom.vpn.port}";
+                            Endpoint = "${config.ethorbit.nzc.vpn.ip}:${config.ethorbit.nzc.vpn.port}";
                             PersistentKeepalive = 25;
                         };
                     }];
