@@ -1,16 +1,24 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
-    security.apparmor.enable = true;
-    virtualisation.lxc.lxcfs.enable = true;
-    virtualisation.docker.enable = true;
+    options = with lib; {
+        ethorbit.nzc.sshd.port = mkOption {
+            type = types.str;
+            default = "2222";
+        };
+    };
 
-    services.openssh = {
-        enable = true;
-        ports = [ 2222 ]; # The dockerized nzc sshd server will use port 22, so change it.
-        settings = {
-            PasswordAuthentication = false;
-            PermitRootLogin = "no";
+    config = with lib; {
+        security.apparmor.enable = true;
+        virtualisation.lxc.lxcfs.enable = true;
+        virtualisation.docker.enable = true;
+        services.openssh = {
+            enable = true;
+            ports = [ (strings.toInt "${config.ethorbit.nzc.sshd.port}") ];
+            settings = {
+                PasswordAuthentication = false;
+                PermitRootLogin = "no";
+            };
         };
     };
 }
