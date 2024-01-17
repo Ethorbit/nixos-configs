@@ -31,7 +31,7 @@
     };
     fileSystems."/mnt/homenas" = {
         fsType = "cifs";
-        device = "//192.168.254.221/nzc";
+        device = "//${config.ethorbit.network.homenas.ip}/nzc";
         options = [ "credentials=/etc/nascreds" "uid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" ];
     };
 
