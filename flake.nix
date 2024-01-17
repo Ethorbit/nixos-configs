@@ -14,6 +14,7 @@
                 system = "x86_64-linux";
                 modules = [
                     ./homenas/nixos
+                    ./options.nix
                 ];
             };
 
@@ -22,6 +23,7 @@
                 system = "x86_64-linux";
                 modules = [
                     ./workstation/nixos
+                    ./options.nix
                     agenix.nixosModules.default
                     flatpaks.nixosModules.default
                 ];
@@ -32,6 +34,7 @@
                 system = "x86_64-linux";
                 modules = [
                     ./nzc/nixos
+                    ./options.nix
                     agenix.nixosModules.default
                 ];
             };
