@@ -17,7 +17,7 @@
             iptables -P OUTPUT ACCEPT
             iptables -P FORWARD DROP
             iptables -N NIXOS_INPUT
-            [[ ! iptables -C INPUT -j NIXOS_INPUT ]] && iptables -I INPUT 1 -j NIXOS_INPUT
+            iptables -I INPUT 1 -j NIXOS_INPUT
             iptables -A NIXOS_INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
             iptables -A NIXOS_INPUT -i lo -j ACCEPT
             iptables -A NIXOS_INPUT -i eth0 -m tcp -p tcp --dport ${config.ethorbit.nzc.sshd.port} -j ACCEPT
