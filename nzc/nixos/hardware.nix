@@ -24,6 +24,18 @@
         options = [ "fmask=0077" "dmask=0077" "defaults" ];
     };
 
+    fileSystems."/proc" = {
+        device = "proc";
+        fsType = "proc";
+        options = [ "defaults" "nosuid" "nodev" "noexec" "hidepid=2" ];
+    };
+
+    fileSystems."/tmp" = {
+        device = "tmpfs";
+        fsType = "tmpfs";
+        options = [ "defaults" "nosuid" "nodev" "noexec" ];
+    };
+
     age.secrets."homenas/samba/users/nzc/creds" = { file = ../../homenas/nixos/secrets/samba/users/nzc/creds.age; };
     environment.etc."nascreds" = {
         mode = "0600";
