@@ -3,6 +3,7 @@ let
 in
 {
     "homenas/nixos/secrets/samba/users/ethorbit/creds.age".publicKeys = [ ethorbit ];
+    "homenas/nixos/secrets/samba/users/nzc/creds.age".publicKeys = [ ethorbit ];
     "workstation/secrets/users/root/pass.age".publicKeys = [ ethorbit ];
     "workstation/secrets/users/ethorbit/pass.age".publicKeys = [ ethorbit ];
     "nzc/nixos/secrets/users/nzc/pass.age".publicKeys = [ ethorbit ];

@@ -11,6 +11,7 @@
 
     networking.firewall = {
         enable = true;
+        
         extraCommands = ''
             iptables -P INPUT DROP
             iptables -P OUTPUT ACCEPT
@@ -23,6 +24,11 @@
             iptables -A INPUT -i eth0 -s 192.168.254.1/24 -j ACCEPT
             iptables -A INPUT -s $(cat ${config.age.secrets."networking/firewall/ISP_CIDR_one.age".path}) -j ACCEPT
             iptables -A INPUT -s $(cat ${config.age.secrets."networking/firewall/ISP_CIDR_two.age".path}) -j ACCEPT
+        '';
+        
+        extraStopCommands = ''
+            iptables -F
+            iptables -X
         '';
     };
 }

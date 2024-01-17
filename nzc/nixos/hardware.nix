@@ -24,14 +24,14 @@
         options = [ "fmask=0077" "dmask=0077" "defaults" ];
     };
 
-    age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../../homenas/nixos/secrets/samba/users/ethorbit/creds.age; };
+    age.secrets."homenas/samba/users/nzc/creds" = { file = ../../homenas/nixos/secrets/samba/users/nzc/creds.age; };
     environment.etc."nascreds" = {
         mode = "0600";
-        source = config.age.secrets."homenas/samba/users/ethorbit/creds".path;
+        source = config.age.secrets."homenas/samba/users/nzc/creds".path;
     };
     fileSystems."/mnt/homenas" = {
         fsType = "cifs";
-        device = "//192.168.254.221/ethorbit";
+        device = "//192.168.254.221/nzc";
         options = [ "credentials=/etc/nascreds" "uid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" ];
     };
 
