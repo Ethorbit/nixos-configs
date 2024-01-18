@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ../default.nix
+        ../../default.nix
         ./packages.nix
         ./networking
     ];

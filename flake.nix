@@ -39,11 +39,21 @@
                 ];
             };
 
+            # NZC Game Community, but for local development
+            "nzc/dev" = nixpkgs.lib.nixosSystem {
+                system = "x86_64-linux";
+                modules = [
+                    ./nzc/nixos/profiles/dev
+                    ./options.nix
+                    agenix.nixosModules.default
+                ];
+            };
+
             # NZC Game Community, but hosted at home
             "nzc/selfhosted" = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
                 modules = [
-                    ./nzc/nixos/selfhosted
+                    ./nzc/nixos/profiles/selfhosted
                     ./options.nix
                     agenix.nixosModules.default
                 ];
