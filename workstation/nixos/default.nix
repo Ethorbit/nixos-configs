@@ -13,13 +13,13 @@
         ./virtualization
     ];
 
-    nix.settings = {
-        auto-optimise-store = true;
-    };
+    #nix.settings = {
+    #    auto-optimise-store = true;
+    #};
 
-    nix.extraOptions = ''
-        experimental-features = nix-command flakes
-    '';
+    #nix.extraOptions = ''
+    #    experimental-features = nix-command flakes
+    #'';
 
     # Use the systemd-boot EFI boot loader.
     boot.loader.systemd-boot.enable = true;

@@ -14,7 +14,20 @@
                 system = "x86_64-linux";
                 modules = [
                     ./homenas/nixos
-                    ./options.nix
+                    ./nixos
+                    agenix.nixosModules.default
+                ];
+            };
+
+            # Integrated Development Environment.
+            # Not intended to be used directly, but it can be used as an independent OS if desired.
+            "ide" = nixpkgs.lib.nixosSystem {
+                system = "x86_64-linux";
+                modules = [
+                    ./ide/nixos/profiles/desktop
+                    ./ide/nixos/standalone
+                    ./nixos
+                    agenix.nixosModules.default
                 ];
             };
 
@@ -23,7 +36,7 @@
                 system = "x86_64-linux";
                 modules = [
                     ./workstation/nixos
-                    ./options.nix
+                    ./nixos
                     agenix.nixosModules.default
                     flatpaks.nixosModules.default
                 ];
@@ -34,7 +47,7 @@
                 system = "x86_64-linux";
                 modules = [
                     ./nzc/nixos
-                    ./options.nix
+                    ./nixos
                     agenix.nixosModules.default
                 ];
             };
@@ -44,7 +57,7 @@
                 system = "x86_64-linux";
                 modules = [
                     ./nzc/nixos/profiles/dev
-                    ./options.nix
+                    ./nixos
                     agenix.nixosModules.default
                 ];
             };
@@ -54,7 +67,7 @@
                 system = "x86_64-linux";
                 modules = [
                     ./nzc/nixos/profiles/selfhosted
-                    ./options.nix
+                    ./nixos
                     agenix.nixosModules.default
                 ];
             };
