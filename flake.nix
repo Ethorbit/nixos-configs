@@ -3,11 +3,15 @@
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+        home-manager = {
+            url = "github:nix-community/home-manager";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         agenix.url = "github:ryantm/agenix";
         flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
     };
 
-    outputs = { self, nixpkgs, agenix, flatpaks }: {
+    outputs = { self, nixpkgs, home-manager, agenix, flatpaks }: {
         nixosConfigurations = {
             # Home NAS, the centralized source of storage.
             "homenas" = nixpkgs.lib.nixosSystem {
@@ -24,9 +28,10 @@
             "ide" = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
                 modules = [
+                    ./ide/nixos/profiles/standalone
                     ./ide/nixos/profiles/desktop
-                    ./ide/nixos/standalone
                     ./nixos
+                    home-manager.nixosModules.default
                     agenix.nixosModules.default
                 ];
             };

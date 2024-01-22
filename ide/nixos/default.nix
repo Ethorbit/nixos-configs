@@ -4,6 +4,8 @@
     imports = [
         ./users.nix
         ./packages.nix
-        ./services.nix
+        ./home-manager
     ];
+
+    system.stateVersion = "23.11";
 }
