@@ -2,10 +2,11 @@
 
 {
     environment.systemPackages = with pkgs; [
-        kitty
+        ranger
+        trash-cli
         zsh
-        git
+        git-lfs
     ];
-
+    
     programs.zsh.enable = true;
 }

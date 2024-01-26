@@ -6,5 +6,6 @@
         ./packages.nix
         ./hardware.nix
         ./services.nix
+        ./home-manager
     ];
 }

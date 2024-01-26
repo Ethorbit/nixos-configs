@@ -2,6 +2,9 @@
 
 {
     imports = [
+        ./git
+        ./zsh
+        ./ranger
         ./neovim
     ];
 

@@ -54,4 +54,4 @@ keymap("n", "<C-h>=", ":vertical-resize +20<cr>", opts)
 keymap("n", "<C-h>-", ":vertical-resize -20<cr>", opts)
 
 -- File browser
-keymap("n", "<leader>f", ":NvimTreeToggle %:h<cr>", opts)
+keymap("n", "<leader>f", ":RangerTab<cr>", opts)
