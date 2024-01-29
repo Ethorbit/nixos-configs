@@ -3,9 +3,11 @@
 {
     age.secrets."users/nzc/password" = { file = ./secrets/users/nzc/pass.age; };
     
+    ethorbit.users.primary.username = "nzc";
+    
     users = {
         mutableUsers = false;
-        
+ 
         users = {
             root = {
                 shell = ''${pkgs.shadow}/bin/nologin'';

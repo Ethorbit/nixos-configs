@@ -28,8 +28,7 @@
             "ide" = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
                 modules = [
-                    ./ide/nixos/profiles/standalone
-                    ./ide/nixos/profiles/desktop
+                    ./nixos/components/ide/profiles/standalone
                     ./nixos
                     home-manager.nixosModules.default
                     agenix.nixosModules.default

@@ -4,6 +4,8 @@
     age.secrets."users/root/password" = { file = ./secrets/users/root/pass.age; };
     age.secrets."users/ethorbit/password" = { file = ./secrets/users/ethorbit/pass.age; };
 
+    ethorbit.users.primary.username = "ethorbit";
+    
     users.users = { 
         root = {
             passwordFile = config.age.secrets."users/root/password".path;

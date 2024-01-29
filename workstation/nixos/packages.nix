@@ -43,8 +43,6 @@
         podman-compose
         x11docker
         pinentry-gnome
-        gnome.adwaita-icon-theme
-        gnomeExtensions.appindicator
         gparted
         lvm2
         iotop
@@ -60,23 +58,4 @@
             patches = (old.patches or []) ++ [ ./patches/xephyr-custom-keybind.diff ];
         })
     )];
-
-    environment.gnome.excludePackages = (with pkgs; [
-        gnome-photos
-        gnome-tour
-    ]) ++ (with pkgs.gnome; [
-        cheese
-        gnome-music
-        gnome-terminal
-        gedit
-        epiphany
-        geary
-        evince
-        gnome-characters
-        totem
-        tali
-        iagno
-        hitori
-        atomix 
-    ]);
 }

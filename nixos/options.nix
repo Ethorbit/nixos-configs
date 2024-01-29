@@ -2,6 +2,15 @@
 
 {
     options.ethorbit = with lib; {
+        users = {
+            primary = {
+                username = mkOption {
+                    type = types.str;
+                    default = "ethorbit";
+                };
+            };
+        };
+
         network = {
             router = {
                 defaultGateway = mkOption {
