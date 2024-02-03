@@ -16,14 +16,6 @@ toggle() {
 
 trap "toggle" USR1
 
-scrolling_function() {
-    local song="$1"
-    local length="$2"
-    local pos="$3"
-    
-    echo "🎵 ${song:$pos:$length}"
-}
-
 while :; do
     STATE=$(./state.sh)
 
