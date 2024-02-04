@@ -1,6 +1,10 @@
 { config, ... }:
 
 {
+    imports = [
+        ./bash
+    ];
+
     home-manager = {
         useGlobalPkgs = true;
 

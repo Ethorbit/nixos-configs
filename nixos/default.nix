@@ -4,6 +4,7 @@
     imports = [
         ./options.nix
         ./packages.nix
+        ./environment.nix
         ./home-manager
     ];
 
