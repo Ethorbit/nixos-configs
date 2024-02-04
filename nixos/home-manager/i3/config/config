@@ -369,5 +369,5 @@ bindsym $mod+Print exec flameshot gui
 exec_always --no-startup-id picom #--experimental-backends
 
 # Let these scripts handle everything else (the things that all desktops should do): 
-#exec --no-startup-id /bin/bash -c "source $HOME/.desktop-once"
-#exec_always --no-startup-id /bin/bash -c "source $HOME/.desktop-always"
+exec --no-startup-id bash -c "source $HOME/.desktop-once"
+exec_always --no-startup-id bash -c "source $HOME/.desktop-always"

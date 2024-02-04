@@ -2,13 +2,11 @@
 
 {
     home-manager.users.${config.ethorbit.users.primary.username} = {
-        home.file.".config/polybar" = {
+        home.file.".config/dunst" = {
             source = ./config;
-            executable = true;
             recursive = true;
         };
-
-        services.polybar.script = "";
-        services.polybar.enable = true;
+    
+        services.dunst.enable = true;
     };
 }

@@ -12,7 +12,7 @@
             initialPassword = "ide";
             group = "ide";
             extraGroups = [ "wheel" ];
-            shell = pkgs.zsh;
+            shell = pkgs.bash;
         };
     };
 }

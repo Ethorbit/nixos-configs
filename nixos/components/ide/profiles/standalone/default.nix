@@ -1,6 +1,7 @@
 {
     imports = [
-        ../../default.nix
+        ../..
+        ./home-manager.nix
         ./packages.nix
         ./hardware-configuration.nix
         ./bootloader.nix

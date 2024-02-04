@@ -2,8 +2,7 @@
 
 {
     environment.systemPackages = with pkgs; [
-        ranger
-        trash-cli
-        git-lfs
+        feh
+        moc
     ];
 }

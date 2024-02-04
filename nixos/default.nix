@@ -3,6 +3,7 @@
 {
     imports = [
         ./options.nix
+        ./packages.nix
         ./home-manager
     ];
 
