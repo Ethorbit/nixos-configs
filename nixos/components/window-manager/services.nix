@@ -29,11 +29,14 @@ in
         description = "Manages the window manager on start and reload";
         script = ''
             # command_no_process="${command_no_process.outPath}/bin/command_no_process"
+            # $command_no_process 'process-name' 'comnand to run process' # keep process running at all times
             [ -f "$HOME/.desktop-always" ] && source "$HOME/.desktop-always"
         '';
         wants = [
             "feh-desktop-wallpaper.service"
             "flameshot.service"
+            "dunst.service"
+            "picom.service"
         ];
     };
 }
