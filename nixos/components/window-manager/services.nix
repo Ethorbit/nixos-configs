@@ -28,11 +28,12 @@ in
         enable = true;
         description = "Manages the window manager on start and reload";
         script = ''
-            command_no_process="${command_no_process.outPath}/bin/command_no_process"
-            "$command_no_process" flameshot "${pkgs.flameshot}/bin/flameshot"
-
+            # command_no_process="${command_no_process.outPath}/bin/command_no_process"
             [ -f "$HOME/.desktop-always" ] && source "$HOME/.desktop-always"
         '';
-        wants = [ "feh-desktop-wallpaper.service" ];
+        wants = [
+            "feh-desktop-wallpaper.service"
+            "flameshot.service"
+        ];
     };
 }
