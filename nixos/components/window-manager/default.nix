@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ./packages.nix
+        ./packages
         ./home-manager
         ./services.nix
     ];

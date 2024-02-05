@@ -1,5 +1,0 @@
-#
-# ~/.desktop-once
-# The Window Manager sources this after starting or reloading
-#
-systemctl --user start feh-desktop-wallpaper.service

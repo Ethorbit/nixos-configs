@@ -2,7 +2,6 @@
 
 {
     imports = [
-        ./desktop-scripts
         ../../../home-manager/polybar
         ../../../home-manager/picom
         ../../../home-manager/dunst
