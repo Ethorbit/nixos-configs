@@ -167,9 +167,9 @@ interval = 1
 click-left = mocp -f
 
 [module/scream]
-exec = ~/.config/polybar/polybar-scripts/scream.sh
+exec = ~/.config/polybar/polybar-scripts/scream/scream.sh
 type = custom/script
-click-left = ~/.config/polybar/polybar-scripts/toggle-scream.sh 
+click-left = ~/.config/polybar/polybar-scripts/scream/toggle.sh 
 interval = 1
 format-underline = #ffffff
 
@@ -509,7 +509,7 @@ interval = 12
 
 [module/amd-cpu-temperature]
 type = custom/script
-exec = ~/.config/polybar/polybar-scripts/amd-cpu-temperature.sh
+exec = ~/.config/polybar/polybar-scripts/amd/cpu-temperature.sh
 label-urgent = ""
 format = "<label>"
 format-offset = -13
@@ -520,17 +520,17 @@ interval = 3
 
 [module/nvidia-gpu]
 type = custom/script
-exec = ~/.config/polybar/polybar-scripts/nvidia-gpu.sh
-format = GTX 1060 6GB: <label>
+exec = ~/.config/polybar/polybar-scripts/nvidia/gpu.sh
+format = NVIDIA GPU: <label>
 format-underline = #f50a4d
 interval = 5
 
 [module/amd-gpu]
 type = custom/script
-exec = ~/.config/polybar/polybar-scripts/amd-gpu.sh
+exec = ~/.config/polybar/polybar-scripts/amd/gpu.sh
 format-prefix="⬛ "
 #format-prefix="▣ "
-format = RX 550: <label>
+format = AMD GPU: <label>
 format-offset = # -4
 format-underline = #f50a4d
 interval = 5
