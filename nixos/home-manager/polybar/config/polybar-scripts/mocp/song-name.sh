@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Display currently playing song filename
 
 cd $(dirname $0)

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 if [[ $(host "geocoding-api.open-meteo.com" | grep -E "not found|connection refused") ]]; then 
     echo ""; 
 else

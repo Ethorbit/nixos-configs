@@ -11,16 +11,16 @@ killall -q polybar
 
 ITER=0
 for monitor in $(polybar --list-monitors | cut -d":" -f1); do
-	if [ $ITER -ne 0 ]; then  # Primary (which shows first) uses main, so we skip it.' 	    
-    		BAR="notmain"
-	else
-		BAR="main"	
-	fi
+    if [ $ITER -ne 0 ]; then  # Primary (which shows first) uses main, so we skip it.'      
+            BAR="notmain"
+    else
+        BAR="main"  
+    fi
 
-	MONITOR=$monitor polybar --reload $BAR &
-	echo "Ran $BAR on $monitor";
+    MONITOR=$monitor polybar --reload $BAR &
+    echo "Ran $BAR on $monitor";
 
-	((ITER++))
+    ((ITER++))
 done
 
 echo "Bars launched..."

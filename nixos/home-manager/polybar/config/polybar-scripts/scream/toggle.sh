@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+[ ! $(command -v scream) ] && echo "" && exit
 
 if [[ ! -z $(pgrep -x scream) ]]; then
         killall scream

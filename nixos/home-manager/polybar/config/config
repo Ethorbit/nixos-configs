@@ -33,7 +33,7 @@ radius = 0.0
 [bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 99.5%
-height = 30			
+height = 30
 offset-x = 0.2%
 offset-y = -4
 radius = ${style.radius}
@@ -51,14 +51,14 @@ border-color = #545455
 #a08c8c8c
 
 padding-top = 0
-padding-left = 0
+padding-left = 1
 padding-right = 2
 
-module-margin-left = 1
+module-margin-left = 0
 module-margin-right = 3
 
 font-0 = fixed:pixelsize=8.3;1
-font-1 = "Noto Color Emoji:scale=2.1;style=Regular;1"
+font-1 = "Noto Color Emoji:scale=17;style=Regular;1"
 font-2 = siji:pixelsize=10;1
 
 modules-left = i3
@@ -106,10 +106,10 @@ border-right-size = 0
 border-left-size = 0
 border-color = #545455
 
-padding-left = 0
+padding-left = 1
 padding-right = 2
 
-module-margin-left = 1
+module-margin-left = 0
 module-margin-right = 3 
 
 font-0 = fixed:pixelsize=9;1
@@ -319,7 +319,7 @@ format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #7895c4 
 ;#f90000
-label = "CPU: %percentage:2%%  " 
+label = "CPU: %percentage%% " 
 
 [module/memory]
 type = internal/memory
@@ -334,7 +334,7 @@ type = custom/script
 exec = ~/.config/polybar/polybar-scripts/memory-available.sh
 label-urgent = ""
 format = " <label>"
-format-offset = -7	
+format-offset = -7  
 #format-margin = 1
 format-underline = #7895c4 
 ;#f50a4d 
@@ -501,7 +501,7 @@ exec = ~/.config/polybar/polybar-scripts/weather.sh
 label-urgent = ""
 #format-prefix="⛅  " 
 format = "<label>"
-#format-offset = -13	
+#format-offset = -13    
 #format-margin = 1
 format-underline = #7895c4 
 ;#f50a4d 
