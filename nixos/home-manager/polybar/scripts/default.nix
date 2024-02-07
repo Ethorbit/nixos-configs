@@ -2,11 +2,10 @@
 
 {
     imports = [
-        ./launch.nix
         ./nvidia
         ./amd
-        ./mocp
-        ./scream
+        ./audio
+        ./launch.nix
         ./memory-available.nix
         ./microphone.nix
         ./weather.nix
