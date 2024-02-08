@@ -34,6 +34,7 @@ in
         '';
         wants = [
             "feh-desktop-wallpaper.service"
+            "polybar.service"
             "flameshot.service"
             "dunst.service"
             "picom.service"

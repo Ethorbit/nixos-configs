@@ -12,9 +12,7 @@
         services.polybar = {
             enable = true;
 
-            package = pkgs.polybar.override {
-                i3Support = true;
-            };
+            package = pkgs.polybarFull;
 
             script = ''
                 exec "${config.ethorbit.polybar.scripts.launch.outPath}"
