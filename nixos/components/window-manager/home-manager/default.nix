@@ -3,6 +3,7 @@
 {
     imports = [
         ../../../home-manager/polybar
+        ../../../home-manager/rofi
         ../../../home-manager/picom
         ../../../home-manager/dunst
         ../../../home-manager/kitty

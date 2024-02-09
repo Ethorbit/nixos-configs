@@ -217,7 +217,7 @@ mode "workspace restore monitor 1" {
 #### Set command hotkeys ####
   # Program launcher
   #bindsym $mod+Shift+slash exec rofi -no-lazy-grab -show drun -modi drun -theme "$HOME/.config/rofi/launchers/ribbon/ribbon_left_ethorbit"   
-  bindsym $mod+Shift+slash exec "$HOME/.local/bin/rofi-rofi.sh" 
+  bindsym $mod+Shift+slash exec "$HOME/.config/rofi/rofi-rofi.sh" 
 #"i3-dmenu-desktop"
 
 #### Scratchpad ####
