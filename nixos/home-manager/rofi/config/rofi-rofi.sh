@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Yes. A rofi menu for rofi menus. 
 # Currently menus need to be manually added as there's no apparent way to have rofi list menus.... 
-theme="$HOME/.config/rofi/launchers/ribbon/ribbon_left_ethorbit" 
+theme="$HOME/.config/rofi/launchers_custom/ribbon/ribbon_left_ethorbit" 
 
 # Key is display name, value is the rofi menu name. 
 declare -A menus=(

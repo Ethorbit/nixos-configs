@@ -15,19 +15,15 @@
             executable = true;
         };
 
-        home.file.".config/rofi/powermenu" = {
-            source = ./config/powermenu;
+        home.file.".config/rofi/launchers_custom" = {
+            source = ./config/launchers_custom;
             executable = true;
         };
 
-        home.file.".config/rofi/launchers" = {
-            source = ./config/launchers;
-            executable = true;
-        };
-
-        home.file.".config/rofi/applets" = {
-            source = ./config/applets;
-            executable = true;
+        # Symlink the directories from adi1090x's rofi repository that we installed via custom package
+        home.file.".config/rofi" = {
+            source = "${config.ethorbit.pkgs.rofi-adi1090x}/.config/rofi";
+            recursive = true;
         };
     };
 }
