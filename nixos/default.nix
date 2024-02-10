@@ -6,6 +6,8 @@
         ./packages.nix
         ./environment.nix
         ./home-manager
+        ./services
+        ./components/spice-guest
     ];
 
     time.timeZone = "America/Los_Angeles";

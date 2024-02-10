@@ -28,8 +28,9 @@ in
         enable = true;
         description = "Manages the window manager on start and reload";
         script = ''
-            # command_no_process="${command_no_process.outPath}/bin/command_no_process"
+            #command_no_process="${command_no_process.outPath}/bin/command_no_process"
             # $command_no_process 'process-name' 'comnand to run process' # keep process running at all times
+            "${pkgs.spice-vdagent}/bin/spice-vdagent" 2> /dev/null > /dev/null
             [ -f "$HOME/.desktop-always" ] && source "$HOME/.desktop-always"
         '';
         wants = [
