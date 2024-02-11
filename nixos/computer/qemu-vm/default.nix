@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ./monitors.nix
+        ./services.nix
         ../../components/qemu-guest
         ../../components/spice-guest
     ];
