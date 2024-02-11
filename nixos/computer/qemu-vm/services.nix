@@ -3,7 +3,7 @@
 {
     services.xserver.videoDrivers = [ "qxl" ];
 
-    systemd.user.services."xrandr-auto-resizer" = {
+    systemd.user.services."xrandr-virtual-auto-resizer" = {
         enable = true;
         
         serviceConfig = {
