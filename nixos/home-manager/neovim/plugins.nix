@@ -1,13 +1,13 @@
 { config, pkgs, ... }:
 
 {
-    # TODO: install these plugins manually:
-    # vim-tabby
-    # confirm-quit
     home-manager.users.${config.ethorbit.users.primary.username} = {
         programs.neovim = {
             withNodeJs = true;
             plugins = with pkgs.vimPlugins; [
+                config.ethorbit.pkgs.vimPlugins.confirm-quit
+                config.ethorbit.pkgs.vimPlugins.tabbyml
+
                 vim-rooter
                 lualine-nvim
                 nvim-web-devicons
