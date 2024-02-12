@@ -6,6 +6,7 @@
         ./hardware.nix
         ./packages.nix
         ./services.nix
+        ./home-manager.nix
         ../../../../nixos/components/ide
         ../../../../nixos/components/display-server/profiles/xserver
         ../../../../nixos/components/display-manager/profiles/lightdm
