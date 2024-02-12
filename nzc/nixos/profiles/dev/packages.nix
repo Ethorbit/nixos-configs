@@ -3,5 +3,7 @@
 {
     environment.systemPackages = with pkgs; [
         dnsmasq
+        firefox
+        chromium
     ];
 }
