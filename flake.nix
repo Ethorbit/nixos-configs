@@ -53,18 +53,7 @@
             "nzc" = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
                 modules = [
-                    ./nzc/nixos
-                    ./nixos/computer/qemu-vm
-                    ./nixos
-                    agenix.nixosModules.default
-                ];
-            };
-
-            # NZC Game Community, but for local development
-            "nzc/dev" = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                modules = [
-                    ./nzc/nixos/profiles/dev
+                    ./nzc/nixos/profiles/production
                     ./nixos/computer/qemu-vm
                     ./nixos
                     agenix.nixosModules.default
@@ -78,6 +67,18 @@
                     ./nzc/nixos/profiles/selfhosted
                     ./nixos/computer/qemu-vm
                     ./nixos
+                    agenix.nixosModules.default
+                ];
+            };
+
+            # NZC Game Community, but for local development / testing
+            "nzc/dev" = nixpkgs.lib.nixosSystem {
+                system = "x86_64-linux";
+                modules = [
+                    ./nzc/nixos/profiles/dev
+                    ./nixos/computer/qemu-vm
+                    ./nixos
+                    home-manager.nixosModules.default
                     agenix.nixosModules.default
                 ];
             };

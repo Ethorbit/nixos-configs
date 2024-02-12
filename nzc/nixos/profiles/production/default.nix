@@ -4,7 +4,5 @@
     imports = [
         ../..
         ./hardware.nix
-        ./packages.nix
-        ./networking
     ];
 }
