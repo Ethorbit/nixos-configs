@@ -2,8 +2,8 @@
 
 {
     imports = [
-        ./services.nix
-        ../../components/qemu-guest
-        ../../components/spice-guest
+        ../../components/guest/profiles/qemu
+        ../../components/guest/profiles/spice
+        ../../components/video-driver/profiles/qxl
     ];
 }

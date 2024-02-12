@@ -9,10 +9,10 @@
         serviceConfig = {
             Type = "simple";
             ExecStart = ''${pkgs.xorg.xrandr}/bin/xrandr --output Virtual-1 --auto'';
-            StartLimitInterval = 0.5;
+            StartLimitInterval = 1;
             StartLimitBurst = 2;
             Restart = "always";
-            RestartSec = 0.5;
+            RestartSec = 1;
         };
         
         wantedBy = [ "default.target" ];
