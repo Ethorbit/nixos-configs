@@ -11,8 +11,8 @@ configuration {
 @import "styles/colors.rasi"
 
 window {
-    //transparency:                   "real";
-    background-color:               #00000000; //@background;
+    transparency:                   "real";
+    background-color:               @background;
     text-color:                     @foreground;
     //border:                           0% 0% 0% 1.5%;
     //;10uborder-color:                 @border;
@@ -27,13 +27,13 @@ window {
 prompt {
     enabled:                        true;
     padding:                        0% 1% 0% 0%;
-    background-color:               #00000000;
+    background-color:               @background;
     text-color:                     @foreground;
     font:                           "FantasqueSansMono Nerd Font 12";
 }
 
 entry {
-    background-color:               #00000000;
+    background-color:               @background;
     text-color:                     @foreground;
     placeholder-color:              @foreground;
     expand:                         true;
@@ -45,7 +45,7 @@ entry {
 
 inputbar {
     children:                       [ prompt, entry ];
-    background-color:               #00000000;
+    background-color:               @background;
     text-color:                     @foreground;
     expand:                         false;
     border:                         0% 0% 0.3% 0%;
@@ -57,7 +57,7 @@ inputbar {
 }
 
 listview {
-    background-color:               #00000000;
+    background-color:               @background;
     columns:                        4;
     spacing:                        0%;
     cycle:                          false;
@@ -76,7 +76,7 @@ mainbox {
 }
 
 element {
-    background-color:               #00000000;
+    background-color:               @background;
     text-color:                     @foreground;
     orientation:                    vertical;
     border-radius:                  0%;
