@@ -1,21 +1,21 @@
 configuration {
-	font:							"FantasqueSansMono Nerd Font 10";
+    font:                           "FantasqueSansMono Nerd Font 10";
     show-icons:                     true;
-	icon-theme: 					"Papirus";
-    display-drun: 					"";
+    icon-theme:                     "Papirus";
+    display-drun:                   "";
     drun-display-format:            "{name}";
     disable-history:                false;
-	sidebar-mode: 					false;
+    sidebar-mode:                   false;
 }
 
 @import "styles/colors.rasi"
 
 window {
-    transparency:                   "real";
-    background-color:               @background;
+    //transparency:                   "real";
+    background-color:               #00000000; //@background;
     text-color:                     @foreground;
-	//border:							0% 0% 0% 1.5%;
-	//;10uborder-color:					@border;
+    //border:                           0% 0% 0% 1.5%;
+    //;10uborder-color:                 @border;
     border-radius:                  20 20 20 20;
     height:                         49.50%;
     width:                          40%;
@@ -25,15 +25,15 @@ window {
 }
 
 prompt {
-    enabled: 						true;
-	padding: 						0% 1% 0% 0%;
-	background-color: 				@background;
-	text-color: 					@foreground;
-	font:							"FantasqueSansMono Nerd Font 12";
+    enabled:                        true;
+    padding:                        0% 1% 0% 0%;
+    background-color:               #00000000;
+    text-color:                     @foreground;
+    font:                           "FantasqueSansMono Nerd Font 12";
 }
 
 entry {
-    background-color:               @background;
+    background-color:               #00000000;
     text-color:                     @foreground;
     placeholder-color:              @foreground;
     expand:                         true;
@@ -44,20 +44,20 @@ entry {
 }
 
 inputbar {
-	children: 						[ prompt, entry ];
-    background-color:               @background;
+    children:                       [ prompt, entry ];
+    background-color:               #00000000;
     text-color:                     @foreground;
     expand:                         false;
-	border:							0% 0% 0.3% 0%;
+    border:                         0% 0% 0.3% 0%;
     border-radius:                  0% 0% 0% 0%;
-	border-color:					@border-alt;
+    border-color:                   @border-alt;
     margin:                         0% 17% 0% 0%;
     padding:                        1%;
     position:                       center;
 }
 
 listview {
-    background-color:               @background;
+    background-color:               #00000000;
     columns:                        4;
     spacing:                        0%;
     cycle:                          false;
@@ -67,16 +67,16 @@ listview {
 
 mainbox {
     background-color:               @background;
-	//border:							0% 0% 0% 1.5%;
+    //border:                           0% 0% 0% 1.5%;
     border-radius:                  0% 0% 0% 0%;
-	border-color:					@border-alt;
+    border-color:                   @border-alt;
     children:                       [ inputbar, listview ];
-    spacing:                       	2%;
+    spacing:                        2%;
     padding:                        2.5% 2% 2.5% 2%;
 }
 
 element {
-    background-color:               @background;
+    background-color:               #00000000;
     text-color:                     @foreground;
     orientation:                    vertical;
     border-radius:                  0%;
@@ -84,8 +84,8 @@ element {
 }
 
 element-icon {
-    background-color: 				#00000000;
-    text-color:       				inherit;
+    background-color:               #00000000;
+    text-color:                     inherit;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
     size:                           64px;
@@ -93,8 +93,8 @@ element-icon {
 }
 
 element-text {
-    background-color: 				#00000000;
-    text-color:       				inherit;
+    background-color:               #00000000;
+    text-color:                     inherit;
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
@@ -117,9 +117,9 @@ element alternate.active {
 element selected {
     background-color:               @selected;
     text-color:                     @foreground;
-	border:							0% 0% 0.3% 0%;
+    border:                         0% 0% 0.3% 0%;
     border-radius:                  0% 0% 0% 0%;
-    border-color:                  	@border-alt;
+    border-color:                   @border-alt;
 }
 
 element selected.urgent {

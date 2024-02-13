@@ -44,6 +44,7 @@
                     ./workstation/nixos
                     ./nixos/computer/qemu-vm
                     ./nixos
+                    home-manager.nixosModules.default
                     agenix.nixosModules.default
                     flatpaks.nixosModules.default
                 ];
@@ -56,6 +57,7 @@
                     ./nzc/nixos/profiles/production
                     ./nixos/computer/qemu-vm
                     ./nixos
+                    home-manager.nixosModules.default
                     agenix.nixosModules.default
                 ];
             };
@@ -67,6 +69,7 @@
                     ./nzc/nixos/profiles/selfhosted
                     ./nixos/computer/qemu-vm
                     ./nixos
+                    home-manager.nixosModules.default
                     agenix.nixosModules.default
                 ];
             };
