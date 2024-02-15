@@ -3,7 +3,7 @@
 {
     environment.systemPackages = with pkgs; [
         bash
+        restic
         killall
-        rsnapshot
     ];
 }
