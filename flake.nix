@@ -18,7 +18,7 @@
                 system = "x86_64-linux";
                 modules = [
                     ./homenas/nixos
-                    ./nixos/computer/qemu-vm
+                    ./nixos/hardware/computer/qemu-vm
                     ./nixos
                     agenix.nixosModules.default
                 ];
@@ -30,7 +30,7 @@
                 system = "x86_64-linux";
                 modules = [
                     ./nixos/components/ide/profiles/standalone
-                    ./nixos/computer/qemu-vm
+                    ./nixos/hardware/computer/qemu-vm
                     ./nixos
                     home-manager.nixosModules.default
                     agenix.nixosModules.default
@@ -42,7 +42,7 @@
                 system = "x86_64-linux";
                 modules = [
                     ./workstation/nixos
-                    ./nixos/computer/qemu-vm
+                    ./nixos/hardware/computer/qemu-vm
                     ./nixos
                     home-manager.nixosModules.default
                     agenix.nixosModules.default
@@ -55,7 +55,7 @@
                 system = "x86_64-linux";
                 modules = [
                     ./nzc/nixos/profiles/production
-                    ./nixos/computer/qemu-vm
+                    ./nixos/hardware/computer/qemu-vm
                     ./nixos
                     home-manager.nixosModules.default
                     agenix.nixosModules.default
@@ -67,7 +67,7 @@
                 system = "x86_64-linux";
                 modules = [
                     ./nzc/nixos/profiles/selfhosted
-                    ./nixos/computer/qemu-vm
+                    ./nixos/hardware/computer/qemu-vm
                     ./nixos
                     home-manager.nixosModules.default
                     agenix.nixosModules.default
@@ -79,7 +79,7 @@
                 system = "x86_64-linux";
                 modules = [
                     ./nzc/nixos/profiles/dev
-                    ./nixos/computer/qemu-vm
+                    ./nixos/hardware/computer/qemu-vm
                     ./nixos
                     home-manager.nixosModules.default
                     agenix.nixosModules.default
