@@ -2,6 +2,7 @@ let
     ethorbit = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID/m67X4bZrhN86eFAAp3RGEzhzUp0k1WAP7dw31fAVS ethorbit@nixos";
 in
 {
+    "nixos/secrets/restic/repos/nzc/pass.age".publicKeys = [ ethorbit ];
     "homenas/nixos/secrets/samba/users/ethorbit/creds.age".publicKeys = [ ethorbit ];
     "homenas/nixos/secrets/samba/users/nzc/creds.age".publicKeys = [ ethorbit ];
     "workstation/secrets/users/root/pass.age".publicKeys = [ ethorbit ];
