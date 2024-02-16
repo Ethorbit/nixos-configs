@@ -6,7 +6,7 @@
             withNodeJs = true;
             plugins = with pkgs.vimPlugins; [
                 config.ethorbit.pkgs.vimPlugins.confirm-quit
-                config.ethorbit.pkgs.vimPlugins.tabbyml
+                #config.ethorbit.pkgs.vimPlugins.tabbyml
 
                 vim-rooter
                 lualine-nvim
