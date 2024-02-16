@@ -26,7 +26,7 @@ options.nvim = {
     list = true,
     listchars = {["tab"] = "▷⋮"},
     shellcmdflag="-ic",
-    backupdir = "/home/ethorbit/.config/nvim/tmp/backup"
+    backupdir = "$HOME/.config/nvim/tmp/backup"
 }
 
 local cpopts = get_option_val("cpoptions", {})
