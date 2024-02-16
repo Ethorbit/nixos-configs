@@ -6,7 +6,6 @@
         ./boot.nix
         ./packages
         ./users.nix
-        ./home-manager
         ./services
         ./networking
     ];

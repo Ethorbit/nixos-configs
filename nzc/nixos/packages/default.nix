@@ -3,8 +3,8 @@
 {
     environment.systemPackages = with pkgs; [
         # We must override the docker packages to ensure they are compatible with nzc-docker
-        (import ./derivations/updated-docker.nix { inherit pkgs; inherit lib; }).docker_24_0_0
-        (import ./derivations/updated-docker-compose.nix { inherit pkgs; inherit lib; })
+        (import ./updated-docker.nix { inherit pkgs; inherit lib; }).docker_24_0_0
+        (import ./updated-docker-compose.nix { inherit pkgs; inherit lib; })
         bash
         curl
         git
