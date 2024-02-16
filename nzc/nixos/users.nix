@@ -8,7 +8,9 @@
     users = {
         mutableUsers = false;
 
-        groups."nzc" = { };
+        groups."nzc" = {
+            gid = 1000;
+        };
 
         users = {
             "root" = {
@@ -18,6 +20,7 @@
 
             "nzc" = {
                 isNormalUser = true;
+                uid = 1000;
                 group = "nzc";
                 extraGroups = [ "wheel" "docker" ];
                 hashedPasswordFile = config.age.secrets."users/nzc/password".path;
