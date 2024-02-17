@@ -11,6 +11,7 @@
         sudo
         lxcfs
         envsubst
+        gnumake
         openssl
         lsof
         apparmor-pam
