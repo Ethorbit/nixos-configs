@@ -26,7 +26,7 @@ options.nvim = {
     list = true,
     listchars = {["tab"] = "▷⋮"},
     shellcmdflag="-ic",
-    backupdir = "$HOME/.config/nvim/tmp/backup"
+    backupdir = os.getenv("HOME") .. "/.config/nvim/cache"
 }
 
 local cpopts = get_option_val("cpoptions", {})
