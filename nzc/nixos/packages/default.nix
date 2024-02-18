@@ -5,8 +5,7 @@
         # We must override the docker packages to ensure they are compatible with nzc-docker
         (import ./updated-docker.nix { inherit pkgs; inherit lib; }).docker_24_0_0
         (import ./updated-docker-compose.nix { inherit pkgs; inherit lib; })
-        # Current nixpkgs is using LXCFS 4.0.12 which is pretty old now and causing issues with the project.
-        # We will need to download the one from the unstable repo.
+        # Current nixpkgs is using LXCFS 4.0.12, which is pretty old now.
         unstable.lxcfs
         bash
         curl
