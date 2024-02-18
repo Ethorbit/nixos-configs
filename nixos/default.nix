@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./nixpkgs
         ./options.nix
         ./packages.nix
         ./environment.nix
