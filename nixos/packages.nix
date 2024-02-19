@@ -3,7 +3,8 @@
 {
     environment.systemPackages = with pkgs; [
         bash
-        restic
         killall
+        file
+        restic
     ];
 }
