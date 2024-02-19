@@ -6,11 +6,10 @@
         ./options.nix
         ./packages.nix
         ./environment.nix
+        ./timezone.nix
         ./home-manager
         ./services
     ];
-
-    time.timeZone = "America/Los_Angeles";
 
     age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
