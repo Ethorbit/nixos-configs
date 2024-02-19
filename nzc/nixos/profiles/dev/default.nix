@@ -12,5 +12,6 @@
         ../../../../nixos/components/display-manager/profiles/lightdm
         ../../../../nixos/components/audio-server/profiles/pipewire
         ../../../../nixos/components/window-manager/profiles/i3
+        ../../../../nixos/components/gaming/profiles/steam
     ];
 }

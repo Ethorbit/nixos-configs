@@ -7,6 +7,5 @@
         chromium
         mysql-workbench
         filezilla
-        steam
     ];
 }
