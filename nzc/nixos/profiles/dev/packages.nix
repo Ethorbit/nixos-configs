@@ -5,5 +5,8 @@
         dnsmasq
         firefox
         chromium
+        mysql-workbench
+        filezilla
+        steam
     ];
 }
