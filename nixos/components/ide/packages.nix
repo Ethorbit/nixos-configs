@@ -10,6 +10,7 @@
         trash-cli
         git-lfs
         qt6.full
+        python311Packages.grip
         vscode-langservers-extracted
         nodePackages.eslint
         nodePackages.vscode-json-languageserver-bin
