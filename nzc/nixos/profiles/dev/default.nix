@@ -14,4 +14,6 @@
         ../../../../nixos/components/window-manager/profiles/i3
         ../../../../nixos/components/gaming/profiles/steam
     ];
+
+    ethorbit.system.profile.name = "dev";
 }

@@ -7,4 +7,6 @@
         ./packages.nix
         ./networking
     ];
+
+    ethorbit.system.profile.name = "selfhosted";
 }

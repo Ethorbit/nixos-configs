@@ -16,7 +16,7 @@
                 user = config.ethorbit.users.primary.username;
                 initialize = true;
                 paths = [ "/home/${config.ethorbit.users.primary.username}" ];
-                repository = "/mnt/homenas/restic_backup";
+                repository = "/mnt/homenas/restic_backup.${config.ethorbit.system.profile.name}";
                 passwordFile = "/etc/restic_pass";
                 timerConfig = {
                     OnCalendar = "daily";

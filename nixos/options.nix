@@ -26,5 +26,12 @@
                 };
             };
         };
+
+        system = {
+            profile.name = mkOption {
+                type = types.str;
+                default = "default";
+            };
+        };
     };
 }
