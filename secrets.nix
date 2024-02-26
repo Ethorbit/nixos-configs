@@ -1,15 +1,16 @@
 let
     ethorbit = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID/m67X4bZrhN86eFAAp3RGEzhzUp0k1WAP7dw31fAVS ethorbit@nixos";
+    nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIMGNAhCknWm5sYlpao654MffJx4I6HNlZhocSatNrss ethorbit@space";
 in
 {
-    "nixos/secrets/restic/repos/nzc/pass.age".publicKeys = [ ethorbit ];
-    "homenas/nixos/secrets/samba/users/ethorbit/creds.age".publicKeys = [ ethorbit ];
-    "homenas/nixos/secrets/samba/users/nzc/creds.age".publicKeys = [ ethorbit ];
-    "workstation/secrets/users/root/pass.age".publicKeys = [ ethorbit ];
-    "workstation/secrets/users/ethorbit/pass.age".publicKeys = [ ethorbit ];
-    "nzc/nixos/secrets/users/nzc/pass.age".publicKeys = [ ethorbit ];
-    "nzc/nixos/secrets/networking/firewall/ISP_CIDR_one.age".publicKeys = [ ethorbit ];
-    "nzc/nixos/secrets/networking/firewall/ISP_CIDR_two.age".publicKeys = [ ethorbit ];
-    "nzc/nixos/selfhosted/secrets/networking/vpn/private.key.age".publicKeys = [ ethorbit ];
-    "nzc/nixos/selfhosted/secrets/networking/vpn/preshared.key.age".publicKeys = [ ethorbit ];
+    "nixos/secrets/restic/repos/nzc/pass.age".publicKeys = [ ethorbit nixos ];
+    "homenas/nixos/secrets/samba/users/ethorbit/creds.age".publicKeys = [ ethorbit nixos ];
+    "homenas/nixos/secrets/samba/users/nzc/creds.age".publicKeys = [ ethorbit nixos ];
+    "workstation/nixos/secrets/users/root/pass.age".publicKeys = [ ethorbit nixos ];
+    "workstation/nixos/secrets/users/ethorbit/pass.age".publicKeys = [ ethorbit nixos ];
+    "nzc/nixos/secrets/users/nzc/pass.age".publicKeys = [ ethorbit nixos ];
+    "nzc/nixos/secrets/networking/firewall/ISP_CIDR_one.age".publicKeys = [ ethorbit nixos ];
+    "nzc/nixos/secrets/networking/firewall/ISP_CIDR_two.age".publicKeys = [ ethorbit nixos ];
+    "nzc/nixos/profiles/selfhosted/secrets/networking/vpn/private.key.age".publicKeys = [ ethorbit nixos ];
+    "nzc/nixos/profiles/selfhosted/secrets/networking/vpn/preshared.key.age".publicKeys = [ ethorbit nixos ];
 }

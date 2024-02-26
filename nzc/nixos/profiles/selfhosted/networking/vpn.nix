@@ -4,9 +4,9 @@
     options = with lib; {
         ethorbit = {
             nzc.vpn = {
-                ip = mkOption {
+                host = mkOption {
                     type = types.str;
-                    default = "51.81.202.114";
+                    default = "selfhosting.nzcservers.com";
                 };
 
                 port = mkOption {
@@ -45,7 +45,7 @@
                         {
                             routeConfig = {
                                 Gateway = config.ethorbit.network.router.defaultGateway;
-                                Destination = config.ethorbit.nzc.vpn.ip;
+                                Destination = config.ethorbit.nzc.vpn.host;
                             };
                         }
                     ];
@@ -99,7 +99,7 @@
                             PublicKey = "tJczUpqDMK8LfLgd7PglO0mNsZcow3SS1SxyVncgs2E=";
                             PresharedKeyFile = config.age.secrets."networking/vpn/preshared.key".path;
                             AllowedIPs = [ "0.0.0.0/0" ];
-                            Endpoint = "${config.ethorbit.nzc.vpn.ip}:${config.ethorbit.nzc.vpn.port}";
+                            Endpoint = "${config.ethorbit.nzc.vpn.host}:${config.ethorbit.nzc.vpn.port}";
                             PersistentKeepalive = 25;
                         };
                     }];
