@@ -13,6 +13,8 @@
 
     age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
+    programs.ssh.askPassword = "";
+
     nix.settings = {
         auto-optimise-store = true;
     };
