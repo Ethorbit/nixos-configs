@@ -32,6 +32,13 @@
                 type = types.str;
                 default = "default";
             };
+
+            # This is blank for no container or
+            # the string of the type of container
+            container = mkOption {
+                type = types.str;
+                default = "";
+            };
         };
     };
 }

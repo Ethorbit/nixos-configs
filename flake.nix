@@ -51,6 +51,18 @@
                 ];
             };
 
+            "ide/wsl" = nixpkgs.lib.nixosSystem {
+                system = "x86_64-linux";
+                specialArgs = { inherit inputs outputs; };
+                modules = [
+                    ./nixos/components/ide/profiles/standalone
+                    ./nixos/hardware/computer/qemu-vm
+                    ./nixos
+                    home-manager.nixosModules.default
+                    agenix.nixosModules.default
+                ];
+            };
+
             # Workstation OS, the powerhouse of all productivity.
             "workstation" = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
