@@ -12,6 +12,11 @@
         
         agenix.url = "github:ryantm/agenix";
         flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
+    
+        NixOS-WSL = {
+            url = "github:nix-community/NixOS-WSL";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = { 
@@ -20,7 +25,8 @@
         nixpkgs-unstable,
         home-manager,
         agenix,
-        flatpaks
+        flatpaks,
+        NixOS-WSL
     } @inputs: let
         inherit (self) outputs;
     in {
@@ -48,18 +54,7 @@
                     ./nixos
                     home-manager.nixosModules.default
                     agenix.nixosModules.default
-                ];
-            };
-
-            "ide/wsl" = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                specialArgs = { inherit inputs outputs; };
-                modules = [
-                    ./nixos/components/ide/profiles/standalone
-                    ./nixos/hardware/computer/qemu-vm
-                    ./nixos
-                    home-manager.nixosModules.default
-                    agenix.nixosModules.default
+                    NixOS-WSL.nixosModules.wsl
                 ];
             };
 

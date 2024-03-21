@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 {
-    boot = lib.mkIf (config.ethorbit.system.container == "") {
+    boot = lib.mkIf (config.wsl.enable == false) {
         consoleLogLevel = 3;
         initrd.verbose = true;
         
