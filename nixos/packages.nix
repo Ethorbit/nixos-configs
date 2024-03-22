@@ -6,5 +6,8 @@
         killall
         file
         restic
+        unzip
+        p7zip
+        whois
     ];
 }

@@ -10,6 +10,7 @@
         ./home-manager
         ./services
         ./udev-rules.nix
+        ./networking.nix
     ];
 
     age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];

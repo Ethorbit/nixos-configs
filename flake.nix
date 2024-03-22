@@ -57,6 +57,20 @@
                     NixOS-WSL.nixosModules.wsl
                 ];
             };
+            
+            # SUS!
+            "exploit" = nixpkgs.lib.nixosSystem {
+                system = "x86_64-linux";
+                specialArgs = { inherit inputs outputs; };
+                modules = [
+                    ./exploit/nixos
+                    ./nixos/hardware/computer/qemu-vm
+                    ./nixos
+                    home-manager.nixosModules.default
+                    agenix.nixosModules.default
+                    NixOS-WSL.nixosModules.wsl
+                ];
+            };
 
             # Workstation OS, the powerhouse of all productivity.
             "workstation" = nixpkgs.lib.nixosSystem {

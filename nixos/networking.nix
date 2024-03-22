@@ -1,0 +1,7 @@
+{ config, ... }:
+
+{
+    networking = {
+        usePredictableInterfaceNames = false;
+    };
+}

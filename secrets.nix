@@ -3,9 +3,12 @@ let
     nixos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIMGNAhCknWm5sYlpao654MffJx4I6HNlZhocSatNrss ethorbit@space";
 in
 {
+    "nixos/components/vpn/profiles/windscribe/secrets/private.key.age".publicKeys = [ ethorbit nixos ];
+    "nixos/components/vpn/profiles/windscribe/secrets/preshared.key.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/nzc/pass.age".publicKeys = [ ethorbit nixos ];
     "homenas/nixos/secrets/samba/users/ethorbit/creds.age".publicKeys = [ ethorbit nixos ];
     "homenas/nixos/secrets/samba/users/nzc/creds.age".publicKeys = [ ethorbit nixos ];
+    "homenas/nixos/secrets/samba/users/hax/creds.age".publicKeys = [ ethorbit nixos ];
     "workstation/nixos/secrets/users/root/pass.age".publicKeys = [ ethorbit nixos ];
     "workstation/nixos/secrets/users/ethorbit/pass.age".publicKeys = [ ethorbit nixos ];
     "nzc/nixos/secrets/users/nzc/pass.age".publicKeys = [ ethorbit nixos ];
