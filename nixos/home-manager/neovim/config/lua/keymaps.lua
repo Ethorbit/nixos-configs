@@ -10,7 +10,7 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 keymap("n", "<leader>q", ":call confirm_quit#confirm(1, 'always')<cr>", opts)
-keymap("n", "<leader>w", ":up<cr>", opts)
+keymap("n", "<leader>w", ":up!<cr>", opts)
 keymap("n", "<C-d><C-q>", "<Nop>", opts) -- Disable close file hotkey, :q is easy enough.
 keymap("n", "<leader><C-t>", ":vsplit<cr>:terminal<cr>", opts) -- Open terminal
 keymap("n", "<C-d>", ":t.<cr>", opts)
