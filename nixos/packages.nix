@@ -8,7 +8,9 @@
         file
         restic
         unzip
+        unrar
         p7zip
         whois
+        wget
     ];
 }
