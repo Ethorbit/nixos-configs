@@ -49,7 +49,7 @@
                 system = "x86_64-linux";
                 specialArgs = { inherit inputs outputs; };
                 modules = [
-                    ./nixos/components/ide/profiles/standalone
+                    ./nixos/components/programming/ide/profiles/standalone
                     ./nixos/hardware/computer/qemu-vm
                     ./nixos
                     home-manager.nixosModules.default

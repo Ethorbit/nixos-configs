@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ../../../../home-manager/wallpapers/space/4k_1
+        ../../../../../home-manager/wallpapers/space/4k_1
     ];
 
     home-manager.users.${config.ethorbit.users.primary.username} = {

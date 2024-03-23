@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ../../packages/vim
+        ../../../packages/vim
     ];
 
     environment.systemPackages = with pkgs; [

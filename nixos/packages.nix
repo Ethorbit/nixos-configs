@@ -3,6 +3,7 @@
 {
     environment.systemPackages = with pkgs; [
         bash
+        screen
         killall
         file
         restic
