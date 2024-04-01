@@ -1,9 +1,8 @@
 { config, ... }:
 
 {
-	imports = [
-		./browsing
-		./development
-		./media-center
-	];
+    imports = [
+        ./development
+        ./media-center
+    ];
 }

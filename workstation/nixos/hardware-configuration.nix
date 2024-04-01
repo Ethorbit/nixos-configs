@@ -3,47 +3,49 @@
 {
   imports = [ ];
   
-  boot.kernelPackages.nvidiaPackages.production;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
+  
   boot.initrd.availableKernelModules = [ "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/proc" = {
-	device = "proc";
-	fsType = "proc";
-	options = [ "defaults" "nosuid" "nodev" "noexec" "hidepid=2" ];
+    device = "proc";
+    fsType = "proc";
+    options = [ "defaults" "nosuid" "nodev" "noexec" "hidepid=2" ];
   };
 
   fileSystems."/tmp" = {
-	device = "tmpfs";
-	fsType = "tmpfs";
-	options = [ "defaults" "nosuid" "nodev" "noexec" ];
+    device = "tmpfs";
+    fsType = "tmpfs";
+    options = [ "defaults" "nosuid" "nodev" "noexec" ];
   };
 
   fileSystems."/" = { 
-	device = "/dev/disk/by-uuid/91bb9ad6-02a9-4953-ac5d-2e1e9d20b9ac";
+    device = "/dev/disk/by-uuid/91bb9ad6-02a9-4953-ac5d-2e1e9d20b9ac";
     fsType = "ext4";
   };
 
-  fileSystems."/boot/EFI" = {
-	device = "/dev/disk/by-uuid/4EA7-3BCA";
-	fsType = "vfat";
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/1C8B-214F";
+    fsType = "vfat";
+    options = [ "fmask=0077" "dmask=0077" "defaults" ];
   };
 
   swapDevices = [ 
-	{ device = "/dev/disk/by-uuid/41efd1d9-af1c-4078-b45b-d51a4534db94"; }
+    { device = "/dev/disk/by-uuid/41efd1d9-af1c-4078-b45b-d51a4534db94"; }
   ];
 
   age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../../homenas/nixos/secrets/samba/users/ethorbit/creds.age; };
   environment.etc."nascreds" = {
-	mode = "0600";
-	source = config.age.secrets."homenas/samba/users/ethorbit/creds".path;
+    mode = "0600";
+    source = config.age.secrets."homenas/samba/users/ethorbit/creds".path;
   };
   fileSystems."/mnt/homenas" = {
     fsType = "cifs";
-	device = "//${config.ethorbit.network.homenas.ip}/nzc";
-	options = [ "credentials=/etc/nascreds" "uid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" ];
+    device = "//${config.ethorbit.network.homenas.ip}/ethorbit";
+    options = [ "credentials=/etc/nascreds" "uid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" ];
   };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

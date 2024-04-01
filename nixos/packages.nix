@@ -6,12 +6,15 @@
         screen
         killall
         file
+        pciutils
+        lm_sensors
         restic
         unzip
         unrar
         p7zip
         whois
         wget
-		sudo
+        git
+        sudo
     ];
 }

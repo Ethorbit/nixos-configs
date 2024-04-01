@@ -1,10 +1,10 @@
 { config, ... }:
 
 {
-	services.openssh = {
-		enable = true;
-		settings = {
+    services.openssh = {
+        enable = true;
+        settings = {
             PermitRootLogin = "no";
-		};
-	};
+        };
+    };
 }
