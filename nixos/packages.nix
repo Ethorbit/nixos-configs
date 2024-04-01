@@ -12,5 +12,6 @@
         p7zip
         whois
         wget
+		sudo
     ];
 }

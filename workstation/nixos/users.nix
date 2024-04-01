@@ -1,21 +1,31 @@
-{ config, ... }:
-{
-    #age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    age.secrets."users/root/password" = { file = ./secrets/users/root/pass.age; };
-    age.secrets."users/ethorbit/password" = { file = ./secrets/users/ethorbit/pass.age; };
+{ config, pkgs, ... }:
 
-    ethorbit.users.primary.username = "ethorbit";
+{
+    age.secrets."users/workstation/password" = { file = ./secrets/users/workstation/pass.age; };
     
-    users.users = { 
-        root = {
-            passwordFile = config.age.secrets."users/root/password".path;
+    ethorbit.users.primary.username = "workstation";
+    
+    users = {
+        mutableUsers = false;
+
+        groups."workstation" = {
+            gid = 1000;
         };
 
-        ethorbit = {
-            isNormalUser = true;
-            extraGroups = [ "wheel" "video" "audio" "podman" "libvirtd" "qemu-libvirtd" ];
-            passwordFile = config.age.secrets."users/ethorbit/password".path;
+        users = {
+            "root" = {
+                shell = ''${pkgs.shadow}/bin/nologin'';
+                hashedPassword = "!";
+            };
+
+            "workstation" = {
+                isNormalUser = true;
+                uid = 1000;
+                group = "nzc";
+                extraGroups = [ "wheel" ];
+                hashedPasswordFile = config.age.secrets."users/workstation/password".path;
+                openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID/m67X4bZrhN86eFAAp3RGEzhzUp0k1WAP7dw31fAVS ethorbit@nixos" ];
+            };
         };
     };
-
 }

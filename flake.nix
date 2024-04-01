@@ -37,7 +37,7 @@
                 specialArgs = { inherit inputs outputs; };
                 modules = [
                     ./homenas/nixos
-                    ./nixos/hardware/computer/qemu-vm
+                    ./nixos/hardware/vm/qemu
                     ./nixos
                     agenix.nixosModules.default
                 ];
@@ -45,12 +45,24 @@
 
             # Integrated Development Environment.
             # Not intended to be used directly, but it can be used as an independent OS if desired.
-            "ide" = nixpkgs.lib.nixosSystem {
+            "ide/cli" = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
                 specialArgs = { inherit inputs outputs; };
                 modules = [
-                    ./nixos/components/programming/ide/profiles/standalone
-                    ./nixos/hardware/computer/qemu-vm
+                    ./nixos/components/programming/ide/profiles/standalone/profiles/cli
+                    ./nixos/hardware/container/wsl
+                    ./nixos
+                    home-manager.nixosModules.default
+                    agenix.nixosModules.default
+                    NixOS-WSL.nixosModules.wsl
+                ];
+            };
+			"ide/desktop" = nixpkgs.lib.nixosSystem {
+                system = "x86_64-linux";
+                specialArgs = { inherit inputs outputs; };
+                modules = [
+                    ./nixos/components/programming/ide/profiles/standalone/profiles/desktop
+                    ./nixos/hardware/vm/qemu
                     ./nixos
                     home-manager.nixosModules.default
                     agenix.nixosModules.default
@@ -64,7 +76,7 @@
                 specialArgs = { inherit inputs outputs; };
                 modules = [
                     ./exploit/nixos
-                    ./nixos/hardware/computer/qemu-vm
+                    ./nixos/hardware/vm/qemu
                     ./nixos
                     home-manager.nixosModules.default
                     agenix.nixosModules.default
@@ -78,7 +90,6 @@
                 specialArgs = { inherit inputs outputs; };
                 modules = [
                     ./workstation/nixos
-                    ./nixos/hardware/computer/qemu-vm
                     ./nixos
                     home-manager.nixosModules.default
                     agenix.nixosModules.default
@@ -92,7 +103,7 @@
                 specialArgs = { inherit inputs outputs; };
                 modules = [
                     ./nzc/nixos/profiles/production
-                    ./nixos/hardware/computer/qemu-vm
+                    ./nixos/hardware/vm/qemu
                     ./nixos
                     home-manager.nixosModules.default
                     agenix.nixosModules.default
@@ -105,7 +116,7 @@
                 specialArgs = { inherit inputs outputs; };
                 modules = [
                     ./nzc/nixos/profiles/selfhosted
-                    ./nixos/hardware/computer/qemu-vm
+                    ./nixos/hardware/vm/qemu
                     ./nixos
                     home-manager.nixosModules.default
                     agenix.nixosModules.default
@@ -118,7 +129,7 @@
                 specialArgs = { inherit inputs outputs; };
                 modules = [
                     ./nzc/nixos/profiles/dev
-                    ./nixos/hardware/computer/qemu-vm
+                    ./nixos/hardware/vm/qemu
                     ./nixos
                     home-manager.nixosModules.default
                     agenix.nixosModules.default
