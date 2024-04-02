@@ -38,8 +38,7 @@
                 modules = [
                     ./homenas/nixos
                     ./nixos/hardware/vm/qemu
-                    ./nixos
-                    agenix.nixosModules.default
+                    ./nixosmodules.nix
                 ];
             };
 
@@ -51,22 +50,16 @@
                 modules = [
                     ./nixos/components/programming/ide/profiles/standalone/profiles/cli
                     ./nixos/hardware/container/wsl
-                    ./nixos
-                    home-manager.nixosModules.default
-                    agenix.nixosModules.default
-                    NixOS-WSL.nixosModules.wsl
+                    ./nixosmodules.nix
                 ];
             };
-			"ide/desktop" = nixpkgs.lib.nixosSystem {
+            "ide/desktop" = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
                 specialArgs = { inherit inputs outputs; };
                 modules = [
                     ./nixos/components/programming/ide/profiles/standalone/profiles/desktop
                     ./nixos/hardware/vm/qemu
-                    ./nixos
-                    home-manager.nixosModules.default
-                    agenix.nixosModules.default
-                    NixOS-WSL.nixosModules.wsl
+                    ./nixosmodules.nix
                 ];
             };
             
@@ -77,10 +70,7 @@
                 modules = [
                     ./exploit/nixos
                     ./nixos/hardware/vm/qemu
-                    ./nixos
-                    home-manager.nixosModules.default
-                    agenix.nixosModules.default
-                    NixOS-WSL.nixosModules.wsl
+                    ./nixosmodules.nix
                 ];
             };
 
@@ -90,10 +80,7 @@
                 specialArgs = { inherit inputs outputs; };
                 modules = [
                     ./workstation/nixos
-                    ./nixos
-                    home-manager.nixosModules.default
-                    agenix.nixosModules.default
-                    flatpaks.nixosModules.default
+                    ./nixosmodules.nix
                 ];
             };
 
@@ -104,9 +91,7 @@
                 modules = [
                     ./nzc/nixos/profiles/production
                     ./nixos/hardware/vm/qemu
-                    ./nixos
-                    home-manager.nixosModules.default
-                    agenix.nixosModules.default
+                    ./nixosmodules.nix
                 ];
             };
 
@@ -117,9 +102,7 @@
                 modules = [
                     ./nzc/nixos/profiles/selfhosted
                     ./nixos/hardware/vm/qemu
-                    ./nixos
-                    home-manager.nixosModules.default
-                    agenix.nixosModules.default
+                    ./nixosmodules.nix
                 ];
             };
 
@@ -130,9 +113,7 @@
                 modules = [
                     ./nzc/nixos/profiles/dev
                     ./nixos/hardware/vm/qemu
-                    ./nixos
-                    home-manager.nixosModules.default
-                    agenix.nixosModules.default
+                    ./nixosmodules.nix
                 ];
             };
         };
