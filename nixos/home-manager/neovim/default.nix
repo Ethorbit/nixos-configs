@@ -18,5 +18,10 @@
             source = ./config;
             recursive = true;
         };
+
+        programs.bash.bashrcExtra = ''
+            EDITOR=nvim
+            VISUAL=nvim
+        '';
     };
 }

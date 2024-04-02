@@ -16,5 +16,6 @@
         wget
         git
         sudo
+        vim
     ];
 }
