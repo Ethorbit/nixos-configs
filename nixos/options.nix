@@ -2,6 +2,12 @@
 
 {
     options.ethorbit = with lib; {
+        age.identityPath = mkOption {
+            type = types.str;
+            description = "Where on the system the key used for decrypting your age secrets is stored.";
+            default = "/etc/ssh/ssh_host_ed25519_key";
+        };
+
         users = {
             primary = {
                 username = mkOption {

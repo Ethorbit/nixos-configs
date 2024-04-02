@@ -13,7 +13,7 @@
         ./networking.nix
     ];
 
-    age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    age.identityPaths = [ config.ethorbit.age.identityPath ];
 
     programs.ssh.askPassword = "";
     programs.nano.enable = false;
