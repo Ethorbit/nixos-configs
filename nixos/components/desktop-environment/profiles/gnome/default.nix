@@ -3,7 +3,8 @@
 {
     imports = [
         ../..
-        ./home-manager.nix
         ./packages.nix
     ];
+
+    services.xserver.desktopManager.gnome.enable = true;
 }
