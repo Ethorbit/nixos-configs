@@ -1,15 +1,17 @@
 { config, inputs, ... }:
 
+let
+    defaults = import ../default-containers.nix { inherit config; };
+in
 {
     containers."development" = {
         autoStart = true;
         privateNetwork = true;
-        # needed for reading agenix secrets used inside container config
-        bindMounts.${config.ethorbit.age.identityPath}.isReadOnly = true;
-        config = { config, lib, ... }: {
+        inherit (defaults) bindMounts allowedDevices;
+        config = { config, ... }: {
             imports = [
                 (import ../../../../nixosmodules.nix { inherit inputs; })
-                ../default-container.nix
+                ../default-containers-config.nix
                 ./users.nix
             ];
         };

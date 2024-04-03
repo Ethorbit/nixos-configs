@@ -1,13 +1,14 @@
 { config, ... }:
 
 {
-    # Sunshine will be used to stream the graphical acceleration
-    # out of the container for a pleasant desktop experience
-    #
-    # This means we can do graphics-intensive tasks **INSIDE** containers.
-    # Poggers. Fuck NVIDIA and their greedy vGPU licensing :)
     imports = [
         ../host-and-containers
+        
+        # Sunshine will be used to stream the graphical acceleration
+        # out of the container for a pleasant desktop experience
+        #
+        # This means we can do graphics-intensive tasks **INSIDE** containers.
+        # Poggers. Fuck NVIDIA and their greedy vGPU licensing :)
         ../../../nixos/components/desktop-streaming/profiles/sunshine
     ];
 
