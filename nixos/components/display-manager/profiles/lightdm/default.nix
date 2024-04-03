@@ -1,8 +1,8 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
     services.xserver.displayManager.lightdm = {
-        enable = true;
-        greeters.gtk.enable = true;
+        enable = lib.mkDefault true;
+        greeters.gtk.enable = lib.mkDefault true;
     };
 }
