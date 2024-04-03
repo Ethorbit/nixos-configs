@@ -6,18 +6,11 @@
     ethorbit.users.primary.username = "workstation";
     
     users = {
-        mutableUsers = false;
-
         groups."workstation" = {
             gid = 1000;
         };
 
         users = {
-            "root" = {
-                shell = ''${pkgs.shadow}/bin/nologin'';
-                hashedPassword = "!";
-            };
-
             "workstation" = {
                 isNormalUser = true;
                 uid = 1000;
@@ -28,4 +21,6 @@
             };
         };
     };
+
+    security.sudo.wheelNeedsPassword = false;
 }

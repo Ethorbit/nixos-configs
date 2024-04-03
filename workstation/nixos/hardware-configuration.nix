@@ -1,10 +1,6 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [ ];
-  
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
-  
   boot.initrd.availableKernelModules = [ "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ ];
@@ -19,7 +15,7 @@
   fileSystems."/tmp" = {
     device = "tmpfs";
     fsType = "tmpfs";
-    options = [ "defaults" "nosuid" "nodev" "noexec" ];
+    options = [ "defaults" "nosuid" "nodev" ]; #"noexec" ]; # noexec causes nvidia-vaapi-driver build to fail :shrug:
   };
 
   fileSystems."/" = { 

@@ -1,7 +1,7 @@
 { config, inputs, ... }:
 
 {
-    containers."development" = {
+    containers."media" = {
         autoStart = true;
         privateNetwork = true;
         # needed for reading agenix secrets used inside container config

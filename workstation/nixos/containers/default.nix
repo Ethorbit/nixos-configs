@@ -3,6 +3,6 @@
 {
     imports = [
         ./development
-        ./media-center
+        ./media
     ];
 }
