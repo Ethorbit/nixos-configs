@@ -1,10 +1,13 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
+let
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+in
 {
     boot.blacklistedKernelModules = [ "nouveau" ];
 
     hardware.nvidia = {
-        package = config.boot.kernelPackages.nvidiaPackages.production;
+        package = pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc package);
         modesetting.enable = true;
         powerManagement.enable = false;
         powerManagement.finegrained = false;

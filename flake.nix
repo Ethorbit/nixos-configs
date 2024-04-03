@@ -12,7 +12,12 @@
         
         agenix.url = "github:ryantm/agenix";
         flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
-    
+        
+        nvidia-patch = {
+            url = "github:icewind1991/nvidia-patch-nixos";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+        
         NixOS-WSL = {
             url = "github:nix-community/NixOS-WSL";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +31,7 @@
         home-manager,
         agenix,
         flatpaks,
+        nvidia-patch,
         NixOS-WSL
     } @inputs: let
         inherit (self) outputs;
