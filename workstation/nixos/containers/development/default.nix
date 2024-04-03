@@ -11,7 +11,7 @@ in
         config = { config, ... }: {
             imports = [
                 (import ../../../../nixosmodules.nix { inherit inputs; })
-                ../default-containers-config.nix
+                ../default-containers-config
                 ./users.nix
             ];
         };
