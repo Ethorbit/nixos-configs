@@ -25,10 +25,10 @@
             options = [ "fmask=0077" "dmask=0077" "defaults" ];
         };
         
-        age.secrets."homenas/samba/users/nzc/creds" = { file = ../../../../../homenas/nixos/secrets/samba/users/nzc/creds.age; };
+        age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../../../../../homenas/nixos/secrets/samba/users/ethorbit/creds.age; };
         environment.etc."nascreds" = {
             mode = "0600";
-            source = config.age.secrets."homenas/samba/users/nzc/creds".path;
+            source = config.age.secrets."homenas/samba/users/ethorbit/creds".path;
         };
         fileSystems."/mnt/homenas" = {
             fsType = "cifs";
