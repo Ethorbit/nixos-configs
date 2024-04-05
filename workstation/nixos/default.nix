@@ -7,7 +7,7 @@
         ./bootloader.nix
         ./users.nix
         ./services.nix
-        ./firewall.nix
+        ./networking
         ./containers
     ];
 

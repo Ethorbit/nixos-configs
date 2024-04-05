@@ -6,7 +6,8 @@ in
 {
     containers."development" = {
         autoStart = true;
-        privateNetwork = true;
+        privateNetwork = false;
+        interfaces = [ "eth1" ];
         inherit (defaults) bindMounts allowedDevices;
         config = { config, ... }: {
             imports = [

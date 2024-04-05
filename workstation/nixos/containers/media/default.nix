@@ -6,7 +6,8 @@ in
 {
     containers."media" = {
         autoStart = true;
-        privateNetwork = true;
+        privateNetwork = false;
+        interfaces = [ "eth2" ];
         inherit (defaults) bindMounts allowedDevices;
         config = { config, ... }: {
             imports = [

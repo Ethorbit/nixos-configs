@@ -2,7 +2,7 @@
 
 {
     networking.firewall = {
-        enable = true;
+        enable = false; #true;
         extraCommands = ''
             iptables -P INPUT DROP
             iptables -I INPUT 1 -m state --state RELATED,ESTABLISHED -j ACCEPT

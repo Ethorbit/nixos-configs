@@ -1,6 +1,8 @@
 { config, ... }:
 
 {
+    #hostBridge = "br0";
+    
     bindMounts = {
         # Needed so that the containers can read their own age secrets
         ${config.ethorbit.age.identityPath}.isReadOnly = true;

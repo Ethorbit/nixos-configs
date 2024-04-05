@@ -41,7 +41,7 @@
   fileSystems."/mnt/homenas" = {
     fsType = "cifs";
     device = "//${config.ethorbit.network.homenas.ip}/ethorbit";
-    options = [ "credentials=/etc/nascreds" "uid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" ];
+    options = [ "credentials=/etc/nascreds" "uid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
   };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

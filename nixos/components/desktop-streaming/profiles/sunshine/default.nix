@@ -1,8 +1,9 @@
 { config, ... }:
 
 {
-	imports = [
-		./firewall-rules.nix
-		./packages.nix
-	];
+    imports = [
+        ../../../../services/sunshine
+        ./firewall-rules.nix
+        ./packages.nix
+    ];
 }
