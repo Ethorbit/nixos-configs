@@ -9,7 +9,9 @@
         
         serviceConfig = {
             Type = "simple";
-            ExecStart = ''${pkgs.sunshine}/bin/sunshine'';
+            #ExecStart = ''${pkgs.sunshine}/bin/sunshine'';
+            # sunshine component adds a much needed wrapper
+            ExecStart = ''${config.security.wrapperDir}/sunshine'';
             Restart = "on-failure";
             RestartSec = 5;
         };
