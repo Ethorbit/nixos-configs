@@ -3,6 +3,11 @@
 with lib;
 {
     options = {
+        ethorbit.services.razer.mouse.xinputAccelSpeed = mkOption {
+            type = types.str;
+            default = "-0.7";
+        };
+    
         # Slow mouse a little, feels too fast under Linux. 
         # There's multiple Razer mice for some reason (Probably due to usb kvm switch)
         ethorbit.scripts.xinput.razer-mouse = mkOption {
@@ -12,7 +17,7 @@ with lib;
                 grep="${pkgs.gash-utils}/bin/grep"
                 cut="${pkgs.gash-utils}/bin/cut"
                 for xinput_id in $("$xinput" list | "$grep" 'Razer Razer DeathAdder V2' | "$grep" -o 'id=[0-9]*' | "$cut" -c 4-); do
-                    "$xinput" --set-prop "$xinput_id" "libinput Accel Speed" -0.7
+                    "$xinput" --set-prop "$xinput_id" "libinput Accel Speed" ${config.ethorbit.services.razer.mouse.xinputAccelSpeed}
                 done
             '');
         };
