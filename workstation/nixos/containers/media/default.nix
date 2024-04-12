@@ -10,8 +10,6 @@ in
         interfaces = [ "eth2" ];
         inherit (defaults) bindMounts allowedDevices;
         config = { config, ... }: {
-            environment.variables.DISPLAY = ":3";
-
             imports = [
                 (import ../../../../nixosmodules.nix { inherit inputs; })
                 ../default-containers-config
