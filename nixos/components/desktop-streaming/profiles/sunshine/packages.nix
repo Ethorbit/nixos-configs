@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-	environment.systemPackages = with pkgs; [
-		sunshine
-	];
+    environment.systemPackages = with pkgs; [
+        sunshine
+    ];
 }

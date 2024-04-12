@@ -5,6 +5,7 @@
         ./nixos
         home-manager.nixosModules.default
         agenix.nixosModules.default
+        flatpaks.nixosModules.default
         NixOS-WSL.nixosModules.wsl
     ];
 

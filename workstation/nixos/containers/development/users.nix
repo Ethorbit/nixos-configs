@@ -7,14 +7,15 @@
     
     users = {
         groups."development" = {
-            gid = 1000;
+            gid = 1200;
         };
 
         users = {
             "development" = {
                 isNormalUser = true;
-                uid = 1000;
+                uid = 1200;
                 group = "development";
+                extraGroups = [ "input" "video" "sound"  ];
                 hashedPasswordFile = config.age.secrets."users/development/password".path;
                 openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID/m67X4bZrhN86eFAAp3RGEzhzUp0k1WAP7dw31fAVS ethorbit@nixos" ];
             };

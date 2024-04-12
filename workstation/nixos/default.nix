@@ -8,6 +8,9 @@
         ./users.nix
         ./services.nix
         ./networking
+        ./desktop.nix
+        ./packages.nix
+        ../../nixos/components/programming/ide
         ./containers
     ];
 

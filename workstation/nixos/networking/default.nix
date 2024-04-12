@@ -8,9 +8,9 @@
     boot.kernelParams = [ "ipv6.disable=1" ];
 
     # After what feels like 1,000 attempts at getting a DHCP bridge for ethernet working
-    # I finally gave up and decided to add multiple virtual switches to my Hyper-V
-    # virtual machine instead, one for each container and then share the networkd 
-    # config between host and container. It works great - each container has their own IP and interface.
+    # I finally gave up and decided to add multiple virtual switches to my virtual machine 
+    # instead, one for each container and then share the networkd config between host and container. 
+    # It works great - each container has their own IP and interface.
     #
     # If the NixOS team ever gets around to fixing their systemd network shit, 
     # I'll attempt the "proper way" once again.

@@ -6,6 +6,10 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
+  imports = [
+    ../../nixos/hardware/vm/virtio
+  ];
+
   fileSystems."/proc" = {
     device = "proc";
     fsType = "proc";
@@ -19,18 +23,18 @@
   };
 
   fileSystems."/" = { 
-    device = "/dev/disk/by-uuid/91bb9ad6-02a9-4953-ac5d-2e1e9d20b9ac";
+    device = "/dev/disk/by-uuid/fe2f5fa2-263c-40dc-8770-c5106a85a7bf";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/1C8B-214F";
+    device = "/dev/disk/by-uuid/5336-B9AC";
     fsType = "vfat";
     options = [ "fmask=0077" "dmask=0077" "defaults" ];
   };
 
   swapDevices = [ 
-    { device = "/dev/disk/by-uuid/41efd1d9-af1c-4078-b45b-d51a4534db94"; }
+    { device = "/dev/disk/by-uuid/d157b62c-a80f-4164-8eb7-b05eb8b3a0d2"; }
   ];
 
   age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../../homenas/nixos/secrets/samba/users/ethorbit/creds.age; };
@@ -52,7 +56,6 @@
   # networking.interfaces.eth0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  virtualisation.hypervGuest.enable = true;
   
   
    # This value determines the NixOS release from which the default
