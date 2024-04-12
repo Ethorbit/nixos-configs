@@ -4,12 +4,6 @@
     systemd.network = {
         enable = true;
         wait-online.enable = false;
-        networks = {
-            "20-eth" = {
-                matchConfig.Name = "eth*";
-                DHCP = "ipv4";
-            };
-        };
     };
 
     networking = {

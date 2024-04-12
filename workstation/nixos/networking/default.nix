@@ -7,6 +7,16 @@
 
     boot.kernelParams = [ "ipv6.disable=1" ];
 
+    # Redundant, results in secondary DHCP IP
+    #systemd.network = {
+    #    networks = {
+    #        "20-eth" = {
+    #            matchConfig.Name = "eth0";
+    #            DHCP = "ipv4";
+    #        };
+    #    };
+    #};
+
     # After what feels like 1,000 attempts at getting a DHCP bridge for ethernet working
     # I finally gave up and decided to add multiple virtual switches to my virtual machine 
     # instead, one for each container and then share the networkd config between host and container. 

@@ -37,10 +37,6 @@
 
     # We need to grant access to the devices used by Sunshine
     allowedDevices = [
-        #{
-        #    modifier = "rwm";
-        #    node = "/tmp/.X11-unix/X0";
-        #}
         {
             modifier = "rwm";
             node = "/dev/uinput";
