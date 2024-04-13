@@ -15,7 +15,8 @@
 
         "/dev/shm" = {};
         "/dev/fuse" = {};
-        "/tmp/.X11-unix".isReadOnly = true;
+
+        # Allow container to use the GPU
         "/dev/vga_arbiter" = {};
         "/dev/dri" = {};
         "/dev/nvidia-modeset" = {};
