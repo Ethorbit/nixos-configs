@@ -6,9 +6,7 @@
     ethorbit.users.primary.username = "workstation";
     
     users = {
-        groups."workstation" = {
-            gid = 1000;
-        };
+        groups."workstation".gid = 1000;
 
         users = {
             "workstation" = {

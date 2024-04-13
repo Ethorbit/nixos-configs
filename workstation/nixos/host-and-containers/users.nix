@@ -4,6 +4,8 @@
     users = {
         mutableUsers = false;
 
+        groups."container".gid = 1001;
+
         # There's no reason for root; workstation user uses sudo
         # and containers don't use any form of root for security.
         users."root" = {

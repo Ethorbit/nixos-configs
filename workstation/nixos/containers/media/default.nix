@@ -1,19 +1,19 @@
 { config, inputs, ... }:
 
 let
-    defaults = import ../default-containers.nix { inherit config; };
+    defaults = import ../default-container.nix { inherit config; };
+    name = "media"; # Must be defined in host-and-container's xorgSessionNumbers
 in
 {
-    containers."media" = {
-        autoStart = false;
-        privateNetwork = false;
-        interfaces = [ "eth2" ];
-        inherit (defaults) bindMounts allowedDevices;
+    containers.${name} = {
+        inherit (defaults) ephemeral autoStart privateNetwork additionalCapabilities bindMounts allowedDevices;
         config = { config, ... }: {
+            ethorbit.users.primary.username = name;
+
             imports = [
                 (import ../../../../nixosmodules.nix { inherit inputs; })
-                ../default-containers-config
-                ./users.nix
+                ../config
+                ./config
             ];
         };
     };

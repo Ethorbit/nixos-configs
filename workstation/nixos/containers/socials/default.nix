@@ -1,8 +1,8 @@
-{ config, lib, inputs, ... }:
+{ config, inputs, ... }:
 
 let
     defaults = import ../default-container.nix { inherit config; };
-    name = "development"; # Must be defined in host-and-container's xorgSessionNumbers
+    name = "socials"; # Must be defined in host-and-container's xorgSessionNumbers
 in
 {
     containers.${name} = {

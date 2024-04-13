@@ -7,7 +7,7 @@
   boot.extraModulePackages = [ ];
 
   imports = [
-    ../../nixos/hardware/vm/virtio
+    ../../../nixos/hardware/vm/virtio
   ];
 
   fileSystems."/proc" = {
@@ -37,7 +37,7 @@
     { device = "/dev/disk/by-uuid/d157b62c-a80f-4164-8eb7-b05eb8b3a0d2"; }
   ];
 
-  age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../../homenas/nixos/secrets/samba/users/ethorbit/creds.age; };
+  age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../../../homenas/nixos/secrets/samba/users/ethorbit/creds.age; };
   environment.etc."nascreds" = {
     mode = "0600";
     source = config.age.secrets."homenas/samba/users/ethorbit/creds".path;

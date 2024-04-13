@@ -7,7 +7,8 @@
 
 {
     imports = [
-        ../../desktop.nix
+        # For now we'll just use the same desktop as host.
+        ../../host/desktop.nix
     ];
 
     services.xserver = {
