@@ -1,7 +1,6 @@
 { config, ... }:
 
 {
-
     imports = [
         ./users.nix
         ./networking.nix
@@ -11,6 +10,7 @@
     ];
 
     boot.isContainer = true;
+    boot.enableContainers = false;
 
     environment.variables.DISPLAY = ":${builtins.toString config.ethorbit.workstation.xorg.sessionNumbers.${config.ethorbit.users.primary.username}}";
 
