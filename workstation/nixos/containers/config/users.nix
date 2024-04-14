@@ -6,6 +6,7 @@
     users = {
         users = {
             "${config.ethorbit.users.primary.username}" = {
+                linger = true;
                 isNormalUser = true;
                 group = "container";
                 uid = 1000 + config.ethorbit.workstation.xorg.sessionNumbers.${config.ethorbit.users.primary.username};

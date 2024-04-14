@@ -1,17 +1,27 @@
-# Cinnamon desktop will be used simply because it fits better
-# when you simultaneously use Moonlight client for Windows as well
-#
-# GDM is used instead of LightDM because LightDM doesn't seem to work in containers \o/
-
-{ config, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
     imports = [
-        # For now we'll just use the same desktop as host.
-        ../../host/desktop.nix
+        ../../../../nixos/components/display-server/profiles/xserver
+        ../../../../nixos/components/audio-server/profiles/pipewire
+        ../../../../nixos/components/desktop-environment/profiles/xfce
     ];
 
-    services.xserver = {
+    # Can't use a display manager since it's incompatible with X nesting
+    # We can just run the desktop executable as user, at boot.
+    systemd.user.services."desktop" = {
+        enable = true;
+        environment = {
+            DISPLAY = lib.mkForce ":${builtins.toString config.ethorbit.workstation.xorg.sessionNumbers.${config.ethorbit.users.primary.username}}";
+            PATH = lib.mkForce "/run/wrappers/bin:/nix/profile/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
+        };
+        script = ''exec startxfce4'';
+        wantedBy = [ "default.target" ];
+    };
+
+    services.xserver.displayManager.startx.enable = true;
+
+    #services.xserver = {
         #videoDrivers = [ "dummy" ]; #"nvidia" ];
         #
         # Taken from docker-steam-headless's /templates xorg.dummy.conf
@@ -40,5 +50,5 @@
         #        EndSubSection
         #    EndSection
         #'';
-    };
+    #};
 }
