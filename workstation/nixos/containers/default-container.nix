@@ -28,6 +28,10 @@
 
     allowedDevices = [
         {
+            modifier = "rwm";
+            node = "/dev/fuse";
+        }
+        {
             modifier = "rw";
             node = "/dev/dri/renderD128";
         }
