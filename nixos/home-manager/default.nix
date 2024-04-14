@@ -3,6 +3,7 @@
 {
     imports = [
         ./bash
+        ./gtk
     ];
 
     home-manager = {
