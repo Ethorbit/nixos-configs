@@ -6,7 +6,7 @@
     autoStart = false;
 
     privateNetwork = true;
-    localAddress = null; #"192.168.254.254";
+    localAddress = null;
 
     hostBridge = "br0";
 
