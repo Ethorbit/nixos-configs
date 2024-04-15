@@ -5,12 +5,14 @@
         ./nixpkgs
         ./options.nix
         ./packages.nix
+        ./users.nix
         ./environment.nix
         ./timezone.nix
         ./home-manager
         ./services
         ./udev-rules.nix
         ./networking.nix
+        ./sudo.nix
     ];
 
     age.identityPaths = [ config.ethorbit.age.identityPath ];
