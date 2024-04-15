@@ -3,9 +3,12 @@
 {
     ephemeral = false;
 
-    autoStart = true;
+    autoStart = false;
 
     privateNetwork = true;
+    localAddress = null; #"192.168.254.254";
+
+    hostBridge = "br0";
 
     additionalCapabilities = [];
 

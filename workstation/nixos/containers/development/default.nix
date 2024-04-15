@@ -6,7 +6,7 @@ let
 in
 {
     containers.${name} = {
-        inherit (defaults) ephemeral autoStart privateNetwork additionalCapabilities allowedDevices;
+        inherit (defaults) ephemeral autoStart privateNetwork localAddress hostBridge additionalCapabilities allowedDevices;
 
         bindMounts = with { inherit(defaults) bindMounts; }; lib.mkMerge [
             bindMounts
