@@ -3,14 +3,12 @@
 {
     imports = [
         ../../../../services/sunshine
+        # avahi is used by Sunshine to broadcast its presence to Moonlight clients
+        ../../../service-discovery/profiles/avahi
         ./security-wrapper.nix
         ./firewall-rules.nix
         ./packages.nix
     ];
-
-    # avahi is used by Sunshine to broadcast its presence to Moonlight clients
-    services.avahi.enable = true;
-    services.avahi.publish.userServices = true;
 
     # required to simulate input
     boot.kernelModules = [ "uinput" ];
