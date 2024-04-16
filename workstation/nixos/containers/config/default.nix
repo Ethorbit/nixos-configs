@@ -7,6 +7,7 @@
         ./packages.nix
         ../../host-and-containers
         ./desktop.nix
+        ./audio.nix
     ];
 
     boot.isContainer = true;

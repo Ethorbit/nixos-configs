@@ -5,7 +5,6 @@
 {
     imports = [
         ../../../nixos/components/display-server/profiles/xserver
-        ../../../nixos/components/audio-server/profiles/pipewire
         ../../../nixos/components/display-manager/profiles/lightdm
         ../../../nixos/components/desktop-environment/profiles/cinnamon
     ];

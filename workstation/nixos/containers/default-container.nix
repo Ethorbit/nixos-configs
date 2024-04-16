@@ -10,7 +10,7 @@
 
     hostBridge = "br0";
 
-    additionalCapabilities = [];
+    additionalCapabilities = [ ];
 
     bindMounts = {
         # Needed so that the containers can read their own age secrets
@@ -19,7 +19,7 @@
         "/dev/shm" = {};
         "/dev/fuse" = {};
 
-        # Allow container to use the GPU
+        # GPU
         "/dev/vga_arbiter" = {};
         "/dev/dri" = {};
         "/dev/nvidia-modeset" = {};
@@ -34,6 +34,8 @@
             modifier = "rwm";
             node = "/dev/fuse";
         }
+
+        # GPU
         {
             modifier = "rw";
             node = "/dev/dri/renderD128";

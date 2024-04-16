@@ -5,10 +5,8 @@
         enable = true;
         extraCommands = ''
             iptables -P INPUT DROP
-            iptables -I INPUT 1 -m state --state RELATED,ESTABLISHED -j ACCEPT
-            iptables -I INPUT 2 -i lo -j ACCEPT
-            iptables -I INPUT 3 -p tcp -m tcp --dport 22 -s ${config.ethorbit.network.admin.ip} -j ACCEPT
-            iptables -F nixos-fw
+            iptables -I INPUT 1 -p tcp -m tcp --dport 22 ! -s ${config.ethorbit.network.admin.ip} -j DROP
+            iptables -A nixos-fw -p tcp -m tcp --dport 4713 -j nixos-fw-accept
         '';
         extraStopCommands = ''
             iptables -P INPUT ACCEPT

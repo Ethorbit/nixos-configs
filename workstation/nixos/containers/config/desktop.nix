@@ -3,7 +3,6 @@
 {
     imports = [
         ../../../../nixos/components/display-server/profiles/xserver
-        ../../../../nixos/components/audio-server/profiles/pipewire
         ../../../../nixos/components/desktop-environment/profiles/xfce
     ];
 

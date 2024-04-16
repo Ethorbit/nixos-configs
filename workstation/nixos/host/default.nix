@@ -9,6 +9,7 @@
         ./networking
         ./desktop.nix
         ./packages.nix
+        ./audio.nix
         ../../../nixos/components/display-nesting/profiles/xephyr
         ../../../nixos/components/programming/ide
     ];
