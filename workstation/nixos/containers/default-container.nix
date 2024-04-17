@@ -10,7 +10,7 @@
 
     hostBridge = "br0";
 
-    additionalCapabilities = [ ];
+    additionalCapabilities = [ "CAP_SYS_ADMIN" ];
 
     bindMounts = {
         # Needed so that the containers can read their own age secrets
@@ -18,6 +18,7 @@
 
         "/dev/shm" = {};
         "/dev/fuse" = {};
+        "/sys/module".isReadOnly = true;
 
         # GPU
         "/dev/vga_arbiter" = {};
@@ -37,31 +38,35 @@
 
         # GPU
         {
-            modifier = "rw";
+            modifier = "rwm";
+            node = "char-drm";
+        }
+        {
+            modifier = "rwm";
             node = "/dev/dri/renderD128";
         }
         {
-            modifier = "rw";
+            modifier = "rwm";
             node = "/dev/dri/card0";
         }
         {
-            modifier = "rw";
+            modifier = "rwm";
             node = "/dev/nvidia-modeset";
         }
         {
-            modifier = "rw";
+            modifier = "rwm";
             node = "/dev/nvidia-uvm";
         }
         {
-            modifier = "rw";
+            modifier = "rwm";
             node = "/dev/nvidia-uvm-tools";
         }
         {
-            modifier = "rw";
+            modifier = "rwm";
             node = "/dev/nvidiactl";
         }
         {
-            modifier = "rw";
+            modifier = "rwm";
             node = "/dev/nvidia0";
         }
     ];
