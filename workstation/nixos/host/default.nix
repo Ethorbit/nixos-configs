@@ -15,4 +15,9 @@
     ];
 
     networking.hostName = "workstation";
+    virtualisation.docker = {
+        enable = true;
+        enableOnBoot = true;
+        enableNvidia = true;
+    };
 }
