@@ -8,12 +8,11 @@
         ../../host-and-containers
         ./desktop.nix
         ./audio.nix
+        ./environment.nix
     ];
 
     boot.isContainer = true;
     boot.enableContainers = false;
-
-    environment.variables.DISPLAY = ":${builtins.toString config.ethorbit.workstation.xorg.sessionNumbers.${config.ethorbit.users.primary.username}}";
 
     # realtime audio
     #security.rtkit.enable = true;
