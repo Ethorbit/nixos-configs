@@ -1,3 +1,7 @@
+# NOTE: This is not really used anymore..
+# Most environments support mouse control already
+# There's no reason to configure it with custom nix
+
 { config, pkgs, lib, ... }:
 
 with lib;
