@@ -1,26 +1,6 @@
 # Note: A NVIDIA gpu can only be used for one Xorg server at a time
 # That is basically why vglrun must be used.
 
-
-#{ config, lib, ... }:
-#
-#{
-#    config = lib.mkIf (config.networking.firewall.enable == true) {
-#        networking.firewall = {
-#            extraCommands = ''
-#                iptables -N SUNSHINE
-#                iptables -A SUNSHINE -p udp -m multiport --dports 47998,47999,48000,48002 -j ACCEPT
-#                iptables -A SUNSHINE -p tcp -m multiport --dports 47984,47989,47990,48010 -j ACCEPT
-#                iptables -A INPUT -j SUNSHINE
-#            '';
-#            
-#            extraStopCommands = ''
-#                iptables -D SUNSHINE
-#            '';
-#        };
-#    };
-#}
-
 { config, lib, ... }:
 
 {
