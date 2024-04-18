@@ -10,7 +10,7 @@
 
     hostBridge = "br0";
 
-    additionalCapabilities = [ "CAP_SYS_ADMIN" ];
+    additionalCapabilities = [ ];
 
     bindMounts = {
         # Needed so that the containers can read their own age secrets
@@ -29,7 +29,7 @@
         "/dev/nvidiactl" = {};
         "/dev/nvidia0" = {};
     };
-
+    
     allowedDevices = [
         {
             modifier = "rwm";
@@ -71,3 +71,17 @@
         }
     ];
 }
+
+# If a container needs X nesting, you will have to add some stuff to the container file:
+#
+# bindMounts = with { inherit(defaults) bindMounts; }; lib.mkMerge [
+#     bindMounts
+#     # Give access to container's exclusive X display only
+#     { "/tmp/.X11-unix/X${builtins.toString config.ethorbit.workstation.xorg.sessionNumbers.${name}}".isReadOnly = false; }
+# ];
+#
+# config = { config, ... }:
+# {
+#   imports = [ ... ];
+#   ethorbit.container.desktop.streamed = false;
+# }
