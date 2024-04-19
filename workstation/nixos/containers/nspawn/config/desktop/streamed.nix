@@ -5,6 +5,10 @@
 { config, lib, ... }:
 
 {
+    # NOTE: This implementation is unfinished. Streamed = nothing.
+    # I cannot find a streamer to use at the moment that is compatible with nspawn containers.
+    # Hopefully a solution can be found soon because that would be awesome!
+
     config = lib.mkIf (config.ethorbit.container.desktop.streamed == true) {
         ethorbit.container.desktop.command = "exec vglrun -d egl startxfce4";
 

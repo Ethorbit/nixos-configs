@@ -2,7 +2,7 @@
 
 let
     defaults = import ../default-container.nix { inherit config; };
-    name = "socials"; # Must be defined in host-and-container's xorgSessionNumbers
+    name = "development"; # Must be defined in host-and-container's xorgSessionNumbers
 in
 {
     containers.${name} = {
@@ -12,7 +12,7 @@ in
             ethorbit.users.primary.username = name;
 
             imports = [
-                (import ../../../../nixosmodules.nix { inherit inputs; })
+                (import ../../../../../nixosmodules.nix { inherit inputs; })
                 ../config
                 ./config
             ];

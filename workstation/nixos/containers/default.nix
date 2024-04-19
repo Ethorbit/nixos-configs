@@ -2,8 +2,7 @@
 
 {
     imports = [
-        ./development
-        ./socials
-        ./media
+        ./nspawn
+        ./oci
     ];
 }

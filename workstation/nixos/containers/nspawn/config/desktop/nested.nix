@@ -13,7 +13,7 @@
             # On the host this display is created by an X nesting application (like Xephyr)
             # That X display should be bind mounted to this container
             # If that doesn't happen, this container will not work!
-            DISPLAY = ":${builtins.toString config.ethorbit.workstation.xorg.sessionNumbers.${config.ethorbit.users.primary.username}}";
+            DISPLAY = ":${builtins.toString config.ethorbit.workstation.containers.nspawn.xorg.sessionNumbers.${config.ethorbit.users.primary.username}}";
         };
 
         # Use host's audio output device

@@ -77,7 +77,7 @@
 # bindMounts = with { inherit(defaults) bindMounts; }; lib.mkMerge [
 #     bindMounts
 #     # Give access to container's exclusive X display only
-#     { "/tmp/.X11-unix/X${builtins.toString config.ethorbit.workstation.xorg.sessionNumbers.${name}}".isReadOnly = false; }
+#     { "/tmp/.X11-unix/X${builtins.toString config.ethorbit.workstation.containers.nspawn.xorg.sessionNumbers.${name}}".isReadOnly = false; }
 # ];
 #
 # config = { config, ... }:
