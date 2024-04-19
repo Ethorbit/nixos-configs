@@ -3,7 +3,7 @@
 {
     imports = [
         ./host
-        ./host-and-containers
+        ./host-and-nspawn-containers
         ./containers
     ];
 }

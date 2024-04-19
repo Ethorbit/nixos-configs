@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-    age.secrets."user/password" = { file = ./secrets/user/pass.age; };
+    age.secrets."user/password" = { file = ../../secrets/user/pass.age; };
 
     systemd.tmpfiles.rules = [
       "f /var/lib/systemd/linger/${config.ethorbit.users.primary.username}"

@@ -13,7 +13,7 @@ in
     "homenas/nixos/secrets/samba/users/hax/creds.age".publicKeys = [ ethorbit nixos ];
 
     "workstation/nixos/host/secrets/users/workstation/pass.age".publicKeys = [ ethorbit nixos ];
-    "workstation/nixos/containers/config/secrets/user/pass.age".publicKeys = [ ethorbit nixos ];
+    "workstation/nixos/containers/secrets/user/pass.age".publicKeys = [ ethorbit nixos ];
 
     "nzc/nixos/secrets/users/nzc/pass.age".publicKeys = [ ethorbit nixos ];
     "nzc/nixos/secrets/networking/firewall/ISP_CIDR_one.age".publicKeys = [ ethorbit nixos ];

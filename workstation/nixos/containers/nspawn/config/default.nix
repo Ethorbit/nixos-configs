@@ -5,7 +5,7 @@
         ./users.nix
         ./networking.nix
         ./packages.nix
-        ../../host-and-containers
+        ../../../host-and-nspawn-containers
         ./desktop
     ];
 
