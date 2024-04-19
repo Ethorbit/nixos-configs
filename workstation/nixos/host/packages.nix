@@ -2,6 +2,8 @@
 
 {
     environment.systemPackages = with pkgs; [
+        docker-compose
+
         # weird ToolBar.qml error, I'll just install it as a Flatpak instead
         #moonlight-qt
 

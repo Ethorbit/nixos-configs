@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ./nspawn
         ./oci
+        ./nspawn
     ];
 }
