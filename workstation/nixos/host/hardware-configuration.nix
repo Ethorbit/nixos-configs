@@ -27,10 +27,15 @@
     fsType = "ext4";
   };
 
-  fileSystems."/mnt/containers" = { 
-    device = "/dev/disk/by-uuid/b8a0ce45-9862-4fa8-9588-2d7d654c50b9";
+  fileSystems."/mnt/storage" = {
+    device = "/dev/disk/by-uuid/c7059d02-312a-45c1-a937-9030b875a3c5";
     fsType = "ext4";
   };
+
+  #fileSystems."/mnt/containers" = { 
+  #  device = "/dev/disk/by-uuid/b8a0ce45-9862-4fa8-9588-2d7d654c50b9";
+  #  fsType = "ext4";
+  #};
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/5336-B9AC";
