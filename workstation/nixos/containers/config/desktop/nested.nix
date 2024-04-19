@@ -6,7 +6,6 @@
 {
     config = lib.mkIf (config.ethorbit.container.desktop.streamed == false) {
         ethorbit = {
-            services.selkies-gstreamer.enable = lib.mkForce false;
             container.desktop.command = "exec startxfce4";
         };
 
