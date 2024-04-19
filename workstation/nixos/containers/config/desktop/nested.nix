@@ -1,3 +1,6 @@
+# Nested X cannot use the GPU for rendering whatsoever
+# Software rendering via llvmpipe only
+
 { config, lib, ... }:
 
 {

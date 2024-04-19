@@ -1,5 +1,6 @@
 # Note: A NVIDIA gpu can only be used for one Xorg server at a time
-# That is basically why vglrun must be used.
+# Virtualgl is used to forward OpenGL acceleration from the GPU into the X server
+# so that graphics acceleration in multiple containers is possible.
 
 { config, lib, ... }:
 

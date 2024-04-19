@@ -5,7 +5,6 @@
         ./options.nix
         ./streamed.nix
         ./nested.nix
-        ../../../../../nixos/components/desktop-streaming/profiles/selkies-gstreamer
         ../../../../../nixos/components/display-server/profiles/xserver
         ../../../../../nixos/components/desktop-environment/profiles/xfce
     ];
