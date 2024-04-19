@@ -80,6 +80,17 @@
                 ];
             };
 
+            # For quick NVIDIA container computation work
+            # also useful for virtual desktop streaming
+            "headless-nvidia" = nixpkgs.lib.nixosSystem {
+                system = "x86_64-linux";
+                specialArgs = { inherit inputs outputs; };
+                modules = [
+                    ./headless-nvidia/nixos
+                    ./nixosmodules.nix
+                ];
+            };
+
             # Workstation OS, the powerhouse of all productivity.
             "workstation" = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";

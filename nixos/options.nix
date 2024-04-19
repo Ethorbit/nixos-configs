@@ -12,7 +12,7 @@
             primary = {
                 username = mkOption {
                     type = types.str;
-                    description = "The primary username of the system. This is mostly relevant for single-user systems.";
+                    description = "The primary username of the system.";
                     default = "ethorbit";
                 };
             };
