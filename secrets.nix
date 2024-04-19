@@ -6,16 +6,15 @@ in
     "nixos/components/vpn/profiles/windscribe/secrets/private.key.age".publicKeys = [ ethorbit nixos ];
     "nixos/components/vpn/profiles/windscribe/secrets/preshared.key.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/nzc/pass.age".publicKeys = [ ethorbit nixos ];
-    
+    "nixos/secrets/users/primary/pass.age".publicKeys = [ ethorbit nixos ];
+
     "homenas/nixos/secrets/samba/users/ethorbit/creds.age".publicKeys = [ ethorbit nixos ];
-    "homenas/nixos/secrets/samba/users/browsing/creds.age".publicKeys = [ ethorbit nixos ];
+    "homenas/nixos/secrets/samba/users/headlessnvidia/creds.age".publicKeys = [ ethorbit nixos ];
     "homenas/nixos/secrets/samba/users/nzc/creds.age".publicKeys = [ ethorbit nixos ];
     "homenas/nixos/secrets/samba/users/hax/creds.age".publicKeys = [ ethorbit nixos ];
 
-    "workstation/nixos/host/secrets/users/workstation/pass.age".publicKeys = [ ethorbit nixos ];
     "workstation/nixos/containers/secrets/user/pass.age".publicKeys = [ ethorbit nixos ];
 
-    "nzc/nixos/secrets/users/nzc/pass.age".publicKeys = [ ethorbit nixos ];
     "nzc/nixos/secrets/networking/firewall/ISP_CIDR_one.age".publicKeys = [ ethorbit nixos ];
     "nzc/nixos/secrets/networking/firewall/ISP_CIDR_two.age".publicKeys = [ ethorbit nixos ];
     "nzc/nixos/profiles/selfhosted/secrets/networking/vpn/private.key.age".publicKeys = [ ethorbit nixos ];
