@@ -2,7 +2,13 @@
 
 {
     home-manager.users.${config.ethorbit.users.primary.username} = {
-        gtk = {
+        # Fix for error: 
+	# GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name ca.desrt.dconf was not provided by any .service files
+	home.packages = [
+	    pkgs.dconf
+	];
+
+	gtk = {
             enable = true;
 
             theme = {
