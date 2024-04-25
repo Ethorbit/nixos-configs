@@ -9,5 +9,9 @@
         linuxPackages.usbip
     ];
 
-    boot.kernelModules = [ "usbip_core" "usbip_host" ];
+    boot.kernelModules = [
+        "vhci-hcd"
+        "usbip_core"
+        "usbip_host"
+    ];
 }

@@ -76,12 +76,16 @@ in
             serviceConfig = {
                 Type = "forking";
                 ExecStart = ''${serviceScripts.attach.start}/bin/script %i'';
-                ExecStop = ''${serviceScripts.attach.stop}/bin/script %i'';
+                ExecStopPost = ''${serviceScripts.attach.stop}/bin/script %i'';
                 Restart = "on-failure";
                 RestartSec = 30;
             };
 
             wantedBy = [ "multi-user.target" ];
+        };
+
+        "usbip-attach@multi-user" = {
+            enable = false;
         };
 
         "usbip-export@" = {
@@ -101,5 +105,10 @@ in
 
             wantedBy = [ "multi-user.target" ];
         };
+
+        "usbip-export@multi-user" = {
+            enable = false;
+        };
+
     };
 }
