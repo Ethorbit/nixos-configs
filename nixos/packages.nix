@@ -6,8 +6,10 @@
         screen
         killall
         file
+        usbutils
         pciutils
         lm_sensors
+        lsof
         restic
         unzip
         unrar
