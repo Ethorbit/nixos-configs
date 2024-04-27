@@ -5,6 +5,7 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-uuid/b67ebf01-f20b-4a6b-84b5-04d7434da81c";
   boot.kernelModules = [ ];
+  boot.kernelParams = [ "isolcpus=2-23" ];
   boot.extraModulePackages = [ ];
 
   imports = [
