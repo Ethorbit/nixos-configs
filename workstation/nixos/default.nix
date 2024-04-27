@@ -6,6 +6,7 @@
         ./bootloader.nix
         ./users.nix
         ./packages.nix
+        ./firewall.nix
         ./udev.nix
         ./services.nix
         ./docker
