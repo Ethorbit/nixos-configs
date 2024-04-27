@@ -1,8 +1,0 @@
-{ config, ... }:
-
-{
-    imports = [
-        ./oci
-        ./nspawn
-    ];
-}
