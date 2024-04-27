@@ -3,6 +3,7 @@
 {
   boot.initrd.availableKernelModules = [ "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-uuid/b67ebf01-f20b-4a6b-84b5-04d7434da81c";
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
@@ -23,7 +24,7 @@
   };
 
   fileSystems."/" = { 
-    device = "/dev/disk/by-uuid/ce8fe699-02c4-40c1-9a88-a30ff21592ae";
+    device = "/dev/disk/by-uuid/5a4aea67-9bcf-4645-a9dc-3894a291b27e";
     fsType = "ext4";
   };
 
