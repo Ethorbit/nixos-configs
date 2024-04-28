@@ -20,12 +20,6 @@
 
         network = {
             router = {
-                defaultGateway = mkOption {
-                    type = types.str;
-                    description = "The router's default gateway.";
-                    default = "192.168.254.254";
-                };
-                
                 LAN.CIDR = mkOption {
                     type = types.str;
                     description = "The CIDR range of the router's LAN.";

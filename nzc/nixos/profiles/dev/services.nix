@@ -7,7 +7,7 @@
         enable = true;
         
         settings = {
-            server = [ "${config.ethorbit.network.router.defaultGateway}" ];
+            server = [ "${config.networking.defaultGateway.address}" ];
             address = "/nzc.local/127.0.0.1";
         };
         

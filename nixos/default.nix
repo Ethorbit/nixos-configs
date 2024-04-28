@@ -11,7 +11,7 @@
         ./home-manager
         ./services
         ./udev-rules.nix
-        ./networking.nix
+        ./networking
         ./sudo.nix
     ];
 

@@ -44,7 +44,7 @@
                     routes = [
                         {
                             routeConfig = {
-                                Gateway = config.ethorbit.network.router.defaultGateway;
+                                Gateway = config.networking.defaultGateway.address;
                                 Destination = config.ethorbit.nzc.vpn.ip;
                             };
                         }

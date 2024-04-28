@@ -19,7 +19,7 @@
 
     environment.etc."resolv.conf".text = ''
     # Created with environment.etc.'resolv.conf' NixOS option
-    nameserver ${config.ethorbit.network.router.defaultGateway}
+    nameserver ${config.networking.defaultGateway.address}
     options edns0
     '';
 
