@@ -8,8 +8,8 @@
         ./packages.nix
         ./udev.nix
         ./services.nix
-        ./docker
         ./networking
+        ../../nixos/components/containers/docker
         ../../nixos/components/programming/ide
         ../../nixos/components/graphics-drivers/opengl
         ../../nixos/components/graphics-drivers/nvidia/profiles/proprietary
