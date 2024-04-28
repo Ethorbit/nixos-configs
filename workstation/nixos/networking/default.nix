@@ -6,8 +6,6 @@
         ./firewall.nix
     ];
 
-    networking.enableIPv6 = false;
-
     systemd.network = {
         networks = {
             "20-eth0" = {
