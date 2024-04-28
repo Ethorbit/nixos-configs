@@ -4,6 +4,7 @@
     imports = [
         ./nixpkgs
         ./options.nix
+        ./bootloader.nix
         ./packages.nix
         ./users.nix
         ./environment.nix
