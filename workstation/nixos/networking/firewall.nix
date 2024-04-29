@@ -2,6 +2,7 @@
 
 {
     networking.firewall = {
+        enable = false;
         extraCommands = ''
             iptables -P INPUT DROP
             iptables -I nixos-fw 1 -s ${config.ethorbit.network.admin.ip} -j nixos-fw-accept

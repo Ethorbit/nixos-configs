@@ -15,4 +15,6 @@
         ../../nixos/components/graphics-drivers/nvidia/profiles/proprietary
         ../../nixos/components/input-streaming/usbip
     ];
+
+    virtualisation.lxc.lxcfs.enable = true;
 }
