@@ -13,6 +13,7 @@
                 "general/frame_opacity" = 95;
                 "general/move_opacity" = 70;
                 "general/resize_opacity" = 80;
+                "general/box_resize" = true;
                 "general/wrap_windows" = false;
                 "general/snap_to_windows" = true;
             };
