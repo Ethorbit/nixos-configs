@@ -1,5 +1,3 @@
-# X11 Cinnamon desktop environment
-
 { config, ... }:
 
 {
