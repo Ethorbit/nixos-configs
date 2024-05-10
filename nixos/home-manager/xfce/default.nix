@@ -4,6 +4,7 @@
     home-manager.users.${config.ethorbit.users.primary.username} = {
         xfconf.settings = {
             xsettings = {
+                "Gtk/CursorThemeName" = "Adwaita";
                 "Net/ThemeName" = "Zukitre-dark";
             };
 
