@@ -14,6 +14,7 @@
         ./udev-rules.nix
         ./networking.nix
         ./sudo.nix
+        ./libinput.nix
     ];
 
     age.identityPaths = [ config.ethorbit.age.identityPath ];
