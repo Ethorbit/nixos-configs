@@ -3,13 +3,11 @@
 {
   boot.initrd.availableKernelModules = [ "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-uuid/b67ebf01-f20b-4a6b-84b5-04d7434da81c";
   boot.kernelModules = [ ];
-  #boot.kernelParams = [ "isolcpus=2-23" ];
   boot.extraModulePackages = [ ];
 
   imports = [
-    ../../nixos/hardware/vm/hyperv
+    ../../../nixos/hardware/vm/virtio
   ];
 
   fileSystems."/proc" = {
@@ -25,26 +23,26 @@
   };
 
   fileSystems."/" = { 
-    device = "/dev/disk/by-uuid/5a4aea67-9bcf-4645-a9dc-3894a291b27e";
+    device = "/dev/disk/by-uuid/57456820-adf4-447b-845d-eed0b477e130";
     fsType = "ext4";
   };
 
-  #fileSystems."/mnt/storage" = {
-  #  device = "/dev/disk/by-uuid/c7059d02-312a-45c1-a937-9030b875a3c5";
-  #  fsType = "ext4";
-  #};
+  fileSystems."/mnt/storage" = { 
+    device = "/dev/disk/by-uuid/c7059d02-312a-45c1-a937-9030b875a3c5";
+    fsType = "ext4";
+  };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/8031-C5C0";
+    device = "/dev/disk/by-uuid/9B3C-70DE";
     fsType = "vfat";
     options = [ "fmask=0077" "dmask=0077" "defaults" ];
   };
 
   swapDevices = [ 
-    { device = "/dev/disk/by-uuid/7daf30c5-f342-4943-9d17-2869f8e13b99"; }
+    { device = "/dev/disk/by-uuid/456b2bf1-7d80-47e8-9086-79103f2c134c"; }
   ];
 
-  age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../../homenas/nixos/secrets/samba/users/ethorbit/creds.age; };
+  age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../../../homenas/nixos/secrets/samba/users/ethorbit/creds.age; };
   environment.etc."nascreds" = {
     mode = "0600";
     source = config.age.secrets."homenas/samba/users/ethorbit/creds".path;
