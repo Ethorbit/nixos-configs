@@ -4,14 +4,13 @@
     imports = [
         ../../../../nixos/components/desktop-streaming/profiles/selkies-gstreamer
         ../../../../nixos/components/display-server/profiles/xserver
-        ../../../../nixos/components/desktop-environment/profiles/xfce
+        ../../../../nixos/components/window-manager/profiles/i3
     ];
 
     # Can't use a display manager since it's incompatible with
     # these kind of setups. We can just run the desktop
     # executable as user, at boot.
     services.xserver.displayManager.startx.enable = true;
-    
 
     #systemd.user.services."desktop" = {
     #    enable = true;
