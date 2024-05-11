@@ -10,6 +10,7 @@
         ./networking
         ./desktop.nix
         ./packages.nix
+        ./home-manager.nix
         ../../../nixos/components/containers/docker
         ../../../nixos/components/display-nesting/profiles/xephyr
         ../../../nixos/components/programming/ide
