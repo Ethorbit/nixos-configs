@@ -9,8 +9,8 @@
                 src = (fetchFromGitHub {
                     owner = "adi1090x";
                     repo = "rofi";
-                    rev = "master";
-                    hash = "sha256-YjyrxappcLDoh3++mtZqCyxQV2qeoNhhUy2XGwlyTng=";
+                    rev = "7e236dd67fd98304e1be9e9adc2bed9106cf895b";
+                    hash = "sha256-K6WQ+olSy6Rorof/EGi9hP2WQpRONjuGREby+aBlzYg=";
                 });
                 installPhase = ''
                     export HOME="$out"
