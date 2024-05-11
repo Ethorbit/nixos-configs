@@ -18,6 +18,10 @@
                 "general/snap_to_windows" = true;
             };
 
+            xfce4-panel = {
+                "plugins/plugin-4" = "whiskermenu";
+            };
+
             xfce4-terminal = {
                 "background-mode" = "TERMINAL_BACKGROUND_TRANSPARENT";
                 "background-darkness" = 0.95;

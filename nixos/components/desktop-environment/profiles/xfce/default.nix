@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./packages.nix
         ../..
         ../../../../home-manager/xfce
     ];
