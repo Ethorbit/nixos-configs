@@ -2,30 +2,36 @@
 
 {
     home-manager.users.${config.ethorbit.users.primary.username} = {
-        # Fix for error: 
-	# GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name ca.desrt.dconf was not provided by any .service files
-	home.packages = [
-	    pkgs.dconf
-	];
+        home = with pkgs; {
+            pointerCursor = {
+                gtk.enable = true;
+                name = "DMZ-Black";
+                size = 20;
+                package = vanilla-dmz;
+            };
+        };
 
-	gtk = {
+        gtk = with pkgs; {
             enable = true;
 
             theme = {
-                name = "zukitre-dark";
-                package = pkgs.zuki-themes;
+                name = "Zukitre-dark";
+                package = zuki-themes;
+            };
+
+            #cursorTheme
+
+            iconTheme = {
+                name = "Papirus";
+                package = papirus-icon-theme;
             };
 
             gtk3.extraConfig = {
-                Settings = ''
-                    gtk-application-prefer-dark-theme=1
-                '';
+                gtk-application-prefer-dark-theme = 1;
             };
 
             gtk4.extraConfig = {
-                Settings = ''
-                    gtk-application-prefer-dark-theme=1
-                '';
+                gtk-application-prefer-dark-theme = 1;
             };
         };
     };

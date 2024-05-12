@@ -4,7 +4,7 @@
     imports = [
         ./packages.nix
         ../..
-        ../../../../home-manager/xfce
+        ../../../../home-manager/xfconf
     ];
 
     programs.xfconf.enable = true;
