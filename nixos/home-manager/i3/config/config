@@ -9,6 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+include $HOME/.config/i3/workspaces
 include $HOME/.config/i3/config_system # Put your system-dependent i3 configuration in there.
 
 # keep this current file for configuration that is meant for global i3 configuration that ALL systems use by default
@@ -131,88 +132,6 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
-
-#### Set workspace monitors ####
-#set $first_monitor "HDMI-0"
-#set $second_monitor "DVI-D-0"
-#set $third_monitor "Undefined"
-#workspace a1 output $first_monitor
-#workspace a2 output $first_monitor
-#workspace a3 output $first_monitor
-#workspace a4 output $first_monitor
-#workspace a5 output $first_monitor
-#workspace a6 output $first_monitor
-#workspace a7 output $first_monitor
-#workspace a8 output $first_monitor
-#workspace a9 output $first_monitor
-bindsym $mod+0 mode "all workspace monitors" fullscreen disable
-bindsym $mod+1 mode "workspace monitor 1" fullscreen disable
-
-exec i3-msg workspace a1
-
-mode "all workspace monitors" {
-    bindsym Escape mode "default"
-    bindsym Return mode "default"
-    bindsym s exec "for i in {1..9}; do $i3_resurrect save -w a${i}; $i3_resurrect save -w b${i}; $i3_resurrect save -w c${i}; done"
-    bindsym r exec "for i in {1..9}; do $i3_resurrect restore -w a${i}; $i3_resurrect restore -w b${i}; $i3_resurrect restore -w c${i}; done"
-}
-
-mode "workspace monitor 1" {
-    bindsym Escape mode "default"
-    bindsym Return mode "default"
-    bindsym $mod+space mode "workspace custom"
-    bindsym $mod+1 mode "workspace monitor 1"
-    bindsym f focus output $first_monitor
-    bindsym 1 workspace a1
-    bindsym 2 workspace a2
-    bindsym 3 workspace a3
-    bindsym 4 workspace a4
-    bindsym 5 workspace a5
-    bindsym 6 workspace a6
-    bindsym 7 workspace a7
-    bindsym 8 workspace a8
-    bindsym 9 workspace a9
-    bindsym Shift+1 move container to workspace a1
-    bindsym Shift+2 move container to workspace a2
-    bindsym Shift+3 move container to workspace a3
-    bindsym Shift+4 move container to workspace a4
-    bindsym Shift+5 move container to workspace a5
-    bindsym Shift+6 move container to workspace a6
-    bindsym Shift+7 move container to workspace a7
-    bindsym Shift+8 move container to workspace a8
-    bindsym Shift+9 move container to workspace a9
-    bindsym s mode "workspace save monitor 1"
-    bindsym r mode "workspace restore monitor 1"
-}
-set $i3_resurrect i3-resurrect
-mode "workspace save monitor 1" {
-    bindsym Escape mode "workspace monitor 1"
-    bindsym Return mode "workspace monitor 1"
-    bindsym a exec "for i in {1..9}; do $i3_resurrect save -w a${i}; done"
-    bindsym 1 exec "$i3_resurrect save -w a1"
-    bindsym 2 exec "$i3_resurrect save -w a2"
-    bindsym 3 exec "$i3_resurrect save -w a3"
-    bindsym 4 exec "$i3_resurrect save -w a4"
-    bindsym 5 exec "$i3_resurrect save -w a5"
-    bindsym 6 exec "$i3_resurrect save -w a6"
-    bindsym 7 exec "$i3_resurrect save -w a7"
-    bindsym 8 exec "$i3_resurrect save -w a8"
-    bindsym 9 exec "$i3_resurrect save -w a9"
-}
-mode "workspace restore monitor 1" {
-    bindsym Escape mode "workspace monitor 1"
-    bindsym Return mode "workspace monitor 1"
-    bindsym a exec "for i in {1..9}; do $i3_resurrect restore -w a${i}; done"
-    bindsym 1 exec "$i3_resurrect restore -w a1"
-    bindsym 2 exec "$i3_resurrect restore -w a2"
-    bindsym 3 exec "$i3_resurrect restore -w a3"
-    bindsym 4 exec "$i3_resurrect restore -w a4"
-    bindsym 5 exec "$i3_resurrect restore -w a5"
-    bindsym 6 exec "$i3_resurrect restore -w a6"
-    bindsym 7 exec "$i3_resurrect restore -w a7"
-    bindsym 8 exec "$i3_resurrect restore -w a8"
-    bindsym 9 exec "$i3_resurrect restore -w a9"
-}
 
 #### Set command hotkeys ####
   # Program launcher
