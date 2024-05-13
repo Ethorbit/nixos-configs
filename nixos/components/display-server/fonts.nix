@@ -7,5 +7,7 @@
         noto-fonts-emoji
         fantasque-sans-mono
         siji
+        fira-code
+        fira-code-nerdfont
     ];
 }
