@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
     imports = [
@@ -12,6 +12,10 @@
         displayManager = {
             defaultSession = "none+i3";
             autoLogin.user = config.ethorbit.users.primary.username;
+
+            setupCommands = ''
+            ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --left-of DP-3
+            '';
         };
     };
 }
