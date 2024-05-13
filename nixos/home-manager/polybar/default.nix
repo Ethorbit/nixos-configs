@@ -73,7 +73,7 @@
                 };
 
                 "bar/notmain" = {
-                    monitor = "$${env:MONITOR:}";
+                    monitor = "\${env:MONITOR:}";
                     width = "99.6%";
                     height = "30";
                     offset-x = "0.2%";
@@ -100,8 +100,8 @@
                     module-margin-left = 0;
                     module-margin-right = 3;
 
-                    font-0 = "fixed:pixelsize=9;1";
-                    font-1 = "Noto Color Emoji:scale=2.1;style=Regular;0";
+                    font-0 = "fixed:pixelsize=8.3;1";
+                    font-1 = "Noto Color Emoji:scale=17;style=Regular;1";
                     font-2 = "siji:pixelsize=10;1";
 
                     modules-left = "bspwm i3";
