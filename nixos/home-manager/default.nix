@@ -3,9 +3,6 @@
 {
     imports = [
         ./bash
-        ./dconf
-        ./gtk
-        ./qt
     ];
 
     home-manager = {
