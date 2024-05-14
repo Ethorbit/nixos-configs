@@ -10,7 +10,6 @@ with inputs;
         NixOS-WSL.nixosModules.wsl
     ];
 
-# XD
     nixpkgs.overlays = [ nvidia-patch.overlays.default ];
     environment.systemPackages = [ agenix.packages.${system}.default ];
 }
