@@ -6,6 +6,7 @@
         ./options.nix
         ./bootloader.nix
         ./packages.nix
+        ./programs.nix
         ./users.nix
         ./environment.nix
         ./timezone.nix
@@ -18,10 +19,7 @@
     ];
 
     age.identityPaths = [ config.ethorbit.age.identityPath ];
-
-    programs.ssh.askPassword = "";
-    programs.nano.enable = false;
-
+    
     nix.settings = {
         auto-optimise-store = true;
     };
