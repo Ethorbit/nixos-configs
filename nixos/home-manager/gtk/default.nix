@@ -22,7 +22,7 @@
             #cursorTheme
 
             iconTheme = {
-                name = "Papirus";
+                name = "Papirus-Dark";
                 package = papirus-icon-theme;
             };
 
