@@ -10,5 +10,6 @@
         moc
         jq
         lm_sensors
+        libnotify
     ];
 }
