@@ -12,13 +12,6 @@
         firefox
     ];
 
-    xdg.portal = {
-        enable = true;
-        extraPortals = with pkgs; [
-            xdg-desktop-portal-gtk
-        ];
-    };
-
     services.flatpak = {
         enable = true;
         remotes.flathub = "https://flathub.org/repo/flathub.flatpakrepo";
