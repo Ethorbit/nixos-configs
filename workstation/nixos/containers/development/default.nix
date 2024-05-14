@@ -1,4 +1,4 @@
-{ config, lib, inputs, ... }:
+{ config, lib, inputs, system, ... }:
 
 let
     defaults = import ../default-container.nix { inherit config; };
@@ -12,7 +12,7 @@ in
             ethorbit.users.primary.username = name;
 
             imports = [
-                (import ../../../../nixosmodules.nix { inherit inputs; })
+                (import ../../../../nixosmodules.nix { inherit inputs; inherit system; })
                 ../config
                 ./config
             ];

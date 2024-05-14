@@ -1,7 +1,8 @@
-{ inputs, ... }:
+{ inputs, system, ... }:
 
+with inputs;
 {
-    imports = with inputs; [
+    imports = [
         ./nixos
         home-manager.nixosModules.default
         agenix.nixosModules.default
@@ -9,5 +10,7 @@
         NixOS-WSL.nixosModules.wsl
     ];
 
-    nixpkgs.overlays = [ inputs.nvidia-patch.overlays.default ];
+# XD
+    nixpkgs.overlays = [ nvidia-patch.overlays.default ];
+    environment.systemPackages = [ agenix.packages.${system}.default ];
 }

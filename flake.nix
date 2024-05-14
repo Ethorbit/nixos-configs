@@ -35,12 +35,13 @@
         NixOS-WSL
     } @inputs: let
         inherit (self) outputs;
+        system = "x86_64-linux";
     in {
         nixosConfigurations = {
             # Home NAS, the centralized source of storage.
             "homenas" = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                specialArgs = { inherit inputs outputs; };
+                inherit system;
+                specialArgs = { inherit inputs outputs system; };
                 modules = [
                     ./homenas/nixos
                     ./nixos/hardware/vm/qemu
@@ -51,8 +52,8 @@
             # Integrated Development Environment.
             # Not intended to be used directly, but it can be used as an independent OS if desired.
             "ide/cli" = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                specialArgs = { inherit inputs outputs; };
+                inherit system;
+                specialArgs = { inherit inputs outputs system; };
                 modules = [
                     ./nixos/components/programming/ide/profiles/standalone/profiles/cli
                     ./nixos/hardware/container/wsl
@@ -60,8 +61,8 @@
                 ];
             };
             "ide/desktop" = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                specialArgs = { inherit inputs outputs; };
+                inherit system;
+                specialArgs = { inherit inputs outputs system; };
                 modules = [
                     ./nixos/components/programming/ide/profiles/standalone/profiles/desktop
                     ./nixos/hardware/vm/qemu
@@ -71,8 +72,8 @@
             
             # SUS!
             "exploit" = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                specialArgs = { inherit inputs outputs; };
+                inherit system;
+                specialArgs = { inherit inputs outputs system; };
                 modules = [
                     ./exploit/nixos
                     ./nixos/hardware/vm/qemu
@@ -83,8 +84,8 @@
             # For quick NVIDIA container computation work
             # also useful for virtual desktop streaming
             "headless-nvidia" = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                specialArgs = { inherit inputs outputs; };
+                inherit system;
+                specialArgs = { inherit inputs outputs system; };
                 modules = [
                     ./headless-nvidia/nixos
                     ./nixosmodules.nix
@@ -93,8 +94,8 @@
 
             # Workstation OS, the powerhouse of all productivity.
             "workstation" = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                specialArgs = { inherit inputs outputs; };
+                inherit system;
+                specialArgs = { inherit inputs outputs system; };
                 modules = [
                     ./workstation/nixos
                     ./nixosmodules.nix
@@ -103,8 +104,8 @@
 
             # NZC Game Community
             "nzc" = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                specialArgs = { inherit inputs outputs; };
+                inherit system;
+                specialArgs = { inherit inputs outputs system; };
                 modules = [
                     ./nzc/nixos/profiles/production
                     ./nixos/hardware/vm/qemu
@@ -114,8 +115,8 @@
 
             # NZC Game Community, but hosted at home
             "nzc/selfhosted" = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                specialArgs = { inherit inputs outputs; };
+                inherit system;
+                specialArgs = { inherit inputs outputs system; };
                 modules = [
                     ./nzc/nixos/profiles/selfhosted
                     ./nixos/hardware/vm/qemu
@@ -125,8 +126,8 @@
 
             # NZC Game Community, but for local development / testing
             "nzc/dev" = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
-                specialArgs = { inherit inputs outputs; };
+                inherit system;
+                specialArgs = { inherit inputs outputs system; };
                 modules = [
                     ./nzc/nixos/profiles/dev
                     ./nixos/hardware/vm/qemu
