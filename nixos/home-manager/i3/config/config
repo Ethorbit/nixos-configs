@@ -10,6 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 include $HOME/.config/i3/workspaces
+include $HOME/.config/i3/music
 include $HOME/.config/i3/config_system # Put your system-dependent i3 configuration in there.
 
 # keep this current file for configuration that is meant for global i3 configuration that ALL systems use by default
@@ -177,7 +178,7 @@ exec --no-startup-id kitty
 
   # Steam
 #assign [class="Steam|GeForce NOW"] b2
-#no_focus [class="Steam"]	
+#no_focus [class="Steam"]   
 #for_window [class="Steam" title="Steam"] layout tabbed
 #for_window [class="GeForce NOW"] layout tabbed
 #
@@ -239,91 +240,37 @@ mode "resize" {
 
 bindsym $mod+r mode "resize" fullscreen disable
 
-# music
-bindsym $mod+m mode "music" fullscreen disable
-
-mode "music" {
-    bindsym m mode "default"
-    bindsym q mode "default"
-    bindsym $mod+m mode "default"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    
-    # Next / Previous
-    bindsym --release Prior exec --no-startup-id mocp -f
-    bindsym --release Next exec --no-startup-id mocp -r
-    bindsym --release Up exec --no-startup-id mocp -f
-    bindsym --release Down exec --no-startup-id mocp -r
-    bindsym --release End exec --no-startup-id mocp -f
-    bindsym --release XF86AudioNext exec --no-startup-id mocp -f
-    bindsym --release XF86AudioPrev exec --no-startup-id mocp -r
- 
-    # Toggle Pause
-    bindsym --release p exec --no-startup-id mocp -G, mode "default"
-    bindsym --release Pause exec --no-startup-id mocp -G, mode "default"
-    bindsym --release space exec --no-startup-id mocp -G, mode "default"
-    bindsym --release XF86AudioPlay exec --no-startup-id mocp -G, mode "default"
-  
-    # Time manipulation
-    bindsym Right exec --no-startup-id mocp -k +3
-    bindsym Left exec --no-startup-id mocp -k -3
-    
-    # Volume
-    bindsym KP_Add exec --no-startup-id mocp -v +1
-    bindsym KP_Subtract exec --no-startup-id mocp -v -1
-    bindsym Add exec --no-startup-id mocp -v +1
-    bindsym Subtract exec --no-startup-id mocp -v -1
-    bindsym XF86AudioRaiseVolume exec --no-startup-id mocp -v +1
-    bindsym XF86AudioLowerVolume exec --no-startup-id mocp -v -1
-    
-    #bindsym s mode "music settings"
-    #bindsym Insert mode "music settings"
-  
-    # GUI
-    bindsym --release Home exec --no-startup-id kitty mocp, mode "default"
-}
-
-mode "music settings" {
-    bindsym m mode "default"
-    bindsym q mode "default"
-    bindsym $mod+m mode "music"
-    bindsym Return mode "music"
-    bindsym Escape mode "music"
-    bindsym r exec --no-startup-id mocp -t repeat
-}
-
-
 ## Start i3bar to display a workspace bar (plus the system information i3status
 ## finds out, if available)
 #bar {
 #        status_command i3status
-#	
-#	colors {
-#		background #003800
-#		#background #182118
-#		# #3cb93c
-#	}
+#   
+#   colors {
+#       background #003800
+#       #background #182118
+#       # #3cb93c
+#   }
 #
-#	height 22
+#   height 22
 #}
 
 #dummy bar for polybar
 #bar {
-#	i3bar_command i3bar -t 
-#	workspace_buttons no
-#	tray_output none
-#	height 28
-#	mode dock
-#	position top
+#   i3bar_command i3bar -t 
+#   workspace_buttons no
+#   tray_output none
+#   height 28
+#   mode dock
+#   position top
 #
-#    	colors { 
-#    		background #00000000
-#		statusline #00000000
-#		separator #00000000
-#		focused_workspace #00000000 #00000000 #00000000
-#		inactive_workspace #00000000 #00000000 #00000000
-#		urgent_workspace #00000000 #00000000 #00000000
-#    	}
+#       colors { 
+#           background #00000000
+#       statusline #00000000
+#       separator #00000000
+#       focused_workspace #00000000 #00000000 #00000000
+#       inactive_workspace #00000000 #00000000 #00000000
+#       urgent_workspace #00000000 #00000000 #00000000
+#       }
 #}
 
 client.unfocused #000000 #545455 #FFFFFF #545455

@@ -3,6 +3,7 @@
 {
     imports = [
         ./workspaces.nix
+        ./music.nix
     ];
 
     home-manager.users.${config.ethorbit.users.primary.username} = {
