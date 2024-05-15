@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+    imports = [
+        ../../../nixos/packages/yt-dlp-wrapper
+    ];
+
     environment.systemPackages = with pkgs; [
         # weird ToolBar.qml error, I'll just install it as a Flatpak instead
         #moonlight-qt
@@ -8,8 +12,14 @@
         obs-studio
         keepassxc
 
-        # browsers shouldn't really be used on host if it can be helped
         firefox
+
+        # until the containers are up and running, everything will have to be done on host
+        yt-dlp
+        config.ethorbit.pkgs.yt-dlp-wrapper
+        gimp
+        kdenlive
+        audacity
     ];
 
     services.flatpak = {
