@@ -6,7 +6,7 @@
         ./bootloader.nix
         ./users.nix
         ./audio.nix
-        ./services.nix
+        ./services
         ./networking
         ./desktop.nix
         ./packages.nix
