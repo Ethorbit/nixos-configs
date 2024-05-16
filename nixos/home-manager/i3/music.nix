@@ -41,11 +41,13 @@
                     bindsym Left exec --no-startup-id mocp -k -3
                     
                     # Volume
-                    bindsym KP_Add exec --no-startup-id mocp -v +1
+                    bindsym KP_Add exec --no-startup-id mocp -v +2
                     bindsym KP_Subtract exec --no-startup-id mocp -v -1
-                    bindsym Add exec --no-startup-id mocp -v +1
+                    bindsym Add exec --no-startup-id mocp -v +2
                     bindsym Subtract exec --no-startup-id mocp -v -1
-                    bindsym XF86AudioRaiseVolume exec --no-startup-id mocp -v +1
+                    bindsym a exec --no-startup-id mocp -v +2
+                    bindsym s exec --no-startup-id mocp -v -1
+                    bindsym XF86AudioRaiseVolume exec --no-startup-id mocp -v +2
                     bindsym XF86AudioLowerVolume exec --no-startup-id mocp -v -1
                     
                     #bindsym s mode "music settings"
