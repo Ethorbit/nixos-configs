@@ -36,21 +36,21 @@
                         echo "🎵"
                         ;;
                         PLAY)
-                        song_name='$("$mocp" -i | "$awk" "NR==2" | "$sed" "s:.*/::")'
+                        song_name=$("$mocp" -i | "$awk" "NR==2" | "$sed" "s:.*/::")
                         long_length=10
                         
-                        if [ $long -eq 0 ] && [ $${#song_name} -gt $long_length ]; then
+                        if [ $long -eq 0 ] && [ ''${#song_name} -gt $long_length ]; then
                             # Make scrolling text, name is long and collapsed
                             scroll_amount=3
 
                             # Finished scrolling, start over
-                            if [ $((scroll_text_pos + long_length)) -ge $${#song_name} ]; then
+                            if [ $((scroll_text_pos + long_length)) -ge ''${#song_name} ]; then
                                 scroll_text_pos=0
                             else
                                 scroll_text_pos=$((scroll_text_pos + scroll_amount))
                             fi
                             
-                            scrolling_song_name="$${song_name:$scroll_text_pos:$long_length}"
+                            scrolling_song_name="''${song_name:$scroll_text_pos:$long_length}"
                             
                             echo "🎵 $scrolling_song_name"
                         else

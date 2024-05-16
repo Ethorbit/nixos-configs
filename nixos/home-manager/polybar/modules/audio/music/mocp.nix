@@ -11,7 +11,7 @@
 
         "module/mocp/previous" = {
             type = "custom/script";
-            exec = ''/bin/bash -c "echo <<"'';
+            exec = ''${pkgs.bash}/bin/bash -c "echo \<\<"'';
             exec-if = ''[[ $("${config.ethorbit.polybar.scripts.mocp.state.outPath}") = "PLAY" ]]'';
             interval = 1;
             click-left = "${pkgs.moc}/bin/mocp -r";
@@ -26,7 +26,7 @@
 
         "module/mocp/next" = {
             type = "custom/script";
-            exec = ''/bin/bash -c "echo >>"'';
+            exec = ''${pkgs.bash}/bin/bash -c "echo \>\>"'';
             exec-if = ''[[ $("${config.ethorbit.polybar.scripts.mocp.state.outPath}") = "PLAY" ]]'';
             interval = 1;
             click-left = "${pkgs.moc}/bin/mocp -f";
