@@ -5,6 +5,8 @@
         ../../../nixos/packages/yt-dlp-wrapper
     ];
 
+    programs.adb.enable = true;
+
     environment.systemPackages = with pkgs; [
         # weird ToolBar.qml error, I'll just install it as a Flatpak instead
         #moonlight-qt
