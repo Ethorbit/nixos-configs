@@ -31,6 +31,7 @@
                 extraBackupArgs = [
                     "--compression=max"
                     "--verbose=2"
+                    "--one-file-system=true"
                 ];
             };
 
