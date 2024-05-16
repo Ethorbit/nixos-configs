@@ -10,6 +10,7 @@
         ./users.nix
         ./environment.nix
         ./timezone.nix
+        ./locale.nix
         ./home-manager
         ./services
         ./udev-rules.nix
