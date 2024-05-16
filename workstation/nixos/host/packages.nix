@@ -9,6 +9,8 @@
         # weird ToolBar.qml error, I'll just install it as a Flatpak instead
         #moonlight-qt
 
+        virt-viewer
+
         obs-studio
         keepassxc
 
