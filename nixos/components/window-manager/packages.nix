@@ -5,7 +5,7 @@
         ../../packages/rofi
         ../../packages/termdown-wrapper
     ];
-    
+
     environment.systemPackages = with pkgs; [
         feh
         moc
@@ -13,6 +13,6 @@
         lm_sensors
         libnotify
         termdown
-        config.ethorbit.pkgs.termdown-wrapper.package
+        config.ethorbit.pkgs.termdown-wrapper
     ];
 }

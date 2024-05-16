@@ -23,5 +23,5 @@
         { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
     ];
 
-    ethorbit.pkgs.termdown-wrapper.soundPath = "/home/${config.ethorbit.users.primary.username}/Documents/timer.opus";
+    ethorbit.termdown-wrapper.soundPath = "/home/${config.ethorbit.users.primary.username}/Documents/timer.opus";
 }
