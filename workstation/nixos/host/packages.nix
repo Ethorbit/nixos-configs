@@ -13,6 +13,7 @@
 
         obs-studio
         keepassxc
+        filezilla
 
         firefox
 
