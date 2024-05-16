@@ -5,6 +5,8 @@
         programs.bash = {
             enable = true;
             bashrcExtra = ''
+                set -o ignoreeof
+
                 # Change terminal username@host color from default green to darkish purple (fits dark theming better)
                 export PS1='\[\e[36m\]\u@\h\[\e[0m\]:\w\''$ '
 
