@@ -15,7 +15,9 @@
 
         obs-studio
         keepassxc
+
         filezilla
+        sshfs
 
         firefox
 
