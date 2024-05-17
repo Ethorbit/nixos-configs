@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./scripts
         ../../../nixos/packages/yt-dlp-wrapper
         ../../../nixos/packages/mount-sshfs-run-service
     ];

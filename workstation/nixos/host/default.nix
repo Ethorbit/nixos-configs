@@ -4,13 +4,12 @@
     imports = [
         ./hardware-configuration.nix
         ./bootloader.nix
+        ./packages
         ./users.nix
         ./audio.nix
         ./services
-        ./scripts
         ./networking
         ./desktop.nix
-        ./packages.nix
         ./home-manager.nix
         ../../../nixos/components/containers/docker
         ../../../nixos/components/display-nesting/profiles/xephyr
