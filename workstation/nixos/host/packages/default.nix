@@ -3,8 +3,8 @@
 {
     imports = [
         ./scripts
-        ../../../nixos/packages/yt-dlp-wrapper
-        ../../../nixos/packages/mount-sshfs-run-service
+        ../../../../nixos/packages/yt-dlp-wrapper
+        ../../../../nixos/packages/mount-sshfs-run-service
     ];
 
     programs.adb.enable = true;

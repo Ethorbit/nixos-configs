@@ -13,6 +13,14 @@
                 --system-service
         '')
 
-        # sync-music
+        (pkgs.writeShellScriptBin "sync-android-pixel-u0.sh" ''
+            IP="$1" && [ -z "$IP" ] && echo "Please specify the IP." && exit 0
+            # Music
+            rsync -aP \
+                --no-perms --no-owner --no-group \
+                --itemize-changes \
+                --delete-during \
+                "$HOME/Music/Mp3 Player/" u0_a130@"$IP":"./Music/Mp3 Player/"
+        '')
     ];
 }
