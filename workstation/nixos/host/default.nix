@@ -7,6 +7,7 @@
         ./users.nix
         ./audio.nix
         ./services
+        ./scripts
         ./networking
         ./desktop.nix
         ./packages.nix
