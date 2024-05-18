@@ -6,6 +6,7 @@
     ];
 
     boot.kernelParams = [ "ipv6.disable=1" ];
+    networking.wireguard.enable = true;
 
     # Create a bridge and connect eth0 to it
     # This bridge can then be shared with containers
