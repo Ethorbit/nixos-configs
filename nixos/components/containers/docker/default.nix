@@ -1,6 +1,14 @@
-{ config, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
+    imports = [
+        ../.
+    ];
+
+    environment.systemPackages = with pkgs; [
+        dive
+    ];
+
     virtualisation = {
         docker = {
             enable = true;
