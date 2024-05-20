@@ -13,7 +13,7 @@
                 #
                 prompt_color='\[\e[36m\]'
                 info_color="$prompt_color"
-                prompt_symbol=💎
+                prompt_symbol=🔮
                 export PS1=$prompt_color'┌──''${VIRTUAL_ENV:+(\[\033[0;1m\]$(basename $VIRTUAL_ENV)'$prompt_color')}('$info_color'\u'$prompt_symbol'\h'$prompt_color')-[\[\033[0;1m\]\w'$prompt_color']\n'$prompt_color'└─'$info_color'\$\[\033[0m\] '
 
                 # enable color support of ls, less and man, and also add handy aliases
