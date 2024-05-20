@@ -6,7 +6,9 @@
     ];
 
     boot.kernelParams = [ "ipv6.disable=1" ];
-    networking.wireguard.enable = true;
+
+    # Private bridge interface, Gateway VM
+    networking.defaultGateway.address = "172.12.1.1";
 
     # Create a bridge and connect eth0 to it
     # This bridge can then be shared with containers

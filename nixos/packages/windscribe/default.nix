@@ -2,7 +2,8 @@
 
 {
     # Yeah I gave up on this one half-way through after reading some posts that destroyed my confidence. Windscribe on NixOS seems to be a lost cause..
-    # I created a KASM Web Docker container instead to fulfill this need.
+    # Instead I created a private Proxmox bridge and gave it an Ubuntu-based network gateway Virtual Machine that is running the beloved Windscribe GUI inside, 
+    # then did all the iptables NAT magic to enable connectivity. With this setup, you access the GUI with SPICE as the designated Gateway Proxmox user.
 
     #imports = [
     #    ../ctrld
