@@ -9,8 +9,12 @@
 
                 export TERM=xterm
 
-                # Change terminal username@host color from default green to darkish purple (fits dark theming better)
-                export PS1='\[\e[36m\]\u@\h\[\e[0m\]:\w\''$ '
+                # Taken from Kali Linux, modified slightly
+                prompt_color='\[\e[36m\]'
+                #info_color='\[\033[1;31m\]'
+                info_color="$prompt_color"
+                prompt_symbol=💎
+                export PS1=$prompt_color'┌────''${VIRTUAL_ENV:+(\[\033[0;1m\]$(basename $VIRTUAL_ENV)'$prompt_color')}('$info_color'\u'$prompt_symbol'\h'$prompt_color')-[\[\033[0;1m\]\w'$prompt_color']\n'$prompt_color'└─'$info_color'\$\[\033[0m\] '
 
                 [ -f ~/.bashrc_aliases ] && source ~/.bashrc_aliases
             '';
