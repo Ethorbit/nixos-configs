@@ -9,10 +9,10 @@
 
                 export TERM=xterm
 
-                # Newline for each prompt, 
+                # Newline for each prompt,
                 # No duplicate entries, save & reload history after each command
                 HISTCONTROL="ignoredups:erasedups"
-                PROMPT_COMMAND="PROMPT_COMMAND=echo; history -a; history -c; history -r; $PROMPT_COMMAND"
+                PROMPT_COMMAND="echo; history -a; history -c; history -r; $PROMPT_COMMAND"
 
                 prompt_color='\[\e[36m\]'
                 info_color="$prompt_color"
