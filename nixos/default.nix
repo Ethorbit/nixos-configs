@@ -8,7 +8,6 @@
         ./packages.nix
         ./programs.nix
         ./users.nix
-        ./environment.nix
         ./timezone.nix
         ./locale.nix
         ./home-manager
