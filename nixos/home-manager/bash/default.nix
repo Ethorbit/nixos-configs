@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 
 {
     options.ethorbit.home-manager.bash = with lib; {
