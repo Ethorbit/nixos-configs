@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
     options.ethorbit.home-manager.bash = with lib; {
@@ -31,6 +31,7 @@
 
             programs.bash = {
                 enable = true;
+                enableCompletion = true;
                 bashrcExtra = ''
                     prompt_symbol=${config.ethorbit.home-manager.bash.prompt.symbol}
                     PROMPT_ALTERNATIVE=${config.ethorbit.home-manager.bash.prompt.alternative}
