@@ -2,7 +2,6 @@
 
 {
     imports = [
-        ./aberration
-        ./genesis
+        ./1
     ];
 }
