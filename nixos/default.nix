@@ -6,7 +6,7 @@
         ./options.nix
         ./bootloader.nix
         ./packages.nix
-        ./programs.nix
+        ./programs
         ./users.nix
         ./timezone.nix
         ./locale.nix
