@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ../../../nixos/home-manager/wallpapers/ark_survival_evolved/aberration/1
+        ../../../nixos/home-manager/wallpapers/ark_survival_evolved/aberration
     ];
 
     ethorbit.home-manager.i3 = {
