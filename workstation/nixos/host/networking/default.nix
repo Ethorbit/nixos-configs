@@ -29,7 +29,8 @@
             };
 
             "40-br0" = {
-                DHCP = "ipv4";
+                #DHCP = "ipv4";
+                address = [ "172.12.1.210/24" ];
                 dns = [ config.networking.defaultGateway.address ];
                 gateway = [ config.networking.defaultGateway.address ];
                 matchConfig.Name = "br0";
