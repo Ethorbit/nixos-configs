@@ -7,6 +7,7 @@
         ../../../../nixos/packages/mount-sshfs-run-service
     ];
 
+    programs.chromium.enable = true;
     programs.adb.enable = true;
 
     environment.systemPackages = with pkgs; [
@@ -22,7 +23,8 @@
         filezilla
         sshfs
 
-        firefox
+        #firefox
+        ungoogled-chromium
 
         # until the containers are up and running, everything will have to be done on host
         yt-dlp
