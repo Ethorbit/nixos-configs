@@ -9,7 +9,13 @@
         # a container for whatever reason...
         hostPlatform = lib.mkIf (config.boot.isContainer == false) (lib.mkForce system);
 
-        config.allowUnfree = true;
+        config = {
+           allowUnfree = true;
+           chromium = {
+                enableWideVine = true;
+           };
+        };
+
         overlays = [
             (import ./overlays/nixpkgs-unstable.nix { inherit inputs; })
         ];
