@@ -14,6 +14,7 @@
         ../../../nixos/components/containers/docker
         ../../../nixos/components/display-nesting/profiles/xephyr
         ../../../nixos/components/programming/ide
+        ../../../nixos/components/file-chooser/profiles/nautilus
     ];
 
     networking.hostName = "workstation";
