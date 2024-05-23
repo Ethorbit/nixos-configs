@@ -2,8 +2,9 @@
 
 {
     imports = [
-        ../../../../nixos/components/display-server/profiles/xserver
-        ../../../../nixos/components/window-manager/profiles/i3
+        ./selkies-gstreamer.nix
+        ../../../../../nixos/components/display-server/profiles/xserver
+        ../../../../../nixos/components/window-manager/profiles/i3
     ];
 
     # Can't use a display manager since it's incompatible with

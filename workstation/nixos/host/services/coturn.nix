@@ -1,7 +1,6 @@
 { config, lib, ... }:
 
 {
-    
     services.coturn = {
         enable = true;
         realm = config.networking.hostName;

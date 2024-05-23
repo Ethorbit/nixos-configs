@@ -16,6 +16,7 @@
         ./options.nix
         ./environment.nix
         ./services
+        ./packages.nix
     ];
 
     i18n.inputMethod = {

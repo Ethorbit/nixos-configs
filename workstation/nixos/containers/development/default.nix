@@ -2,7 +2,7 @@
 
 let
     defaults = import ../default-container.nix { inherit config; };
-    name = "development"; # Must be defined in host-and-container's xorgSessionNumbers
+    name = "development";
 in
 {
     containers.${name} = {

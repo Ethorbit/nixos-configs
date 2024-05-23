@@ -8,7 +8,8 @@
             # `xrender` is the default one.
             #
             # backend = 'glx'
-            backend = "xrender";
+            #backend = "xrender";
+            backend = "glx";
             vSync = true;
             shadow = true;
             shadowOpacity = 0.75;

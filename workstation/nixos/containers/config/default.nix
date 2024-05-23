@@ -6,8 +6,7 @@
         ./users.nix
         ./networking.nix
         ./packages.nix
-        ./selkies-gstreamer.nix
-        ./desktop.nix
+        ./desktop
     ];
 
     boot.isContainer = true;
