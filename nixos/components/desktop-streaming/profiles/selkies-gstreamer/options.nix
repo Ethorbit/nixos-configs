@@ -3,6 +3,13 @@
 {
     options.ethorbit.components.selkies-gstreamer = with lib; {
         settings = {
+            user = mkOption {
+                type = types.str;
+                default = config.ethorbit.users.primary.username;
+                example = "bob";
+                description = "The nixos user selkies-gstreamer will run under, this should also be the same user that the desktop runs under.";
+            };
+
             # You need to run a turn server somewhere and then set these up in your system
             turn = {
                 host = mkOption {
@@ -49,6 +56,13 @@
             };
 
             display = {
+                port = mkOption {
+                    type = types.int;
+                    default = 8080;
+                    example = 4200;
+                    description = "The port to connect to the gstreamer display.";
+                };
+
                 useNOVNC = mkOption {
                     type = types.bool;
                     default = false;
