@@ -5,6 +5,7 @@
     imports = [
         ./users.nix
         ./packages.nix
+        ./coturn.nix
 
         ../../../nixos/components/networking/systemd
         ../../../nixos/components/service-discovery/profiles/avahi

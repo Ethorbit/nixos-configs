@@ -20,6 +20,7 @@ in
     "homenas/nixos/secrets/samba/users/videos/creds.age".publicKeys = [ ethorbit nixos ];
 
     "workstation/nixos/containers/secrets/user/pass.age".publicKeys = [ ethorbit nixos ];
+    "workstation/nixos/host-and-containers/secrets/coturn-secret.age".publicKeys = [ ethorbit nixos ];
 
     "nzc/nixos/secrets/networking/firewall/ISP_CIDR_one.age".publicKeys = [ ethorbit nixos ];
     "nzc/nixos/secrets/networking/firewall/ISP_CIDR_two.age".publicKeys = [ ethorbit nixos ];

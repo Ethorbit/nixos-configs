@@ -2,7 +2,6 @@
 
 {
     imports = [
-        ../../../../nixos/components/desktop-streaming/profiles/selkies-gstreamer
         ../../../../nixos/components/display-server/profiles/xserver
         ../../../../nixos/components/window-manager/profiles/i3
     ];
