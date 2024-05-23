@@ -1,8 +1,28 @@
-{ config, ... }:
+# This component is a port of the nvidia-egl-desktop docker container
+# So unless your system is headless and meant for dedicated desktop streaming, put this inside a container
+# If you just want a quick way to share your current desktop, use a different solution because that's not what this is for.
+
+#
+# Read these for further information:
+# https://github.com/selkies-project/selkies-gstreamer
+# https://github.com/selkies-project/docker-nvidia-egl-desktop
+#
+
+{ config, pkgs, ... }:
 
 {
     imports = [
         ../../../../packages/selkies-gstreamer
-        ../../../../services/selkies-gstreamer
+        ./options.nix
+        ./environment.nix
+        ./services
     ];
+
+    i18n.inputMethod = {
+        enabled = "fcitx5";
+        fcitx5.addons = with pkgs; [
+            fcitx5-mozc
+            fcitx5-gtk
+        ];
+    };
 }
