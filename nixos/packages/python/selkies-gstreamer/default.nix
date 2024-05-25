@@ -36,7 +36,6 @@ with lib;
                     python311Packages.websockets
                     python311Packages.psutil
                     python311Packages.prometheus-client
-                    python311Packages.flask-basicauth
                     gst_all_1.gstreamer
                     gst_all_1.gst-libav
                     gst_all_1.gst-devtools
@@ -51,11 +50,9 @@ with lib;
                     wrapProgram $out/bin/selkies-gstreamer \
                       --prefix GI_TYPELIB_PATH ":" "${gobject-introspection.out}/lib/girepository-1.0:$GI_TYPELIB_PATH" \
                       --prefix GST_PY_PATH ":" "${python311Packages.gst-python}/lib/python3.11" \
+                      --prefix GST_PLUGIN_SYSTEM_PATH_1_0 ":" "${gst_all_1.gstreamer}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0" \
                       --prefix PYTHONPATH ":" "${python311Packages.gst-python}/lib/python3.11/site-packages:$PYTHONPATH" \
                 '';
-                      #--prefix GSTREAMER_PATH ":" "${gst_all_1.gstreamer}:${gst_all_1.gst-devtools}:${gst_all_1.gst-plugins-base}:${gst_all_1.gst-plugins-bad}:${gst_all_1.gst-plugins-ugly}:${gst_all_1.gst-plugins-good}:${gst_all_1.gst-vaapi}:${gst_all_1.gst-libav}" \
-                      #--prefix PATH ":" "${gst_all_1.gstreamer}/bin:${gst_all_1.gst-devtools}/bin:${gst_all_1.gst-plugins-base}/bin:${gst_all_1.gst-plugins-bad}/bin:${gst_all_1.gst-plugins-ugly}/bin:${gst_all_1.gst-plugins-good}/bin:${gst_all_1.gst-libav}/bin:$PATH" \
-                      #--prefix LD_LIBRARY_PATH ":" "${python311Packages.pygobject3}/lib:${python311Packages.gst-python}/lib:${gst_all_1.gst-plugins-base}/lib:${gst_all_1.gst-devtools}/lib:${gst_all_1.gst-plugins-bad}/lib:${gst_all_1.gst-plugins-ugly}/lib:${gst_all_1.gst-plugins-good}/lib:${gst_all_1.gst-vaapi}/lib:${gst_all_1.gst-libav}/lib:$LD_LIBRARY_PATH" \
             });
         };
     };
