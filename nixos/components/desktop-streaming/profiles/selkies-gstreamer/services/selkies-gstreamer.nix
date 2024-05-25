@@ -7,6 +7,7 @@ let
 
     # Source environment for GStreamer
     # . /opt/gstreamer/gst-env
+    . ${config.ethorbit.pkgs.python.selkies-gstreamer}/env
 
     # Set default display
     export DISPLAY="''${DISPLAY:-:0}"
@@ -25,7 +26,7 @@ let
     rm -rf "''${HOME}/.cache/gstreamer-1.0"
 
     # Start the selkies-gstreamer WebRTC HTML5 remote desktop application
-    ${config.ethorbit.pkgs.selkies-gstreamer}/bin/selkies-gstreamer \
+    ${config.ethorbit.pkgs.python.selkies-gstreamer}/bin/selkies-gstreamer \
         --addr="0.0.0.0" \
         --port="${builtins.toString config.ethorbit.components.selkies-gstreamer.settings.display.port}" \
         $@

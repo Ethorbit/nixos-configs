@@ -5,6 +5,8 @@
         ./scripts
         ../../../../nixos/packages/yt-dlp-wrapper
         ../../../../nixos/packages/mount-sshfs-run-service
+        # Just for testing purposes.
+        ../../../../nixos/packages/python/selkies-gstreamer
     ];
 
     programs.chromium.enable = true;
@@ -32,6 +34,9 @@
         gimp
         kdenlive
         audacity
+
+        # Just for testing purposes.
+        config.ethorbit.pkgs.python.selkies-gstreamer
     ];
 
     services.flatpak = {

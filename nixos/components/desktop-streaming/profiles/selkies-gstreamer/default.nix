@@ -12,7 +12,7 @@
 
 {
     imports = [
-        ../../../../packages/selkies-gstreamer
+        ../../../../packages/python/selkies-gstreamer
         ./options.nix
         ./environment.nix
         ./services

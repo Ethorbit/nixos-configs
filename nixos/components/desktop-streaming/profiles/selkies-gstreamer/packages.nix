@@ -21,9 +21,9 @@
         #xsettingsd
 
         # gst_all_1
-        gstreamer
-        gst-vaapi
-        gst-plugins-base
+        #gstreamer
+        #gst-vaapi
+        #gst-plugins-base
 
         # xorg
         #xinit

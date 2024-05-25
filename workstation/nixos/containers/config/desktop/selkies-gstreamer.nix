@@ -15,6 +15,10 @@
         user = config.ethorbit.users.primary.username;
     };
 
+    environment.variables = {
+        SELKIES_PATH = config.ethorbit.pkgs.python.selkies-gstreamer;
+    };
+
     ethorbit.components.selkies-gstreamer.settings = {
         turn = {
             host = "172.12.1.210";
