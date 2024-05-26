@@ -49,11 +49,13 @@ with lib;
                 ];
                 # so that it stops crying with runtime errors [\/]
                 preFixup = ''
-                    wrapProgram $out/bin/selkies-gstreamer \
-                      --prefix GI_TYPELIB_PATH ":" "${gobject-introspection.out}/lib/girepository-1.0:$GI_TYPELIB_PATH" \
-                      --prefix GST_PY_PATH ":" "${python311Packages.gst-python}/lib/python3.11" \
-                      --prefix GST_PLUGIN_SYSTEM_PATH_1_0 ":" "${config.ethorbit.pkgs.libnice}/lib/gstreamer-1.0:${gst_all_1.gstreamer}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0" \
-                      --prefix PYTHONPATH ":" "${python311Packages.gst-python}/lib/python3.11/site-packages:$PYTHONPATH" \
+                    for f in $(find $out/bin/ -type f -executable); do
+                        wrapProgram "$f" \
+                          --prefix GI_TYPELIB_PATH ":" "${gobject-introspection.out}/lib/girepository-1.0:$GI_TYPELIB_PATH" \
+                          --prefix GST_PY_PATH ":" "${python311Packages.gst-python}/lib/python3.11" \
+                          --prefix GST_PLUGIN_SYSTEM_PATH_1_0 ":" "${config.ethorbit.pkgs.libnice}/lib/gstreamer-1.0:${gst_all_1.gstreamer}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0" \
+                          --prefix PYTHONPATH ":" "${python311Packages.gst-python}/lib/python3.11/site-packages:$PYTHONPATH"
+                    done
                 '';
             });
         };
