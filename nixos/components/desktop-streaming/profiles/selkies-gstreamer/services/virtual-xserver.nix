@@ -23,7 +23,7 @@ let
         # Use VirtualGL to run the KDE desktop environment with OpenGL if the GPU is available, otherwise use OpenGL with llvmpipe
         if [ -n "$(nvidia-smi --query-gpu=uuid --format=csv | sed -n 2p)" ]; then
             export VGL_REFRESHRATE="''${REFRESH}"
-            ${pkgs.virtualgl}/bin/vglrun -d "''${VGL_DISPLAY:-egl}" +wm /usr/bin/dbus-launch "${config.services.xserver.displayManager.sessionCommands}" &
+            ${pkgs.virtualgl}/bin/vglrun -d "''${VGL_DISPLAY:-egl}" +wm ${pkgs.dbus}/bin/dbus-launch "${config.services.xserver.displayManager.sessionCommands}" &
         else
             ${pkgs.dbus}/bin/dbus-launch "${config.services.xserver.displayManager.sessionCommands}" &
         fi
@@ -42,7 +42,7 @@ in
             environment = config.environment.variables;
 
             serviceConfig = {
-                #User = config.ethorbit.components.selkies-gstreamer.settings.user;
+                User = config.ethorbit.components.selkies-gstreamer.settings.user;
                 Type = "simple";
                 Restart = "on-failure";
                 RestartSec = 5;
@@ -51,15 +51,11 @@ in
             script = ''
                 trap "echo TRAPed signal" HUP INT QUIT TERM
 
-                # Remove directories to make sure the desktop environment starts
-                rm -rf /tmp/.X* ~/.cache
-
                 # Run Xvfb server and its commands with required extensions
-                ${pkgs.util-linux}/bin/runuser -u "${config.ethorbit.components.selkies-gstreamer.settings.user}" -- \
-                    ${pkgs.xvfb-run}/bin/xvfb-run \
-                        --server-num=${builtins.toString config.ethorbit.components.selkies-gstreamer.settings.display.number} \
-                        --server-args="-ac -screen 0 8192x4096x''${CDEPTH} -dpi ''${DPI} +extension COMPOSITE +extension DAMAGE +extension GLX +extension RANDR +extension RENDER +extension MIT-SHM +extension XFIXES +extension XTEST +iglx +render -nolisten tcp -noreset -shmem" \
-                        "${XvfbCommand}/bin/script"
+                ${pkgs.xvfb-run}/bin/xvfb-run \
+                    --server-num=${builtins.toString config.ethorbit.components.selkies-gstreamer.settings.display.number} \
+                    --server-args="-ac -screen 0 8192x4096x''${CDEPTH} -dpi ''${DPI} +extension COMPOSITE +extension DAMAGE +extension GLX +extension RANDR +extension RENDER +extension MIT-SHM +extension XFIXES +extension XTEST +iglx +render -nolisten tcp -noreset -shmem" \
+                    "${XvfbCommand}/bin/script"
             '';
 
             wantedBy = [ "default.target" ];
