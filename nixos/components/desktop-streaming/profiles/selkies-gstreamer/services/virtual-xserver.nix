@@ -3,6 +3,9 @@
 let
     # this script is passed as the command to run with xvfb-run, so we should have a valid X environment to work with
     XvfbCommand = pkgs.writeShellScriptBin "script" ''
+        export XDG_RUNTIME_DIR=/run/user/$(id -u)
+        export PATH="$PATH:/run/current-system/sw/bin"
+
         # Wait for X11 to start
         echo "Waiting for X socket"
         until [ -S "/tmp/.X11-unix/X''${DISPLAY/:/}" ]; do sleep 1; done
@@ -11,8 +14,6 @@ let
         # Resize the screen to the provided size
         ${config.ethorbit.pkgs.python.selkies-gstreamer}/bin/selkies-gstreamer-resize ''${SIZEW}x''${SIZEH}
 
-        export XDG_RUNTIME_DIR=/run/user/$(id -u)
-
         # Run the x11vnc + noVNC fallback web interface if enabled
         if [ "''${NOVNC_ENABLE,,}" = "true" ]; then
             if [ -n "$NOVNC_VIEWPASS" ]; then export NOVNC_VIEWONLY="-viewpasswd ''${NOVNC_VIEWPASS}"; else unset NOVNC_VIEWONLY; fi
@@ -20,7 +21,7 @@ let
             ${pkgs.novnc}/bin/novnc --vnc localhost:5900 --listen 8080 --heartbeat 10 &
         fi
 
-        # Use VirtualGL to run the KDE desktop environment with OpenGL if the GPU is available, otherwise use OpenGL with llvmpipe
+        # Use VirtualGL to run the desktop environment with OpenGL if the GPU is available, otherwise use OpenGL with llvmpipe
         if [ -n "$(nvidia-smi --query-gpu=uuid --format=csv | sed -n 2p)" ]; then
             export VGL_REFRESHRATE="''${REFRESH}"
             ${pkgs.virtualgl}/bin/vglrun -d "''${VGL_DISPLAY:-egl}" +wm ${pkgs.dbus}/bin/dbus-launch "${config.services.xserver.displayManager.sessionCommands}" &

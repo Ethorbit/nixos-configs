@@ -7,5 +7,5 @@
         ../../../../../nixos/components/window-manager/profiles/i3
     ];
 
-    services.xserver.displayManager.sessionCommands = "i3";
+    services.xserver.displayManager.sessionCommands = "${pkgs.i3}/bin/i3";
 }
