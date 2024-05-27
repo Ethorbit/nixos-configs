@@ -8,7 +8,7 @@
 # https://github.com/selkies-project/docker-nvidia-egl-desktop
 #
 
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
     imports = [

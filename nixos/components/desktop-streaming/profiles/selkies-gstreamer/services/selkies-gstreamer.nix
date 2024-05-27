@@ -33,19 +33,10 @@ let
     '';
 in
 {
-    options.ethorbit.services.selkies-gstreamer = with lib; {
-        enable = mkOption {
-            type = types.bool;
-            default = true;
-            example = false;
-            description = "Whether or not to enable the selkies-gstreamer service.";
-        };
-    };
-
     config = {
         systemd.services."selkies-gstreamer" = {
-            enable = config.ethorbit.services.selkies-gstreamer.enable;
-            description = "Systemd port of nvidia-egl-docker's 'selkies-gstreamer' supervisor service";
+            enable = true;
+            description = "Systemd + nix port of nvidia-egl-docker's 'selkies-gstreamer' supervisor service, which is responsible for using selkies-gstreamer to stream the X server once it starts.";
             environment = config.environment.variables;
             after = [ "network.target" ];
 

@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
     options.ethorbit.components.selkies-gstreamer = with lib; {
@@ -7,55 +7,64 @@
                 type = types.str;
                 default = config.ethorbit.users.primary.username;
                 example = "bob";
-                description = "The nixos user selkies-gstreamer will run under, this should also be the same user that the desktop runs under.";
+                description = "The nixos user selkies-gstreamer will run under, this will also be the same user that the desktop runs under.";
             };
 
-            # You need to run a turn server somewhere and then set these up in your system
+            # You need to run a turn server somewhere and then set these up in your system.
+            # This is needed to connect to WebRTC properly, which is what will provide you the graphical performance.
+            # The alternative is just your average boring VNC
             turn = {
                 host = mkOption {
                     type = types.str;
                     default = config.networking.hostName;
-                    example = "coturn.mywebsite";
-                    description = "Host to connect to the COTURN server";
+                    example = "turn.mywebsite";
+                    description = "Host to connect to the TURN server";
                 };
 
                 port = mkOption {
                     type = types.int;
                     default = config.services.coturn.listening-port;
                     example = 3478;
-                    description = "Port to connect to the COTURN server";
+                    description = "Port to connect to the TURN server";
                 };
 
                 protocol = mkOption {
                     type = types.str;
                     default = "udp";
                     example = "tcp";
-                    description = "The protocol to communicate to the COTURN server with. Either TCP or UDP.";
+                    description = "The protocol to communicate to the TURN server with. Either TCP or UDP.";
                 };
 
                 tls = mkOption {
                     type = types.bool;
                     default = (config.services.coturn.no-tls == false);
                     example = false;
-                    description = "Whether or not the coturn server supports TLS.";
+                    description = "Whether or not the TURN server supports TLS.";
                 };
 
                 sharedSecret = mkOption {
                     type = types.nullOr types.str;
                     default = config.services.coturn.static-auth-secret;
                     example = "+xrjyydudpRMPvA6YKDmvXsB8X3dWc4YJPwutjy47i6XV1j74FfpuYLC+FbludYMo4DQ4cneCz4Kge44LHprEg==";
-                    description = "String used to authenticate to the COTURN server. Warning: this is world-readable and should only be used for testing. This is ignored if sharedSecretFile is used (which it should be).";
+                    description = "String used to authenticate to the TURN server. Warning: this is world-readable and should only be used for testing. This is ignored if sharedSecretFile is used (which it should be).";
                 };
 
                 sharedSecretFile = mkOption {
                     type = types.nullOr types.str;
                     default = config.services.coturn.static-auth-secret-file;
-                    example = "+xrjyydudpRMPvA6YKDmvXsB8X3dWc4YJPwutjy47i6XV1j74FfpuYLC+FbludYMo4DQ4cneCz4Kge44LHprEg==";
-                    description = "File that stores the string used to authenticate to the COTURN server";
+                    example = "/etc/turn-shared-secret";
+                    description = "File that stores the string used to authenticate to the TURN server";
                 };
             };
 
             display = {
+                number = mkOption {
+                    type = types.int;
+                    default = 0;
+                    example = 1;
+                    description = "The X display number";
+                };
+                
                 port = mkOption {
                     type = types.int;
                     default = 8080;
