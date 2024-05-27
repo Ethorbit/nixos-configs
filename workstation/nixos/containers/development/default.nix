@@ -6,7 +6,7 @@ let
 in
 {
     containers.${name} = {
-        inherit (defaults) ephemeral autoStart privateNetwork localAddress hostBridge additionalCapabilities allowedDevices;
+        inherit (defaults) ephemeral autoStart privateNetwork localAddress hostBridge additionalCapabilities bindMounts allowedDevices;
 
         config = { config, ... }: {
             ethorbit.users.primary.username = name;

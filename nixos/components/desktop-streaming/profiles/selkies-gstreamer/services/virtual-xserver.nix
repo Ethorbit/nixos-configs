@@ -52,7 +52,6 @@ in
                 trap "echo TRAPed signal" HUP INT QUIT TERM
 
                 # Remove directories to make sure the desktop environment starts
-                # sudo rm -rf /tmp/.X* ~/.cache
                 rm -rf /tmp/.X* ~/.cache
 
                 # Run Xvfb server and its commands with required extensions
