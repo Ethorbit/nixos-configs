@@ -17,6 +17,8 @@ with auth;
         CDEPTH = builtins.toString colorDepth;
         VGL_REFRESHRATE = builtins.toString refreshRate;
         VGL_DISPLAY = "egl";
+        GST_DEBUG = "*:2";
+        SDL_JOYSTICK_DEVICE = "/dev/input/js0";
         __GL_SYNC_TO_VBLANK = "0";
         NOVNC_ENABLE = builtins.toString useNOVNC;
         NOVNC_VIEWPASS = password;
