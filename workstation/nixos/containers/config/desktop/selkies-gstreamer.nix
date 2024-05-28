@@ -13,6 +13,7 @@
     environment.etc."selkies-auth-password" = {
         source = config.age.secrets."selkies-gstreamer/password".path;
         user = config.ethorbit.users.primary.username;
+        mode = "0600";
     };
 
     ethorbit.components.selkies-gstreamer.settings = {

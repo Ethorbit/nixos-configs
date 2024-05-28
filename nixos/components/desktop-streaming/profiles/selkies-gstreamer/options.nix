@@ -130,14 +130,6 @@
             };
 
             auth = {
-                # I think it's supposed to be whatever user gstreamer runs under, so commented.
-                #username = mkOption {
-                #    type = types.str;
-                #    default = "admin";
-                #    example = "bob";
-                #    description = "The username that the client needs to enter in their browser";
-                #};
-
                 password = mkOption {
                     type = types.str;
                     default = "mypasswd";
