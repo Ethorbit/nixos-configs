@@ -14,7 +14,7 @@ with lib;
     };
 
     config = {
-        containers = lib.mapAttrs (name: data: {
+        containers = mapAttrs (name: data: {
             ephemeral = false;
 
             autoStart = false;
@@ -26,10 +26,10 @@ with lib;
 
             additionalCapabilities = [ ];
 
-            bindMounts = {
+            bindMounts = mkMerge ((map (identityPath: {
                 # Needed so that the containers can read their own age secrets
-                ${config.ethorbit.age.identityPath}.isReadOnly = true;
-
+                "${identityPath}".isReadOnly = true;
+            }) config.age.identityPaths) ++ [{
                 "/dev/shm" = {};
                 "/dev/fuse" = {};
                 "/sys/module".isReadOnly = true;
@@ -42,7 +42,7 @@ with lib;
                 "/dev/nvidia-uvm-tools" = {};
                 "/dev/nvidiactl" = {};
                 "/dev/nvidia0" = {};
-            };
+            }]);
 
             allowedDevices = [
                 {

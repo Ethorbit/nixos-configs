@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
     imports = [
@@ -18,8 +18,8 @@
         ./libinput.nix
     ];
 
-    age.identityPaths = [ config.ethorbit.age.identityPath ];
-    
+    age.identityPaths = lib.mkDefault [ "/etc/ssh/ssh_host_ed25519_key" ];
+
     nix.settings = {
         auto-optimise-store = true;
     };
