@@ -18,7 +18,7 @@
 
     ethorbit.components.selkies-gstreamer.settings = {
         turn = {
-            host = "workstation.internal";
+            host = "host";
             port = 3478;
             protocol = "udp";
             tls = true;
