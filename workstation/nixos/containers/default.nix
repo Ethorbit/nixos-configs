@@ -91,6 +91,8 @@ with lib;
                 systemd.network.networks."20-eth" = {
                     matchConfig.Name = "eth*";
                     address = [ "${data.ip}/24" ];
+                    dns = [ config.networking.defaultGateway.address ];
+                    gateway = [ config.networking.defaultGateway.address ];
                 };
 
                 imports = [

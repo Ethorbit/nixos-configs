@@ -5,6 +5,7 @@
     imports = [
         ./users.nix
         ./packages.nix
+        ./networking.nix
         ./coturn.nix
 
         ../../../nixos/components/networking/systemd
