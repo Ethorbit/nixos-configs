@@ -88,6 +88,9 @@ with lib;
             config = { config, ... }: {
                 ethorbit.users.primary.username = name;
 
+                networking.hosts."172.12.1.210" = [ "host" ];
+
+                # Setup network connectivity
                 systemd.network.networks."20-eth" = {
                     matchConfig.Name = "eth*";
                     address = [ "${data.ip}/24" ];
@@ -95,6 +98,7 @@ with lib;
                     gateway = [ config.networking.defaultGateway.address ];
                 };
 
+                # Load base nix config and all the container's configs
                 imports = [
                     (import ../../../nixosmodules.nix { inherit inputs; inherit system; })
                 ] ++ data.imports;
