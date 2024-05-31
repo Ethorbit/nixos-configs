@@ -1,30 +1,42 @@
 { config, lib, inputs, system, ... }:
 
 with lib;
-
+let
+    entry = {
+        autoStart = false;
+        additionalCapabilities = [ ];
+        allowedDevices = [ ];
+        bindMounts = { };
+        extraFlags = [ ];
+        imports = [ ];
+    };
+in
 {
     options.ethorbit.workstation.containers = mkOption {
         type = types.attrs;
         default = {
-            "development" = {
+            "development" = entry // {
                 ip = "172.12.1.220";
-                imports = [ ./selkies-gstreamer ];
+                imports = [ ./selkies-gstreamer ./development ];
+                # To allow Docker to work
+                extraFlags = [
+                    "--system-call-filter=add_key"
+                    "--system-call-filter=keyctl"
+                    "--system-call-filter=bpf"
+                ];
             };
         };
     };
 
     config = {
         containers = mapAttrs (name: data: {
-            ephemeral = false;
+            inherit (data) autoStart additionalCapabilities extraFlags;        
 
-            autoStart = false;
+            ephemeral = false;
 
             privateNetwork = true;
             localAddress = null;
-
             hostBridge = "br0";
-
-            additionalCapabilities = [ ];
 
             bindMounts = mkMerge ((map (identityPath: {
                 # Needed so that the containers can read their own age secrets
@@ -42,7 +54,7 @@ with lib;
                 "/dev/nvidia-uvm-tools" = {};
                 "/dev/nvidiactl" = {};
                 "/dev/nvidia0" = {};
-            }]);
+            }] ++ [ data.bindMounts ]);
 
             allowedDevices = [
                 {
@@ -83,7 +95,7 @@ with lib;
                     modifier = "rwm";
                     node = "/dev/nvidia0";
                 }
-            ];
+            ] ++ data.allowedDevices;
 
             config = { config, ... }: {
                 ethorbit.users.primary.username = name;
