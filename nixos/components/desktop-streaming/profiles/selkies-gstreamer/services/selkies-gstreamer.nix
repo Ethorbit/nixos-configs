@@ -43,7 +43,7 @@ in
             serviceConfig = {
                 User = config.ethorbit.components.selkies-gstreamer.settings.user;
                 Type = "simple";
-                Restart = "on-failure";
+                Restart = "always";
                 RestartSec = 5;
             };
 
