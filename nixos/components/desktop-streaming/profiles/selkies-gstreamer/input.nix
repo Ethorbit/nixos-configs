@@ -9,6 +9,8 @@
         ];
     };
 
+    # NOTE: Joystick support won't exist until the Joystick Interposer
+    # Gets added to the Selkies-Gstreamer package.
     systemd.tmpfiles.rules = [
         "d /dev/input 0755"
         "f /dev/input/js0"

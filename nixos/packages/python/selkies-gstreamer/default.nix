@@ -1,3 +1,6 @@
+# TODO: Add the Selkies-Gstreamer Joystick Interposer soon.
+# Currently it only has a .deb solution, so it was intentionally left out.
+
 { config, pkgs, lib, ... }:
 
 with pkgs;
