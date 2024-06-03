@@ -2,7 +2,7 @@
 
 with lib;
 let
-    containerIPs = map (name: "${config.ethorbit.workstation.containers.${name}.ip}") (attrNames config.ethorbit.workstation.containers);
+    containerIPs = map (name: "${config.ethorbit.workstation.containers.entries.${name}.ip}") (attrNames config.ethorbit.workstation.containers.entries);
 in
 {
     networking.firewall = {

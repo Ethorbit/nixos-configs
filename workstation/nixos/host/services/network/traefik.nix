@@ -1,8 +1,10 @@
 { config, lib, ... }:
 
+with lib;
+let
+    selkies-gstreamer-containers = (filterAttrs (name: value: value.label == "selkies-gstreamer") config.ethorbit.workstation.containers.entries);
+in
 {
-    # Reverse proxy for container web services to be reachable by the outside.
-    # By default, /container/name will always go to the container's 8080 port.
     services.traefik = {
         enable = true;
 
@@ -28,14 +30,14 @@
                 };
             };
         };
-
+        
         dynamicConfigOptions = with lib; {
             http.routers = mapAttrs (name: data: {
                 service = name;
                 tls = true;
                 entrypoints = "websecure";
                 rule = "Path(`/container/${name}`)";
-            }) config.ethorbit.workstation.containers;
+            }) selkies-gstreamer-containers;
 
             http.services = mapAttrs (name: data: {
                 loadBalancer = {
@@ -45,7 +47,7 @@
                         }
                     ];
                 };
-            }) config.ethorbit.workstation.containers;
+            }) selkies-gstreamer-containers;
         };
     };
 }

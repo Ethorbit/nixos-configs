@@ -1,38 +1,38 @@
 { config, lib, inputs, system, ... }:
 
 with lib;
+
 let
-    entry = {
+    makeEntry = entry: {
         autoStart = false;
         additionalCapabilities = [ ];
         allowedDevices = [ ];
         bindMounts = { };
+        ephemeral = false;
         extraFlags = [ ];
         imports = [ ];
-    };
+        traefik = {
+            httpRouterCreator = name: config: { };
+            httpServicesCreator = name: config: { };
+        };
+    } // entry;
 in
 {
-    options.ethorbit.workstation.containers = mkOption {
-        type = types.attrs;
-        default = {
-            "development" = entry // {
-                ip = "172.12.1.220";
-                imports = [ ./selkies-gstreamer ./development ];
-                # To allow Docker to work
-                extraFlags = [
-                    "--system-call-filter=add_key"
-                    "--system-call-filter=keyctl"
-                    "--system-call-filter=bpf"
-                ];
-            };
+    imports = [
+        (import ./entries { inherit config; inherit lib; inherit makeEntry; })
+    ];
+
+    options.ethorbit.workstation.containers = {
+        entries = mkOption {
+            type = types.attrs;
+            default = { };
         };
     };
 
     config = {
+        # Turn the container entries into actual containers.
         containers = mapAttrs (name: data: {
-            inherit (data) autoStart additionalCapabilities extraFlags;        
-
-            ephemeral = false;
+            inherit (data) autoStart additionalCapabilities ephemeral extraFlags;        
 
             privateNetwork = true;
             localAddress = null;
@@ -100,6 +100,16 @@ in
             config = { config, ... }: {
                 ethorbit.users.primary.username = name;
 
+                boot.isContainer = mkForce true;
+                boot.enableContainers = mkDefault false;
+
+                # This is required if no root password or sudo user is available
+                # Using root inside a container is dangerous for the host - avoid it.
+                users.allowNoPasswordLogin = true;
+
+                system.stateVersion = "23.11";
+
+                # Add host as a host entry
                 networking.hosts."172.12.1.210" = [ "host" ];
 
                 # Setup network connectivity
@@ -113,8 +123,9 @@ in
                 # Load base nix config and all the container's configs
                 imports = [
                     (import ../../../nixosmodules.nix { inherit inputs; inherit system; })
+                    ../host-and-containers
                 ] ++ data.imports;
             };
-        }) config.ethorbit.workstation.containers;
+        }) config.ethorbit.workstation.containers.entries;
     };
 }

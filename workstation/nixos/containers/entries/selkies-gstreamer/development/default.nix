@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ../../../../nixos/components/containers/docker
+        ../../../../../../nixos/components/containers/docker
     ];
 
     users = {
