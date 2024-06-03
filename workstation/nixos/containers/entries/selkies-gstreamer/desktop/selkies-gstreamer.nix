@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ../../../../../../../nixos/components/desktop-streaming/profiles/selkies-gstreamer
+        ../../../../../../nixos/components/desktop-streaming/profiles/selkies-gstreamer
     ];
 
     age.secrets."selkies-gstreamer/password" = { file = ../secrets/selkies-gstreamer/pass.age; };
