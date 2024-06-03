@@ -11,10 +11,6 @@ let
         ephemeral = false;
         extraFlags = [ ];
         imports = [ ];
-        traefik = {
-            httpRouterCreator = name: config: { };
-            httpServicesCreator = name: config: { };
-        };
     } // entry;
 in
 {
