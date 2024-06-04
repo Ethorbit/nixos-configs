@@ -11,6 +11,8 @@ let
         ephemeral = false;
         extraFlags = [ ];
         imports = [ ];
+        traefikCreator = name: data: {};
+        label = "";
     } // entry;
 in
 {

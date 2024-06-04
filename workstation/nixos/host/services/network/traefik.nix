@@ -2,7 +2,13 @@
 
 with lib;
 let
-    selkies-gstreamer-containers = (filterAttrs (name: value: value.label == "selkies-gstreamer") config.ethorbit.workstation.containers.entries);
+    # Each container can generate their own Traefik dynamicConfigOptions
+    # We will run each of their config creators and merge their results into one attr set.
+    containerConfigOptions = (mkMerge (
+        map (name: (
+            config.ethorbit.workstation.containers.entries.${name}.traefikCreator name config.ethorbit.workstation.containers.entries.${name}
+        )) (attrNames config.ethorbit.workstation.containers.entries)
+    ));
 in
 {
     services.traefik = {
@@ -10,6 +16,7 @@ in
 
         staticConfigOptions = {
             api.dashboard = false;
+            #log.level = "DEBUG";
 
             # While this was intended as a reverse proxy for declarative nix containers
             # I will also give support for Docker containers, just in case
@@ -19,35 +26,43 @@ in
             };
 
             entrypoints = {
+                web.address = ":80";
                 websecure.address = ":443";
-                web = {
-                    address = ":80";
-                    http.redirections.entryPoint = {
-                        to = "websecure";
-                        scheme = "https";
+            };
+        };
+
+        dynamicConfigOptions = mkMerge [ {
+            http.middlewares = {
+                "http-redirect" = {
+                    redirectScheme = {
+                       scheme = "http";
+                       permanent = true;
+                    };
+                };
+
+                "https-redirect" = {
+                    redirectScheme = {
+                       scheme = "https";
+                       permanent = true;
+                    };
+                };
+
+                "trailing-slash-redirect-http" = {
+                    redirectRegex = {
                         permanent = true;
+                        regex = "^http?://(.*)/(.+)";
+                        replacement = "http://$1/$2/";
+                    };
+                };
+
+                "trailing-slash-redirect-https" = {
+                    redirectRegex = {
+                        permanent = true;
+                        regex = "^https?://(.*)/(.+)";
+                        replacement = "https://$1/$2/";
                     };
                 };
             };
-        };
-        
-        dynamicConfigOptions = with lib; {
-            http.routers = mapAttrs (name: data: {
-                service = name;
-                tls = true;
-                entrypoints = "websecure";
-                rule = "Path(`/container/${name}`)";
-            }) selkies-gstreamer-containers;
-
-            http.services = mapAttrs (name: data: {
-                loadBalancer = {
-                    servers = [
-                        {
-                            url = "http://${data.ip}:8080";
-                        }
-                    ];
-                };
-            }) selkies-gstreamer-containers;
-        };
+        } containerConfigOptions ];
     };
 }
