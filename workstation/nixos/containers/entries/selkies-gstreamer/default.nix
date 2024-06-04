@@ -42,7 +42,6 @@ let
 
             services."${name}" = {
                 loadBalancer = {
-                    #passHostHeader = false;
                     servers = [
                         {
                             url = "http://${entry.ip}:8080";
