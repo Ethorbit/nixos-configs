@@ -12,7 +12,6 @@ let
         extraFlags = [ ];
         imports = [ ];
         traefikCreator = name: data: {};
-        label = "";
     } // entry;
 in
 {

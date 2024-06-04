@@ -62,7 +62,6 @@ in
     ethorbit.workstation.containers.entries."development" = (makeEntry {
         inherit traefikCreator;
         ip = "172.12.1.220";
-        label = "selkies-gstreamer";
         imports = [ ./config ./development ];
         # To allow Docker to work
         extraFlags = [
