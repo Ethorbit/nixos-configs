@@ -2,5 +2,5 @@
 
 {
     # Private bridge interface, Gateway VM
-    networking.defaultGateway.address = "172.12.1.1";
+    networking.defaultGateway.address = "172.16.1.1";
 }

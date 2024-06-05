@@ -39,7 +39,7 @@ in
 {
     ethorbit.workstation.containers.entries."development" = (makeEntry {
         inherit traefikCreator;
-        ip = "172.12.1.220";
+        ip = "172.16.1.220";
         imports = [ ./config ./development ];
         # To allow Docker to work
         extraFlags = [
