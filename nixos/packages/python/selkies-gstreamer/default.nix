@@ -61,7 +61,7 @@ in
                     python311Packages.websockets
                     python311Packages.psutil
                     python311Packages.prometheus-client
-                    gst_all_1.gstreamer
+                    gst_all_1.gstreamer.out
                     gst_all_1.gst-libav
                     gst_all_1.gst-devtools
                     gst_all_1.gst-vaapi
@@ -76,7 +76,7 @@ in
                           --prefix WEB_ROOT ":" "${config.ethorbit.pkgs.python.selkies-gstreamer-web}/gst-web" \
                           --prefix GI_TYPELIB_PATH ":" "${gobject-introspection.out}/lib/girepository-1.0:$GI_TYPELIB_PATH" \
                           --prefix GST_PY_PATH ":" "${python311Packages.gst-python}/lib/python3.11" \
-                          --prefix GST_PLUGIN_SYSTEM_PATH_1_0 ":" "${config.ethorbit.pkgs.libnice}/lib/gstreamer-1.0:${gst_all_1.gstreamer}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0" \
+                          --prefix GST_PLUGIN_SYSTEM_PATH_1_0 ":" "${config.ethorbit.pkgs.libnice}/lib/gstreamer-1.0:${gst_all_1.gstreamer.out}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0" \
                           --prefix PYTHONPATH ":" "${python311Packages.gst-python}/lib/python3.11/site-packages:$PYTHONPATH"
                     done
                 '';
