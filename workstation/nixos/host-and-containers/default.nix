@@ -17,6 +17,7 @@
         # no need to shell out money for NVIDIA's vGPU technology :D
         ../../../nixos/components/graphics-drivers/opengl
         ../../../nixos/components/graphics-drivers/nvidia/profiles/proprietary
+        ../../../nixos/components/graphics-drivers/nvidia/profiles/cuda
     ];
 
     ethorbit.graphics.nvidia.proprietary.selectedPackage = config.boot.kernelPackages.nvidiaPackages.production;

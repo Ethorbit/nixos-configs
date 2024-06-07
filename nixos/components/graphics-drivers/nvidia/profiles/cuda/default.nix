@@ -1,11 +1,14 @@
 { config, lib, pkgs, ... }:
 
+with pkgs;
 {
     nixpkgs.config.cudaSupport = true;
 
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = [
         cudaPackages.cudatoolkit
     ];
+
+    hardware.opengl.extraPackages = [ cudaPackages.cudatoolkit ];
 
     # WSL requires some path variables to be set to work with CUDA
     environment.variables = with pkgs; lib.mkIf config.wsl.enable {

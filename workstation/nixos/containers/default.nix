@@ -51,6 +51,7 @@ in
                 "/dev/nvidia-uvm-tools" = {};
                 "/dev/nvidiactl" = {};
                 "/dev/nvidia0" = {};
+                "/dev/nvram" = {};
             }] ++ [ data.bindMounts ]);
 
             allowedDevices = [

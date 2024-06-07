@@ -72,6 +72,8 @@ in
                 preFixup = ''
                     for f in $(find $out/bin/ -type f -executable); do
                         wrapProgram "$f" \
+                          --prefix LD_LIBRARY_PATH ":" "${cudaPackages.cudatoolkit}/lib:$LD_LIBRARY_PATH" \
+                          --prefix CUDA_PATH ":" "${cudaPackages.cudatoolkit}:$CUDA_PATH" \
                           --prefix WEB_ROOT ":" "${config.ethorbit.pkgs.python.selkies-gstreamer-web}/gst-web" \
                           --prefix GI_TYPELIB_PATH ":" "${gobject-introspection.out}/lib/girepository-1.0:$GI_TYPELIB_PATH" \
                           --prefix GST_PY_PATH ":" "${python311Packages.gst-python}/lib/python3.11" \
