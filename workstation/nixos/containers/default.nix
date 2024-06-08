@@ -39,9 +39,12 @@ in
                 # Needed so that the containers can read their own age secrets
                 "${identityPath}".isReadOnly = true;
             }) config.age.identityPaths) ++ [{
+                "/sys/module".isReadOnly = true;
+
                 "/dev/shm" = {};
                 "/dev/fuse" = {};
-                "/sys/module".isReadOnly = true;
+                "/dev/mapper/control" = {};
+                "/dev/loop-control" = {};
 
                 # GPU
                 "/dev/vga_arbiter" = {};
@@ -58,11 +61,27 @@ in
             allowedDevices = [
                 {
                     modifier = "rwm";
-                    node = "/dev/fuse";
+                    node = "block-loop";
                 }
                 {
                     modifier = "rwm";
-                    node = "block-loop";
+                    node = "block-blkext";
+                }
+                {
+                    modifier = "rwm";
+                    node = "block-device-mapper";
+                }
+                {
+                    modifier = "rwm";
+                    node = "/dev/loop-control";
+                }
+                {
+                    modifier = "rwm";
+                    node = "/dev/mapper/control";
+                }
+                {
+                    modifier = "rwm";
+                    node = "/dev/fuse";
                 }
 
                 # GPU
