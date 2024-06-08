@@ -51,6 +51,7 @@ in
                 "/dev/nvidia-uvm-tools" = {};
                 "/dev/nvidiactl" = {};
                 "/dev/nvidia0" = {};
+                "/dev/nvidia-caps" = {};
                 "/dev/nvram" = {};
             }] ++ [ data.bindMounts ]);
 
@@ -58,6 +59,10 @@ in
                 {
                     modifier = "rwm";
                     node = "/dev/fuse";
+                }
+                {
+                    modifier = "rwm";
+                    node = "block-loop";
                 }
 
                 # GPU
@@ -92,6 +97,10 @@ in
                 {
                     modifier = "rwm";
                     node = "/dev/nvidia0";
+                }
+                {
+                    modifier = "rwm";
+                    node = "/dev/nvidia-caps";
                 }
             ] ++ data.allowedDevices;
 
