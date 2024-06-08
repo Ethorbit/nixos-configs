@@ -5,6 +5,7 @@
     age.secrets."nixos/restic/repos/main_os_storage/pass" = { file = ../../../../nixos/secrets/restic/repos/main_os_storage/pass.age; };
     age.secrets."nixos/restic/repos/android_pixel_u0/pass" = { file = ../../../../nixos/secrets/restic/repos/android_pixel_u0/pass.age; };
     age.secrets."nixos/restic/repos/android_pixel_u12/pass" = { file = ../../../../nixos/secrets/restic/repos/android_pixel_u12/pass.age; };
+    age.secrets."nixos/restic/repos/android_pixel_u16/pass" = { file = ../../../../nixos/secrets/restic/repos/android_pixel_u16/pass.age; };
 
     environment.etc."restic_workstation_pass" = {
         mode = "0600";
@@ -28,6 +29,12 @@
         mode = "0600";
         user = config.ethorbit.users.primary.username;
         source = config.age.secrets."nixos/restic/repos/android_pixel_u12/pass".path;
+    };
+
+    environment.etc."restic_android_pixel_u16_pass" = {
+        mode = "0600";
+        user = config.ethorbit.users.primary.username;
+        source = config.age.secrets."nixos/restic/repos/android_pixel_u16/pass".path;
     };
 
     services.restic = {
@@ -94,6 +101,19 @@
                 paths = [ "/home/${config.ethorbit.users.primary.username}/mnt/android_pixel_u12" ];
                 repository = "/mnt/homenas/Restic_Backups/android_pixel_u12";
                 passwordFile = "/etc/restic_android_pixel_u12_pass";
+                extraBackupArgs = [
+                    "--compression=max"
+                    "--verbose=2"
+                    "--one-file-system=true"
+                ];
+            };
+
+            "android-pixel-u16" = {
+                user = config.ethorbit.users.primary.username;
+                initialize = true;
+                paths = [ "/home/${config.ethorbit.users.primary.username}/mnt/android_pixel_u16" ];
+                repository = "/mnt/homenas/Restic_Backups/android_pixel_u16";
+                passwordFile = "/etc/restic_android_pixel_u16_pass";
                 extraBackupArgs = [
                     "--compression=max"
                     "--verbose=2"
