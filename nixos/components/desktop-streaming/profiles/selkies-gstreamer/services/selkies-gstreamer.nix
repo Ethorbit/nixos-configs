@@ -36,7 +36,7 @@ in
     config = {
         systemd.services."selkies-gstreamer" = {
             enable = true;
-            description = "Systemd + nix port of nvidia-egl-docker's 'selkies-gstreamer' supervisor service, which is responsible for using selkies-gstreamer to stream the X server once it starts.";
+            description = "Systemd + nix port of nvidia-egl-docker's 'selkies-gstreamer' supervisor service, which is responsible for using selkies-gstreamer to stream the X server once it starts";
             environment = config.environment.variables;
             after = [ "network.target" ];
 

@@ -4,6 +4,7 @@
     imports = [
         ./selkies-gstreamer.nix
         ./virtual-xserver.nix
+        ./virtual-desktop.nix
     ];
 
     services.xserver.displayManager = with lib; {

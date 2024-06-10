@@ -91,6 +91,10 @@ in
                 }
                 {
                     modifier = "rwm";
+                    node = "/dev/dri";
+                }
+                {
+                    modifier = "rwm";
                     node = "/dev/dri/renderD128";
                 }
                 {
