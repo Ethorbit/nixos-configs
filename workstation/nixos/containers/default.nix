@@ -8,6 +8,7 @@ let
         additionalCapabilities = [ ];
         allowedDevices = [ ];
         bindMounts = { };
+        tmpfs = [ ];
         ephemeral = false;
         extraFlags = [ ];
         imports = [ ];
@@ -29,11 +30,19 @@ in
     config = {
         # Turn the container entries into actual containers.
         containers = mapAttrs (name: data: {
-            inherit (data) autoStart additionalCapabilities ephemeral extraFlags;        
+            inherit (data) autoStart additionalCapabilities ephemeral;        
 
             privateNetwork = true;
             localAddress = null;
             hostBridge = "br0";
+
+            extraFlags = [
+                "--tmpfs=/tmp:nosuid,size=16G"
+            ] ++ data.extraFlags;
+
+            tmpfs = [
+                "/dev/shm"
+            ] ++ data.tmpfs;
 
             bindMounts = mkMerge ((map (identityPath: {
                 # Needed so that the containers can read their own age secrets
@@ -41,7 +50,6 @@ in
             }) config.age.identityPaths) ++ [{
                 "/sys/module".isReadOnly = true;
 
-                "/dev/shm" = {};
                 "/dev/fuse" = {};
                 "/dev/mapper/control" = {};
                 "/dev/loop-control" = {};
@@ -54,7 +62,7 @@ in
                 "/dev/nvidia-uvm-tools" = {};
                 "/dev/nvidiactl" = {};
                 "/dev/nvidia0" = {};
-                "/dev/nvidia-caps" = {};
+                #"/dev/nvidia-caps" = {};
                 "/dev/nvram" = {};
             }] ++ [ data.bindMounts ]);
 
@@ -86,45 +94,53 @@ in
 
                 # GPU
                 {
-                    modifier = "rwm";
-                    node = "char-drm";
-                }
-                {
-                    modifier = "rwm";
+                    modifier = "rw";
                     node = "/dev/dri";
                 }
                 {
-                    modifier = "rwm";
+                    modifier = "rw";
                     node = "/dev/dri/renderD128";
                 }
                 {
-                    modifier = "rwm";
+                    modifier = "rw";
                     node = "/dev/dri/card0";
                 }
                 {
-                    modifier = "rwm";
+                    modifier = "rw";
+                    node = "char-drm";
+                }
+                {
+                    modifier = "rw";
+                    node = "char-nvidia-frontend";
+                }
+                {
+                    modifier = "rw";
+                    node = "char-nvidia-uvm";
+                }
+                {
+                    modifier = "rw";
                     node = "/dev/nvidia-modeset";
                 }
                 {
-                    modifier = "rwm";
+                    modifier = "rw";
                     node = "/dev/nvidia-uvm";
                 }
                 {
-                    modifier = "rwm";
+                    modifier = "rw";
                     node = "/dev/nvidia-uvm-tools";
                 }
                 {
-                    modifier = "rwm";
+                    modifier = "rw";
                     node = "/dev/nvidiactl";
                 }
                 {
-                    modifier = "rwm";
+                    modifier = "rw";
                     node = "/dev/nvidia0";
                 }
-                {
-                    modifier = "rwm";
-                    node = "/dev/nvidia-caps";
-                }
+                #{
+                #    modifier = "rw";
+                #    node = "/dev/nvidia-caps";
+                #}
             ] ++ data.allowedDevices;
 
             config = { config, ... }: {
