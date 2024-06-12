@@ -25,6 +25,9 @@ in
             iptables -I INPUT 2 -s ${ip} -j INPUT_CONTAINERS
             '') containerIPs)}
 
+            # Block container connection to host's reverse proxy (as it's used to connect to other containers)
+            iptables -I INPUT_CONTAINERS 1 -p tcp -m multiport --dports 80,443 -j DROP
+
             # Allow containers to connect to host's COTURN server.
             iptables -A INPUT_CONTAINERS -p tcp -m multiport --dports 3478,3479,49160:49200 -j ACCEPT
             iptables -A INPUT_CONTAINERS -p udp -m multiport --dports 3478,3479,49160:49200 -j ACCEPT
