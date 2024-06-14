@@ -23,7 +23,7 @@ in
         script = ''
         source /etc/profile
 
-        # This fixes OpenGL video card acceleration not working. Without it, everything uses LLVMPipe.
+        # This fixes applications not utilizing OpenGL. Not sure of a NIX way to fix this.
         export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/run/opengl-driver/lib"
 
         # Wait for X11 to start
