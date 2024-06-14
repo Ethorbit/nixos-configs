@@ -15,9 +15,5 @@
                 enableWideVine = true;
            };
         };
-
-        overlays = [
-            (import ./overlays/nixpkgs-unstable.nix { inherit inputs; })
-        ];
     };
 }

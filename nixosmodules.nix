@@ -10,6 +10,14 @@ with inputs;
         NixOS-WSL.nixosModules.wsl
     ];
 
-    nixpkgs.overlays = [ nvidia-patch.overlays.default ];
+    nixpkgs.overlays = [
+        (self: super: {
+            unstable = (import inputs.nixpkgs-unstable {
+                system = super.system;
+                config.allowUnfree = true;
+            });
+        })
+        nvidia-patch.overlays.default
+    ];
     environment.systemPackages = [ agenix.packages.${system}.default ];
 }
