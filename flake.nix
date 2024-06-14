@@ -4,20 +4,20 @@
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-        
+
         home-manager = {
             url = "github:nix-community/home-manager/release-23.11";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        
+
         agenix.url = "github:ryantm/agenix";
         flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
-        
+
         nvidia-patch = {
             url = "github:icewind1991/nvidia-patch-nixos";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        
+
         NixOS-WSL = {
             url = "github:nix-community/NixOS-WSL";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -69,7 +69,7 @@
                     ./nixosmodules.nix
                 ];
             };
-            
+
             # SUS!
             "exploit" = nixpkgs.lib.nixosSystem {
                 inherit system;
