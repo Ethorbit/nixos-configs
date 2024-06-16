@@ -1,10 +1,6 @@
 { config, lib, ... }:
 
 {
-    imports = [
-        ./chromium.nix
-    ];
-
     programs = with lib; {
         ssh.askPassword = mkDefault "";
         nano.enable = mkDefault false;

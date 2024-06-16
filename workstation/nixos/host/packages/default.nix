@@ -7,7 +7,6 @@
         ../../../../nixos/packages/mount-sshfs-run-service
     ];
 
-    programs.chromium.enable = true;
     programs.adb.enable = true;
 
     environment.systemPackages = with pkgs; [

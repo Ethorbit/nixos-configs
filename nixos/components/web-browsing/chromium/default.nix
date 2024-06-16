@@ -1,9 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 {
-    programs.chromium = with lib; {
-        enable = mkDefault false;
-        extensions = mkDefault [
+    programs.chromium = {
+        enable = true;
+        extensions = lib.mkDefault [
             # Ublock Origin
             "cjpalhdlnbpafiamejdnhcphjbkeiagm"
             # NoScript

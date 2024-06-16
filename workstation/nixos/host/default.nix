@@ -11,6 +11,7 @@
         ./networking
         ./desktop.nix
         ./home-manager.nix
+        ../../../nixos/components/web-browsing/chromium
         ../../../nixos/components/containers/docker
         ../../../nixos/components/display-nesting/profiles/xephyr
         ../../../nixos/components/programming/ide

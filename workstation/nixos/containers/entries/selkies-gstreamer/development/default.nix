@@ -3,6 +3,7 @@
 {
     imports = [
         ../../../../../../nixos/components/containers/docker
+        ./packages.nix
     ];
 
     users = {

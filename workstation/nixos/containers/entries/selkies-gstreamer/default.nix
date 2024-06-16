@@ -39,13 +39,19 @@ in
 {
     ethorbit.workstation.containers.entries."development" = (makeEntry {
         inherit traefikCreator;
+        ephemeral = true;
         ip = "172.16.1.220";
-        imports = [ ./config ./development ];
+        imports = [
+            ./config
+            ./development
+            ./shared/browsing
+        ];
         # To allow Docker to work
         extraFlags = [
             "--system-call-filter=add_key"
             "--system-call-filter=keyctl"
             "--system-call-filter=bpf"
         ];
+        # TODO: allow Flatpak to work
     });
 }
