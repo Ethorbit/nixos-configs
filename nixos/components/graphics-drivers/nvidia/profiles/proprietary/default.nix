@@ -11,17 +11,12 @@ in
         };
     };
 
-    config = {
+    config = with pkgs; {
         nixpkgs.config.nvidia.acceptLicense = true;
-
-        environment.systemPackages = with pkgs; [
-            nvidia-vaapi-driver
-        ];
-
         boot.blacklistedKernelModules = [ "nouveau" ];
 
         hardware.nvidia = {
-            package = pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc package);
+            package = nvidia-patch.patch-nvenc (nvidia-patch.patch-fbc package);
             modesetting.enable = true;
             powerManagement.enable = false;
             powerManagement.finegrained = false;
@@ -29,6 +24,14 @@ in
             open = false;
         };
 
+        hardware.opengl.extraPackages = [ nvidia-vaapi-driver ];
         services.xserver.videoDrivers = [ "nvidia" ];
+
+        environment.variables = with lib; {
+            LIBVA_DRIVER_NAME = mkDefault "nvidia";
+            __GLX_VENDOR_LIBRARY_NAME = mkDefault "nvidia";
+            NVD_BACKEND = mkDefault "direct";
+            GBM_BACKEND = mkDefault "nvidia-drm";
+        };
     };
 }
