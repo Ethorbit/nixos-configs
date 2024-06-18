@@ -1,6 +1,7 @@
-{ config, ... }:
+{ config, lib, ... }:
 
+with lib;
 {
-    time.timeZone = "America/Los_Angeles";
-    environment.etc."timezone".text = config.time.timeZone;
+    time.timeZone = mkDefault "America/Los_Angeles";
+    environment.etc."timezone".text = mkDefault config.time.timeZone;
 }
