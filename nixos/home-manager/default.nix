@@ -3,6 +3,7 @@
 {
     imports = [
         ./bash
+        ./xdg
     ];
 
     home-manager = {
