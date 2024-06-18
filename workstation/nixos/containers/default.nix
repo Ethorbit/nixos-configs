@@ -30,7 +30,7 @@ in
     config = {
         # Turn the container entries into actual containers.
         containers = mapAttrs (name: data: {
-            inherit (data) autoStart additionalCapabilities ephemeral;        
+            inherit (data) autoStart additionalCapabilities ephemeral tmpfs;        
 
             privateNetwork = true;
             localAddress = null;
@@ -39,10 +39,6 @@ in
             extraFlags = [
                 "--tmpfs=/tmp:nosuid,size=16G"
             ] ++ data.extraFlags;
-
-            tmpfs = [
-                "/dev/shm"
-            ] ++ data.tmpfs;
 
             bindMounts = mkMerge ((map (identityPath: {
                 # Needed so that the containers can read their own age secrets
