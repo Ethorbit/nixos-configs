@@ -25,10 +25,6 @@
             sharedSecretFile = "/etc/coturn-secret";
         };
 
-        #display = {
-        #    port = 8080;
-        #};
-
         auth = {
             passwordFile = "/etc/selkies-auth-password";
         };
