@@ -10,6 +10,8 @@ with inputs;
         NixOS-WSL.nixosModules.wsl
     ];
 
+    age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+
     nixpkgs.overlays = [
         (self: super: {
             unstable = (import inputs.nixpkgs-unstable {

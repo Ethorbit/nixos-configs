@@ -18,8 +18,6 @@
         ./libinput.nix
     ];
 
-    age.identityPaths = lib.mkDefault [ "/etc/ssh/ssh_host_ed25519_key" ];
-
     nix.settings = {
         auto-optimise-store = true;
     };
