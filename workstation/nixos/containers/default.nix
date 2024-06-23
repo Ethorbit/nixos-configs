@@ -46,6 +46,7 @@ in
             }) config.age.identityPaths) ++ [{
                 "/sys/module".isReadOnly = true;
 
+                "/dev/shm" = {};
                 "/dev/fuse" = {};
                 "/dev/mapper/control" = {};
                 "/dev/loop-control" = {};
