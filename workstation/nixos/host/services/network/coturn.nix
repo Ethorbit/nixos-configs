@@ -4,15 +4,19 @@
     services.coturn = {
         enable = true;
         realm = config.networking.hostName;
+        relay-ips = [ "${config.ethorbit.workstation.network.host.ip}" ];
         listening-port = 3478;
-        min-port = 49160;
-        max-port = 49200;
+        min-port = 49152;
+        max-port = 65535;
         use-auth-secret = true;
         static-auth-secret-file = "/etc/coturn-secret";
         no-cli = true;
+        no-tls = true;
+        no-dtls = true;
         extraConfig = ''
-            --fingerprint
-            --allow-loopback-peers
+            external-ip "${config.ethorbit.workstation.network.host.ip}"
+            fingerprint
+            allow-loopback-peers
         '';
     };
 

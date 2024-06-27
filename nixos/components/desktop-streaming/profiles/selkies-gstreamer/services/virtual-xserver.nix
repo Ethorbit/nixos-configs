@@ -1,14 +1,13 @@
 { config, pkgs, ... }:
 
 {
-    systemd.services."virtual-xserver" = {
+    systemd.user.services."virtual-xserver" = {
         enable = true;
         description = "Systemd + nix port of nvidia-egl-docker's 'entrypoint' supervisor service, the part that starts the X server";
         environment = config.environment.variables;
         before = [ "virtual-desktop.service" ];
 
         serviceConfig = {
-            User = config.ethorbit.components.selkies-gstreamer.settings.user;
             Type = "simple";
             Restart = "always";
             RestartSec = 5;

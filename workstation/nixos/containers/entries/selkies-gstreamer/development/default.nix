@@ -13,4 +13,8 @@
             };
         };
     };
+
+    environment.variables = {
+        VGL_LOGO = "1";
+    };
 }

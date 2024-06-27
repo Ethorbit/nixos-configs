@@ -37,8 +37,8 @@
 
                 tls = mkOption {
                     type = types.bool;
-                    default = (config.services.coturn.no-tls == false);
-                    example = false;
+                    default = false;
+                    example = true;
                     description = "Whether or not the TURN server supports TLS.";
                 };
 

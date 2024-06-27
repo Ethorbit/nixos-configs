@@ -2,8 +2,8 @@
 
 let
     entrypoint = pkgs.writeShellScriptBin "script" ''
-    [ -s "$PASSWD_FILE" ] && export PASSWD=$(cat "$PASSWD_FILE") && export BASIC_AUTH_PASSWORD="$PASSWD"
-    [ -s "$TURN_SHARED_SECRET_FILE" ] && export TURN_SHARED_SECRET=$(cat "$TURN_SHARED_SECRET_FILE")
+    [ -s "$PASSWD_FILE" ] && export PASSWD=$(cat "$PASSWD_FILE") && export SELKIES_BASIC_AUTH_PASSWORD="$PASSWD"
+    [ -s "$SELKIES_TURN_SHARED_SECRET_FILE" ] && export SELKIES_TURN_SHARED_SECRET=$(cat "$SELKIES_TURN_SHARED_SECRET_FILE")
 
     # Source environment for GStreamer
     # . /opt/gstreamer/gst-env
@@ -15,7 +15,7 @@ let
     # Show debug logs for GStreamer
     export GST_DEBUG="''${GST_DEBUG:-*:2}"
     # Set password for basic authentication
-    if [ "''${ENABLE_BASIC_AUTH,,}" = "true" ] && [ -z "''${BASIC_AUTH_PASSWORD}" ]; then export BASIC_AUTH_PASSWORD="''${PASSWD}"; fi
+    if [ "''${SELKIES_ENABLE_BASIC_AUTH,,}" = "true" ] && [ -z "''${SELKIES_BASIC_AUTH_PASSWORD}" ]; then export SELKIES_BASIC_AUTH_PASSWORD="''${PASSWD}"; fi
 
     # Wait for X11 to start
     echo "Waiting for X socket"
@@ -34,14 +34,13 @@ let
 in
 {
     config = {
-        systemd.services."selkies-gstreamer" = {
+        systemd.user.services."selkies-gstreamer" = {
             enable = true;
             description = "Systemd + nix port of nvidia-egl-docker's 'selkies-gstreamer' supervisor service, which is responsible for using selkies-gstreamer to stream the X server once it starts";
             environment = config.environment.variables;
             after = [ "network.target" ];
 
             serviceConfig = {
-                User = config.ethorbit.components.selkies-gstreamer.settings.user;
                 Type = "simple";
                 Restart = "always";
                 RestartSec = 5;

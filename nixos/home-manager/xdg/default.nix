@@ -17,11 +17,18 @@
                     enable = true;
                     defaultApplications = {
                         "text/html" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "application/xhtml+xml" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
                         "x-scheme-handler/http" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
                         "x-scheme-handler/https" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
                         "x-scheme-handler/about" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
                         "x-scheme-handler/unknown" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
+                        "x-scheme-handler/chrome" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
+                        "x-scheme-handler/ftp" = mkDefault [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
+                        "application/xhtml+xml" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
+                        "application/x-extension-htm" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
+                        "application/x-extension-html" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
+                        "application/x-extension-shtml" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
+                        "application/x-extension-xhtml" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
+                        "application/x-extension-xht" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
                         "application/pdf" = mkDefault [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
                     };
                 };
@@ -31,6 +38,23 @@
             # Even with the above, xdg-settings get default-web-browser returns the wrong thing.
             # xdg-settings set default-web-browser fixes it, but it needs to be run interactively.
             # Because of this, I do not know of any automated solution to set the default web browser.
+            systemd.user.services."default-web-browser" = {
+                Unit = {
+                    Description = "Sets the default web browser to ${config.ethorbit.home-manager.xdg.defaultBrowser} at startup.";
+                    After = "graphical-session-pre.target";
+                    PartOf = "graphical-session.target";
+                    Requires = "dbus.service";
+                };
+
+                Service = {
+                    Type = "simple";
+                    ExecStart = ''${pkgs.dbus}/bin/dbus-launch ${pkgs.xdg-utils}/bin/xdg-settings set default-web-browser "${config.ethorbit.home-manager.xdg.defaultBrowser}"'';
+                };
+
+                Install = {
+                    WantedBy = [ "graphical-session.target" ];
+                };
+            };
         };
     };
 }

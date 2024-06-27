@@ -1,5 +1,4 @@
 # TODO: Add the Selkies-Gstreamer Joystick Interposer soon.
-# Currently it only has a .deb solution, so it was intentionally left out.
 
 { config, pkgs, lib, ... }:
 
@@ -7,7 +6,7 @@ with pkgs;
 with lib;
 
 let
-    version = "1.5.2";
+    version = "1.6.0";
 in
 {
     imports = [
@@ -22,8 +21,8 @@ in
                 name = "selkies-gstreamer-web";
                 description = "The HTML5/JS web components for Selkies-Gstreamer.";
                 src = fetchurl {
-                    url = "https://github.com/selkies-project/selkies-gstreamer/releases/download/v${version}/selkies-gstreamer-web-v${version}.tgz";
-                    sha256 = "sha256-DgJwANQ/ritGYPoYaNo4STbrvHCvvdyX8yz67QGDA6Y=";
+                    url = "https://github.com/selkies-project/selkies-gstreamer/releases/download/v${version}/selkies-gstreamer-web_v${version}.tar.gz";
+                    sha256 = "sha256-9laKZvinvEi92VHNOjVgwCFQmfUm8QVuL3sUrbiq0QA=";
                 };
                 installPhase = ''
                     mkdir -p $out
@@ -41,7 +40,7 @@ in
                 description = "Open-Source Low-Latency Linux WebRTC HTML5 Remote Desktop and 3D Graphics / Game Streaming Platform with GStreamer";
                 src = fetchurl {
                     url = "https://github.com/selkies-project/selkies-gstreamer/releases/download/v${version}/selkies_gstreamer-${version}-py3-none-any.whl";
-                    sha256 = "sha256-OO3b9pjljZO2t5ITuXnK4yPSnJghQlN+OouM0BQ9a8U=";
+                    sha256 = "sha256-BI4GJoiZUZ/haMvClk8xscxSiJEDGAWtBiJE6bVDRBI=";
                 };
                 nativeBuildInputs = [
                     gobject-introspection
@@ -74,7 +73,7 @@ in
                         wrapProgram "$f" \
                           --prefix LD_LIBRARY_PATH ":" "${cudaPackages.cudatoolkit}/lib:$LD_LIBRARY_PATH" \
                           --prefix CUDA_PATH ":" "${cudaPackages.cudatoolkit}:$CUDA_PATH" \
-                          --prefix WEB_ROOT ":" "${config.ethorbit.pkgs.python.selkies-gstreamer-web}/gst-web" \
+                          --prefix SELKIES_WEB_ROOT ":" "${config.ethorbit.pkgs.python.selkies-gstreamer-web}/gst-web" \
                           --prefix GI_TYPELIB_PATH ":" "${gobject-introspection.out}/lib/girepository-1.0:$GI_TYPELIB_PATH" \
                           --prefix GST_PY_PATH ":" "${python311Packages.gst-python}/lib/python3.11" \
                           --prefix GST_PLUGIN_SYSTEM_PATH_1_0 ":" "${libnice.out}/lib/gstreamer-1.0:${gst_all_1.gstreamer.out}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0" \

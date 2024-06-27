@@ -3,6 +3,7 @@
 
 {
     imports = [
+        ./options.nix
         ./users.nix
         ./packages.nix
         ./networking.nix

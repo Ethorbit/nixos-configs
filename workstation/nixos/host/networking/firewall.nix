@@ -29,8 +29,8 @@ in
             iptables -I INPUT_CONTAINERS 1 -p tcp -m multiport --dports 80,443 -j DROP
 
             # Allow containers to connect to host's COTURN server.
-            iptables -A INPUT_CONTAINERS -p tcp -m multiport --dports 3478,3479,49160:49200 -j ACCEPT
-            iptables -A INPUT_CONTAINERS -p udp -m multiport --dports 3478,3479,49160:49200 -j ACCEPT
+            iptables -A INPUT_CONTAINERS -p tcp -m multiport --dports 3478,3479,49152:65535 -j ACCEPT
+            iptables -A INPUT_CONTAINERS -p udp -m multiport --dports 3478,3479,49152:65535 -j ACCEPT
         '';
 
         extraStopCommands = ''

@@ -10,6 +10,8 @@
     programs.adb.enable = true;
 
     environment.systemPackages = with pkgs; [
+        coturn
+
         # weird ToolBar.qml error, I'll just install it as a Flatpak instead
         #moonlight-qt
         neofetch
@@ -24,6 +26,7 @@
 
         #firefox
         ungoogled-chromium
+        #brave
 
         # until the containers are up and running, everything will have to be done on host
         yt-dlp

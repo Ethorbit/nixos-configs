@@ -1,7 +1,7 @@
 { config, lib, makeEntry, ... }:
 
 let
-    # This will allow clients outside host network to be able to connect to the desktops.
+    # This will allow clients outside host to be able to connect to the desktops.
     # https://container.<container name>.<hostname>.internal
     # clients must have *.<hostname>.internal route to host's public IP for connection to work
     traefikCreator = name: entry: {

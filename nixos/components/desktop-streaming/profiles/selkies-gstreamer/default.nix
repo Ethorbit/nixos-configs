@@ -20,5 +20,6 @@
         ./packages.nix
         ./users.nix
         ./input.nix
+        ./audio.nix
     ];
 }

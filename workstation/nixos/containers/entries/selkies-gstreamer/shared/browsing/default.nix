@@ -7,4 +7,8 @@
         ./packages.nix
         ./home-manager.nix
     ];
+
+    #environment.variables = {
+    #    BROWSER = "brave";
+    #};
 }

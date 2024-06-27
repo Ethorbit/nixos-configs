@@ -153,7 +153,7 @@ in
                 system.stateVersion = "23.11";
 
                 # Add host as a host entry
-                networking.hosts."172.16.1.210" = [ "host" ];
+                networking.hosts."${config.ethorbit.workstation.network.host.ip}" = [ "host" ];
 
                 # Setup network connectivity
                 systemd.network.networks."20-eth" = {

@@ -21,7 +21,7 @@
             host = "host";
             port = 3478;
             protocol = "udp";
-            tls = true;
+            tls = false;
             sharedSecretFile = "/etc/coturn-secret";
         };
 
