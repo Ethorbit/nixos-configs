@@ -71,6 +71,7 @@ in
                 preFixup = ''
                     for f in $(find $out/bin/ -type f -executable); do
                         wrapProgram "$f" \
+                          --prefix PATH ":" "${pkgs.xsel}/bin:$PATH" \
                           --prefix LD_LIBRARY_PATH ":" "${cudaPackages.cudatoolkit}/lib:$LD_LIBRARY_PATH" \
                           --prefix CUDA_PATH ":" "${cudaPackages.cudatoolkit}:$CUDA_PATH" \
                           --prefix SELKIES_WEB_ROOT ":" "${config.ethorbit.pkgs.python.selkies-gstreamer-web}/gst-web" \
