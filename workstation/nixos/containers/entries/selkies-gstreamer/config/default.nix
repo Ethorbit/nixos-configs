@@ -3,8 +3,7 @@
 {
     imports = [
         ./users.nix
-        ./networking.nix
-        ./packages.nix
         ./desktop
+        ./networking.nix
     ];
 }

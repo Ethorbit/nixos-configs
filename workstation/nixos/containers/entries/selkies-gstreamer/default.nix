@@ -39,7 +39,7 @@ in
 {
     ethorbit.workstation.containers.entries."development" = (makeEntry {
         inherit traefikCreator;
-        ephemeral = true;
+        #ephemeral = true;
         ip = "172.16.1.220";
         imports = [
             ./config
