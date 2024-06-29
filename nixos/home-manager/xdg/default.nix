@@ -38,23 +38,6 @@
             # Even with the above, xdg-settings get default-web-browser returns the wrong thing.
             # xdg-settings set default-web-browser fixes it, but it needs to be run interactively.
             # Because of this, I do not know of any automated solution to set the default web browser.
-            systemd.user.services."default-web-browser" = {
-                Unit = {
-                    Description = "Sets the default web browser to ${config.ethorbit.home-manager.xdg.defaultBrowser} at startup.";
-                    After = "graphical-session-pre.target";
-                    PartOf = "graphical-session.target";
-                    Requires = "dbus.service";
-                };
-
-                Service = {
-                    Type = "simple";
-                    ExecStart = ''${pkgs.dbus}/bin/dbus-launch ${pkgs.xdg-utils}/bin/xdg-settings set default-web-browser "${config.ethorbit.home-manager.xdg.defaultBrowser}"'';
-                };
-
-                Install = {
-                    WantedBy = [ "graphical-session.target" ];
-                };
-            };
         };
     };
 }
