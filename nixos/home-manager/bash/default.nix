@@ -29,10 +29,16 @@
                 recursive = true;
             };
 
+            home.file.".config/ble.sh".text = lib.mkDefault ''
+                bleopt complete_auto_delay=300
+                bleopt prompt_command_changes_layout=1
+            '';
+
             programs.bash = {
                 enable = true;
                 enableCompletion = true;
                 bashrcExtra = ''
+                    [ $(command -v bleopt) ] && source ~/.config/ble.sh --noattach
                     prompt_symbol=${config.ethorbit.home-manager.bash.prompt.symbol}
                     PROMPT_ALTERNATIVE=${config.ethorbit.home-manager.bash.prompt.alternative}
                     NEWLINE_BEFORE_PROMPT=${config.ethorbit.home-manager.bash.prompt.newline}
