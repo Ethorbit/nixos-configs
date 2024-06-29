@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ../../../../../../nixos/components/programming/ide
         ../../../../../../nixos/components/containers/docker
         ./packages.nix
     ];
