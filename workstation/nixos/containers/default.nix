@@ -143,6 +143,7 @@ in
 
             config = { config, ... }: {
                 ethorbit.users.primary.username = name;
+                ethorbit.home-manager.bash.prompt.symbol = "📦";
 
                 boot.isContainer = mkForce true;
                 boot.enableContainers = mkDefault false;
