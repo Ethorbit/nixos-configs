@@ -12,6 +12,7 @@ let
         ephemeral = false;
         extraFlags = [ ];
         imports = [ ];
+        resticRules = { };
         traefikCreator = name: data: {};
     } // entry;
 in

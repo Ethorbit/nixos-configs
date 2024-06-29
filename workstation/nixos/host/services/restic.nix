@@ -59,6 +59,11 @@
                 ];
             };
 
+            # TODO: create daily backup for each container too (workstation_container_<name>)
+            # * Each container entry can have a resticRules attribute set which specifies 'paths' and 'exclude'
+            # * /home will be added to resticRules 'paths' by default so as to avoid accidental user data loss.
+            # * Each entry in resticRules' will have /var/lib/nixos-containers/<container-entry-name>/ prefixed
+
             "storage" = {
                 user = "root";
                 initialize = true;
