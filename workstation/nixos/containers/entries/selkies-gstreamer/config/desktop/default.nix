@@ -6,7 +6,7 @@
         ../../../../../../../nixos/components/display-server/profiles/xserver
         ../../../../../../../nixos/components/window-manager/profiles/i3
         ../../../../../../../nixos/services/feh/wallpaper
-        ../../../../../../../nixos/components/programming/ide
+        ../../../../../../../nixos/home-manager/wallpapers/space
     ];
 
     services.xserver.displayManager.sessionCommands = "${pkgs.i3}/bin/i3";
