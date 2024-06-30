@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ./bash
+        ./shell
         ./xdg
     ];
 

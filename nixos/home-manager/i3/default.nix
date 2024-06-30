@@ -38,10 +38,9 @@
                     include $HOME/.config/i3/workspaces/*
                     include $HOME/.config/i3/music
                     include $HOME/.config/i3/config_system # Put your system-dependent i3 configuration in there.
-
+                    
                     # keep this current file for configuration that is meant for global i3 configuration that ALL systems use by default
                     # if there's something that only a few systems will need, keep that in the config_system file above!
-
                     set $mod ${config.ethorbit.home-manager.i3.keys.mod}
                     set $alt ${config.ethorbit.home-manager.i3.keys.alt}
                     #set $numlock Mod2

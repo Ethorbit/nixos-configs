@@ -44,15 +44,6 @@
                 description = "The selected system's profile name.";
                 default = "default";
             };
-
-            # This is blank for no container or
-            # the string of the type of container
-            # (Do not set it here.)
-            container = mkOption {
-                type = types.str;
-                description = "Describes what type of container is in use. Empty string means no container is being used.";
-                default = "";
-            };
         };
     };
 }

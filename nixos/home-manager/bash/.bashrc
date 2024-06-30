@@ -26,8 +26,6 @@ NEWLINE_BEFORE_PROMPT=${NEWLINE_BEFORE_PROMPT:-yes}
 # STOP KALI CONFIG VARIABLES
 
 prompt_symbol="${prompt_symbol:-@}"
-# sorry, don't wanna deal with nix's bs. 
-# Just insert your desired values before the sourcing of this file and you're all good.
 prompt_color=${prompt_color:-'\[\e[36m\]'}
 info_color="${info_color:-$prompt_color}"
 

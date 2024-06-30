@@ -3,19 +3,14 @@
 {
     options.ethorbit.home-manager.bash = with lib; {
         prompt = {
-            alternative = mkOption {
-                description = "Choose between twoline, oneline and backtrack for prompt.";
-                default = "twoline";
+            color = mkOption {
+                type = types.str;
+                default = "\\\\[\\\\e[36m\\\\]";
             };
 
-            symbol = mkOption {
-                description = "The prompt symbol between user and host";
-                default = "🔮";
-            };
-
-            newline = mkOption {
-                description = "Whether or not to insert a new line for each prompt.";
-                default = "yes";
+            colorinfo = mkOption {
+                type = types.str;
+                default = "${config.ethorbit.home-manager.bash.prompt.color}";
             };
         };
     };
@@ -30,8 +25,9 @@
             };
 
             home.file.".config/ble.sh".text = lib.mkDefault ''
-                bleopt complete_auto_delay=300
+                bleopt editor=$${EDITOR}
                 bleopt prompt_command_changes_layout=1
+                bleopt complete_auto_delay=300
                 bleopt history_share=1
             '';
 
@@ -40,9 +36,11 @@
                 enableCompletion = true;
                 bashrcExtra = ''
                     [ $(command -v bleopt) ] && source ~/.config/ble.sh --noattach
-                    prompt_symbol=${config.ethorbit.home-manager.bash.prompt.symbol}
-                    PROMPT_ALTERNATIVE=${config.ethorbit.home-manager.bash.prompt.alternative}
-                    NEWLINE_BEFORE_PROMPT=${config.ethorbit.home-manager.bash.prompt.newline}
+                    prompt_color=${config.ethorbit.home-manager.bash.prompt.color}
+                    info_color=${config.ethorbit.home-manager.bash.prompt.colorinfo}
+                    prompt_symbol=${config.ethorbit.home-manager.shell.prompt.symbol}
+                    PROMPT_ALTERNATIVE=${config.ethorbit.home-manager.shell.prompt.alternative}
+                    NEWLINE_BEFORE_PROMPT=${config.ethorbit.home-manager.shell.prompt.newline}
                     source ~/.bashrc_text
                 '';
             };

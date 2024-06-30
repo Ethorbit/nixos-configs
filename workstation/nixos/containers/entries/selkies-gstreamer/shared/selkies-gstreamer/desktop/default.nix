@@ -3,10 +3,10 @@
 {
     imports = [
         ./selkies-gstreamer.nix
-        ../../../../../../../nixos/components/display-server/profiles/xserver
-        ../../../../../../../nixos/components/window-manager/profiles/i3
-        ../../../../../../../nixos/services/feh/wallpaper
-        ../../../../../../../nixos/home-manager/wallpapers/space
+        ../../../../../../../../nixos/components/display-server/profiles/xserver
+        ../../../../../../../../nixos/components/window-manager/profiles/i3
+        ../../../../../../../../nixos/services/feh/wallpaper
+        ../../../../../../../../nixos/home-manager/wallpapers/space
     ];
 
     services.xserver.displayManager.sessionCommands = "${pkgs.i3}/bin/i3";
