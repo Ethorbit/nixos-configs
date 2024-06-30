@@ -32,6 +32,7 @@
             home.file.".config/ble.sh".text = lib.mkDefault ''
                 bleopt complete_auto_delay=300
                 bleopt prompt_command_changes_layout=1
+                bleopt history_share=1
             '';
 
             programs.bash = {

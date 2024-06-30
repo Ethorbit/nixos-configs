@@ -11,7 +11,9 @@ export TERM=xterm
 
 # No duplicate entries, save & reload history after each command
 HISTCONTROL="ignoredups:erasedups"
-PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# ble.sh can already do this and this is kinda hacky
+[ ! $(command -v bleopt) ] && PROMPT_COMMAND="history -a; history -r; $PROMPT_COMMAND"
 
 #############################################################
 # The following block was taken from Kali Linux
