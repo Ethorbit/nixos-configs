@@ -144,6 +144,7 @@ in
             config = { config, ... }: {
                 ethorbit.users.primary.username = name;
                 ethorbit.home-manager.shell.prompt.symbol = "📦";
+                ethorbit.home-manager.zsh.prompt.colors.prompt = "%F{yellow}";
 
                 boot.isContainer = mkForce true;
                 boot.enableContainers = mkDefault false;
