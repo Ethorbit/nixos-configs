@@ -44,6 +44,8 @@ in
             ip = "172.16.1.220";
             imports = [
                 ./shared/selkies-gstreamer
+                # To allow Flatpak to work
+                ./shared/bubblewrap-fix
                 ./shared/browsing
                 ./programming
             ];
@@ -53,7 +55,6 @@ in
                 "--system-call-filter=keyctl"
                 "--system-call-filter=bpf"
             ];
-            # TODO: allow Flatpak to work
         });
 
         #"videoediting" = (makeEntry {
