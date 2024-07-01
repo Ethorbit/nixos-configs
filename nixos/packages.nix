@@ -3,6 +3,7 @@
 {
     environment.systemPackages = with pkgs; [
         bash
+        zsh
         screen
         killall
         file
