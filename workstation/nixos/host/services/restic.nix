@@ -42,27 +42,25 @@
             "system" = {
                 user = "root";
                 initialize = true;
-                paths = [ "/home" ];
+                paths = [ "/" ];
+                # Exclude large reproducible / useless data
+                exclude = [
+                    "/nix"
+                    "/**/docker/overlay2/**"
+                    "/**/flatpak-module/boot/**"
+                ];
                 repository = "/mnt/homenas/Restic_Backups/workstation";
                 passwordFile = "/etc/restic_workstation_pass";
                 timerConfig = {
                     OnCalendar = "daily";
                     Persistent = true;
                 };
-                exclude = [
-                    "/home/${config.ethorbit.users.primary.username}/mnt"
-                ];
                 extraBackupArgs = [
                     "--compression=max"
                     "--verbose=2"
                     "--one-file-system=true"
                 ];
             };
-
-            # TODO: create daily backup for each container too (workstation_container_<name>)
-            # * Each container entry can have a resticRules attribute set which specifies 'paths' and 'exclude'
-            # * /home will be added to resticRules 'paths' by default so as to avoid accidental user data loss.
-            # * Each entry in resticRules' will have /var/lib/nixos-containers/<container-entry-name>/ prefixed
 
             "storage" = {
                 user = "root";
