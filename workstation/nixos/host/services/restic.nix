@@ -46,6 +46,7 @@
                 # Exclude large reproducible / useless data
                 exclude = [
                     "/nix"
+                    "/var/lib/nixos-containers/**/nix/**"
                     "/**/docker/overlay2/**"
                     "/**/flatpak-module/boot/**"
                 ];
