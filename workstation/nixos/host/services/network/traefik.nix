@@ -62,6 +62,10 @@ in
                         replacement = "https://$1/$2/";
                     };
                 };
+
+                "auth-personal" = {
+                    forwardauth.address = "http://host:9091/api/verify";
+                };
             };
         } containerConfigOptions ];
     };

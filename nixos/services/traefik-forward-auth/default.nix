@@ -76,10 +76,10 @@ in {
                 Type = "simple";
                 User = data.user;
                 Restart = "always";
-                RestartSec = 5;
+                RestartSec = 1;
             };
 
-            script = ''${config.ethorbit.pkgs.traefik-forward-auth}/bin/traefik-forward-auth ${toString data.extraFlags}'';
+            script = ''${config.ethorbit.pkgs.traefik-forward-auth}/bin/traefik-forward-auth ${escapeShellArgs data.extraFlags}'';
 
             wantedBy = [ "default.target" ];
         }) entries);

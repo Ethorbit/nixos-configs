@@ -1,6 +1,10 @@
 { config, lib, makeEntry, ... }:
 
 let
+    defaults = {
+        twoFactor = true;
+    };
+
     # This will allow clients outside host to be able to connect to the desktops.
     # https://container.<container name>.<hostname>.internal
     # clients must have *.<hostname>.internal route to host's public IP for connection to work
@@ -20,6 +24,7 @@ let
                 tls = true;
                 service = "${name}";
                 entrypoints = "websecure";
+                middlewares = lib.mkIf (entry.twoFactor) [ "auth-personal" ];
             };
 
             services = {
@@ -38,7 +43,7 @@ let
 in
 {
     ethorbit.workstation.containers.entries = {
-        "programming" = (makeEntry {
+        "programming" = defaults // (makeEntry {
             inherit traefikCreator;
             #ephemeral = true;
             ip = "172.16.1.220";
@@ -57,7 +62,7 @@ in
             ];
         });
 
-        #"videoediting" = (makeEntry {
+        #"videoediting" = defaults // (makeEntry {
         #    inherit traefikCreator;
         #    ip = "172.16.1.221";
         #    imports = [
@@ -67,7 +72,7 @@ in
         #    ];
         #});
 
-        #"imageediting" = (makeEntry {
+        #"imageediting" = defaults // (makeEntry {
         #    inherit traefikCreator;
         #    ip = "172.16.1.222";
         #    imports = [
@@ -77,7 +82,7 @@ in
         #    ];
         #});
 
-        #"modelling" = (makeEntry {
+        #"modelling" = defaults // (makeEntry {
         #    inherit traefikCreator;
         #    ip = "172.16.1.223";
         #    imports = [
@@ -87,7 +92,7 @@ in
         #    ];
         #});
 
-        #"music" = (makeEntry {
+        #"music" = defaults // (makeEntry {
         #    inherit traefikCreator;
         #    ip = "172.16.1.224";
         #    imports = [
@@ -97,7 +102,7 @@ in
         #    ];
         #});
 
-        #"socials" = (makeEntry {
+        #"socials" = defaults // (makeEntry {
         #    inherit traefikCreator;
         #    ip = "172.16.1.225";
         #    imports = [
@@ -107,7 +112,7 @@ in
         #    ];
         #});
 
-        #"finance" = (makeEntry {
+        #"finance" = defaults // (makeEntry {
         #    inherit traefikCreator;
         #    ip = "172.16.1.226";
         #    imports = [
@@ -118,7 +123,7 @@ in
         #});
 
         # Should not be used directly, has a web panel.
-        #"stablediffusion" = (makeEntry {
+        #"stablediffusion" = defaults // (makeEntry {
         #    inherit traefikCreator;
         #    ip = "172.16.1.227";
         #    imports = [
