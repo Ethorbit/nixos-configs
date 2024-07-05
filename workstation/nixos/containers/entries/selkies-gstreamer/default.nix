@@ -58,7 +58,6 @@ in
     ethorbit.workstation.containers.entries = {
         "programming" = defaults // (makeEntry {
             inherit traefikCreator;
-            #ephemeral = true;
             ip = "172.16.1.220";
             imports = [
                 ./shared/selkies-gstreamer
@@ -85,9 +84,19 @@ in
         #    ];
         #});
 
-        #"imageediting" = defaults // (makeEntry {
+        #"audioediting" = defaults // (makeEntry {
         #    inherit traefikCreator;
         #    ip = "172.16.1.222";
+        #    imports = [
+        #        ./shared/selkies-gstreamer
+        #        ./shared/browsing
+        #        ./videoediting
+        #    ];
+        #});
+
+        #"imageediting" = defaults // (makeEntry {
+        #    inherit traefikCreator;
+        #    ip = "172.16.1.223";
         #    imports = [
         #        ./shared/selkies-gstreamer
         #        ./shared/browsing
@@ -97,7 +106,7 @@ in
 
         #"modelling" = defaults // (makeEntry {
         #    inherit traefikCreator;
-        #    ip = "172.16.1.223";
+        #    ip = "172.16.1.224";
         #    imports = [
         #        ./shared/selkies-gstreamer
         #        ./shared/browsing
@@ -107,7 +116,7 @@ in
 
         #"music" = defaults // (makeEntry {
         #    inherit traefikCreator;
-        #    ip = "172.16.1.224";
+        #    ip = "172.16.1.225";
         #    imports = [
         #        ./shared/selkies-gstreamer
         #        ./shared/browsing
@@ -117,7 +126,7 @@ in
 
         #"socials" = defaults // (makeEntry {
         #    inherit traefikCreator;
-        #    ip = "172.16.1.225";
+        #    ip = "172.16.1.226";
         #    imports = [
         #        ./shared/selkies-gstreamer
         #        ./shared/browsing
@@ -127,7 +136,7 @@ in
 
         #"finance" = defaults // (makeEntry {
         #    inherit traefikCreator;
-        #    ip = "172.16.1.226";
+        #    ip = "172.16.1.227";
         #    imports = [
         #        ./shared/selkies-gstreamer
         #        ./shared/browsing
@@ -138,7 +147,7 @@ in
         # Should not be used directly, has a web panel.
         #"stablediffusion" = defaults // (makeEntry {
         #    inherit traefikCreator;
-        #    ip = "172.16.1.227";
+        #    ip = "172.16.1.228";
         #    imports = [
         #        ./shared/selkies-gstreamer
         #        ./stablediffusion
