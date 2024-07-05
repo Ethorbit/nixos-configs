@@ -3,6 +3,9 @@
 with lib;
 
 let
+    # TODO: turn this function into a submodule function so that it can be referenced straight in the config without needing to include it with imports.
+    # Maybe instead: restructure entries to be an attrsOf submodule { preferred structure here }, this would be harder as it would require changing everything that references entries
+    # but in the end it would make entries easier to configure as no function would need to be called at all.
     makeEntry = entry: {
         autoStart = false;
         additionalCapabilities = [ ];
@@ -14,6 +17,7 @@ let
         imports = [ ];
         resticRules = { };
         traefikCreator = name: data: {};
+        # TODO: make autheliaCreator so that containers can easily specify their own authentication settings for their own Traefik pages.
     } // entry;
 in
 {

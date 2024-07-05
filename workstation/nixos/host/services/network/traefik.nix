@@ -32,6 +32,17 @@ in
         };
 
         dynamicConfigOptions = mkMerge [ {
+            http.services."authelia" = {
+                loadBalancer.servers = [ { url = "http://127.0.0.1:9091"; } ];
+            };
+
+            http.routers."authelia" = {
+                rule = "Host(`auth.${config.networking.hostName}.internal`)";
+                entrypoints = "websecure";
+                tls = true;
+                service = "authelia";
+            };
+
             http.middlewares = {
                 "http-redirect" = {
                     redirectScheme = {
@@ -61,10 +72,6 @@ in
                         regex = "^https?://(.*)/(.+)";
                         replacement = "https://$1/$2/";
                     };
-                };
-
-                "auth-personal" = {
-                    forwardauth.address = "http://host:9091/api/verify";
                 };
             };
         } containerConfigOptions ];

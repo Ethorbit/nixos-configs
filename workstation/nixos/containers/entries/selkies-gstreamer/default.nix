@@ -2,29 +2,42 @@
 
 let
     defaults = {
+        # Recommended. Selkies Gstreamer's password prompt alone is not enough for securing a remote desktop.
         twoFactor = true;
     };
 
     # This will allow clients outside host to be able to connect to the desktops.
-    # https://container.<container name>.<hostname>.internal
-    # clients must have *.<hostname>.internal route to host's public IP for connection to work
+    # https://container-<container name>.<hostname>.internal
+    # clients must have *.<hostname>.internal route to host's public IP for connections to work.
     traefikCreator = name: entry: {
-        http = {
+        http = let
+            container-host = "container-${name}.${config.networking.hostName}.internal";
+        in {
+            middlewares = lib.mkIf (entry.twoFactor) {
+                "authelia-${name}" = {
+                    forwardauth = {
+                        address = "http://${config.services.authelia.instances."system".settings.server.host}:${toString config.services.authelia.instances."system".settings.server.port}/api/verify?rd=https://auth.${config.networking.hostName}.internal/%23/";
+                        trustforwardheader = true;
+                        authresponseheaders = "Remote-User,Remote-Groups,Remote-Name,Remote-Email";
+                    };
+                };
+            };
+
             # We enforce HTTPS since it is required for some interface
             # features, such as the clipboard sharing.
             routers."${name}-http" = {
-                rule = "Host(`container.${name}.${config.networking.hostName}.internal`)";
+                rule = "Host(`${container-host}`)";
                 service = "${name}";
                 entrypoints = "web";
                 middlewares = [ "https-redirect" ];
             };
 
             routers."${name}-https" = {
-                rule = "Host(`container.${name}.${config.networking.hostName}.internal`)";
+                rule = "Host(`${container-host}`)";
                 tls = true;
                 service = "${name}";
                 entrypoints = "websecure";
-                middlewares = lib.mkIf (entry.twoFactor) [ "auth-personal" ];
+                middlewares = lib.mkIf (entry.twoFactor) [ "authelia-${name}" ];
             };
 
             services = {
