@@ -13,6 +13,14 @@ let
     };
 in
 {
+    age.secrets."nixos/authelia/users_database" = { file = ../../secrets/authelia/users_database.yml.age; };
+    environment.etc."authelia-system-users_database.yml" = {
+        mode = "0600";
+        user = "authelia-system";
+        group = "authelia-system";
+        source = config.age.secrets."nixos/authelia/users_database".path;
+    };
+
     services.authelia.instances = {
         "system" = defaults // {
             enable = true;
@@ -53,7 +61,7 @@ in
                 };
                 authentication_backend = {
                     file = {
-                        path = "/var/lib/authelia-system/users_database.yml";
+                        path = "/etc/authelia-system-users_database.yml";
                     };
                 };
                 storage = {
