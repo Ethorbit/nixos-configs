@@ -185,3 +185,5 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 ###################################################################
+
+[ -f ~/.zshrc_aliases ] && source ~/.zshrc_aliases
