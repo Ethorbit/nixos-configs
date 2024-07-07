@@ -30,8 +30,8 @@
 
                 protocol = mkOption {
                     type = types.str;
-                    default = "udp";
-                    example = "tcp";
+                    default = "tcp";
+                    example = "udp";
                     description = "The protocol to communicate to the TURN server with. Either TCP or UDP.";
                 };
 
