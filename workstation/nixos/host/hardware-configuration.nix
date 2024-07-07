@@ -44,7 +44,7 @@
 
   age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../../../homenas/nixos/secrets/samba/users/ethorbit/creds.age; };
   age.secrets."homenas/samba/users/gaming/creds" = { file = ../../../homenas/nixos/secrets/samba/users/gaming/creds.age; };
-  age.secrets."homenas/samba/users/videos/creds" = { file = ../../../homenas/nixos/secrets/samba/users/videos/creds.age; };
+  #age.secrets."homenas/samba/users/videos/creds" = { file = ../../../homenas/nixos/secrets/samba/users/videos/creds.age; };
   environment.etc."nascreds" = {
     mode = "0600";
     source = config.age.secrets."homenas/samba/users/ethorbit/creds".path;
@@ -53,10 +53,10 @@
     mode = "0600";
     source = config.age.secrets."homenas/samba/users/gaming/creds".path;
   };
-  environment.etc."nascreds_videos" = {
-    mode = "0600";
-    source = config.age.secrets."homenas/samba/users/videos/creds".path;
-  };
+  #environment.etc."nascreds_videos" = {
+  #  mode = "0600";
+  #  source = config.age.secrets."homenas/samba/users/videos/creds".path;
+  #};
   fileSystems."/mnt/homenas" = {
     fsType = "cifs";
     device = "//${config.ethorbit.network.homenas.ip}/ethorbit";
@@ -67,11 +67,11 @@
     device = "//${config.ethorbit.network.homenas.ip}/gaming";
     options = [ "credentials=/etc/nascreds_gaming" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
   };
-  fileSystems."/mnt/homenas_videos" = {
-    fsType = "cifs";
-    device = "//${config.ethorbit.network.homenas.ip}/videos";
-    options = [ "credentials=/etc/nascreds_videos" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
-  };
+  #fileSystems."/mnt/homenas_videos" = {
+  #  fsType = "cifs";
+  #  device = "//${config.ethorbit.network.homenas.ip}/videos";
+  #  options = [ "credentials=/etc/nascreds_videos" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
+  #};
   
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

@@ -5,5 +5,6 @@
         ./users.nix
         ./desktop
         ./networking.nix
+        ./environment.nix
     ];
 }

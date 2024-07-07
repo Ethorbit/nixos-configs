@@ -43,10 +43,14 @@
                 user = "root";
                 initialize = true;
                 paths = [ "/" ];
-                # Exclude large reproducible / useless data
+                # Exclude large reproducible / useless data and common mount locations
                 exclude = [
                     "/nix"
+                    "/media"
+                    "/mnt"
                     "/var/lib/nixos-containers/**/nix/**"
+                    "/var/lib/nixos-containers/**/media/**"
+                    "/var/lib/nixos-containers/**/mnt/**"
                     "/**/docker/overlay2/**"
                     "/**/flatpak-module/boot/**"
                 ];

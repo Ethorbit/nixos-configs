@@ -64,6 +64,7 @@ in
                 # To allow Flatpak to work
                 ./shared/bubblewrap-fix
                 ./shared/browsing
+                ./shared/media
                 ./programming
             ];
             # To allow Docker to work
@@ -72,77 +73,121 @@ in
                 "--system-call-filter=keyctl"
                 "--system-call-filter=bpf"
             ];
+            bindMounts = {
+                "/mnt/storage/Projects".isReadOnly = false;
+                "/mnt/storage/Servers".isReadOnly = false;
+                "/mnt/storage/Downloads/programming".isReadOnly = false;
+                "/mnt/storage/Documents/programming".isReadOnly = false;
+                "/mnt/storage/Videos/programming".isReadOnly = false;
+            };
         });
 
-        #"videoediting" = defaults // (makeEntry {
-        #    inherit traefikCreator;
-        #    ip = "172.16.1.221";
-        #    imports = [
-        #        ./shared/selkies-gstreamer
-        #        ./shared/browsing
-        #        ./videoediting
-        #    ];
-        #});
+        "videoediting" = defaults // (makeEntry {
+            inherit traefikCreator;
+            ip = "172.16.1.221";
+            imports = [
+                ./shared/selkies-gstreamer
+                ./shared/network_mounts/videos
+                ./shared/media
+                ./shared/browsing
+                ./videoediting
+            ];
+            bindMounts = {
+                "/mnt/storage/Videos/videoediting".isReadOnly = false;
+                "/mnt/storage/Videos/audioediting".isReadOnly = true;
+                "/mnt/storage/Pictures/imageediting".isReadOnly = false;
+            };
+        });
 
-        #"audioediting" = defaults // (makeEntry {
-        #    inherit traefikCreator;
-        #    ip = "172.16.1.222";
-        #    imports = [
-        #        ./shared/selkies-gstreamer
-        #        ./shared/browsing
-        #        ./videoediting
-        #    ];
-        #});
+        "audioediting" = defaults // (makeEntry {
+            inherit traefikCreator;
+            ip = "172.16.1.222";
+            imports = [
+                ./shared/selkies-gstreamer
+                ./shared/network_mounts/videos
+                ./shared/media
+                ./shared/browsing
+                ./audioediting
+            ];
+            bindMounts = {
+                "/mnt/storage/Videos/videoediting".isReadOnly = true;
+                "/mnt/storage/Videos/audioediting".isReadOnly = false;
+            };
+        });
 
-        #"imageediting" = defaults // (makeEntry {
-        #    inherit traefikCreator;
-        #    ip = "172.16.1.223";
-        #    imports = [
-        #        ./shared/selkies-gstreamer
-        #        ./shared/browsing
-        #        ./imageediting
-        #    ];
-        #});
+        "imageediting" = defaults // (makeEntry {
+            inherit traefikCreator;
+            ip = "172.16.1.223";
+            imports = [
+                ./shared/selkies-gstreamer
+                ./shared/browsing
+                ./imageediting
+            ];
+            bindMounts = {
+                "/mnt/storage/Downloads/imageediting".isReadOnly = false;
+                "/mnt/storage/Pictures/imageediting".isReadOnly = false;
+            };
+        });
 
-        #"modelling" = defaults // (makeEntry {
-        #    inherit traefikCreator;
-        #    ip = "172.16.1.224";
-        #    imports = [
-        #        ./shared/selkies-gstreamer
-        #        ./shared/browsing
-        #        ./modelling
-        #    ];
-        #});
+        "modelling" = defaults // (makeEntry {
+            inherit traefikCreator;
+            ip = "172.16.1.224";
+            imports = [
+                ./shared/selkies-gstreamer
+                ./shared/browsing
+                ./modelling
+            ];
+            bindMounts = {
+                "/mnt/storage/Documents/modelling".isReadOnly = false;
+                "/mnt/storage/Downloads/modelling".isReadOnly = false;
+            };
+        });
 
-        #"music" = defaults // (makeEntry {
-        #    inherit traefikCreator;
-        #    ip = "172.16.1.225";
-        #    imports = [
-        #        ./shared/selkies-gstreamer
-        #        ./shared/browsing
-        #        ./music
-        #    ];
-        #});
+        "music" = defaults // (makeEntry {
+            inherit traefikCreator;
+            ip = "172.16.1.225";
+            imports = [
+                ./shared/selkies-gstreamer
+                ./shared/media
+                ./shared/browsing
+                ./music
+            ];
+            bindMounts = {
+                "/mnt/storage/Music".isReadOnly = false;
+                "/mnt/storage/Downloads/music".isReadOnly = false;
+            };
+        });
 
-        #"socials" = defaults // (makeEntry {
-        #    inherit traefikCreator;
-        #    ip = "172.16.1.226";
-        #    imports = [
-        #        ./shared/selkies-gstreamer
-        #        ./shared/browsing
-        #        ./socials
-        #    ];
-        #});
+        "socials" = defaults // (makeEntry {
+            inherit traefikCreator;
+            ip = "172.16.1.226";
+            imports = [
+                ./shared/selkies-gstreamer
+                ./shared/network_mounts/videos
+                ./shared/browsing
+                ./socials
+            ];
+            bindMounts = {
+                "/mnt/storage/Videos/socials".isReadOnly = false;
+                "/mnt/storage/Pictures/socials".isReadOnly = false;
+                "/mnt/storage/Downloads/socials".isReadOnly = false;
+            };
+        });
 
-        #"finance" = defaults // (makeEntry {
-        #    inherit traefikCreator;
-        #    ip = "172.16.1.227";
-        #    imports = [
-        #        ./shared/selkies-gstreamer
-        #        ./shared/browsing
-        #        ./finance
-        #    ];
-        #});
+        "finance" = defaults // (makeEntry {
+            inherit traefikCreator;
+            ip = "172.16.1.227";
+            imports = [
+                ./shared/selkies-gstreamer
+                ./shared/browsing
+                ./finance
+            ];
+            bindMounts = {
+                "/mnt/storage/Videos/finance".isReadOnly = false;
+                "/mnt/storage/Documents/finance".isReadOnly = false;
+                "/mnt/storage/Downloads/finance".isReadOnly = false;
+            };
+        });
 
         # Should not be used directly, has a web panel.
         #"stablediffusion" = defaults // (makeEntry {
