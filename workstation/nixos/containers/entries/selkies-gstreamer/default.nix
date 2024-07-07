@@ -95,7 +95,7 @@ in
             bindMounts = {
                 "/mnt/storage/Videos/videoediting".isReadOnly = false;
                 "/mnt/storage/Videos/audioediting".isReadOnly = true;
-                "/mnt/storage/Pictures/imageediting".isReadOnly = false;
+                "/mnt/storage/Pictures/imageediting".isReadOnly = true;
             };
         });
 
