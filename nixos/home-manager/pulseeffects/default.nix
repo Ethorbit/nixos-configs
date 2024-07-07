@@ -1,9 +1,10 @@
-{ config, ... }:
+{ config, lib, ... }:
 
+with lib;
 {
     home-manager.users.${config.ethorbit.users.primary.username} = {
         services.pulseeffects = {
-            enable = true;
+            enable = mkDefault true;
             preset = "Main";
         };
 
