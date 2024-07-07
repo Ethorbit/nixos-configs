@@ -6,6 +6,11 @@ with display;
 with resolution;
 with auth;
 {
+    environment.sessionVariables = {
+        # Needs to be a session variable or many programs will fail to run..
+        DISPLAY = ":${builtins.toString number}";
+    };
+
     # This is a port of the Docker container's environment. It should have all the same stuff set.
     environment.variables = {
         DISPLAY = ":${builtins.toString number}";
