@@ -19,4 +19,11 @@
     # We will need to change some properties so that picom won't crash at startup.
     ethorbit.home-manager.picom.backend = "xrender";
     #ethorbit.home-manager.picom.vSync = false;
+
+    # Host already has PulseEffects, this is redundant
+    home-manager.users.${config.ethorbit.users.primary.username} = {
+        services.pulseeffects = {
+            enable = false;
+        };
+    };
 }
