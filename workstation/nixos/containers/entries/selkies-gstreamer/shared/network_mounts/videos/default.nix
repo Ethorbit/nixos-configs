@@ -19,7 +19,6 @@
             "dir_mode=0770"
             "forceuid"
             "forcegid"
-            "x-systemd.automount"
         ];
     };
 }
