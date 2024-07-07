@@ -8,6 +8,7 @@
 
     environment.systemPackages = with pkgs; [
         feh
+        ranger
         moc
         jq
         lm_sensors
