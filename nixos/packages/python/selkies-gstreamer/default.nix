@@ -67,11 +67,12 @@ in
                     gst_all_1.gst-plugins-bad
                     gst_all_1.gst-plugins-ugly
                     gst_all_1.gst-plugins-good
+                    xorg.xrandr
                 ];
                 preFixup = ''
                     for f in $(find $out/bin/ -type f -executable); do
                         wrapProgram "$f" \
-                          --prefix PATH ":" "${pkgs.xsel}/bin:$PATH" \
+                          --prefix PATH ":" "${pkgs.xsel}/bin:${pkgs.xorg.xrandr}/bin/xrandr:$PATH" \
                           --prefix LD_LIBRARY_PATH ":" "${cudaPackages.cudatoolkit}/lib:$LD_LIBRARY_PATH" \
                           --prefix CUDA_PATH ":" "${cudaPackages.cudatoolkit}:$CUDA_PATH" \
                           --prefix SELKIES_WEB_ROOT ":" "${config.ethorbit.pkgs.python.selkies-gstreamer-web}/gst-web" \
