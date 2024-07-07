@@ -9,6 +9,7 @@
     environment.systemPackages = with pkgs; [
         feh
         ranger
+        trash-cli
         moc
         jq
         lm_sensors
