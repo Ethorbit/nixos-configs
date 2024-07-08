@@ -72,6 +72,7 @@
                     description = "The port to connect to the gstreamer display.";
                 };
 
+                # This is going to be removed soon and replaced by the superior KasmVNC once its implementation is finished.
                 useNOVNC = mkOption {
                     type = types.bool;
                     default = false;
@@ -79,6 +80,21 @@
                     description = ''
                     There are two web interfaces that can be chosen in this container, the first being the default selkies-gstreamer WebRTC HTML5 interface (requires a TURN server or host networking), and the second being the fallback noVNC WebSocket HTML5 interface. While the noVNC interface does not support audio forwarding and remote cursors for gaming, it can be useful for troubleshooting the selkies-gstreamer WebRTC interface or usage in low bandwidth environments.
                     '';
+                };
+
+                kasmVNC = {
+                    enable = mkOption {
+                        type = types.bool;
+                        default = false;
+                        example = true;
+                        description = ''
+                            The KasmVNC interface can be enabled in place of Selkies-GStreamer by setting to true.
+                        '';
+                    };
+
+                    threads = mkOption {
+
+                    };
                 };
 
                 webRTC = {
@@ -93,9 +109,30 @@
 
                     enableResize = mkOption {
                         type = types.bool;
-                        default = false;
-                        example = true;
-                        description = "";
+                        default = true;
+                        example = false;
+                        description = "Enable dynamic resizing to match browser size.";
+                    };
+
+                    videoBitRate = mkOption {
+                        type = types.int;
+                        default = 8000;
+                        example = 30000;
+                        description = "Birate of the stream. Lower values introduce artifacts; too high and it can introduce latency.";
+                    };
+
+                    audioBitRate = mkOption {
+                        type = types.int;
+                        default = 128000;
+                        example = 96000;
+                        description = "Birate of the stream. Lower values bring down audio quality considerably; too high can introduce latency.";
+                    };
+
+                    fps = mkOption {
+                        type = types.int;
+                        default = 60;
+                        example = 30;
+                        description = "The target framerate. Higher value increases load on the GPU (especially with multiple containers).";
                     };
                 };
 

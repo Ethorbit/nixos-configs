@@ -15,7 +15,7 @@
 
         script = ''
             # Run Xvfb server and its commands with required extensions
-            /run/current-system/sw/bin/Xvfb "''${DISPLAY}" -ac -screen "0" "8192x4096x''${CDEPTH}" -dpi "''${DPI}" +extension "COMPOSITE" +extension "DAMAGE" +extension "GLX" +extension "RANDR" +extension "RENDER" +extension "MIT-SHM" +extension "XFIXES" +extension "XTEST" +iglx +render -nolisten "tcp" -noreset -shmem
+            /run/current-system/sw/bin/Xvfb "''${DISPLAY}" -ac -screen "0" "8192x4096x''${DISPLAY_CDEPTH}" -dpi "''${DISPLAY_DPI}" +extension "COMPOSITE" +extension "DAMAGE" +extension "GLX" +extension "RANDR" +extension "RENDER" +extension "MIT-SHM" +extension "XFIXES" +extension "XTEST" +iglx +render -nolisten "tcp" -noreset -shmem
         '';
 
         wantedBy = [ "default.target" ];

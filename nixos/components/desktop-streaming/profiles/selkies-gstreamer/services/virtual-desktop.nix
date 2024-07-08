@@ -34,7 +34,7 @@ in
         echo "X socket is ready"
 
         # Resize the screen to the provided size
-        ${config.ethorbit.pkgs.python.selkies-gstreamer}/bin/selkies-gstreamer-resize ''${SIZEW}x''${SIZEH}
+        ${config.ethorbit.pkgs.python.selkies-gstreamer}/bin/selkies-gstreamer-resize ''${DISPLAY_SIZEW}x''${DISPLAY_SIZEH}
 
         # Run the x11vnc + noVNC fallback web interface if enabled
         if [ "''${NOVNC_ENABLE,,}" = "true" ]; then
@@ -45,12 +45,10 @@ in
 
         # Use VirtualGL to run the desktop environment with OpenGL if the GPU is available, otherwise use OpenGL with llvmpipe
         export XDG_SESSION_ID="$${DISPLAY#*:}"
-        if [ -n "$(nvidia-smi --query-gpu=uuid --format=csv | sed -n 2p)" ]; then
-            export VGL_REFRESHRATE="''${REFRESH}"
-            echo "Running with VirtualGL."
+        if [ -n "$(nvidia-smi --query-gpu=uuid --format=csv,noheader | head -n1)" ] || [ -n "$(ls -A /dev/dri 2>/dev/null)" ]; then
+            export VGL_FPS="''${DISPLAY_REFRESH}"
             ${pkgs.virtualgl}/bin/vglrun -d "''${VGL_DISPLAY:-egl}" +wm ${pkgs.dbus}/bin/dbus-launch "${sessionScript}/bin/script" &
         else
-            echo "Running with LLVMPipe."
             ${pkgs.dbus}/bin/dbus-launch "${sessionScript}/bin/script" &
         fi
 

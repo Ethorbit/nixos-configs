@@ -14,22 +14,27 @@ with auth;
     # This is a port of the Docker container's environment. It should have all the same stuff set.
     environment.variables = {
         DISPLAY = ":${builtins.toString number}";
-        SIZEW = builtins.toString width;
-        SIZEH = builtins.toString height;
-        REFRESH = builtins.toString refreshRate;
-        DPI = builtins.toString dpi;
-        CDEPTH = builtins.toString colorDepth;
+        DISPLAY_SIZEW = builtins.toString width;
+        DISPLAY_SIZEH = builtins.toString height;
+        DISPLAY_REFRESH = builtins.toString refreshRate;
+        DISPLAY_DPI = builtins.toString dpi;
+        DISPLAY_CDEPTH = builtins.toString colorDepth;
         VGL_REFRESHRATE = builtins.toString refreshRate;
         VGL_DISPLAY = "egl";
         # Changed from :2 to :1 (WARNING to ERROR) because of a flooding of useless warnings.
         GST_DEBUG = "*:1";
         SDL_JOYSTICK_DEVICE = "/dev/input/js0";
         __GL_SYNC_TO_VBLANK = "0";
+        # NOVNC is being removed soon in favor of KASM.
         NOVNC_ENABLE = builtins.toString useNOVNC;
+        # Haven't ported KASM yet from the new 1.6.0 changes, will do so once everything else works perfectly.
+        #KASMVNC_ENABLE = builtins.toString useKasmVNC;
         NOVNC_VIEWPASS = password;
-        WEBRTC_ENCODER = webRTC.encoder;
-        WEBRTC_ENABLE_RESIZE = builtins.toString webRTC.enableResize;
+        SELKIES_ENCODER = webRTC.encoder;
         SELKIES_ENABLE_RESIZE = builtins.toString webRTC.enableResize;
+        SELKIES_VIDEO_BITRATE = builtins.toString webRTC.videoBitRate;
+        SELKIES_AUDIO_BITRATE = builtins.toString webRTC.audioBitRate;
+        SELKIES_FRAMERATE = builtins.toString webRTC.fps;
         SELKIES_ENABLE_BASIC_AUTH = "true";
         SELKIES_BASIC_AUTH_PASSWORD = password;
         PASSWD = password;
