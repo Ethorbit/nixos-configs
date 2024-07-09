@@ -12,8 +12,6 @@
         ../../../nixos/components/networking/systemd
         ../../../nixos/components/service-discovery/profiles/avahi
 
-        ../../../nixos/components/audio-server/profiles/pulseaudio
-
         # Identical graphics config needed so that containers can ALSO use the GPU
         # no need to shell out money for NVIDIA's vGPU technology :D
         ../../../nixos/components/graphics-drivers/opengl

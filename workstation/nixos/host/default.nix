@@ -10,6 +10,7 @@
         ./networking
         ./desktop.nix
         ./home-manager.nix
+        ../../../nixos/components/audio-server/profiles/pulseaudio
         ../../../nixos/components/web-browsing/chromium
         ../../../nixos/components/containers/docker
         ../../../nixos/components/display-nesting/profiles/xephyr
@@ -17,6 +18,7 @@
         ../../../nixos/components/file-chooser/profiles/nautilus
     ];
 
+    hardware.pulseaudio.zeroconf.discovery.enable = true;
     networking.hostName = "workstation";
 
     # "Enabling realtime may improve latency and reduce stuttering, specially in high load scenarios." - https://nixos.wiki/wiki/Sway

@@ -10,6 +10,13 @@
                 description = "The nixos user selkies-gstreamer will run under, this will also be the same user that the desktop runs under.";
             };
 
+            extraFlags = mkOption {
+                type = types.listOf types.str;
+                default = [ ];
+                example = [ "--addr 0.0.0.0" ];
+                description = "Extra flags to pass to the selkies gstreamer process";           
+            };
+
             # You need to run a turn server somewhere and then set these up in your system.
             # This is needed to connect to WebRTC properly, which is what will provide you the graphical performance.
             # The alternative is just your average boring VNC
@@ -70,6 +77,12 @@
                     default = 8080;
                     example = 4200;
                     description = "The port to connect to the gstreamer display.";
+                };
+
+                address = mkOption {
+                    type = types.str;
+                    default = "0.0.0.0";
+                    description = "The address to listen for requests on.";
                 };
 
                 # This is going to be removed soon and replaced by the superior KasmVNC once its implementation is finished.

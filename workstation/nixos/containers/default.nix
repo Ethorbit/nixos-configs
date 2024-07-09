@@ -170,6 +170,13 @@ in
                     gateway = [ config.networking.defaultGateway.address ];
                 };
 
+                # Block IPv6 requests
+                networking.firewall.extraCommands = ''
+                    ip6tables -P INPUT DROP
+                    ip6tables -P OUTPUT DROP
+                    ip6tables -P FORWARD DROP
+                '';
+
                 # Load base nix config and all the container's configs
                 imports = [
                     (import ../../../nixosmodules.nix { inherit inputs; inherit system; })

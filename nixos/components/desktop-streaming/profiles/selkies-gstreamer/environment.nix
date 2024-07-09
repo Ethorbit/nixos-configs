@@ -30,6 +30,8 @@ with auth;
         # Haven't ported KASM yet from the new 1.6.0 changes, will do so once everything else works perfectly.
         #KASMVNC_ENABLE = builtins.toString useKasmVNC;
         NOVNC_VIEWPASS = password;
+        SELKIES_PORT = builtins.toString port;
+        SELKIES_ADDR = address;
         SELKIES_ENCODER = webRTC.encoder;
         SELKIES_ENABLE_RESIZE = builtins.toString webRTC.enableResize;
         SELKIES_VIDEO_BITRATE = builtins.toString webRTC.videoBitRate;

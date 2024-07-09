@@ -26,10 +26,7 @@ let
     rm -rf "''${HOME}/.cache/gstreamer-1.0"
 
     # Start the selkies-gstreamer WebRTC HTML5 remote desktop application
-    ${config.ethorbit.pkgs.python.selkies-gstreamer}/bin/selkies-gstreamer \
-        --addr="0.0.0.0" \
-        --port="${builtins.toString config.ethorbit.components.selkies-gstreamer.settings.display.port}" \
-        $@
+    ${config.ethorbit.pkgs.python.selkies-gstreamer}/bin/selkies-gstreamer $@
     '';
 in
 {
@@ -38,7 +35,8 @@ in
             enable = true;
             description = "Systemd + nix port of nvidia-egl-docker's 'selkies-gstreamer' supervisor service, which is responsible for using selkies-gstreamer to stream the X server once it starts";
             environment = config.environment.variables;
-            after = [ "network.target" ];
+            after = [ "network.target" "pulseaudio.service" ];
+            requires = [ "pulseaudio.service" ];
 
             serviceConfig = {
                 Type = "simple";
