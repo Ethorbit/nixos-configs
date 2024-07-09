@@ -8,6 +8,7 @@ let
     # but in the end it would make entries easier to configure as no function would need to be called at all.
     makeEntry = entry: {
         autoStart = false;
+        restartIfChanged = true;
         additionalCapabilities = [ ];
         allowedDevices = [ ];
         bindMounts = { };
@@ -17,8 +18,13 @@ let
         imports = [ ];
         resticRules = { };
         traefikCreator = name: data: {};
+        systemdService = {
+            serviceConfig = {};
+        };
         # TODO: make autheliaCreator so that containers can easily specify their own authentication settings for their own Traefik pages.
     } // entry;
+
+    entryServices = listToAttrs (map (v: { name = "container@${v}"; value = config.ethorbit.workstation.containers.entries."${v}".systemdService; }) (attrNames config.ethorbit.workstation.containers.entries));
 in
 {
     imports = [
@@ -35,7 +41,7 @@ in
     config = {
         # Turn the container entries into actual containers.
         containers = mapAttrs (name: data: {
-            inherit (data) autoStart additionalCapabilities ephemeral tmpfs;        
+            inherit (data) autoStart additionalCapabilities ephemeral tmpfs restartIfChanged;
 
             privateNetwork = true;
             localAddress = null;
@@ -184,5 +190,9 @@ in
                 ] ++ data.imports;
             };
         }) config.ethorbit.workstation.containers.entries;
+
+        systemd.services = mapAttrs (name: entry: {
+            serviceConfig = entry.serviceConfig;           
+        }) entryServices;
     };
 }
