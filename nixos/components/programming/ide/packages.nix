@@ -3,6 +3,7 @@
 {
     imports = [
         ../../../packages/vim
+        ../../../packages/nvim
     ];
 
     environment.systemPackages = with pkgs; [

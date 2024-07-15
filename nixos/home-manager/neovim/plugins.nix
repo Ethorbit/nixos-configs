@@ -22,12 +22,12 @@
                 nvim-cmp
                 mason-nvim
                 mason-lspconfig-nvim
-         
+
                 # LSP stuff
                 nvim-lspconfig
                 nvim-lint
                 formatter-nvim
-              
+
                 vim-qml
 
                 indent-blankline-nvim
