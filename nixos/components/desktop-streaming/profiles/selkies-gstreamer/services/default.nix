@@ -7,6 +7,9 @@
         ./virtual-desktop.nix
     ];
 
+    # Make sure pulseaudio's CPUWeight is increased to avoid audio lag
+    systemd.user.services."pulseaudio".serviceConfig.CPUWeight = 1000;
+
     services.xserver.displayManager = with lib; {
         # Selkies-Gstreamer will manage its own Virtual X server.
         # The issue is that display managers want to run THEIR own (non-virtual) X server,
