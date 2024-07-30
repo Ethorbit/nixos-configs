@@ -2,6 +2,16 @@
 
 {
     options.ethorbit.components.selkies-gstreamer = with lib; {
+        services = {
+            userValidationScript = mkOption {
+                type = types.package;
+                default = pkgs.writeShellScriptBin "script" ''
+                    USER=$(id -un)
+                    [ "$USER" = "${config.ethorbit.components.selkies-gstreamer.settings.user}" ] || exit 1
+                '';
+            };
+        };
+
         settings = {
             user = mkOption {
                 type = types.str;

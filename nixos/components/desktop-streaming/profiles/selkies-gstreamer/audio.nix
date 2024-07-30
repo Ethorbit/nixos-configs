@@ -3,6 +3,7 @@
 {
     hardware.pulseaudio = with lib; {
         enable = mkDefault true;
+
         extraConfig = ''
             unload-module module-suspend-on-idle
         '';

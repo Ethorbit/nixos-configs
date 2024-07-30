@@ -41,7 +41,7 @@ in
     config = {
         # Turn the container entries into actual containers.
         containers = mapAttrs (name: data: {
-            inherit (data) autoStart additionalCapabilities ephemeral tmpfs restartIfChanged;
+            inherit (data) autoStart ephemeral tmpfs restartIfChanged;
 
             privateNetwork = true;
             localAddress = null;

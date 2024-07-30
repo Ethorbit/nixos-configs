@@ -20,9 +20,11 @@ in
             Type = "simple";
             Restart = "always";
             RestartSec = 5;
+            CPUWeight = 500;
         };
 
         script = ''
+        ${config.ethorbit.components.selkies-gstreamer.services.userValidationScript}/bin/script || exit 1
         source /etc/profile
 
         # This fixes applications not utilizing OpenGL. Not sure of a NIX way to fix this.

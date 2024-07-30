@@ -11,9 +11,12 @@
             Type = "simple";
             Restart = "always";
             RestartSec = 5;
+            CPUWeight = 500;
         };
 
         script = ''
+            ${config.ethorbit.components.selkies-gstreamer.services.userValidationScript}/bin/script || exit 1
+
             # Run Xvfb server and its commands with required extensions
             /run/current-system/sw/bin/Xvfb "''${DISPLAY}" -ac -screen "0" "8192x4096x''${DISPLAY_CDEPTH}" -dpi "''${DISPLAY_DPI}" +extension "COMPOSITE" +extension "DAMAGE" +extension "GLX" +extension "RANDR" +extension "RENDER" +extension "MIT-SHM" +extension "XFIXES" +extension "XTEST" +iglx +render -nolisten "tcp" -noreset -shmem
         '';

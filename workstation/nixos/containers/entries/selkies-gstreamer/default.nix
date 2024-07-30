@@ -1,8 +1,12 @@
+# Adjust the systemd resources. Each Selkies Gstreamer instance can use almost a FULL CPU core of usage (~80-100%)
+# Allowing multiple selkies instances to run on the same CPU core will result in heavy interface lag.
+
 { config, lib, makeEntry, ... }:
 
 let
     defaults = {
         # Recommended. Selkies Gstreamer's password prompt alone is not enough for securing a remote desktop.
+        # Note: this only applies for people connecting outside of the host, connections from the host do not go through 2FA.
         twoFactor = true;
     };
 
@@ -53,6 +57,19 @@ let
             };
         };
     };
+
+    defaultSystemdService.serviceConfig = {
+        # Systemd defaults to 100 for weights. We set it lower, so that 
+        # the host gets the highest priority on ITS processes 
+        # running with default weights.
+        #
+        # If you connect to containers from the host's browser, the difference
+        # in performance from this is noticeable. With all default weights,
+        # the interface and audio freezes and lags as the containers compete with the host
+        # for CPU usage. That is why we want to keep containers at a lower priority.
+        CPUWeight = 50;
+        IOWeight = 80;
+    };
 in
 {
     ethorbit.workstation.containers.entries = {
@@ -67,12 +84,6 @@ in
                 ./shared/media
                 ./programming
             ];
-            # To allow Docker to work
-            extraFlags = [
-                "--system-call-filter=add_key"
-                "--system-call-filter=keyctl"
-                "--system-call-filter=bpf"
-            ];
             bindMounts = {
                 "/mnt/storage/Projects".isReadOnly = false;
                 "/mnt/storage/Servers".isReadOnly = false;
@@ -80,6 +91,15 @@ in
                 "/mnt/storage/Documents/programming".isReadOnly = false;
                 "/mnt/storage/Videos/programming".isReadOnly = false;
             };
+            systemdService = defaultSystemdService // { serviceConfig = {
+                CPUWeight = 70;
+            }; };
+            extraFlags = [
+                # To allow Docker to work
+                "--system-call-filter=add_key"
+                "--system-call-filter=keyctl"
+                "--system-call-filter=bpf"
+            ];
         });
 
         "videoediting" = defaults // (makeEntry {
@@ -94,9 +114,10 @@ in
             ];
             bindMounts = {
                 "/mnt/storage/Videos/videoediting".isReadOnly = false;
-                "/mnt/storage/Videos/audioediting".isReadOnly = true;
+                "/mnt/storage/Audio/audioediting".isReadOnly = true;
                 "/mnt/storage/Pictures/imageediting".isReadOnly = true;
             };
+            systemdService = defaultSystemdService;
         });
 
         "audioediting" = defaults // (makeEntry {
@@ -110,9 +131,11 @@ in
                 ./audioediting
             ];
             bindMounts = {
+                "/mnt/storage/Music/audioediting".isReadOnly = false;
+                "/mnt/storage/Audio/audioediting".isReadOnly = false;
                 "/mnt/storage/Videos/videoediting".isReadOnly = true;
-                "/mnt/storage/Videos/audioediting".isReadOnly = false;
             };
+            systemdService = defaultSystemdService;
         });
 
         "imageediting" = defaults // (makeEntry {
@@ -127,6 +150,7 @@ in
                 "/mnt/storage/Downloads/imageediting".isReadOnly = false;
                 "/mnt/storage/Pictures/imageediting".isReadOnly = false;
             };
+            systemdService = defaultSystemdService;
         });
 
         "modelling" = defaults // (makeEntry {
@@ -141,21 +165,26 @@ in
                 "/mnt/storage/Documents/modelling".isReadOnly = false;
                 "/mnt/storage/Downloads/modelling".isReadOnly = false;
             };
+            systemdService = defaultSystemdService;
         });
 
-        "music" = defaults // (makeEntry {
+        "musicplayer" = defaults // (makeEntry {
             inherit traefikCreator;
             ip = "172.16.1.225";
             imports = [
                 ./shared/selkies-gstreamer
                 ./shared/media
                 ./shared/browsing
-                ./music
+                ./musicplayer
             ];
             bindMounts = {
                 "/mnt/storage/Music".isReadOnly = false;
                 "/mnt/storage/Downloads/music".isReadOnly = false;
             };
+            systemdService = defaultSystemdService // { serviceConfig = {
+                CPUWeight = 20;
+                IOWeight = 20;
+            }; };
         });
 
         "socials" = defaults // (makeEntry {
@@ -172,6 +201,7 @@ in
                 "/mnt/storage/Pictures/socials".isReadOnly = false;
                 "/mnt/storage/Downloads/socials".isReadOnly = false;
             };
+            systemdService = defaultSystemdService; 
         });
 
         "finance" = defaults // (makeEntry {
@@ -187,6 +217,10 @@ in
                 "/mnt/storage/Documents/finance".isReadOnly = false;
                 "/mnt/storage/Downloads/finance".isReadOnly = false;
             };
+            systemdService = defaultSystemdService // { serviceConfig = {
+                CPUWeight = 20;
+                IOWeight = 20;
+            }; };
         });
 
         # Should not be used directly, has a web panel.
@@ -197,6 +231,7 @@ in
         #        ./shared/selkies-gstreamer
         #        ./stablediffusion
         #    ];
+        #    systemdService = defaultSystemdService;
         #});
     };
 }
