@@ -1,6 +1,3 @@
-# Adjust the systemd resources. Each Selkies Gstreamer instance can use almost a FULL CPU core of usage (~80-100%)
-# Allowing multiple selkies instances to run on the same CPU core will result in heavy interface lag.
-
 { config, lib, makeEntry, ... }:
 
 let
