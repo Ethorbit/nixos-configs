@@ -46,7 +46,7 @@ in
             };
 
             script = ''
-            ${config.ethorbit.components.selkies-gstreamer.services.userValidationScript}/bin/script || exit 1
+            "${config.ethorbit.components.selkies-gstreamer.services.userValidationScript}/bin/script" || exit 0
             ${pkgs.bash}/bin/bash -c "if [ ! $(echo ''${ENV_NOVNC_ENABLE} | ${pkgs.coreutils}/bin/tr '[:upper:]' '[:lower:]') ]; then ${entrypoint}/bin/script; else sleep infinity; fi"
             '';
 
