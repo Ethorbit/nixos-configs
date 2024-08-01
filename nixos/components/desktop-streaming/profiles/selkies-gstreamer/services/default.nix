@@ -8,7 +8,7 @@
     ];
 
     # Make sure pulseaudio's CPUWeight is increased to avoid audio lag
-    systemd.user.services."pulseaudio".serviceConfig.CPUWeight = 1000;
+    systemd.user.services."pulseaudio".serviceConfig.CPUWeight = 500;
 
     services.xserver.displayManager = with lib; {
         # Selkies-Gstreamer will manage its own Virtual X server.

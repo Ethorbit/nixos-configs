@@ -192,7 +192,24 @@ in
         }) config.ethorbit.workstation.containers.entries;
 
         systemd.services = mapAttrs (name: entry: {
-            serviceConfig = entry.serviceConfig;           
+            serviceConfig = {
+                IOAccounting = true;
+                CPUAccounting = true;
+                BlockIOAccounting = true;
+                TasksAccounting = true;
+                TasksMax = 1000;
+                # Default 100 weight, 
+                # container entries should have it 
+                # increased if they need to be higher priority
+                CPUWeight = 100;
+                StartupCPUWeight = 100;
+                IOWeight = 100;
+                BlockIOWeight = 100;
+                # By default, a single container should not be 
+                # allowed to take up all the resources
+                MemoryMax = "25%";
+                CPUQuota = "150%";
+            } // entry.serviceConfig;
         }) entryServices;
     };
 }

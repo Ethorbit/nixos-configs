@@ -54,19 +54,6 @@ let
             };
         };
     };
-
-    defaultSystemdService.serviceConfig = {
-        # Systemd defaults to 100 for weights. We set it lower, so that 
-        # the host gets the highest priority on ITS processes 
-        # running with default weights.
-        #
-        # If you connect to containers from the host's browser, the difference
-        # in performance from this is noticeable. With all default weights,
-        # the interface and audio freezes and lags as the containers compete with the host
-        # for CPU usage. That is why we want to keep containers at a lower priority.
-        CPUWeight = 50;
-        IOWeight = 80;
-    };
 in
 {
     ethorbit.workstation.containers.entries = {
@@ -88,9 +75,13 @@ in
                 "/mnt/storage/Documents/programming".isReadOnly = false;
                 "/mnt/storage/Videos/programming".isReadOnly = false;
             };
-            systemdService = defaultSystemdService // { serviceConfig = {
-                CPUWeight = 70;
-            }; };
+            systemdService.serviceConfig = {
+                CPUWeight = 200;
+                IOWeight = 200;
+                BlockIOWeight = 200;
+                MemoryMax = "90%";
+                CPUQuota = "400%";
+            };
             extraFlags = [
                 # To allow Docker to work
                 "--system-call-filter=add_key"
@@ -109,12 +100,18 @@ in
                 ./shared/browsing
                 ./videoediting
             ];
+            systemdService.serviceConfig = {
+                CPUWeight = 200;
+                IOWeight = 200;
+                BlockIOWeight = 200;
+                MemoryMax = "90%";
+                CPUQuota = "900%";
+            };
             bindMounts = {
                 "/mnt/storage/Videos/videoediting".isReadOnly = false;
                 "/mnt/storage/Audio/audioediting".isReadOnly = true;
                 "/mnt/storage/Pictures/imageediting".isReadOnly = true;
             };
-            systemdService = defaultSystemdService;
         });
 
         "audioediting" = defaults // (makeEntry {
@@ -132,7 +129,6 @@ in
                 "/mnt/storage/Audio/audioediting".isReadOnly = false;
                 "/mnt/storage/Videos/videoediting".isReadOnly = true;
             };
-            systemdService = defaultSystemdService;
         });
 
         "imageediting" = defaults // (makeEntry {
@@ -147,7 +143,6 @@ in
                 "/mnt/storage/Downloads/imageediting".isReadOnly = false;
                 "/mnt/storage/Pictures/imageediting".isReadOnly = false;
             };
-            systemdService = defaultSystemdService;
         });
 
         "modelling" = defaults // (makeEntry {
@@ -162,7 +157,6 @@ in
                 "/mnt/storage/Documents/modelling".isReadOnly = false;
                 "/mnt/storage/Downloads/modelling".isReadOnly = false;
             };
-            systemdService = defaultSystemdService;
         });
 
         "musicplayer" = defaults // (makeEntry {
@@ -174,14 +168,15 @@ in
                 ./shared/browsing
                 ./musicplayer
             ];
+            systemdService.serviceConfig = {
+                CPUWeight = 50;
+                MemoryMax = "10%";
+                CPUQuota = "90%";
+            };
             bindMounts = {
                 "/mnt/storage/Music".isReadOnly = false;
                 "/mnt/storage/Downloads/music".isReadOnly = false;
             };
-            systemdService = defaultSystemdService // { serviceConfig = {
-                CPUWeight = 20;
-                IOWeight = 20;
-            }; };
         });
 
         "socials" = defaults // (makeEntry {
@@ -198,7 +193,6 @@ in
                 "/mnt/storage/Pictures/socials".isReadOnly = false;
                 "/mnt/storage/Downloads/socials".isReadOnly = false;
             };
-            systemdService = defaultSystemdService; 
         });
 
         "finance" = defaults // (makeEntry {
@@ -209,15 +203,16 @@ in
                 ./shared/browsing
                 ./finance
             ];
+            systemdService.serviceConfig = {
+                CPUWeight = 50;
+                MemoryMax = "10%";
+                CPUQuota = "90%";
+            };
             bindMounts = {
                 "/mnt/storage/Videos/finance".isReadOnly = false;
                 "/mnt/storage/Documents/finance".isReadOnly = false;
                 "/mnt/storage/Downloads/finance".isReadOnly = false;
             };
-            systemdService = defaultSystemdService // { serviceConfig = {
-                CPUWeight = 20;
-                IOWeight = 20;
-            }; };
         });
 
         # Should not be used directly, has a web panel.
@@ -228,7 +223,6 @@ in
         #        ./shared/selkies-gstreamer
         #        ./stablediffusion
         #    ];
-        #    systemdService = defaultSystemdService;
         #});
     };
 }
