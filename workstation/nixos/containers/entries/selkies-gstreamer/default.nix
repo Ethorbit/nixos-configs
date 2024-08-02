@@ -75,13 +75,6 @@ in
                 "/mnt/storage/Documents/programming".isReadOnly = false;
                 "/mnt/storage/Videos/programming".isReadOnly = false;
             };
-            systemdService.serviceConfig = {
-                CPUWeight = 200;
-                IOWeight = 200;
-                BlockIOWeight = 200;
-                MemoryMax = "90%";
-                CPUQuota = "400%";
-            };
             extraFlags = [
                 # To allow Docker to work
                 "--system-call-filter=add_key"
@@ -100,13 +93,6 @@ in
                 ./shared/browsing
                 ./videoediting
             ];
-            systemdService.serviceConfig = {
-                CPUWeight = 200;
-                IOWeight = 200;
-                BlockIOWeight = 200;
-                MemoryMax = "90%";
-                CPUQuota = "900%";
-            };
             bindMounts = {
                 "/mnt/storage/Videos/videoediting".isReadOnly = false;
                 "/mnt/storage/Audio/audioediting".isReadOnly = true;
@@ -171,7 +157,7 @@ in
             systemdService.serviceConfig = {
                 CPUWeight = 50;
                 MemoryMax = "10%";
-                CPUQuota = "90%";
+                CPUQuota = "150%";
             };
             bindMounts = {
                 "/mnt/storage/Music".isReadOnly = false;
@@ -206,7 +192,7 @@ in
             systemdService.serviceConfig = {
                 CPUWeight = 50;
                 MemoryMax = "10%";
-                CPUQuota = "90%";
+                CPUQuota = "150%";
             };
             bindMounts = {
                 "/mnt/storage/Videos/finance".isReadOnly = false;

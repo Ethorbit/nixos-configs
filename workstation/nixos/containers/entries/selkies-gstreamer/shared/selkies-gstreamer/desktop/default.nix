@@ -26,4 +26,9 @@
             enable = false;
         };
     };
+
+    # "Enabling realtime may improve latency and reduce stuttering, specially in high load scenarios." - https://nixos.wiki/wiki/Sway
+    security.pam.loginLimits = [
+        { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
+    ];
 }

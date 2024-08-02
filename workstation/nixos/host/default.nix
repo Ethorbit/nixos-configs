@@ -53,11 +53,11 @@
             IOAccounting = true;
             CPUAccounting = true;
             BlockIOAccounting = true;
-            CPUWeight = 50;
-            StartupCPUWeight = 50;
+            CPUWeight = 60;
+            StartupCPUWeight = 60;
             IOWeight = 80;
             BlockIOWeight = 80;
-            MemoryMax = "80%";
+            MemoryMax = "90%";
         };
 
         "container" = {

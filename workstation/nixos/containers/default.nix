@@ -208,7 +208,7 @@ in
                 # By default, a single container should not be 
                 # allowed to take up all the resources
                 MemoryMax = "25%";
-                CPUQuota = "150%";
+                CPUQuota = "300%";
             } // entry.serviceConfig;
         }) entryServices;
     };
