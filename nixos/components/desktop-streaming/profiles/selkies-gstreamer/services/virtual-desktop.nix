@@ -27,8 +27,8 @@ in
         "${config.ethorbit.components.selkies-gstreamer.services.userValidationScript}/bin/script" || exit 0
         source /etc/profile
 
-        # This fixes applications not utilizing OpenGL. Not sure of a NIX way to fix this.
-        export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/run/opengl-driver/lib"
+        # This fixes applications not utilizing OpenGL. Not sure of a NIX way to fix this..
+        export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/run/opengl-driver/lib:${pkgs.libGL}/lib"
 
         # Wait for X11 to start
         echo "Waiting for X socket"
