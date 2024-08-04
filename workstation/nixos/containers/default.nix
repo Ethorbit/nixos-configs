@@ -197,7 +197,6 @@ in
                 CPUAccounting = true;
                 BlockIOAccounting = true;
                 TasksAccounting = true;
-                TasksMax = 1000;
                 # Default 100 weight, 
                 # container entries should have it 
                 # increased if they need to be higher priority
@@ -205,10 +204,16 @@ in
                 StartupCPUWeight = 100;
                 IOWeight = 100;
                 BlockIOWeight = 100;
-                # By default, a single container should not be 
+                # By default, a single container should not be
                 # allowed to take up all the resources
+                TasksMax = 1000;
+                IOWriteIOPSMax = 30000;
+                IOReadIOPSMax = 15000;
+                IOWriteBandwidthMax = "200M";
+                IOReadBandwidthMax = "400M";
                 MemoryMax = "25%";
                 CPUQuota = "300%";
+                CPUQuotaPeriodSec = "1ms";
             } // entry.serviceConfig;
         }) entryServices;
     };
