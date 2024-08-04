@@ -25,8 +25,16 @@
         sshfs
 
         #firefox
-        ungoogled-chromium
-        #brave
+        (symlinkJoin {
+            name = "ungoogled-chromium-wrapped";
+            paths = [
+                ungoogled-chromium
+            ];
+            buildInputs = [ makeWrapper ];
+            postBuild = ''
+                ${config.ethorbit.components.web-browsing.chromium.wrappers.videoEncoding}
+            '';
+        })
 
         # until the containers are up and running, everything will have to be done on host
         yt-dlp

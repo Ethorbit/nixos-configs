@@ -12,8 +12,9 @@ with pkgs;
             paths = [
                 chromium
             ];
-            buildInputs = [ pkgs.makeWrapper ];
+            buildInputs = [ makeWrapper ];
             postBuild = ''
+                ${config.ethorbit.components.web-browsing.chromium.wrappers.videoEncoding}
                 wrapProgram $out/bin/chromium --unset LD_PRELOAD
             '';
         })
