@@ -45,12 +45,11 @@
             };
 
             initialPrefs = {
-                "pinned_extensions" = config.programs.chromium.extensions;
+                "extensions" = {
+                    "pinned_extensions" = config.programs.chromium.extensions;
+                };
                 "session" = {
                     "restore_on_startup" = 1;
-                };
-                "browser" = {
-                    "confirm_to_quit" = true;
                 };
             };
         };
