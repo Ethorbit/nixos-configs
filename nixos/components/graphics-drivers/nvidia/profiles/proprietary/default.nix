@@ -26,7 +26,7 @@ in
             nvidiaSettings = true;
             open = false;
         };
-#fuck
+
         hardware.opengl.extraPackages = [ nvidia-vaapi-driver ];
         services.xserver.videoDrivers = [ "nvidia" ];
 
