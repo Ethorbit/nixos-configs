@@ -1,18 +1,20 @@
+# Using old CUDA until the newer NVIDIA driver patch is available upstream
+
 { config, lib, pkgs, ... }:
 
 with pkgs;
 {
     nixpkgs.config.cudaSupport = true;
-
+    
     environment.systemPackages = [
-        cudaPackages.cudatoolkit
+        old.cudaPackages.cudatoolkit
     ];
 
-    hardware.opengl.extraPackages = [ cudaPackages.cudatoolkit ];
+    hardware.opengl.extraPackages = [ old.cudaPackages.cudatoolkit ];
 
     # WSL requires some path variables to be set to work with CUDA
     environment.variables = with pkgs; lib.mkIf config.wsl.enable {
-        CUDA_PATH="${cudaPackages.cudatoolkit}";
+        CUDA_PATH="${old.cudaPackages.cudatoolkit}";
         NIX_LD_LIBRARY_PATH="/usr/lib/wsl/lib";
         LD_LIBRARY_PATH="/usr/lib/wsl/lib:${linuxPackages.nvidia_x11}/lib:${ncurses5}/lib";
         EXTRA_LDFLAGS="-L/lib -L${linuxPackages.nvidia_x11}/lib";

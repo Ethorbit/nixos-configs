@@ -19,5 +19,5 @@
         ../../../nixos/components/graphics-drivers/nvidia/profiles/cuda
     ];
 
-    ethorbit.graphics.nvidia.proprietary.selectedPackage = config.boot.kernelPackages.nvidiaPackages.production;
+    #ethorbit.graphics.nvidia.proprietary.selectedPackage = config.boot.kernelPackages.nvidiaPackages.production;
 }

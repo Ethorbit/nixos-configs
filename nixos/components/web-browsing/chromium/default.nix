@@ -44,16 +44,15 @@
                 "ImportHistory" = false;
             };
 
-            # Not supported in 23.11 and I don't feel safe updating yet with the recent nix drama..
-            #initialPrefs = {
-            #    "pinned_extensions" = config.programs.chromium.extensions;
-            #    "session" = {
-            #        "restore_on_startup" = 1;
-            #    };
-            #    "browser" = {
-            #        "confirm_to_quit" = true;
-            #    };
-            #};
+            initialPrefs = {
+                "pinned_extensions" = config.programs.chromium.extensions;
+                "session" = {
+                    "restore_on_startup" = 1;
+                };
+                "browser" = {
+                    "confirm_to_quit" = true;
+                };
+            };
         };
     };
 }

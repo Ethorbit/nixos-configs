@@ -14,6 +14,11 @@ with inputs;
 
     nixpkgs.overlays = [
         (self: super: {
+            old = (import inputs.nixpkgs-old {
+                system = super.system;
+                config.allowUnfree = true;
+            });
+
             unstable = (import inputs.nixpkgs-unstable {
                 system = super.system;
                 config.allowUnfree = true;

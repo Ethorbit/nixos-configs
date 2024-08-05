@@ -73,8 +73,8 @@ in
                     for f in $(find $out/bin/ -type f -executable); do
                         wrapProgram "$f" \
                           --prefix PATH ":" "${pkgs.xsel}/bin:${pkgs.xorg.xrandr}/bin/xrandr:$PATH" \
-                          --prefix LD_LIBRARY_PATH ":" "${cudaPackages.cudatoolkit}/lib:$LD_LIBRARY_PATH" \
-                          --prefix CUDA_PATH ":" "${cudaPackages.cudatoolkit}:$CUDA_PATH" \
+                          --prefix LD_LIBRARY_PATH ":" "${old.cudaPackages.cudatoolkit}/lib:$LD_LIBRARY_PATH" \
+                          --prefix CUDA_PATH ":" "${old.cudaPackages.cudatoolkit}:$CUDA_PATH" \
                           --prefix SELKIES_WEB_ROOT ":" "${config.ethorbit.pkgs.python.selkies-gstreamer-web}/gst-web" \
                           --prefix GI_TYPELIB_PATH ":" "${gobject-introspection.out}/lib/girepository-1.0:$GI_TYPELIB_PATH" \
                           --prefix GST_PY_PATH ":" "${python311Packages.gst-python}/lib/python3.11" \

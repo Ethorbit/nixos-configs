@@ -37,11 +37,8 @@
                 enable = true;
                 enableCompletion = true;
                 syntaxHighlighting.enable = true;
-                # 1. Why do people change variable names without adding backwards compatibility?
-                # 2. Why does nix not allow us to check if an option exists before setting it?
-                # Comment the one that causes the error. \o/
-                #autosuggestion.enable = true;
-                enableAutosuggestions = true;
+                autosuggestion.enable = true;
+                #enableAutosuggestions = true;
                 history = {
                     share = true;
                     ignoreDups = true;

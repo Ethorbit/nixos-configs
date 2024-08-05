@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 {
-    services.xserver.libinput = with lib; {
+    services.libinput = with lib; {
         mouse = {
             accelProfile = mkDefault "flat";
             accelSpeed = mkDefault "0.0";
