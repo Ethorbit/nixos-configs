@@ -15,7 +15,10 @@ with pkgs;
             buildInputs = [ makeWrapper ];
             postBuild = ''
                 ${config.ethorbit.components.web-browsing.chromium.wrappers.videoEncoding}
-                wrapProgram $out/bin/chromium --unset LD_PRELOAD
+                # GPU compositing causes slowness / lower framerate \o/
+                wrapProgram $out/bin/chromium \
+                    --unset LD_PRELOAD \
+                    --add-flags "--disable-gpu-compositing"
             '';
         })
     ];
