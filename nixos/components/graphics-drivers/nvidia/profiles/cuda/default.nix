@@ -1,5 +1,3 @@
-# Using old CUDA until the newer NVIDIA driver patch is available upstream
-
 { config, lib, pkgs, ... }:
 
 with pkgs;
