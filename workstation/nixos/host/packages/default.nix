@@ -16,6 +16,7 @@
         #moonlight-qt
         neofetch
 
+        virtiofsd
         virt-viewer
 
         obs-studio

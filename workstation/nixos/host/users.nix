@@ -11,7 +11,7 @@
             };
 
             "workstation" = {
-                extraGroups = [ "wheel" "docker" "container" "audio" "video" "input" ];
+                extraGroups = [ "wheel" "libvirtd" "docker" "container" "audio" "video" "input" ];
             };
         };
     };

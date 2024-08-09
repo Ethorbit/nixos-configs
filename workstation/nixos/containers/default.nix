@@ -48,6 +48,7 @@ in
             hostBridge = "br0";
 
             extraFlags = [
+                #"--private-users=yes" # breaks everything \o/
                 "--tmpfs=/tmp:nosuid,size=16G"
             ] ++ data.extraFlags;
 

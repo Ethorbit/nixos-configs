@@ -1,4 +1,7 @@
 { config, ... }:
 
 {
+    imports = [
+        ./openssh.nix
+    ];
 }

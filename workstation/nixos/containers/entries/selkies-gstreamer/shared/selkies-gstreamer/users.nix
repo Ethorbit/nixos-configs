@@ -6,7 +6,6 @@
     users = {
         users = {
             "${config.ethorbit.users.primary.username}" = {
-                group = lib.mkForce "container";
                 extraGroups = [ "video" "power" ];
                 hashedPasswordFile = config.age.secrets."user/password".path;
             };

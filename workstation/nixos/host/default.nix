@@ -18,8 +18,10 @@
         ../../../nixos/components/file-chooser/profiles/nautilus
     ];
 
-    hardware.pulseaudio.zeroconf.discovery.enable = true;
     networking.hostName = "workstation";
+    programs.virt-manager.enable = true;
+    virtualisation.libvirtd.enable = true;
+    hardware.pulseaudio.zeroconf.discovery.enable = true;
 
     # "Enabling realtime may improve latency and reduce stuttering, specially in high load scenarios." - https://nixos.wiki/wiki/Sway
     security.pam.loginLimits = [
