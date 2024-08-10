@@ -23,11 +23,6 @@
     virtualisation.libvirtd.enable = true;
     hardware.pulseaudio.zeroconf.discovery.enable = true;
 
-    # "Enabling realtime may improve latency and reduce stuttering, specially in high load scenarios." - https://nixos.wiki/wiki/Sway
-    security.pam.loginLimits = [
-        { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
-    ];
-
     # We need to optimize the slices to reduce lag
     # during resource contention
     systemd.slices = {
