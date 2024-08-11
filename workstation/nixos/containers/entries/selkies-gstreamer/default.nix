@@ -62,8 +62,7 @@ in
             ip = "172.16.1.220";
             imports = [
                 ./shared/selkies-gstreamer
-                # To allow Flatpak to work
-                ./shared/bubblewrap-fix
+                ./shared/flatpak
                 ./shared/browsing
                 ./shared/media
                 ./programming
@@ -83,9 +82,26 @@ in
             ];
         });
 
-        "videoediting" = defaults // (makeEntry {
+        "gaming" = defaults // (makeEntry {
             inherit traefikCreator;
             ip = "172.16.1.221";
+            imports = [
+                ./shared/selkies-gstreamer
+                ./shared/flatpak
+                ./shared/browsing
+                ./gaming
+            ];
+            bindMounts = {
+                "/mnt/storage/SteamLibrary".isReadOnly = false;
+                "/mnt/storage/Pictures/gaming".isReadOnly = false;
+                "/mnt/storage/Videos/gaming".isReadOnly = false;
+                "/mnt/storage/Downloads/gaming".isReadOnly = false;
+            };
+        });
+
+        "videoediting" = defaults // (makeEntry {
+            inherit traefikCreator;
+            ip = "172.16.1.222";
             imports = [
                 ./shared/selkies-gstreamer
                 ./shared/network_mounts/videos
@@ -102,7 +118,7 @@ in
 
         "audioediting" = defaults // (makeEntry {
             inherit traefikCreator;
-            ip = "172.16.1.222";
+            ip = "172.16.1.223";
             imports = [
                 ./shared/selkies-gstreamer
                 ./shared/network_mounts/videos
@@ -119,7 +135,7 @@ in
 
         "imageediting" = defaults // (makeEntry {
             inherit traefikCreator;
-            ip = "172.16.1.223";
+            ip = "172.16.1.224";
             imports = [
                 ./shared/selkies-gstreamer
                 ./shared/browsing
@@ -133,7 +149,7 @@ in
 
         "modelling" = defaults // (makeEntry {
             inherit traefikCreator;
-            ip = "172.16.1.224";
+            ip = "172.16.1.225";
             imports = [
                 ./shared/selkies-gstreamer
                 ./shared/browsing
@@ -147,7 +163,7 @@ in
 
         "musicplayer" = defaults // (makeEntry {
             inherit traefikCreator;
-            ip = "172.16.1.225";
+            ip = "172.16.1.226";
             imports = [
                 ./shared/selkies-gstreamer
                 ./shared/media
@@ -167,7 +183,7 @@ in
 
         "socials" = defaults // (makeEntry {
             inherit traefikCreator;
-            ip = "172.16.1.226";
+            ip = "172.16.1.227";
             imports = [
                 ./shared/selkies-gstreamer
                 ./shared/network_mounts/videos
@@ -183,7 +199,7 @@ in
 
         "finance" = defaults // (makeEntry {
             inherit traefikCreator;
-            ip = "172.16.1.227";
+            ip = "172.16.1.228";
             imports = [
                 ./shared/selkies-gstreamer
                 ./shared/browsing
@@ -204,7 +220,7 @@ in
         # Should not be used directly, has a web panel.
         #"stablediffusion" = defaults // (makeEntry {
         #    inherit traefikCreator;
-        #    ip = "172.16.1.228";
+        #    ip = "172.16.1.229";
         #    imports = [
         #        ./shared/selkies-gstreamer
         #        ./stablediffusion
