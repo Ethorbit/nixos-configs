@@ -16,6 +16,8 @@
         #moonlight-qt
         neofetch
 
+        libreoffice-qt
+
         virtiofsd
         virt-viewer
 
