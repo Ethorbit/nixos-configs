@@ -51,5 +51,8 @@ with auth;
         SELKIES_TURN_TLS = builtins.toString turn.tls;
         SELKIES_TURN_SHARED_SECRET = builtins.toString turn.sharedSecret;
         SELKIES_TURN_SHARED_SECRET_FILE = builtins.toString turn.sharedSecretFile;
+
+        # Steam's Proton will want to use Vulkan renderer for games, but we want OpenGL for VirtualGL compatibility
+        PROTON_USE_WINED3D = "1";
     };
 }

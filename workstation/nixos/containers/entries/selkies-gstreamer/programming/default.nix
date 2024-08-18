@@ -7,6 +7,8 @@
         ./packages.nix
     ];
 
+    
+
     users = {
         users = {
             "${config.ethorbit.users.primary.username}" = {
