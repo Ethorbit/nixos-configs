@@ -5,7 +5,8 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
-
+  hardware.bluetooth.enable = true;
+  
   imports = [
     ../../../nixos/hardware/vm/virtio
   ];

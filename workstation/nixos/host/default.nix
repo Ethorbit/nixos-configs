@@ -4,13 +4,13 @@
     imports = [
         ./hardware-configuration.nix
         ./bootloader.nix
+        ./audio.nix
         ./packages
         ./users.nix
         ./services
         ./networking
         ./desktop.nix
         ./home-manager.nix
-        ../../../nixos/components/audio-server/profiles/pulseaudio
         ../../../nixos/components/web-browsing/chromium
         ../../../nixos/components/containers/docker
         ../../../nixos/components/display-nesting/profiles/xephyr
@@ -21,7 +21,6 @@
     networking.hostName = "workstation";
     programs.virt-manager.enable = true;
     virtualisation.libvirtd.enable = true;
-    hardware.pulseaudio.zeroconf.discovery.enable = true;
 
     # We need to optimize the slices to reduce lag
     # during resource contention
