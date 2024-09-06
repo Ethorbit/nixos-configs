@@ -310,10 +310,10 @@
             "inertia": "20"
         },
         "gate": {
-            "state": "false",
+            "state": "true",
             "detection": "RMS",
             "stereo-link": "Average",
-            "range": "-24",
+            "range": "-18.999999999999929",
             "attack": "20",
             "release": "250",
             "threshold": "-18",
@@ -514,9 +514,9 @@
             "stereo-phase": "0"
         },
         "rnnoise": {
-            "state": "true",
+            "state": "false",
             "input-gain": "0",
-            "output-gain": "0",
+            "output-gain": "-0.5",
             "model-path": "Standard RNNoise Model"
         }
     }
