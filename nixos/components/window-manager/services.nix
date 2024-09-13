@@ -21,6 +21,7 @@ in
         description = "Manages the window manager on first start";
         script = ''
             [ -f "$HOME/.desktop-once" ] && source "$HOME/.desktop-once"
+            exit 0
         '';
     };
 
@@ -31,6 +32,7 @@ in
             #command_no_process="${command_no_process.outPath}/bin/command_no_process"
             # $command_no_process 'process-name' 'comnand to run process' # keep process running at all times
             [ -f "$HOME/.desktop-always" ] && source "$HOME/.desktop-always"
+            exit 0
         '';
         wants = [
             "spice-vdagent.service"

@@ -248,6 +248,9 @@
                     bindsym --release Print exec flameshot screen -c -p $HOME/Downloads/Screenshots/
                     bindsym $mod+Print exec flameshot gui  
 
+                    # light-locker cannot start on its own, so we must do it manually
+                    exec_always --no-startup-id /usr/bin/env bash -c "[ $(command -v light-locker) ] && ${config.ethorbit.pkgs.light-locker.script}/bin/script"
+
                     exec_always --no-startup-id picom #--experimental-backends
 
                     # Let these services handle everything else (the things that all desktops should do): 
