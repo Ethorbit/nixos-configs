@@ -44,6 +44,10 @@
         audacity
         blender
         config.ethorbit.pkgs.godot4-mono
+        # dotnet or godot4-mono cries.
+        # I should really fix the package so it can access it on its own
+        # but to be honest, I want to make a game now, not mess with nixos all day..
+        dotnet-sdk
         #godot_4
         gimp
         kdenlive
