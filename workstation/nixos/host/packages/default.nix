@@ -5,27 +5,29 @@
         ./scripts
         ../../../../nixos/packages/yt-dlp-wrapper
         ../../../../nixos/packages/mount-sshfs-run-service
+        ../../../../nixos/packages/godot4-mono
     ];
 
     programs.adb.enable = true;
 
     environment.systemPackages = with pkgs; [
         coturn
-
-        # weird ToolBar.qml error, I'll just install it as a Flatpak instead
-        #moonlight-qt
         neofetch
 
         libreoffice-qt
 
+        # weird ToolBar.qml error, I'll just install it as a Flatpak instead
+        #moonlight-qt
         virtiofsd
         virt-viewer
 
-        obs-studio
         keepassxc
 
         filezilla
         sshfs
+
+        yt-dlp
+        config.ethorbit.pkgs.yt-dlp-wrapper
 
         #firefox
         (symlinkJoin {
@@ -39,12 +41,13 @@
             '';
         })
 
-        # until the containers are up and running, everything will have to be done on host
-        yt-dlp
-        config.ethorbit.pkgs.yt-dlp-wrapper
+        audacity
+        blender
+        config.ethorbit.pkgs.godot4-mono
+        #godot_4
         gimp
         kdenlive
-        audacity
+        obs-studio
     ];
 
     services.flatpak = {
@@ -54,7 +57,7 @@
             # Useful for accessing Windows VM(s?) or remote systems
             # maybe even GPU passthrough --> Windows --> GPU-PV --> multiple Windows guests w/ Sunshine
             # if only that setup didn't fucking crash Proxmox every ~5 minutes :(
-            "flathub:app/com.moonlight_stream.Moonlight//stable"
+            #"flathub:app/com.moonlight_stream.Moonlight//stable"
         ];
     };
 }
