@@ -1,6 +1,7 @@
 { inputs, system, ... }:
 
 with inputs;
+
 {
     imports = [
         ./nixos
@@ -26,5 +27,6 @@ with inputs;
         })
         nvidia-patch.overlays.default
     ];
+
     environment.systemPackages = [ agenix.packages.${system}.default ];
 }
