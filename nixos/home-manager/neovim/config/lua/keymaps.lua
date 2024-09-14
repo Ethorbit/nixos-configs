@@ -58,7 +58,7 @@ keymap("n", "<C-h>-", ":vertical-resize -20<cr>", opts)
 -- File browser
 keymap("n", "<leader>f", ":RangerEdit<cr>", opts)
 
--- Godot
+-- Godot Engine
 autocmd("FileType", {
     pattern = { "gd", "gdscript", "gdscript3" },
     group = vim.api.nvim_create_augroup("gdscript-keymaps", {}),
@@ -67,14 +67,5 @@ autocmd("FileType", {
         keymap("n", "<F5>", ":GodotRun<CR>", opts)
         keymap("n", "<F6>", ":GodotRunCurrent<CR>", opts)
         keymap("n", "<F7>", ":GodotRunFZF<CR>", opts)
-
-        --vim.g.godot_executable = "/run/current-system/sw/bin/godot4-mono"
-        --vim.lsp.start {
-        --    name = "gdscript",
-        --    --cmd = { "ncat", "127.0.0.1", "6005" },
-        --    cmd = { "curl", "127.0.0.1:6005" },
-        --    capabilities = capabilities,
-        --    root_dir = vim.fs.dirname(vim.fs.find({ "project.godot", ".git" }, { upward = true })[1]),
-        --}
     end,
 })
