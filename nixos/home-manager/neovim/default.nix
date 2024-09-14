@@ -1,8 +1,16 @@
 { config, ... }:
 
+let
+    shellVars = ''
+        EDITOR=nvim
+        VISUAL=nvim
+        NVIM_GODOT_PATH="${config.ethorbit.home-manager.nvim.godotPath}"
+    '';
+in
 {
     imports = [
         ./plugins.nix
+        ./options.nix
     ];
 
     home-manager.users.${config.ethorbit.users.primary.username} = {
@@ -19,9 +27,7 @@
             recursive = true;
         };
 
-        programs.bash.bashrcExtra = ''
-            EDITOR=nvim
-            VISUAL=nvim
-        '';
+        programs.bash.bashrcExtra = shellVars;
+        programs.zsh.initExtra = shellVars;
     };
 }
