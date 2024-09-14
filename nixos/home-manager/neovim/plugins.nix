@@ -29,6 +29,7 @@
                 formatter-nvim
 
                 vim-qml
+                vim-godot
 
                 indent-blankline-nvim
                 

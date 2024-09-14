@@ -5,6 +5,7 @@ local options = {}
 -- Some vim-styled options:
 vim.cmd [[
 let g:ranger_replace_netrw = 1
+let g:godot_executable = "/run/current-system/sw/bin/godot4-mono"
 ]]
 
 ranger_replace_netrw = 1
@@ -20,6 +21,7 @@ options.nvim = {
     cindent = false,
     expandtab = true,
     softtabstop = 0, 
+    foldmethod = "expr",
     shiftwidth = 0,
     tabstop = 4,
     backspace = "indent,eol,start",

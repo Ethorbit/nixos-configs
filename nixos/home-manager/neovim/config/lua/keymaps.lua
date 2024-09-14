@@ -1,5 +1,7 @@
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
+local autocmd = vim.api.nvim_create_autocmd
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 -- Modes
@@ -19,7 +21,7 @@ keymap("n", "<C-d>", ":t.<cr>", opts)
 keymap("n", "[d", ":lua vim.diagnostic.goto_prev()<cr>", opts)
 keymap("n", "]d", ":lua vim.diagnostic.goto_next()<cr>", opts)
 
-vim.api.nvim_create_autocmd("LspAttach", {
+autocmd("LspAttach", {
     callback = function(ev)
         keymap("n", "gd", ":tab split | lua vim.lsp.buf.definition()<cr>", opts)
     end
@@ -55,3 +57,24 @@ keymap("n", "<C-h>-", ":vertical-resize -20<cr>", opts)
 
 -- File browser
 keymap("n", "<leader>f", ":RangerEdit<cr>", opts)
+
+-- Godot
+autocmd("FileType", {
+    pattern = { "gd", "gdscript", "gdscript3" },
+    group = vim.api.nvim_create_augroup("gdscript-keymaps", {}),
+    callback = function()
+        keymap("n", "<F4>", ":GodotRunLast<CR>", opts)
+        keymap("n", "<F5>", ":GodotRun<CR>", opts)
+        keymap("n", "<F6>", ":GodotRunCurrent<CR>", opts)
+        keymap("n", "<F7>", ":GodotRunFZF<CR>", opts)
+
+        --vim.g.godot_executable = "/run/current-system/sw/bin/godot4-mono"
+        --vim.lsp.start {
+        --    name = "gdscript",
+        --    --cmd = { "ncat", "127.0.0.1", "6005" },
+        --    cmd = { "curl", "127.0.0.1:6005" },
+        --    capabilities = capabilities,
+        --    root_dir = vim.fs.dirname(vim.fs.find({ "project.godot", ".git" }, { upward = true })[1]),
+        --}
+    end,
+})
