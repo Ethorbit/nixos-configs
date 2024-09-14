@@ -2,25 +2,25 @@
 
 {
     environment.systemPackages = with pkgs; [
-        (pkgs.writeShellScriptBin "backup-android-pixel-u0.sh" ''
+        (pkgs.writeShellScriptBin "backup-android-pixel-primary.sh" ''
             IP="$1" && [ -z "$IP" ] && echo "Please specify the IP." && exit 0
             ${config.ethorbit.pkgs.mount-sshfs-run-service}/bin/mount-sshfs-run-service.sh \
-                --host u0_a130 \
+                --host android_pixel_primary \
                 --ip "$IP" \
                 --remote-dir ./ \
-                --mount-dir "$HOME/mnt/android_pixel_u0" \
-                --service-name restic-backups-android-pixel-u0.service \
+                --mount-dir "$HOME/mnt/android_pixel_primary" \
+                --service-name restic-backups-android-pixel-primary.service \
                 --system-service
         '')
 
-        (pkgs.writeShellScriptBin "sync-android-pixel-u0.sh" ''
+        (pkgs.writeShellScriptBin "sync-android-pixel-primary.sh" ''
             IP="$1" && [ -z "$IP" ] && echo "Please specify the IP." && exit 0
             # Music
             rsync -aP \
                 --no-perms --no-owner --no-group \
                 --itemize-changes \
                 --delete-during \
-                "$HOME/Music/Mp3 Player/" u0_a130@"$IP":"./Music/Mp3 Player/"
+                "$HOME/Music/Mp3 Player/" android_pixel_primary@"$IP":"./Music/Mp3 Player/"
         '')
     ];
 }

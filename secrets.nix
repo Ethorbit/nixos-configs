@@ -8,9 +8,9 @@ in
     "nixos/secrets/restic/repos/workstation/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/nzc/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/main_os_storage/pass.age".publicKeys = [ ethorbit nixos ];
-    "nixos/secrets/restic/repos/android_pixel_u0/pass.age".publicKeys = [ ethorbit nixos ];
-    "nixos/secrets/restic/repos/android_pixel_u12/pass.age".publicKeys = [ ethorbit nixos ];
-    "nixos/secrets/restic/repos/android_pixel_u16/pass.age".publicKeys = [ ethorbit nixos ];
+    "nixos/secrets/restic/repos/android_pixel_primary/pass.age".publicKeys = [ ethorbit nixos ];
+    "nixos/secrets/restic/repos/android_pixel_dark/pass.age".publicKeys = [ ethorbit nixos ];
+    "nixos/secrets/restic/repos/android_pixel_high/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/users/primary/pass.age".publicKeys = [ ethorbit nixos ];
 
     "homenas/nixos/secrets/samba/users/ethorbit/creds.age".publicKeys = [ ethorbit nixos ];
