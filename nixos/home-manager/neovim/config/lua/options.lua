@@ -2,9 +2,6 @@ local get_option_val = vim.api.nvim_get_option_value
 local set_option_val = vim.api.nvim_set_option_value 
 local options = {}
 
--- NixOS path is different, we set the env var in nix and then read it with os.getenv
-vim.g.godot_executable = os.getenv("NVIM_GODOT_PATH")
-
 -- Some vim-styled options:
 vim.cmd [[
 let g:ranger_replace_netrw = 1

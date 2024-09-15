@@ -28,18 +28,4 @@ add("dockerls")
 add("docker_compose_language_service")
 add("csharp_ls")
 add("qmlls")
-
--- Godot Engine
 add("gdscript")
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "gd", "gdscript", "gdscript3" },
-    group = vim.api.nvim_create_augroup("gdscript-lsp-start", {}),
-    callback = function()
-        vim.lsp.start {
-            name = "gdscript",
-            cmd = { "curl", "127.0.0.1:6005" },
-            capabilities = capabilities,
-            root_dir = vim.fs.dirname(vim.fs.find({ "project.godot", ".git" }, { upward = true })[1]),
-        }
-    end,
-})
