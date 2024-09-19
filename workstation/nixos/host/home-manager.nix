@@ -10,8 +10,7 @@
 
         i3 = {
             workspace.monitor = {
-                one = "DP-3";
-                two = "HDMI-0";
+                one = "HDMI-0";
             };
 
             music.refreshDirectory = "/home/${config.ethorbit.users.primary.username}/Music/Mp3 Player";
