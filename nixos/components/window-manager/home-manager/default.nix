@@ -8,7 +8,6 @@
         ../../../home-manager/dunst
         ../../../home-manager/kitty
         ../../../home-manager/ranger
-        ../../../home-manager/moc
         ../../../home-manager/flameshot
     ];
 }
