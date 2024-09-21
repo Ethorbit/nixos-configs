@@ -5,8 +5,4 @@
         ../../../home-manager/moc
         ./desktop.nix
     ];
-
-    xdg.mime.defaultApplications = {
-        "audio/*" = [ "moc.desktop" ];
-    };
 }
