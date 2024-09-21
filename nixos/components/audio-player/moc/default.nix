@@ -8,6 +8,5 @@
 
     xdg.mime.defaultApplications = {
         "audio/*" = [ "moc.desktop" ];
-        "audio/opus" = [ "moc.desktop" ];
     };
 }
