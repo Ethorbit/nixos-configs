@@ -12,5 +12,8 @@
         ../../../home-manager/flameshot
     ];
 
-    ethorbit.home-manager.xdg.defaultAudioPlayer = "moc.desktop";
+    ethorbit.home-manager.xdg.defaults = {
+        file = "ranger.desktop";
+        audio = "moc.desktop";
+    };
 }

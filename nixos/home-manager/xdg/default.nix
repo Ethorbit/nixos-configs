@@ -1,13 +1,18 @@
 { config, lib, pkgs, ... }:
 
 {
-    options.ethorbit.home-manager.xdg = with lib; {
-        defaultBrowser = mkOption {
+    options.ethorbit.home-manager.xdg.defaults = with lib; {
+        file = mkOption {
+            type = types.str;
+            default = "nautilus.desktop";
+        };
+
+        browser = mkOption {
             type = types.str;
             default = "firefox.desktop";
         };
 
-        defaultAudioPlayer = mkOption {
+        audio = mkOption {
             type = types.str;
             default = "vlc.desktop";
         };
@@ -20,24 +25,25 @@
                 mime.enable = true;
                 mimeApps = with lib; {
                     enable = true;
-                    defaultApplications = {
-                        "text/html" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "x-scheme-handler/http" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "x-scheme-handler/https" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "x-scheme-handler/about" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "x-scheme-handler/unknown" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "x-scheme-handler/chrome" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "x-scheme-handler/ftp" = mkDefault [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "application/xhtml+xml" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "application/x-extension-htm" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "application/x-extension-html" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "application/x-extension-shtml" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "application/x-extension-xhtml" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "application/x-extension-xht" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "application/pdf" = mkDefault [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
-                        "audio/*" = mkDefault [ "${config.ethorbit.home-manager.xdg.defaultAudioPlayer}" ];
-                        "audio/ogg" = mkDefault [ "${config.ethorbit.home-manager.xdg.defaultAudioPlayer}" ];
-                        "audio/opus" = mkDefault [ "${config.ethorbit.home-manager.xdg.defaultAudioPlayer}" ];
+                    defaultApplications = with config.ethorbit.home-manager.xdg.defaults; {
+                        "inode/directory" = mkDefault [ "${file}" ];
+                        "text/html" = [ "${browser}" ];
+                        "x-scheme-handler/http" = [ "${browser}" ];
+                        "x-scheme-handler/https" = [ "${browser}" ];
+                        "x-scheme-handler/about" = [ "${browser}" ];
+                        "x-scheme-handler/unknown" = [ "${browser}" ];
+                        "x-scheme-handler/chrome" = [ "${browser}" ];
+                        "x-scheme-handler/ftp" = mkDefault [ "${browser}" ];
+                        "application/xhtml+xml" = [ "${browser}" ];
+                        "application/x-extension-htm" = [ "${browser}" ];
+                        "application/x-extension-html" = [ "${browser}" ];
+                        "application/x-extension-shtml" = [ "${browser}" ];
+                        "application/x-extension-xhtml" = [ "${browser}" ];
+                        "application/x-extension-xht" = [ "${browser}" ];
+                        "application/pdf" = mkDefault [ "${browser}" ];
+                        "audio/*" = mkDefault [ "${audio}" ];
+                        "audio/ogg" = mkDefault [ "${audio}" ];
+                        "audio/opus" = mkDefault [ "${audio}" ];
                     };
                 };
             };

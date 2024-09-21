@@ -6,7 +6,7 @@
     ];
 
     ethorbit.home-manager = {
-        xdg.defaultBrowser = "chromium-browser.desktop";
+        xdg.defaults.browser = "chromium-browser.desktop";
 
         i3 = {
             workspace.monitor = {

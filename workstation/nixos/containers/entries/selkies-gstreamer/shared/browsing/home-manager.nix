@@ -1,5 +1,5 @@
 { config, lib, ... }:
 
 {
-    ethorbit.home-manager.xdg.defaultBrowser = "chromium.desktop";
+    ethorbit.home-manager.xdg.defaults.fileBrowser = "chromium.desktop";
 }
