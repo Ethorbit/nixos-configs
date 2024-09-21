@@ -6,6 +6,11 @@
             type = types.str;
             default = "firefox.desktop";
         };
+
+        defaultAudioPlayer = mkOption {
+            type = types.str;
+            default = "vlc.desktop";
+        };
     };
 
     config = {
@@ -30,6 +35,9 @@
                         "application/x-extension-xhtml" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
                         "application/x-extension-xht" = [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
                         "application/pdf" = mkDefault [ "${config.ethorbit.home-manager.xdg.defaultBrowser}" ];
+                        "audio/*" = mkDefault [ "${config.ethorbit.home-manager.xdg.defaultAudioPlayer}" ];
+                        "audio/ogg" = mkDefault [ "${config.ethorbit.home-manager.xdg.defaultAudioPlayer}" ];
+                        "audio/opus" = mkDefault [ "${config.ethorbit.home-manager.xdg.defaultAudioPlayer}" ];
                     };
                 };
             };

@@ -5,7 +5,6 @@
         ./packages.nix
         ./home-manager
         ./services.nix
-        ../audio-player/moc
     ];
 
     # Hide mouse cursor when typing.
