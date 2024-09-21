@@ -10,6 +10,7 @@
         feh
         ranger
         trash-cli
+        xdragon
         moc
         jq
         lm_sensors
