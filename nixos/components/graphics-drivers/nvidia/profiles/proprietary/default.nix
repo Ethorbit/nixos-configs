@@ -20,7 +20,11 @@ in
         hardware.nvidia = {
             package = nvidia-patch.patch-nvenc (nvidia-patch.patch-fbc package);
             modesetting.enable = true;
-            powerManagement.enable = false;
+            # This fixes graphical corruption caused by things such as suspension or LightDM lock screen
+            # (Tested only on GTX 1060 6GB with i3WM, issue affected Godot Engine Mono and fixed by this)
+            # Read more:
+            # https://github.com/pop-os/nvidia-graphics-drivers/issues/133
+            powerManagement.enable = true;
             powerManagement.finegrained = false;
             nvidiaSettings = true;
             open = false;
