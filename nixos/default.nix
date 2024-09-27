@@ -5,7 +5,7 @@
         ./nixpkgs
         ./options.nix
         ./bootloader.nix
-        ./packages.nix
+        ./packages
         ./programs
         ./users.nix
         ./timezone.nix
