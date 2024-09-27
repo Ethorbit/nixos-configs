@@ -6,6 +6,7 @@
         ../../../../nixos/packages/yt-dlp-wrapper
         ../../../../nixos/packages/mount-sshfs-run-service
         ../../../../nixos/packages/godot4-mono
+        ../../../../nixos/packages/node/filen-cli
     ];
 
     programs.adb.enable = true;
@@ -23,6 +24,7 @@
 
         keepassxc
 
+        config.ethorbit.pkgs.node.filen-cli
         filezilla
         sshfs
 
