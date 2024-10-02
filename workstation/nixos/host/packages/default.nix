@@ -7,6 +7,7 @@
         ../../../../nixos/packages/mount-sshfs-run-service
         ../../../../nixos/packages/godot4-mono
         ../../../../nixos/packages/node/filen-cli
+        ../../../../nixos/packages/python/codebase-to-text
     ];
 
     programs.adb.enable = true;
@@ -24,6 +25,7 @@
 
         keepassxc
 
+        config.ethorbit.pkgs.python.codebase-to-text
         config.ethorbit.pkgs.node.filen-cli
         filezilla
         sshfs
