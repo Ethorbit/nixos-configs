@@ -19,6 +19,7 @@
         whois
         wget
         git
+        gh
         sudo
         vim
     ];
