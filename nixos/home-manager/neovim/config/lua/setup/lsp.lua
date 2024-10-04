@@ -23,6 +23,16 @@ add("jsonls")
 add("tsserver")
 add("lua_ls")
 add("phpactor")
+add("pylsp", {
+    plugins = {
+        flake8 = { enabled = true },
+        pylint = { enabled = true, executable = "pylint" },
+        pyflakes = { enabled = true },
+        pycodestyle = { enabled = true },
+        pylsp_mypy = { enabled = true },
+        pyls_isort = { enabled = true },
+    }
+})
 add("intelephense")
 add("dockerls")
 add("docker_compose_language_service")

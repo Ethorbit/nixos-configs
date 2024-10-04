@@ -12,6 +12,15 @@
         git-lfs
         qt6.full
         python311Packages.grip
+        (python3.withPackages (p: (with p; [
+            python-lsp-server
+            flake8
+            pycodestyle
+            pyflakes
+            pylint
+            pylsp-mypy
+            pyls-isort
+        ])))
         vscode-langservers-extracted
         nodePackages.eslint
         nodePackages.vscode-json-languageserver-bin
