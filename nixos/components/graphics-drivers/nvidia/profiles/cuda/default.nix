@@ -5,14 +5,14 @@ with pkgs;
     nixpkgs.config.cudaSupport = true;
     
     environment.systemPackages = [
-        old.cudaPackages.cudatoolkit
+        cudaPackages.cudatoolkit
     ];
 
-    hardware.opengl.extraPackages = [ old.cudaPackages.cudatoolkit ];
+    hardware.opengl.extraPackages = [ cudaPackages.cudatoolkit ];
 
     # WSL requires some path variables to be set to work with CUDA
     environment.variables = with pkgs; lib.mkIf config.wsl.enable {
-        CUDA_PATH="${old.cudaPackages.cudatoolkit}";
+        CUDA_PATH="${cudaPackages.cudatoolkit}";
         NIX_LD_LIBRARY_PATH="/usr/lib/wsl/lib";
         LD_LIBRARY_PATH="/usr/lib/wsl/lib:${linuxPackages.nvidia_x11}/lib:${ncurses5}/lib";
         EXTRA_LDFLAGS="-L/lib -L${linuxPackages.nvidia_x11}/lib";
