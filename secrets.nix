@@ -19,6 +19,7 @@ in
     "homenas/nixos/secrets/samba/users/hax/creds.age".publicKeys = [ ethorbit nixos ];
     "homenas/nixos/secrets/samba/users/gaming/creds.age".publicKeys = [ ethorbit nixos ];
     "homenas/nixos/secrets/samba/users/videos/creds.age".publicKeys = [ ethorbit nixos ];
+    "homenas/nixos/secrets/samba/users/ai/creds.age".publicKeys = [ ethorbit nixos ];
 
     "workstation/nixos/host/secrets/authelia/users_database.yml.age".publicKeys = [ ethorbit nixos ];
     "workstation/nixos/host-and-containers/secrets/coturn-secret.age".publicKeys = [ ethorbit nixos ];

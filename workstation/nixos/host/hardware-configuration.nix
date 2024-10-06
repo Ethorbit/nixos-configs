@@ -46,6 +46,7 @@
   age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../../../homenas/nixos/secrets/samba/users/ethorbit/creds.age; };
   age.secrets."homenas/samba/users/gaming/creds" = { file = ../../../homenas/nixos/secrets/samba/users/gaming/creds.age; };
   age.secrets."homenas/samba/users/videos/creds" = { file = ../../../homenas/nixos/secrets/samba/users/videos/creds.age; };
+  age.secrets."homenas/samba/users/ai/creds" = { file = ../../../homenas/nixos/secrets/samba/users/ai/creds.age; };
   environment.etc."nascreds" = {
     mode = "0600";
     source = config.age.secrets."homenas/samba/users/ethorbit/creds".path;
@@ -57,6 +58,10 @@
   environment.etc."nascreds_videos" = {
     mode = "0600";
     source = config.age.secrets."homenas/samba/users/videos/creds".path;
+  };
+  environment.etc."nascreds_ai" = {
+    mode = "0600";
+    source = config.age.secrets."homenas/samba/users/ai/creds".path;
   };
   fileSystems."/mnt/homenas" = {
     fsType = "cifs";
@@ -72,6 +77,11 @@
     fsType = "cifs";
     device = "//${config.ethorbit.network.homenas.ip}/videos";
     options = [ "credentials=/etc/nascreds_videos" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
+  };
+  fileSystems."/mnt/homenas_ai" = {
+    fsType = "cifs";
+    device = "//${config.ethorbit.network.homenas.ip}/ai";
+    options = [ "credentials=/etc/nascreds_ai" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
   };
   
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
