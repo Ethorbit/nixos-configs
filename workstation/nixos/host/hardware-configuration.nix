@@ -2,11 +2,12 @@
 
 {
   boot.initrd.availableKernelModules = [ "sd_mod" "sr_mod" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.initrd.kernelModules = [ "dm-snapshot" "dm_thin_pool" ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
   hardware.bluetooth.enable = true;
-  
+  hardware.steam-hardware.enable = true;
+ 
   imports = [
     ../../../nixos/hardware/vm/virtio
   ];
@@ -30,6 +31,11 @@
 
   fileSystems."/mnt/storage" = { 
     device = "/dev/disk/by-uuid/c7059d02-312a-45c1-a937-9030b875a3c5";
+    fsType = "ext4";
+  };
+
+  fileSystems."/mnt/games" = {
+    device = "/dev/disk/by-uuid/f18727c3-822e-4747-a874-d61e784250ad";
     fsType = "ext4";
   };
 
