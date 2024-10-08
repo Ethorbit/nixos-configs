@@ -86,12 +86,12 @@
   fileSystems."/mnt/homenas_hax" = {
     fsType = "cifs";
     device = "//${config.ethorbit.network.homenas.ip}/hax";
-    options = [ "credentials=/etc/nascreds_hax" "uid=1000" "gid=1010" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
+    options = [ "credentials=/etc/nascreds_hax" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
   };
   fileSystems."/mnt/homenas_gaming" = {
     fsType = "cifs";
     device = "//${config.ethorbit.network.homenas.ip}/gaming";
-    options = [ "credentials=/etc/nascreds_gaming" "uid=1010" "gid=1010" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
+    options = [ "credentials=/etc/nascreds_gaming" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
   };
   
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
