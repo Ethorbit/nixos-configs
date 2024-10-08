@@ -8,10 +8,12 @@
         ./style.nix
     ];
 
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
         services.polybar = {
             enable = true;
+        };
 
+        services.polybar = {
             package = pkgs.polybarFull;
 
             script = ''
@@ -139,5 +141,5 @@
                 };
             };
         };
-    };
+    } ];
 }

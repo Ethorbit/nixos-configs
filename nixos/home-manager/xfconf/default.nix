@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
         xfconf.settings = {
             xsettings = {
                 "Gtk/CursorThemeName" = "Adwaita";
@@ -37,5 +37,5 @@
                 "xfce4-power-manager/dpms-on-ac-sleep" = 120;
             };
         };
-    };
+    } ];
 }

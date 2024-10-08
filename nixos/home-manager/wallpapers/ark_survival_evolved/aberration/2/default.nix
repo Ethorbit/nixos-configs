@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
         # original url: https://wallpapercave.com/wp/wp9720201.png
         # the website blocks my download requests so I re-uploaded it to Dropbox.
         home.file.".wallpapers/ark_survival_evolved_aberration_2.jpg" = {
@@ -10,5 +10,5 @@
                 sha256 = "sha256:0p79lsby7d13rqbl8c31lybh4d2xihwiivz7d6ipqadl7lahxzdx";
             });
         };
-    };
+    } ];
 }

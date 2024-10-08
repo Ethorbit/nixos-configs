@@ -2,7 +2,7 @@
 
 with lib;
 {
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
         services.pulseeffects = {
             enable = mkDefault true;
             preset = "Main";
@@ -12,5 +12,5 @@ with lib;
             source = ./config;
             recursive = true;
         };
-    };
+    } ];
 }

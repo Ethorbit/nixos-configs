@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
         home = with pkgs; {
             pointerCursor = {
                 gtk.enable = true;
@@ -34,5 +34,5 @@
                 gtk-application-prefer-dark-theme = 1;
             };
         };
-    };
+    } ];
 }

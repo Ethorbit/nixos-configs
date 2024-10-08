@@ -1,25 +1,29 @@
 { config, lib, pkgs, ... }:
 
+with lib;
+
 {
-    options.ethorbit.home-manager.xdg.defaults = with lib; {
-        file = mkOption {
-            type = types.str;
-            default = "nautilus.desktop";
-        };
+    options.ethorbit.home-manager.xdg = {
+        defaults = {
+            file = mkOption {
+                type = types.str;
+                default = "nautilus.desktop";
+            };
 
-        browser = mkOption {
-            type = types.str;
-            default = "firefox.desktop";
-        };
+            browser = mkOption {
+                type = types.str;
+                default = "firefox.desktop";
+            };
 
-        audio = mkOption {
-            type = types.str;
-            default = "vlc.desktop";
+            audio = mkOption {
+                type = types.str;
+                default = "vlc.desktop";
+            };
         };
     };
 
     config = {
-        home-manager.users.${config.ethorbit.users.primary.username} = { lib, ... }: {
+        home-manager.sharedModules = [ {
             xdg = {
                 enable = true;
                 mime.enable = true;
@@ -52,6 +56,6 @@
             # Even with the above, xdg-settings get default-web-browser returns the wrong thing.
             # xdg-settings set default-web-browser fixes it, but it needs to be run interactively.
             # Because of this, I do not know of any automated solution to set the default web browser.
-        };
+        } ];
     };
 }

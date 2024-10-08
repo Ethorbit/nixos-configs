@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
     imports = [
@@ -28,7 +28,14 @@
     };
 
     config = {
-        home-manager.users.${config.ethorbit.users.primary.username} = {
+        home-manager.sharedModules = [ {
+            home.file.".xinitrc" = {
+                executable = true;
+                text = ''
+                    exec ${pkgs.dbus}/bin/dbus-launch ${pkgs.i3}/bin/i3
+                '';
+            };
+
             home.file.".config/i3/config" = {
                 text = ''
                     # i3 config file (v4)
@@ -258,6 +265,6 @@
                     exec_always --no-startup-id systemctl --user restart window-manager-always.service
                 '';
             };
-        };
+        } ];
     };
 }

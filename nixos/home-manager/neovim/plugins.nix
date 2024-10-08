@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
         programs.neovim = {
             withNodeJs = true;
             plugins = with pkgs.vimPlugins; [
@@ -40,5 +40,5 @@
                 nui-nvim
             ];
         };
-    };
+    } ];
 }

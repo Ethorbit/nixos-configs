@@ -5,7 +5,7 @@
         ./desktop.nix
     ];
 
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
         home.file.".moc/config".text = ''
             Theme = ${pkgs.moc}/share/moc/themes/transparent-background 
             Shuffle = yes
@@ -13,5 +13,5 @@
             MusicDir = $HOME/Music/
             SoundDriver = PULSEAUDIO
         '';
-    };
+    } ];
 }

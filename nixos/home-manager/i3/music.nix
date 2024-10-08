@@ -9,7 +9,7 @@
     };
 
     config = with lib; {
-        home-manager.users.${config.ethorbit.users.primary.username} = {
+        home-manager.sharedModules = [ {
             home.file.".config/i3/music".text = ''
                 mode "music" {
                     bindsym m mode "default"
@@ -68,7 +68,7 @@
 
                 bindsym $mod+m mode "music" fullscreen disable
             '';
-        };
+        } ];
     };
 }
 

@@ -1,14 +1,14 @@
 { config, pkgs, ... }:
 
 {
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
+        programs.rofi.enable = true;
+
         programs.rofi.package = (pkgs.rofi.override {
             plugins = [
                 pkgs.rofi-emoji
             ];
         });
-
-        programs.rofi.enable = true;
 
         home.file.".config/rofi/rofi-rofi.sh" = {
             source = ./config/rofi-rofi.sh;
@@ -25,5 +25,5 @@
             source = "${config.ethorbit.pkgs.rofi-adi1090x}/.config/rofi";
             recursive = true;
         };
-    };
+    } ];
 }

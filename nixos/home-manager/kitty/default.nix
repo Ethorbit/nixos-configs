@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
         programs.kitty = {
             enable = true;
         };
@@ -10,5 +10,5 @@
             source = ./config;
             recursive = true;
         };
-    };
+    } ];
 }

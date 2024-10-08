@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
         home = with pkgs; {
             packages = [
                 dconf
@@ -13,5 +13,5 @@
                 color-scheme = "prefer-dark";
             };
         };
-    };
+    } ];
 }

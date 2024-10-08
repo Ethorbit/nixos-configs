@@ -25,7 +25,7 @@
     };
 
     config = {
-        home-manager.users.${config.ethorbit.users.primary.username} = {
+        home-manager.sharedModules = [ {
             # so nix can stay TF outta my way and stop trying to parse properly escaped text
             # (seriously, sometimes nix is just a headache!)
             home.file.".zshrc_text" = {
@@ -56,6 +56,6 @@
                     source ~/.zshrc_text
                 '';
             };
-        };
+        } ];
     };
 }

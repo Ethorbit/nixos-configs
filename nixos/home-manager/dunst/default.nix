@@ -1,12 +1,11 @@
 { config, ... }:
 
 {
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
+        services.dunst.enable = true;
         home.file.".config/dunst" = {
             source = ./config;
             recursive = true;
         };
-    
-        services.dunst.enable = true;
-    };
+    } ];
 }

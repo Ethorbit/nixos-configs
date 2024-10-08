@@ -1,9 +1,9 @@
 { config, ... }:
 
 {
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
         home.file.".imwheelrc" = {
             source = ./config/.imwheelrc
         };
-    };
+    } ];
 }

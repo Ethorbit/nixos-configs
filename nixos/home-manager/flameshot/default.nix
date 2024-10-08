@@ -1,17 +1,24 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    options.ethorbit.home-manager.flameshot = with lib; {
+        saveDirectory = mkOption {
+            default = "/home/${config.ethorbit.users.primary.username}/Pictures";
+            description = "The directory to save flameshot pics to.";
+        };
+    };
+
+    config.home-manager.sharedModules = [ {
         services.flameshot = {
             enable = true;
             settings = {
                 General = {
+                    savePath = "${config.ethorbit.home-manager.flameshot.saveDirectory}";
                     contrastOpacity = 188;
                     disabledTrayIcon = false;
                     drawColor = "#800000";
                     drawThickness = 7;
                     ignoreUpdateToVersion = "12.1.0";
-                    savePath = "/home/${config.ethorbit.users.primary.username}/Pictures";
                     showStartupLaunchMessage = true;
                 };
 
@@ -51,5 +58,5 @@
                 };
             };
         };
-    };
+    } ];
 }

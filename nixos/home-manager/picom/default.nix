@@ -18,9 +18,10 @@ with lib;
     };
 
     config = {
-        home-manager.users.${config.ethorbit.users.primary.username} = {
+        home-manager.sharedModules = [ {
             services.picom = {
                 enable = mkDefault true;
+
                 # Specify the backend to use: `xrender`, `glx`, or `xr_glx_hybrid`.
                 # `xrender` is the default one.
                 #
@@ -427,6 +428,6 @@ with lib;
                     #round-borders = 0
                 };
             };
-        };
+        } ];
     };
 }

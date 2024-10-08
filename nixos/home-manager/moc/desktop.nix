@@ -10,7 +10,7 @@ let
     '';
 in
 {
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
         xdg.desktopEntries.moc = {
             name = "moc";
             exec = ''/usr/bin/env sh ${script}/bin/script %f'';
@@ -19,5 +19,5 @@ in
             categories = [ "Audio" ];
             mimeType = [ "audio/*" ];
         };
-    };
+    } ];
 }

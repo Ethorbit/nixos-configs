@@ -8,9 +8,10 @@
 
     home-manager = {
         useGlobalPkgs = true;
+        backupFileExtension = ".bak";
 
-        users.${config.ethorbit.users.primary.username} = {
+        sharedModules = [ {
             home.stateVersion = "23.11";
-        };
+        } ];
     };
 }

@@ -12,7 +12,7 @@ in
         ./options.nix
     ];
 
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
         programs.neovim = {
             enable = true;
             defaultEditor = true;
@@ -32,5 +32,5 @@ in
 
         programs.bash.bashrcExtra = shellVars;
         programs.zsh.initExtra = shellVars;
-    };
+    } ];
 }

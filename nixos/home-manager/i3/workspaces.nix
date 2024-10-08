@@ -32,7 +32,7 @@ in
         description = "The monitor name (retrieved by tools such as Xrandr) that should be assigned to this keyboard number, you press (Super + #) to select which monitor to manage workspaces for.";
     }) monitors;
 
-    config.home-manager.users.${config.ethorbit.users.primary.username} = {
+    config.home-manager.sharedModules = [ {
         home.file = mapAttrs (name: data: {
             text = ''
                 set $i3_resurrect ${pkgs.i3-resurrect}/bin/i3-resurrect
@@ -121,5 +121,5 @@ in
                 '' else "")}
             ''; 
         }) monitorFiles;
-    };
+    } ];
 }

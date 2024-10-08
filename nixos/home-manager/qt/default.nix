@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-    home-manager.users.${config.ethorbit.users.primary.username} = {
+    home-manager.sharedModules = [ {
         qt = {
             enable = true;
             #platformTheme = "gnome";
@@ -10,5 +10,5 @@
                 name = "adwaita-dark";
             };
         };
-    };
+    } ];
 }
