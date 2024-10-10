@@ -7,7 +7,6 @@ with inputs;
         ./nixos
         home-manager.nixosModules.default
         agenix.nixosModules.default
-        #flatpaks.nixosModules.default
         flatpaks.nixosModules.nix-flatpak
         NixOS-WSL.nixosModules.wsl
     ];
