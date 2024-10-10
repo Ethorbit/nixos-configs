@@ -12,7 +12,10 @@
         };
 
         agenix.url = "github:ryantm/agenix";
-        flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
+        # having endless problems trying to get this working in Home Manager
+        #flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
+        # but this one actually works as intended
+        flatpaks.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
 
         nvidia-patch = {
             url = "github:icewind1991/nvidia-patch-nixos";
@@ -94,7 +97,7 @@
                 ];
             };
 
-            # Workstation OS, the powerhouse of all productivity.
+            # Workstation OS, the general-purpose powerhouse for monster rigs
             "workstation" = nixpkgs.lib.nixosSystem {
                 inherit system;
                 specialArgs = { inherit inputs outputs system; };

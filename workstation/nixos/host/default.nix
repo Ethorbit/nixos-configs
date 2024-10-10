@@ -10,7 +10,8 @@
         ./services
         ./networking
         ./desktop.nix
-        ./home-manager.nix
+        ./flatpak.nix
+        ./home-manager
         ../../../nixos/components/web-browsing/chromium
         ../../../nixos/components/containers/docker
         ../../../nixos/components/display-nesting/profiles/xephyr

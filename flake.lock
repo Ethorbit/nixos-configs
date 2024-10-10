@@ -101,17 +101,17 @@
     },
     "flatpaks": {
       "locked": {
-        "lastModified": 1724542578,
-        "narHash": "sha256-bAOdIE8wBhXLDo9YNiJXkTPog39BLANNlHXANAnbDk8=",
-        "owner": "GermanBread",
-        "repo": "declarative-flatpak",
-        "rev": "d0ac1633b1477954f0c172bdb07bc7896fa602cc",
+        "lastModified": 1711997201,
+        "narHash": "sha256-J71xzQlVYsjagA4AsVwRazhBh2rZrPpKvxTgs6UzL7c=",
+        "owner": "gmodena",
+        "repo": "nix-flatpak",
+        "rev": "b76fa31346db7fc958a9898f3c594696ca71c4fd",
         "type": "github"
       },
       "original": {
-        "owner": "GermanBread",
-        "ref": "stable",
-        "repo": "declarative-flatpak",
+        "owner": "gmodena",
+        "ref": "v0.4.1",
+        "repo": "nix-flatpak",
         "type": "github"
       }
     },

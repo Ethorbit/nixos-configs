@@ -6,6 +6,7 @@
         ./options.nix
         ./bootloader.nix
         ./packages
+        ./flatpak.nix
         ./programs
         ./users.nix
         ./timezone.nix

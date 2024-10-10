@@ -61,16 +61,4 @@
         # startx is needed to accomplish that.
         xorg.xinit
     ];
-
-    services.flatpak = {
-        enable = true;
-        remotes.flathub = "https://flathub.org/repo/flathub.flatpakrepo";
-        packages = [
-            "flathub:app/com.github.tchx84.Flatseal//stable"
-            # Useful for accessing Windows VM(s?) or remote systems
-            # maybe even GPU passthrough --> Windows --> GPU-PV --> multiple Windows guests w/ Sunshine
-            # if only that setup didn't fucking crash Proxmox every ~5 minutes :(
-            #"flathub:app/com.moonlight_stream.Moonlight//stable"
-        ];
-    };
 }

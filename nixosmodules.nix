@@ -1,4 +1,4 @@
-{ inputs, system, ... }:
+{ inputs, system, lib, ... }:
 
 with inputs;
 
@@ -7,8 +7,13 @@ with inputs;
         ./nixos
         home-manager.nixosModules.default
         agenix.nixosModules.default
-        flatpaks.nixosModules.default
+        #flatpaks.nixosModules.default
+        flatpaks.nixosModules.nix-flatpak
         NixOS-WSL.nixosModules.wsl
+    ];
+
+    home-manager.sharedModules = [
+        flatpaks.homeManagerModules.nix-flatpak
     ];
 
     age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
