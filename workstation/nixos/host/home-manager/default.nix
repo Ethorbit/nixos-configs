@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ./flatpak.nix
+        ./flatpak
         ./xdg.nix
         ./i3.nix
         ../../../../nixos/home-manager/wallpapers/ark_survival_evolved/aberration
