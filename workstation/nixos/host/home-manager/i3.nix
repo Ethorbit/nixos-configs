@@ -15,7 +15,8 @@
     home-manager.sharedModules = [ {
         home.file.".config/i3/config_system".text = ''
             # Second monitor will be used for casual gaming
-            for_window [class="steam"] move to workspace b1
+            for_window [class="steam|steamwebhelper"] move to workspace b1
+            for_window [class="steam_app_*"] move to workspace b1
         '';
     } ];
 }

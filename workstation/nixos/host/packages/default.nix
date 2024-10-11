@@ -8,6 +8,7 @@
         ../../../../nixos/packages/godot4-mono
         ../../../../nixos/packages/node/filen-cli
         ../../../../nixos/packages/python/codebase-to-text
+        ../../../../nixos/packages/appimage/nexusmods
     ];
 
     programs.adb.enable = true;
@@ -60,5 +61,7 @@
         # This system may use several TTY user desktops
         # startx is needed to accomplish that.
         xorg.xinit
+
+        config.ethorbit.pkgs.appimage.nexusmods
     ];
 }
