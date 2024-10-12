@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./systemd.nix
         ./flatpak
         ./xdg.nix
         ./i3.nix
