@@ -6,6 +6,8 @@ with lib;
     imports = [
         ./steam.nix
         ./lutris.nix
+        ./limo.nix
+        ./loot.nix
     ];
 
     options.ethorbit.workstation.home-manager.flatpak = {
