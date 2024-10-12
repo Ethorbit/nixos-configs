@@ -7,7 +7,6 @@ with lib;
         ./steam.nix
         ./lutris.nix
         ./limo.nix
-        ./loot.nix
     ];
 
     options.ethorbit.workstation.home-manager.flatpak = {
@@ -23,6 +22,28 @@ with lib;
                 "/mnt/storage/Projects/Cheats/gmod/autorun/logs:rw"
                 "/mnt/storage/Projects/Cheats/gmod/autorun/lua_dumps:rw"
             ];
+        };
+    };
+
+    config = {
+        home-manager.users.${config.ethorbit.users.primary.username} = {
+            services.flatpak = {
+                enable = true;
+                packages = [
+                    {
+                        appId = "com.valvesoftware.Steam.CompatibilityTool.Proton-GE";
+                        origin = "flathub";
+                    }
+                    {
+                        appId = "runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08";
+                        origin = "flathub";
+                    }
+                    {
+                        appId = "runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08";
+                        origin = "flathub";
+                    }
+                ];
+            };
         };
     };
 }
