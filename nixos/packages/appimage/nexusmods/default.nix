@@ -1,9 +1,5 @@
-# TODO: build from source using Dotnet tools
-# I tried this earlier, but kept getting missing package errors
-# It's an issue with their project, because it happens
-# in Docker Ubuntu as well..
-
-# For now, you can just use the dreaded AppImage.
+# The version compiled from source is available in the Nixpkgs repo now.
+# So really no reason to use this..
 
 { config, lib, pkgs, ... }:
 
@@ -35,7 +31,7 @@ let
         name = pname;
         desktopName = "Nexus Mods";
         exec = "${appimageWrapper}/bin/${pname} %f";
-        terminal = true;
+        terminal = false;
     });
 in
 {

@@ -13,8 +13,9 @@ with lib;
             type = types.listOf types.str;
             default = [
                 "/mnt/games:rw"
-                "/mnt/storage/StemaLibrary:rw"
+                "/mnt/storage/Documents/My Games"
                 "/mnt/storage/Pictures/Steam:rw"
+                # Garry's Mod stuff
                 "/mnt/glua:ro"
                 "/mnt/storage/Projects/Cheats/gmod/autorun:ro"
                 "/mnt/storage/Projects/Cheats/gmod/autorun/logs:rw"

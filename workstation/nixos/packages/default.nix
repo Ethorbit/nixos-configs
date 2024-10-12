@@ -8,7 +8,6 @@
         ../../../nixos/packages/godot4-mono
         ../../../nixos/packages/node/filen-cli
         ../../../nixos/packages/python/codebase-to-text
-        ../../../nixos/packages/appimage/nexusmods
     ];
 
     programs.adb.enable = true;
@@ -62,6 +61,5 @@
         # startx is needed to accomplish that.
         xorg.xinit
 
-        config.ethorbit.pkgs.appimage.nexusmods
     ];
 }

@@ -18,6 +18,8 @@
         ../../nixos/components/programming/ide
         ../../nixos/components/file-browser/profiles/nautilus
 
+        ../../nixos/components/gaming/mod-manager/nexus
+
         ../../nixos/components/networking/systemd
         #../../nixos/components/service-discovery/profiles/avahi
 
