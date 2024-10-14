@@ -24,26 +24,4 @@ with lib;
             ];
         };
     };
-
-    config = {
-        home-manager.users.${config.ethorbit.users.primary.username} = {
-            services.flatpak = {
-                enable = true;
-                packages = [
-                    {
-                        appId = "com.valvesoftware.Steam.CompatibilityTool.Proton-GE";
-                        origin = "flathub";
-                    }
-                    {
-                        appId = "runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08";
-                        origin = "flathub";
-                    }
-                    {
-                        appId = "runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08";
-                        origin = "flathub";
-                    }
-                ];
-            };
-        };
-    };
 }

@@ -13,8 +13,8 @@
                 Slice = {
                     CPUAccounting = true;
                     # Default is 100.
-                    CPUWeight = 20;
-                    StartupCPUWeight = 20;
+                    CPUWeight = 80;
+                    StartupCPUWeight = 80;
                     MemoryMax = "50%";
                 };
             };
