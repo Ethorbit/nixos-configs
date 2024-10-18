@@ -2,9 +2,6 @@
 # If you want GOOD performance: switch to Windows or virtualize it and do GPU-Passthrough
 # If it flickers your screen, use the flatpak profile instead \o/
 
-# at least, that's how things are currently as nobody
-# in the Linux community knows what to do.
-
 { config, lib, pkgs, ... }:
 
 with pkgs;
