@@ -45,7 +45,12 @@
                     include $HOME/.config/i3/workspaces/*
                     include $HOME/.config/i3/music
                     include $HOME/.config/i3/config_system # Put your system-dependent i3 configuration in there.
-                    
+
+                    # Prevent auto focusing cause it's really annoying
+                    no_focus [all]
+                    focus_on_window_activation none
+                    mouse_warping none
+
                     # keep this current file for configuration that is meant for global i3 configuration that ALL systems use by default
                     # if there's something that only a few systems will need, keep that in the config_system file above!
                     set $mod ${config.ethorbit.home-manager.i3.keys.mod}
@@ -258,7 +263,7 @@
                     # light-locker cannot start on its own, so we must do it manually
                     exec_always --no-startup-id /usr/bin/env bash -c "[ $(command -v light-locker) ] && ${config.ethorbit.pkgs.light-locker.script}/bin/script"
 
-                    exec_always --no-startup-id picom #--experimental-backends
+                    # exec_always --no-startup-id picom #--experimental-backends
 
                     # Let these services handle everything else (the things that all desktops should do): 
                     exec --no-startup-id systemctl --user restart window-manager-once.service
