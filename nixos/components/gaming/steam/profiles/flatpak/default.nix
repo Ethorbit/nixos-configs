@@ -7,6 +7,7 @@
 
 {
     imports = [
+        ../.
         ../../../dependencies/profiles/flatpak
         ./options.nix
         ./home-manager.nix

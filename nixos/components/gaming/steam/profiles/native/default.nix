@@ -8,6 +8,7 @@ with pkgs;
 
 {
     imports = [
+        ../.
         ../../../dependencies/profiles/native
     ];
 
