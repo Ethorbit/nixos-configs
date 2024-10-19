@@ -3,6 +3,7 @@
 {
     imports = [
         ../../nixos/components/gaming/steam/profiles/flatpak
+        ../../nixos/components/gaming/lutris/profiles/flatpak
     ];
 
     services.flatpak = {

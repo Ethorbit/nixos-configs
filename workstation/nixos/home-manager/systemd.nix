@@ -2,8 +2,6 @@
 
 {
     home-manager.users.${config.ethorbit.users.primary.username} = {
-        # Steam uses high CPU usage during compression of downloads
-        # Some AAA games might also have poor optimization
         systemd.user.slices = {
             "gaming" = {
                 Unit = {

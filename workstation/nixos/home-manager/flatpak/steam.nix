@@ -12,7 +12,7 @@ in
                 };
             };
         };
-    
+
         home.file = {
             ".config/systemd/user/app-flatpak-${id}-.scope.d/slice.conf".text = ''
                 [Scope]
