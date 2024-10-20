@@ -75,17 +75,6 @@
                 ];
             };
 
-            # SUS!
-            "exploit" = nixpkgs.lib.nixosSystem {
-                inherit system;
-                specialArgs = { inherit inputs outputs system; };
-                modules = [
-                    ./exploit/nixos
-                    ./nixos/hardware/vm/qemu
-                    ./nixosmodules.nix
-                ];
-            };
-
             # For quick NVIDIA container computation work
             # also useful for virtual desktop streaming
             "headless-nvidia" = nixpkgs.lib.nixosSystem {

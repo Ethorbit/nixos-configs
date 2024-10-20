@@ -42,17 +42,6 @@
     { device = "/dev/disk/by-uuid/d157b62c-a80f-4164-8eb7-b05eb8b3a0d2"; }
   ];
 
-  age.secrets."homenas/samba/users/headlessnvidia/creds" = { file = ../../homenas/nixos/secrets/samba/users/headlessnvidia/creds.age; };
-  environment.etc."nascreds" = {
-    mode = "0600";
-    source = config.age.secrets."homenas/samba/users/headlessnvidia/creds".path;
-  };
-  fileSystems."/mnt/homenas" = {
-    fsType = "cifs";
-    device = "//${config.headlessnvidia.network.homenas.ip}/headlessnvidia";
-    options = [ "credentials=/etc/nascreds" "uid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
-  };
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
