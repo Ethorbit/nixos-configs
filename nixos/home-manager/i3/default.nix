@@ -169,8 +169,7 @@
                     exec --no-startup-id kitty
 
                     # lock cursor to current window
-                    #bindsym $mod+Shift+l exec "mousejail" 
-                    #mousejail
+                    bindsym $mod+Shift+l exec "mousejail 1" 
 
                     # reload the configuration file
                     bindsym $mod+Shift+c reload
@@ -261,7 +260,7 @@
                     bindsym $mod+Print exec flameshot gui  
 
                     # light-locker cannot start on its own, so we must do it manually
-                    exec_always --no-startup-id /usr/bin/env bash -c "[ $(command -v light-locker) ] && ${config.ethorbit.pkgs.light-locker.script}/bin/script"
+                    exec_always --no-startup-id /usr/bin/env bash -c "[ $(command -v light-locker) ] && ${config.ethorbit.pkgs.script.light-locker.script}/bin/script"
 
                     # exec_always --no-startup-id picom #--experimental-backends
 
