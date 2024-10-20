@@ -3,8 +3,8 @@
 {
     imports = [
         ./scripts
-        ../../../nixos/packages/yt-dlp-wrapper
-        ../../../nixos/packages/mount-sshfs-run-service
+        ../../../nixos/packages/script/yt-dlp-wrapper
+        ../../../nixos/packages/script/mount-sshfs-run-service
         ../../../nixos/packages/godot4-mono
         ../../../nixos/packages/node/filen-cli
         ../../../nixos/packages/python/codebase-to-text
@@ -31,7 +31,7 @@
         sshfs
 
         yt-dlp
-        config.ethorbit.pkgs.yt-dlp-wrapper
+        config.ethorbit.pkgs.script.yt-dlp-wrapper
 
         #firefox
         (symlinkJoin {

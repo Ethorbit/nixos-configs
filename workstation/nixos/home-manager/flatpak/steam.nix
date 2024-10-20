@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-    id = "${config.ethorbit.components.gaming.steam.flatpak.appNames.steam}";
+    id = "${config.ethorbit.components.gaming.steam.flatpak.appName}";
 in
 {
     home-manager.users.${config.ethorbit.users.primary.username} = {

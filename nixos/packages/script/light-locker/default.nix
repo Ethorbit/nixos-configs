@@ -3,11 +3,11 @@
 with lib;
 
 {
-    options.ethorbit.pkgs.light-locker = {
+    options.ethorbit.pkgs.script.light-locker = {
         script = mkOption {
             type = types.package;
             default = (pkgs.writeShellScriptBin "script" ''
-                ${pkgs.lightlocker}/bin/light-locker ${escapeShellArgs config.ethorbit.pkgs.light-locker.extraFlags}
+                ${pkgs.lightlocker}/bin/light-locker ${escapeShellArgs config.ethorbit.pkgs.script.light-locker.extraFlags}
             '');
         };
 

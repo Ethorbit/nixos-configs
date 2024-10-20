@@ -8,7 +8,7 @@
             default = "";
         };
 
-        ethorbit.pkgs.termdown-wrapper = mkOption {
+        ethorbit.pkgs.script.termdown-wrapper = mkOption {
             type = types.package;
             default = pkgs.writeShellScriptBin "timer.sh" ''
             #!/usr/bin/env bash

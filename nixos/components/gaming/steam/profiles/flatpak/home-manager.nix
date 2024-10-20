@@ -4,7 +4,7 @@
 # example:
 #services.flatpak = {
 #    overrides = {
-#        "${config.ethorbit.components.gaming.steam.flatpak.appNames.steam}".Context = {
+#        "${config.ethorbit.components.gaming.steam.flatpak.appName}".Context = {
 #            filesystems = [
 #               "/mnt/games:rw"
 #            ];
@@ -19,7 +19,7 @@
         services.flatpak = {
             packages = [
                 {
-                    appId = "${config.ethorbit.components.gaming.steam.flatpak.appNames.steam}";
+                    appId = "${config.ethorbit.components.gaming.steam.flatpak.appName}";
                     origin = "flathub";
                 }
             ];
@@ -28,6 +28,6 @@
 
     # Symlink to ~/.steam
     systemd.user.tmpfiles.rules = [
-        ''L %h/.var/app/${config.ethorbit.components.gaming.steam.flatpak.appNames.steam} - - - - %h/.steam''
+        ''L %h/.var/app/${config.ethorbit.components.gaming.steam.flatpak.appName} - - - - %h/.steam''
     ];
 }

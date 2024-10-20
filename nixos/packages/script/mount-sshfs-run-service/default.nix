@@ -38,7 +38,7 @@ let
 in
 {
     options = with lib; with pkgs; {
-        ethorbit.pkgs.mount-sshfs-run-service = mkOption {
+        ethorbit.pkgs.script.mount-sshfs-run-service = mkOption {
             type = types.package;
             default = pkgs.writeShellScriptBin "mount-sshfs-run-service.sh" ''
             ALREADY_MOUNTED=0

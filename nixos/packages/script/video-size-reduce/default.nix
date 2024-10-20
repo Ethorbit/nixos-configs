@@ -2,7 +2,7 @@
 
 {
     options = with lib; with pkgs; {
-        ethorbit.pkgs.video-size-reduce = mkOption {
+        ethorbit.pkgs.script.video-size-reduce = mkOption {
             type = types.package;
             default = pkgs.writeShellScriptBin "video-size-reduce.sh" ''
             #!/usr/bin/env bash

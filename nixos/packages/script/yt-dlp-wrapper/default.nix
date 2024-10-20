@@ -3,7 +3,7 @@
 
 {
     options = {
-        ethorbit.pkgs.yt-dlp-wrapper = with pkgs; with lib; mkOption {
+        ethorbit.pkgs.script.yt-dlp-wrapper = with pkgs; with lib; mkOption {
             type = types.package;
             default = pkgs.writeShellScriptBin "yt-dlp-wrapper.sh" ''
             #!/usr/bin/env bash

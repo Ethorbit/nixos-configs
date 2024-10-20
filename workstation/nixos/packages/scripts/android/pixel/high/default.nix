@@ -4,7 +4,7 @@
     environment.systemPackages = with pkgs; [
         (pkgs.writeShellScriptBin "backup-android-pixel-high.sh" ''
             IP="$1" && [ -z "$IP" ] && echo "Please specify the IP." && exit 0
-            ${config.ethorbit.pkgs.mount-sshfs-run-service}/bin/mount-sshfs-run-service.sh \
+            ${config.ethorbit.pkgs.script.mount-sshfs-run-service}/bin/mount-sshfs-run-service.sh \
                 --host android_pixel_high \
                 --ip "$IP" \
                 --remote-dir ./ \
