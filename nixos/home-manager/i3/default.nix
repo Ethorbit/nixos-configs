@@ -246,6 +246,9 @@
                     for_window [class=".*"] border pixel 1
                     smart_borders on
 
+                    # Common window rules
+                    for_window [class="Pavucontrol"] floating enable, resize set width 50 ppt, resize set height 50 ppt, move position center, sticky enable
+
                     # Add gaps
                     gaps inner 8
                     gaps outer 0
