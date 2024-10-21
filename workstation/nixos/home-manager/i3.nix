@@ -14,7 +14,7 @@
 
     home-manager.sharedModules = [ {
         home.file.".config/i3/config_system".text = ''
-            for_window [class="Pavucontrol"] floating enable
+            for_window [class="KeePassXC"] floating enable, resize set width 20 ppt, resize set height 20 ppt, sticky enable
             for_window [class="chromium-browser"] layout tabbed
 
             # Second monitor will be used for casual gaming
