@@ -102,8 +102,8 @@
                     OnCalendar = "daily";
                     Persistent = true;
                 };
-                # Only backup game saves and common config extensions
-                # to save on space
+                # Only backup game saves and files with common
+                # config file extensions to save on space
                 dynamicFilesFrom = ''
                     (find /mnt/games -type d -name "My Games" ;\
                     find /mnt/games -type d -name "*Saves*" ;\
