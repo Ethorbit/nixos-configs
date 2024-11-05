@@ -19,6 +19,12 @@
         source = config.age.secrets."nixos/restic/repos/main_os_storage/pass".path;
     };
 
+    environment.etc."restic_games_pass" = {
+        mode = "0600";
+        user = config.ethorbit.users.primary.username;
+        text = "games";
+    };
+
     environment.etc."restic_android_pixel_primary_pass" = {
         mode = "0600";
         user = config.ethorbit.users.primary.username;
@@ -77,6 +83,35 @@
                     OnCalendar = "weekly";
                     Persistent = true;
                 };
+                extraBackupArgs = [
+                    "--compression=max"
+                    "--verbose=2"
+                    "--one-file-system=true"
+                ];
+                exclude = [
+                    "/mnt/storage/.Trash-*/"
+                ];
+            };
+
+            "games" = {
+                user = config.ethorbit.users.primary.username;
+                initialize = true;
+                repository = "/mnt/homenas/Restic_Backups/linux_games";
+                passwordFile = "/etc/restic_games_pass";
+                timerConfig = {
+                    OnCalendar = "daily";
+                    Persistent = true;
+                };
+                # Only backup game saves and configs to save on space
+                dynamicFilesFrom = ''
+                    (find /mnt/games -type d -name "My Games" ;\
+                    find /mnt/games -type d -name "*Saves*" ;\
+                    find /mnt/games -type f -size -50M \
+                        -regex '.*\.\(cfg\|txt\|json\|ini\|lua\|db\)$')
+                '';
+                exclude = [
+                    "/mnt/games/.Trash-*/"
+                ];
                 extraBackupArgs = [
                     "--compression=max"
                     "--verbose=2"
