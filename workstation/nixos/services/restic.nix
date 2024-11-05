@@ -102,13 +102,17 @@
                     OnCalendar = "daily";
                     Persistent = true;
                 };
-                # Only backup game saves and files with common
-                # config file extensions to save on space
+                # Dynamically backup game saves and files with common
+                # config file extensions only to save on space
+                #
+                # Finally, add anything important that might otherwise get excluded
                 dynamicFilesFrom = ''
                     (find /mnt/games -type d -name "My Games" ;\
                     find /mnt/games -type d -name "*Saves*" ;\
                     find /mnt/games -type f -size -50M \
-                        -regex '.*\.\(cfg\|txt\|json\|ini\|lua\|db\)$')
+                        -regex '.*\.\(cfg\|txt\|json\|xml\|ini\|lua\|db\|dat\)$' ;\
+                    echo "/mnt/games/SteamLibrary/steamapps/common/GarrysMod/garrysmod/data" ;\
+                    echo "/mnt/games/SteamLibrary/steamapps/common/Half-Life 2 Deathmatch/hl2mp/custom")
                 '';
                 exclude = [
                     "/mnt/games/.Trash-*/"
