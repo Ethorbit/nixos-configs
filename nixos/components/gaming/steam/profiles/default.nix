@@ -8,22 +8,20 @@
     # We can set its nice level to give it
     # less CPU priority over other processes
     #
-    # services.ananicy.extraRules = [
-    #     {
-    #         name = "steam";
-    #         nice = 10;
-    #     }
-    #     {
-    #         name = "steamwebhelper";
-    #         nice = 10;
-    #     }
-    # ];
-    #
-    # ^ Commented out because it's making processes
-    # (such as games) launched by steam get their
-    # niceness increased, reducing game performance.
-    #
-    # As a workaround, you can set download limits to
-    # decrease the amount of compression thus
-    # less lag from downloads.
+    services.ananicy.extraRules = [
+        # Processes running with -20 niceness can
+        # set the niceness value of its child processes
+        #
+        # So setting steam to -20 means games launched
+        # should also get -20
+        {
+            name = "steam";
+            nice = -20;
+        }
+    ];
+
+    # As a workaround to downloads lagging entire system,
+    # you can set a download limit to decrease the amount of
+    # compression thus less CPU lag from downloads.
+    # eg. 20000 kbps
 }

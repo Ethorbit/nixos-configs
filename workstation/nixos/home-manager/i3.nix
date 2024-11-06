@@ -19,6 +19,7 @@
 
             # Second monitor will be used for casual gaming
             for_window [class="Lutris"] move to workspace b1, layout tabbed
+            for_window [class="zenity"] move to workspace b1
             for_window [class="steam"] move to workspace b1, layout tabbed
             for_window [class="steam" title="^(?!Steam|Friends List).*$"] floating enable
             for_window [class="steam" title="Friends List"] focus, move right, move right, move right, move right, move right, move right, move right, resize set width 20 ppt
