@@ -10,6 +10,8 @@
 
                 Slice = {
                     CPUAccounting = true;
+                    CPUShares = 100000;
+
                     # Default is 100.
                     CPUWeight = 1000;
                     StartupCPUWeight = 1000;
