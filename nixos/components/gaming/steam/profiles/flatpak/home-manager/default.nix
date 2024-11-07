@@ -15,6 +15,10 @@
 { config, pkgs, ... }:
 
 {
+    imports = [
+        ./offline-mode.nix
+    ];
+
     home-manager.sharedModules = [ {
         services.flatpak = {
             packages = [
