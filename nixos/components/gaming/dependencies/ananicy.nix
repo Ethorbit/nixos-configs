@@ -13,6 +13,10 @@
                 name = "gamescope-wl";
                 nice = -20;
             }
+            {
+                name = "wine64-preloader";
+                type = "Game";
+            }
 
             # if we make steam a game, it will pass its niceness
             # to its child processes (eg. games that it launches)
@@ -22,20 +26,20 @@
             # in existence, only the ones that don't receive the niceness
             {
                 name = "steam";
-                type = "game";
+                type = "Game";
             }
 
             {
                 name = "Brotato.exe";
-                type = "game";
+                type = "Game";
             }
             {
                 name = "idTechLauncher.exe";
-                type = "game-launcher";
+                type = "Game";
             }
             {
                 name = "DOOMEternalx64v";
-                type = "game";
+                type = "Game";
             }
         ];
     };

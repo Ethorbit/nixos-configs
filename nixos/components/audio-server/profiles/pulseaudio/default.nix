@@ -10,4 +10,15 @@
         enable = true;
         extraConfig = "unload-module module-suspend-on-idle";
     };
+
+    services.ananicy.extraRules = [
+        {
+            name = "pulseeffects";
+            type = "Player-Audio";
+        }
+        {
+            name = ".pulseeffects-wrapped";
+            type = "Player-Audio";
+        }
+    ];
 }
