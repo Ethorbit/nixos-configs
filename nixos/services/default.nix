@@ -2,7 +2,6 @@
 
 {
     imports = [
-        ./ananicy
         ./openssh.nix
     ];
 }

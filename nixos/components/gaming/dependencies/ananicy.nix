@@ -1,7 +1,13 @@
 { config, ... }:
 
 {
+    # the linux kernel doesn't let containers or user
+    # processes use CAP_SYS_NICE (which game tools need
+    # for setting niceness)
+    #
+    # We will control niceness with ananicy as a workaround
     services.ananicy = {
+        enable = true;
         extraRules = [
             {
                 name = "gamescope-wl";
