@@ -25,6 +25,8 @@ with pkgs;
 
                 # Make sure our extraRules can override what's in the defaults
                 mv "$out/00-default" "$out/99-default"
+                mv "$out/00-types.types" "$out/99-types.types"
+                mv "$out/00-cgroups.cgroups" "$out/99-cgroups.cgroups"
                 ln -sf /etc/static/ananicy.d/nixRules.rules $out/00-nixRules.rules
             '';
         });
