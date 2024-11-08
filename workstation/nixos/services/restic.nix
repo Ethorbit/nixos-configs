@@ -111,6 +111,7 @@
                     find /mnt/games -type d -name "*Saves*" ;\
                     find /mnt/games -type f -size -50M \
                         -regex '.*\.\(cfg\|txt\|json\|xml\|ini\|lua\|db\|dat\)$' ;\
+                    echo "/home/${config.ethorbit.users.primary.username}/.var/app/com.valvesoftware.Steam" ;\
                     echo "/mnt/games/SteamLibrary/steamapps/common/GarrysMod/garrysmod/data" ;\
                     echo "/mnt/games/SteamLibrary/steamapps/common/Half-Life 2 Deathmatch/hl2mp/custom")
                 '';
