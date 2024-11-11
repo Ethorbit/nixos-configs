@@ -18,6 +18,7 @@
 
     environment.systemPackages = with pkgs; [
         mangohud
+        protontricks
     ];
 
     programs.gamescope = {

@@ -4,6 +4,7 @@ with lib;
 
 {
     imports = [
+        ./protontricks.nix
         ./steam.nix
         ./lutris.nix
         ./limo.nix
@@ -13,6 +14,7 @@ with lib;
         overrides.games.filesystems = mkOption {
             type = types.listOf types.str;
             default = [
+                "/mnt/storage/SteamLibrary:rw"
                 "/mnt/games:rw"
                 "/mnt/storage/Documents/My Games"
                 "/mnt/storage/Pictures/Steam:rw"

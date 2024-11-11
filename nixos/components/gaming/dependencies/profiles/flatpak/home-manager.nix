@@ -20,6 +20,13 @@
                     commit = "26d25975ae67c5db7d0e5973ccc8a1ca6bd75af8aa2f6ee5d57fe7ae76ef317e";
                     origin = "flathub";
                 }
+                # By default, Protontricks only has access to the Steam installation directory.
+                # You will need to add filesystem permissions for additional Steam library locations, 
+                # and other directories when running external EXEs.
+                {
+                    appId = "${config.ethorbit.components.gaming.dependencies.flatpak.appNames.protontricks}";
+                    origin = "flathub";
+                }
             ];
         };
     } ];
