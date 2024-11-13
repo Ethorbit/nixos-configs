@@ -3,6 +3,7 @@
 {
     imports = [
         ./scripts
+        ../../../nixos/packages/script/mount-wait
         ../../../nixos/packages/script/yt-dlp-wrapper
         ../../../nixos/packages/script/mount-sshfs-run-service
         ../../../nixos/packages/godot4-mono
