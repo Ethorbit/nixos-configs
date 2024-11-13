@@ -4,7 +4,7 @@ with pkgs;
 with lib;
 
 let
-    version = "0.0.12";
+    version = "0.0.16";
 
     files = (buildNpmPackage {
         pname = "filen-cli";
@@ -13,14 +13,14 @@ let
             owner = "FilenCloudDienste";
             repo = "filen-cli";
             rev = "v${version}";
-            hash = "sha256-jLSkpyPbIAdZsPc2UBnKSvgazVeHWItWescF4g9c7Nw=";
+            hash = "sha256-WYi3c/3VmBsYES2eZCu1kiw23ZGGkg9oodtu/pCrBUk=";
         });
 
         # build script wants a key file we don't have, 
         # so we're going to disable auto build and do it manually
         dontNpmBuild = true;
         npmPackFlags = [ "--ignore-scripts" ];
-        npmDepsHash = "sha256-T69yC2T3yu1LLwg2ph9Y+eKeepS1jUJKhgU5E3XgL3A=";
+        npmDepsHash = "sha256-XasBFWmYQQGW4wF9OPQXNcEXN1S2c1XK7tTbBt9Yc2U=";
 
         installPhase = ''
             # We don't need to save credentials inside a package.
