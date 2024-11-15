@@ -14,6 +14,10 @@
                 nice = -20;
             }
             {
+                name = "gamescope-brokey";
+                nice = -20;
+            }
+            {
                 name = "wine64-preloader";
                 type = "Game";
             }
