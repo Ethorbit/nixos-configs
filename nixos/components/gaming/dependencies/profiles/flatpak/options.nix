@@ -19,12 +19,12 @@ with lib;
 
             "gamescope" = mkOption {
                 type = types.str;
-                default = "runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08";
+                default = "runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08";
             };
 
             "mangohud" = mkOption {
                 type = types.str;
-                default = "runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08";
+                default = "runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08";
             };
         };
     };
