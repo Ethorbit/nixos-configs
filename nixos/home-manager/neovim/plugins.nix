@@ -30,6 +30,7 @@
 
                 vim-qml
                 vim-godot
+                vim-svelte
 
                 indent-blankline-nvim
                 

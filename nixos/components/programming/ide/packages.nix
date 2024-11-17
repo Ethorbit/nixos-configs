@@ -26,6 +26,7 @@
         nodePackages.vscode-json-languageserver-bin
         nodePackages.vscode-html-languageserver-bin
         nodePackages.typescript-language-server
+        unstable.nodePackages.svelte-language-server
         lua-language-server
         dockerfile-language-server-nodejs
         docker-compose-language-service
