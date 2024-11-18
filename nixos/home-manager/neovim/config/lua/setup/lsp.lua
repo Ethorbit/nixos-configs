@@ -9,7 +9,6 @@ local function add(name, config)
     lspconfig[name].setup(config or {})
 end
 
-add("svelte")
 add("eslint", {
     on_attach = function(client, bufnr)
         vim.api.nvim_create_autocmd("BufWritePre", {
@@ -24,6 +23,7 @@ add("jsonls")
 add("tsserver")
 add("lua_ls")
 add("phpactor")
+add("svelte")
 add("pylsp", {
     plugins = {
         flake8 = { enabled = true },

@@ -13,6 +13,7 @@
                 nvim-web-devicons
                 ranger-vim
                 bclose-vim
+                comment-nvim
 
                 luasnip
                 cmp-nvim-lsp

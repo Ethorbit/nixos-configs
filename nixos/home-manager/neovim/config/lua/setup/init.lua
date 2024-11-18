@@ -1,3 +1,4 @@
+require("setup/comment")
 require("setup/neoclip")
 require("setup/indent_blankline")
 require("setup/telescope")
