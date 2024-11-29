@@ -141,6 +141,8 @@
                     "--compression=max"
                     "--verbose=2"
                     "--one-file-system=true"
+                    "--ignore-ctime"
+                    "--ignore-inode"
                 ];
             };
 
@@ -154,6 +156,8 @@
                     "--compression=max"
                     "--verbose=2"
                     "--one-file-system=true"
+                    "--ignore-ctime"
+                    "--ignore-inode"
                 ];
             };
 
@@ -167,6 +171,8 @@
                     "--compression=max"
                     "--verbose=2"
                     "--one-file-system=true"
+                    "--ignore-ctime"
+                    "--ignore-inode"
                 ];
             };
         };
