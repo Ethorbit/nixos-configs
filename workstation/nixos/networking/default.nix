@@ -47,5 +47,8 @@ with lib;
                 };
             };
         };
+
+        # Gateway handles DNS fallbacks already.
+        services.resolved.fallbackDns = [ ];
     };
 }
