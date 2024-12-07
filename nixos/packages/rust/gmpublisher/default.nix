@@ -64,7 +64,7 @@ let
     });
 in
 {
-    options.ethorbit.pkgs.node.gmpublisher = mkOption {
+    options.ethorbit.pkgs.rust.gmpublisher = mkOption {
         inherit description;
         type = types.package;
         default = desktop;
