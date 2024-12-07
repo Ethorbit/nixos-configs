@@ -14,6 +14,8 @@
     programs.adb.enable = true;
 
     environment.systemPackages = with pkgs; [
+        flatpak-builder
+
         coturn
         neofetch
 
