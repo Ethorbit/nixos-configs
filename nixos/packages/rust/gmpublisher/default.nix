@@ -1,4 +1,10 @@
-# TODO: Fix "Could not connect" error
+# This is a broken piece of shit software when it comes to Linux compatibility
+#
+# This nix package builds successfully, but the broken software cannot connect.
+# I even tried the Linux precompiled binary and it fails to even run.
+#
+# For now I'll wait to see if gmpublisher ever gets its Linux shit
+# together while I use a Windows virtual machine
 
 { config, lib, pkgs, ... }:
 
@@ -20,6 +26,9 @@ let
         inherit src pname description version;
         name = pname;
 
+        buildType = "release";
+
+        npmBuild = "npm run build";
         npmDeps = fetchNpmDeps {
             name = "${pname}-npm-deps-${version}";
             inherit src;
@@ -28,6 +37,12 @@ let
 
         cargoRoot = "src-tauri";
         cargoHash = "sha256-80njyllFItnVwXBsbuxjyZ0tuBDDC6XMIa6St5qe/eo=";
+        cargoDepsHook = ''
+            cargo add openssl --features vendored
+        '';
+        #cargoPatches = [
+        #    ./cargo.patch
+        #];
         buildAndTestSubdir = "src-tauri";
 
         nativeBuildInputs = [
@@ -52,7 +67,7 @@ let
             unstable.webkitgtk_4_0
         ];
 
-        # Important libraries need to be included
+        # Important libraries need to be loaded
         postInstall = ''
             mkdir -p $out/usr/share/icons
             mkdir -p $out/lib
@@ -61,7 +76,8 @@ let
         '';
         preFixup = ''
             wrapProgram $out/bin/gmpublisher \
-              --prefix LD_LIBRARY_PATH ":" "$out/lib/steam_api/redistributable_bin/linux32:$out/lib/steam_api/redistributable_bin/linux64:$LD_LIBRARY_PATH"
+              --prefix LD_LIBRARY_PATH ":" \
+              "${curl.out.outPath}/lib/libcurl.so:$LD_LIBRARY_PATH:$out/lib/steam_api/redistributable_bin/linux32:$out/lib/steam_api/redistributable_bin/linux64:$LD_LIBRARY_PATH"
         '';
     });
 

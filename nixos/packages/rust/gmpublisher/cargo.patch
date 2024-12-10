@@ -1,0 +1,12 @@
+diff --git a/src-tauri/Cargo.toml b/src-tauri/Cargo.toml.edit
+index b171665..d7beb04 100644
+--- a/src-tauri/Cargo.toml
++++ b/src-tauri/Cargo.toml.edit
+@@ -17,6 +17,7 @@ strip = true
+ tauri-build = { version = "1.5", features = ["codegen"] }
+ 
+ [dependencies]
++openssl = { version = "0.10", features = ["vendored"] }
+ tauri = { version = "1.6", features = ["api-all", "devtools"] }
+ serde = { version = "1.0", features = ["derive", "rc"] }
+ serde_json = "1.0"
