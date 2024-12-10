@@ -37,12 +37,6 @@ let
 
         cargoRoot = "src-tauri";
         cargoHash = "sha256-80njyllFItnVwXBsbuxjyZ0tuBDDC6XMIa6St5qe/eo=";
-        cargoDepsHook = ''
-            cargo add openssl --features vendored
-        '';
-        #cargoPatches = [
-        #    ./cargo.patch
-        #];
         buildAndTestSubdir = "src-tauri";
 
         nativeBuildInputs = [
