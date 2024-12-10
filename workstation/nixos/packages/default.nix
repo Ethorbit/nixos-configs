@@ -9,6 +9,7 @@
         ../../../nixos/packages/godot4-mono
         ../../../nixos/packages/node/filen-cli
         ../../../nixos/packages/python/codebase-to-text
+        ../../../nixos/packages/rust/gmpublisher
     ];
 
     programs.adb.enable = true;
@@ -30,6 +31,7 @@
 
         config.ethorbit.pkgs.python.codebase-to-text
         config.ethorbit.pkgs.node.filen-cli
+        config.ethorbit.pkgs.rust.gmpublisher
         filezilla
         sshfs
 

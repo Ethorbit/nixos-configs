@@ -1,7 +1,4 @@
-# It builds correctly, but during runtime
-# it wants libsteam and I don't know how
-# to provide it that, so I give up now 
-# and am creating a Flatpak
+# TODO: Fix "Could not connect" error
 
 { config, lib, pkgs, ... }:
 
@@ -54,13 +51,26 @@ let
             libsoup
             unstable.webkitgtk_4_0
         ];
+
+        # Important libraries need to be included
+        postInstall = ''
+            mkdir -p $out/usr/share/icons
+            mkdir -p $out/lib
+            cp -r $src/src-tauri/icons/* $out/usr/share/icons/
+            cp -r $src/src-tauri/lib/* $out/lib/
+        '';
+        preFixup = ''
+            wrapProgram $out/bin/gmpublisher \
+              --prefix LD_LIBRARY_PATH ":" "$out/lib/steam_api/redistributable_bin/linux32:$out/lib/steam_api/redistributable_bin/linux64:$LD_LIBRARY_PATH"
+        '';
     });
 
     desktop = (pkgs.makeDesktopItem {
         name = pname;
-        desktopName = "GMPublisher";
-        exec = "${gmpublisher}/bin/gmpublisher %f";
+        desktopName = "gmpublisher";
         terminal = false;
+        exec = "${gmpublisher}/bin/gmpublisher %f";
+        icon = "${gmpublisher}/usr/share/icons/128x128.png";
     });
 in
 {
