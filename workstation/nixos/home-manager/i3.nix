@@ -21,6 +21,7 @@
             for_window [title="^Protontricks$"] move to workspace b1
             for_window [class="steam_proton"] move to workspace b1
             for_window [class="Lutris"] move to workspace b1, layout tabbed
+            for_window [class="Lutris" title="^(?!Lutris)"] floating enable
             for_window [class="steam"] move to workspace b1, layout tabbed
             for_window [class="steam" title="^(?!Steam|Friends List).*$"] floating enable
             for_window [class="steam" title="Friends List"] focus, move right, move right, move right, move right, move right, move right, move right, resize set width 20 ppt
