@@ -7,21 +7,23 @@
 
     boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
     boot.initrd.kernelModules = [ ];
-    boot.kernelModules = [ "kvm-amd" ];
+    boot.kernelModules = [ "kvm-amd" "dm-snapshot" "dm_thin_pool" ];
     boot.extraModulePackages = [ ];
 
     fileSystems."/" = { 
-        device = "/dev/disk/by-uuid/561115fd-76d3-4846-b924-4a80b059489b";
+        device = "/dev/disk/by-uuid/5b4fadad-2000-48d6-8509-420ebab8e57b";
         fsType = "ext4";
     };
 
     fileSystems."/boot" = { 
-        device = "/dev/disk/by-uuid/1AB7-7045";
+        device = "/dev/disk/by-uuid/7A71-1EF6";
         fsType = "vfat";
         options = [ "fmask=0077" "dmask=0077" "defaults" ];
     };
 
-    swapDevices = [ ];
+    swapDevices = [ 
+        { device = "/dev/disk/by-uuid/f9be5093-fc06-45f6-9a0b-0368edeb0020"; }
+    ];
 
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
     # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -36,5 +38,5 @@
     # this value at the release version of the first install of this system.
     # Before changing this value read the documentation for this option
     # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-    system.stateVersion = "23.11";
+    system.stateVersion = "24.11";
 }
