@@ -6,7 +6,6 @@
         ../../../nixos/packages/script/mount-wait
         ../../../nixos/packages/script/yt-dlp-wrapper
         ../../../nixos/packages/script/mount-sshfs-run-service
-        ../../../nixos/packages/godot4-mono
         ../../../nixos/packages/node/filen-cli
         ../../../nixos/packages/python/codebase-to-text
     ];
@@ -50,11 +49,8 @@
 
         audacity
         blender
-        config.ethorbit.pkgs.godot4-mono
-        # dotnet or godot4-mono cries.
-        # I should really fix the package so it can access it on its own
-        # but to be honest, I want to make a game now, not mess with nixos all day..
-        dotnet-sdk
+        #godot_4-mono
+        #dotnet-sdk
         #godot_4
         gimp
         kdenlive
