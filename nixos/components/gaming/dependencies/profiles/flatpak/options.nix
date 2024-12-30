@@ -17,7 +17,12 @@ with lib;
                 default = "com.github.Matoking.protontricks";
             };
 
-            "gamescope" = mkOption {
+            "gamescope23" = mkOption {
+                type = types.str;
+                default = "runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08";
+            };
+
+            "gamescope24" = mkOption {
                 type = types.str;
                 default = "runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08";
             };
