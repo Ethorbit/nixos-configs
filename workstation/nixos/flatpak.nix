@@ -10,6 +10,11 @@
     services.flatpak = {
         enable = true;
         packages = [
+            {
+                appId = "org.deluge_torrent.deluge";
+                origin = "flathub";
+            }
+
             # Because the Spotify devs are too incapable of fixing their website
             #
             # I have literally been receiving a "Spotify can't play this" error
