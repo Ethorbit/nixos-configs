@@ -6,6 +6,8 @@
             packages = [
                 {
                     appId = "${config.ethorbit.components.gaming.dependencies.flatpak.appNames.gamescope23}";
+                    # 23.08 commit when locked to 3.14.24 before they broke everything (which they're very good at doing!)
+                    commit = "6815075a1012258cdabe0d79171b7ee19b310f7b1a68fcbd62218da42eaae054";
                     origin = "flathub";
                 }
                 {

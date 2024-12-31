@@ -22,6 +22,11 @@
                 type = "Game";
             }
 
+            {
+                name = "prismrun";
+                type = "Game";
+            }
+
             # if we make steam a game, it will pass its niceness
             # to its child processes (eg. games that it launches)
             # this helps for games that don't yet have a rule
