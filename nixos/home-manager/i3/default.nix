@@ -50,6 +50,7 @@
                     no_focus [all]
                     focus_on_window_activation none
                     mouse_warping none
+                    focus_follows_mouse no
 
                     # keep this current file for configuration that is meant for global i3 configuration that ALL systems use by default
                     # if there's something that only a few systems will need, keep that in the config_system file above!
