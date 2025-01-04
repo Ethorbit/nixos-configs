@@ -171,6 +171,7 @@
 
                     # lock cursor to current window
                     bindsym $mod+Shift+l exec "mousejail 1" 
+                    exec_always --no-startup-id kill -KILL $(pgrep mousejail)
 
                     # reload the configuration file
                     bindsym $mod+Shift+c reload
