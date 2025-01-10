@@ -17,9 +17,9 @@ in
         overrides = {
             "${id}" = {
                 "Context" = {
+                    # no more network sharing
                     share = [
                         "ipc"
-                        # no more network sharing
                     ];
                 };
                 "Session Bus Policy" = {

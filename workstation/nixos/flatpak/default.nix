@@ -12,11 +12,6 @@
         enable = true;
         packages = [
             {
-                appId = "org.videolan.VLC";
-                origin = "flathub";
-            }
-
-            {
                 appId = "org.deluge_torrent.deluge";
                 origin = "flathub";
             }
@@ -39,20 +34,5 @@
                 origin = "flathub";
             }
         ];
-
-        overrides = {
-            "org.videolan.VLC" = {
-                "Context" = {
-                    filesystems = [
-                        "xdg-run/gvfs:ro"
-                        "/mnt/storage/Videos"
-                        "/mnt/storage/Downloads"
-                    ];
-                };
-                #"Session Bus Policy" = {
-                #    
-                #};
-            };
-        };
     };
 }
