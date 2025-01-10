@@ -2,14 +2,20 @@
 
 {
     imports = [
-        ../../nixos/components/gaming/steam/profiles/flatpak
-        ../../nixos/components/gaming/lutris/profiles/flatpak
-        ../../nixos/components/gaming/minecraft/profiles/flatpak
+        ./vlc.nix
+        ../../../nixos/components/gaming/steam/profiles/flatpak
+        ../../../nixos/components/gaming/lutris/profiles/flatpak
+        ../../../nixos/components/gaming/minecraft/profiles/flatpak
     ];
 
     services.flatpak = {
         enable = true;
         packages = [
+            {
+                appId = "org.videolan.VLC";
+                origin = "flathub";
+            }
+
             {
                 appId = "org.deluge_torrent.deluge";
                 origin = "flathub";
@@ -28,11 +34,25 @@
 
             # Useful for accessing Windows VM(s?) or remote systems
             # maybe even GPU passthrough --> Windows --> GPU-PV --> multiple Windows guests w/ Sunshine
-            # if only that setup didn't fucking crash Proxmox every ~5 minutes :(
-            #{
-            #    appId = "com.moonlight_stream.Moonlight";
-            #    origin = "flathub";
-            #}
+            {
+                appId = "com.moonlight_stream.Moonlight";
+                origin = "flathub";
+            }
         ];
+
+        overrides = {
+            "org.videolan.VLC" = {
+                "Context" = {
+                    filesystems = [
+                        "xdg-run/gvfs:ro"
+                        "/mnt/storage/Videos"
+                        "/mnt/storage/Downloads"
+                    ];
+                };
+                #"Session Bus Policy" = {
+                #    
+                #};
+            };
+        };
     };
 }

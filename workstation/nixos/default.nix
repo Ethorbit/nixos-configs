@@ -11,7 +11,7 @@
         ./systemd.nix
         ./networking
         ./desktop.nix
-        ./flatpak.nix
+        ./flatpak
         ./home-manager
         ../../nixos/components/web-browsing/chromium
         ../../nixos/components/containers/docker
