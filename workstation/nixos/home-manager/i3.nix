@@ -29,6 +29,8 @@
             for_window [class="gamescope-brokey"] move to workspace b1
             for_window [class="Limo"] move to workspace b1, floating enable
             for_window [class="LOOT"] move to workspace b1, floating enable
+            for_window [class="PrismLauncher"] move to workspace b1, layout tabbed
+            for_window [class="Minecraft*"] move to workspace b1
         '';
     } ];
 }
