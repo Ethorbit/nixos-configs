@@ -6,7 +6,7 @@ let
     package = config.ethorbit.graphics.nvidia.proprietary.selectedPackage;
 in
 {
-    options = with lib; {
+    options = {
         ethorbit.graphics.nvidia.proprietary.selectedPackage = mkOption {
             type = types.package;
             default = config.boot.kernelPackages.nvidiaPackages.production;
@@ -20,7 +20,7 @@ in
         boot.blacklistedKernelModules = [ "nouveau" ];
 
         hardware.nvidia = {
-            package = mkDefault nvidia-patch.patch-nvenc (nvidia-patch.patch-fbc package);
+            package = mkDefault (nvidia-patch.patch-nvenc (nvidia-patch.patch-fbc package));
             modesetting.enable = mkDefault true;
             # This fixes graphical corruption caused by things such as suspension or LightDM lock screen
             # (Tested only on GTX 1060 6GB with i3WM, issue affected Godot Engine Mono and fixed by this)
