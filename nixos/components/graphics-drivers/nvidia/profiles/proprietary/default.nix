@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }:
 
+with lib;
+
 let
     package = config.ethorbit.graphics.nvidia.proprietary.selectedPackage;
 in
@@ -18,20 +20,20 @@ in
         boot.blacklistedKernelModules = [ "nouveau" ];
 
         hardware.nvidia = {
-            package = nvidia-patch.patch-nvenc (nvidia-patch.patch-fbc package);
-            modesetting.enable = true;
+            package = mkDefault nvidia-patch.patch-nvenc (nvidia-patch.patch-fbc package);
+            modesetting.enable = mkDefault true;
             # This fixes graphical corruption caused by things such as suspension or LightDM lock screen
             # (Tested only on GTX 1060 6GB with i3WM, issue affected Godot Engine Mono and fixed by this)
             # Read more:
             # https://github.com/pop-os/nvidia-graphics-drivers/issues/133
-            powerManagement.enable = true;
-            powerManagement.finegrained = false;
-            nvidiaSettings = true;
-            open = false;
+            powerManagement.enable = mkDefault true;
+            powerManagement.finegrained = mkDefault false;
+            nvidiaSettings = mkDefault true;
+            open = mkDefault false;
         };
 
         hardware.opengl.extraPackages = [ nvidia-vaapi-driver ];
-        services.xserver.videoDrivers = [ "nvidia" ];
+        services.xserver.videoDrivers = mkDefault [ "nvidia" ];
 
         environment.variables = with lib; {
             LIBVA_DRIVER_NAME = mkDefault "nvidia";
