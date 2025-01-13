@@ -11,6 +11,7 @@
         ./systemd.nix
         ./networking
         ./desktop.nix
+        ./xorg.conf
         ./flatpak
         ./home-manager
         ../../nixos/components/web-browsing/chromium

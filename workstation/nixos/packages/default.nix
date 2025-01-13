@@ -55,9 +55,5 @@
         gimp
         kdenlive
         obs-studio
-
-        # This system may use several TTY user desktops
-        # startx is needed to accomplish that.
-        xorg.xinit
     ];
 }
