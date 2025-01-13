@@ -22,10 +22,12 @@
                 }
                 {
                     appId = "${config.ethorbit.components.gaming.dependencies.flatpak.appNames.proton}";
-                    # Bump SDK to 23.08 (185907be). Downgrades 9.15 to 8.14,
+                    # Version lock to 9.22
+                    commit = "6df315c1305eaf8f87e53f34ff97cfd9c23da0505a6dee98df7612fa4b536ba2";
+                    # Bump SDK to 23.08 (185907be). Downgrades 8.14,
                     # but also fixes stability issues with 23.08 gamescope
                     # crashing for games
-                    commit = "26d25975ae67c5db7d0e5973ccc8a1ca6bd75af8aa2f6ee5d57fe7ae76ef317e";
+                    #commit = "26d25975ae67c5db7d0e5973ccc8a1ca6bd75af8aa2f6ee5d57fe7ae76ef317e";
                     origin = "flathub";
                 }
                 # By default, Protontricks only has access to the Steam installation directory.
