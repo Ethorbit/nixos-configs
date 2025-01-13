@@ -9,5 +9,6 @@
         ./memory-available.nix
         ./microphone.nix
         ./weather.nix
+        ./lock.nix
     ];
 }

@@ -53,7 +53,7 @@
                     modules-left = "i3";                    
                     #modules-center = "mpd";
                     modules-center = "memory memory-available cpu nvidia-gpu mocp/song-name mocp/previous mocp/toggleplay mocp/next";
-                    modules-right = "date weather powermenu";
+                    modules-right = "date weather lock powermenu";
 
                     tray-position = "right";
                     tray-padding = 2;

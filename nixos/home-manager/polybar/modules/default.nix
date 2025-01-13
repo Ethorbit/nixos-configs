@@ -9,6 +9,7 @@
         ./gpu.nix
         ./memory.nix
         ./date.nix
+        ./lock.nix
         ./powermenu.nix
         ./battery.nix
         ./filesystem.nix

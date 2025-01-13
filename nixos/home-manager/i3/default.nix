@@ -25,6 +25,15 @@
                 '';
             };
         };
+
+        scripts = {
+            lock = lib.mkOption {
+                type = types.package;
+                default = (pkgs.writeShellScript "script" ''
+                    ${pkgs.lightdm}/bin/dm-tool switch-to-greeter
+                '');
+            };
+        };
     };
 
     config = {
@@ -170,7 +179,7 @@
                     exec --no-startup-id kitty
 
                     # lock cursor to current window
-                    bindsym $mod+Shift+l exec "mousejail 1" 
+                    bindsym $alt+Shift+l exec "mousejail 1" 
                     exec_always --no-startup-id kill -KILL $(pgrep mousejail)
 
                     # reload the configuration file
@@ -179,6 +188,8 @@
                     bindsym $mod+Shift+r fullscreen disable, restart
                     # exit i3 (logs you out of your X session)
                     bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+                    bindsym $mod+Shift+l exec "${config.ethorbit.home-manager.i3.scripts.lock.outPath}"
 
                     # resize window (you can also use the mouse for that)
                     mode "resize" {
