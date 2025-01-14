@@ -7,7 +7,7 @@ esac
 set -o ignoreeof
 
 export XDG_RUNTIME_DIR=/run/user/$(id -u)
-export TERM=xterm
+export TERM=xterm-256color
 
 # No duplicate entries, save & reload history after each command
 HISTCONTROL="ignoredups:erasedups"

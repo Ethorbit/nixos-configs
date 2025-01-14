@@ -8,6 +8,8 @@
                 config.ethorbit.pkgs.vimPlugins.confirm-quit
                 #config.ethorbit.pkgs.vimPlugins.tabbyml
 
+                transparent-nvim
+
                 vim-rooter
                 lualine-nvim
                 nvim-web-devicons

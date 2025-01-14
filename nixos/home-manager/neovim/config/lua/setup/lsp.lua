@@ -20,7 +20,7 @@ add("eslint", {
 
 add("html")
 add("jsonls")
-add("tsserver")
+add("ts_ls")
 add("lua_ls")
 add("phpactor")
 add("svelte")

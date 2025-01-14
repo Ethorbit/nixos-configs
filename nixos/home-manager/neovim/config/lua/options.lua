@@ -5,6 +5,7 @@ local options = {}
 -- Some vim-styled options:
 vim.cmd [[
 let g:ranger_replace_netrw = 1
+let g:transparent_enabled = 1
 ]]
 
 ranger_replace_netrw = 1

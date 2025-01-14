@@ -21,10 +21,11 @@
             pylsp-mypy
             pyls-isort
         ])))
-        vscode-langservers-extracted
         nodePackages.eslint
-        nodePackages.vscode-json-languageserver-bin
-        nodePackages.vscode-html-languageserver-bin
+        # error: vscode-json-languageserver-bin has been removed since the upstream repository is archived; consider using vscode-langservers-extracted instead.
+        #nodePackages.vscode-json-languageserver-bin
+        #nodePackages.vscode-html-languageserver-bin
+        vscode-langservers-extracted
         nodePackages.typescript-language-server
         unstable.nodePackages.svelte-language-server
         lua-language-server

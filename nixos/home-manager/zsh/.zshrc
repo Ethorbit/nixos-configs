@@ -5,7 +5,7 @@ case $- in
 esac
 
 export XDG_RUNTIME_DIR=/run/user/$(id -u)
-export TERM=xterm
+export TERM=xterm-256color
 
 ###################################################################
 # Block taken from Kali Linux
