@@ -30,10 +30,10 @@ with lib;
                     "-h 1080"
                     "-W 1920"
                     "-H 1080"
-                    "-f"
+                    "-b"
                     "--force-grab-cursor"
-                    # helps prevent GPU hogging
-                    "-o 30"
+                    # helps prevent GPU hogging when focusing on other tasks
+                    "-o 20"
                     # makes for a smoother experience
                     "--adaptive-sync"
                     "--immediate-flips"
