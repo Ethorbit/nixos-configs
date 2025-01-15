@@ -2,12 +2,9 @@
 # was the ONLY way I could get my games to run with more 
 # than 60 fps in Gamescope
 #
-# this was kinda like "screw it, it works and I want to
-# just play my games finally"
-#
 # Still, the FPS is lower with Gamescope than without Gamescope
 # by about 20-30 frames, but I'm planning on switching to AMD
-# soon since this is likely a proprietary driver thing
+# soon since this is likely a proprietary driver problem
 
 { config, pkgs, lib, ... }:
 
@@ -15,23 +12,21 @@ with lib;
 with pkgs;
 
 let
+    flatpak-app = "com.valvesoftware.Steam";
+    flatpak-app-command = writeShellScriptBin "wrapper" ''steam'';
+    gamescope-command = "${gamescope}/bin/gamescope ${escapeShellArgs config.ethorbit.components.gaming.steam.flatpak.gamescope.flags}";
+    gamemode-command = "${gamemode}/bin/gamemoderun --";
+
     wrapper = writeShellScriptBin "gamescope-steam.sh" ''
-        ${gamescope}/bin/gamescope \
-            ${escapeShellArgs config.ethorbit.components.gaming.steam.flatpak.gamescope.flags} \
-                ${gamemode}/bin/gamemoderun -- flatpak run --branch=stable --arch=x86_64 --command=/app/bin/steam --file-forwarding com.valvesoftware.Steam;
+        ${gamescope-command} ${gamemode-command} flatpak run --branch=stable --arch=x86_64 --command=${flatpak-app-command}/bin/wrapper ${flatpak-app};
     '';
-
     offline-wrapper = writeShellScriptBin "gamescope-steam-offline.sh" ''
-        ${gamescope}/bin/gamescope \
-            ${escapeShellArgs config.ethorbit.components.gaming.steam.flatpak.gamescope.flags} \
-                ${gamemode}/bin/gamemoderun -- flatpak run --unshare=network --branch=stable --arch=x86_64 --command=/app/bin/steam --file-forwarding com.valvesoftware.Steam;
+        ${gamescope-command} ${gamemode-command} flatpak run --unshare=network --branch=stable --arch=x86_64 --command=${flatpak-app-command}/bin/wrapper ${flatpak-app};
     '';
-
-    mangohud-wrapper = writeShellScriptBin "mangohud" ''
+    mangohud-wrapper = writeShellScriptBin "gamescope-steam-mangohud.sh" ''
         MANGOHUD=1 ${wrapper}/bin/gamescope-steam.sh
     '';
-
-    mangohud-offline-wrapper = writeShellScriptBin "mangohud" ''
+    mangohud-offline-wrapper = writeShellScriptBin "gamescope-steam-mangohud-offline.sh" ''
         MANGOHUD=1 ${offline-wrapper}/bin/gamescope-steam-offline.sh
     '';
 
@@ -60,6 +55,8 @@ in
     environment.systemPackages = with pkgs; [
         wrapper
         offline-wrapper
+        mangohud-wrapper
+        mangohud-offline-wrapper
     ];
 
     home-manager.sharedModules = mkIf config.ethorbit.components.gaming.steam.flatpak.gamescope.enable [ {
@@ -68,7 +65,7 @@ in
             {
                 name = "Steam (Gamescope)";
                 comment = "Application for managing and playing games on Steam, inside Gamescope";
-                exec = "${wrapper.outPath}/bin/gamescope-steam.sh";
+                exec = "${wrapper}/bin/gamescope-steam.sh";
             }
         ];
 
@@ -77,7 +74,7 @@ in
             {
                 name = "Steam (Gamescope) (Offline)";
                 comment = "Application for managing and playing games on Steam without internet, inside Gamescope";
-                exec = "${offline-wrapper.outPath}/bin/gamescope-steam-offline.sh";
+                exec = "${offline-wrapper}/bin/gamescope-steam-offline.sh";
             }
         ];
 
@@ -86,7 +83,7 @@ in
             {
                 name = "Steam (Gamescope + MangoHUD)";
                 comment = "Application for managing and playing games on Steam, inside Gamescope";
-                exec = "${mangohud-wrapper.outPath}/bin/mangohud";
+                exec = "${mangohud-wrapper}/bin/gamescope-steam-mangohud.sh";
             }
         ];
 
@@ -95,7 +92,7 @@ in
             {
                 name = "Steam (Gamescope + MangoHUD) (Offline)";
                 comment = "Application for managing and playing games on Steam without internet, inside Gamescope";
-                exec = "${mangohud-offline-wrapper.outPath}/bin/mangohud";
+                exec = "${mangohud-offline-wrapper}/bin/gamescope-steam-mangohud-offline.sh";
             }
         ];
     } ];

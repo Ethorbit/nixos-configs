@@ -23,7 +23,6 @@ with lib;
 
             flags = mkOption {
                 type = types.listOf types.str;
-                #"-r 60"
                 default = [
                     "-e"
                     "-w 1920"
@@ -31,6 +30,7 @@ with lib;
                     "-W 1920"
                     "-H 1080"
                     "-b"
+                    "--force-windows-fullscreen"
                     "--force-grab-cursor"
                     # helps prevent GPU hogging when focusing on other tasks
                     "-o 20"
