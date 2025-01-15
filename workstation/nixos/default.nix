@@ -36,10 +36,7 @@
     #programs.virt-manager.enable = true;
     #virtualisation.libvirtd.enable = true;
 
-    # Beta should offer new features that patches performance regressions with Wayland,
-    # improving overall Gamescope game performance.
-    ethorbit.graphics.nvidia.proprietary.selectedPackage = config.boot.kernelPackages.nvidiaPackages.beta;
-    #(pkgs.unstable.linuxPackagesFor config.boot.kernelPackages.kernel).nvidiaPackages.beta;
+    ethorbit.graphics.nvidia.proprietary.selectedPackage = config.boot.kernelPackages.nvidiaPackages.stable;
 
     ethorbit.termdown-wrapper.soundPath = "/home/${config.ethorbit.users.primary.username}/Documents/timer.opus";
 }

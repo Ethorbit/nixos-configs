@@ -10,6 +10,11 @@ with lib;
         };
 
         gamescope = {
+            enable = mkOption {
+                type = types.bool;
+                default = false;
+            };
+
             flags = mkOption {
                 type = types.listOf types.str;
                 default = [

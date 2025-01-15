@@ -3,7 +3,7 @@
 with lib;
 
 {
-    home-manager.sharedModules = [ {
+    home-manager.sharedModules = mkIf config.ethorbit.components.gaming.minecraft.launcher.gamescope.enable [ {
         xdg.desktopEntries."prism-launcher-gamescope" = {
             name = "Prism Launcher (Gamescope)";
             comment = "Prism Launcher, but contained inside Gamescope";
