@@ -16,13 +16,13 @@ with pkgs;
 
 let
     wrapper = writeShellScriptBin "gamescope-steam.sh" ''
-        MANGOHUD=1 ${gamescope}/bin/gamescope \
+        ${gamescope}/bin/gamescope \
             ${escapeShellArgs config.ethorbit.components.gaming.steam.flatpak.gamescope.flags} \
                 ${gamemode}/bin/gamemoderun -- flatpak run --branch=stable --arch=x86_64 --command=/app/bin/steam --file-forwarding com.valvesoftware.Steam;
     '';
 
     offline-wrapper = writeShellScriptBin "gamescope-steam-offline.sh" ''
-        MANGOHUD=1 ${gamescope}/bin/gamescope \
+        ${gamescope}/bin/gamescope \
             ${escapeShellArgs config.ethorbit.components.gaming.steam.flatpak.gamescope.flags} \
                 ${gamemode}/bin/gamemoderun -- flatpak run --unshare=network --branch=stable --arch=x86_64 --command=/app/bin/steam --file-forwarding com.valvesoftware.Steam;
     '';
