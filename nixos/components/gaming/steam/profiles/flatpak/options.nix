@@ -35,22 +35,8 @@ with pkgs;
             };
 
             flags = mkOption {
-                type = types.listOf types.str;
-                default = [
-                    "-e"
-                    "-w 1920"
-                    "-h 1080"
-                    "-W 1920"
-                    "-H 1080"
-                    "-b"
-                    "--force-windows-fullscreen"
-                    "--force-grab-cursor"
-                    # helps prevent GPU hogging when focusing on other tasks
-                    "-o 20"
-                    # makes for a smoother experience
-                    "--adaptive-sync"
-                    "--immediate-flips"
-                ];
+                type = types.str;
+                default = "-e -w 1920 -h 1080 -W 1920 -H 1080 -b --force-windows-fullscreen --force-grab-cursor -o 20 --adaptive-sync --immediate-flips";
             };
 
             mangohud = {
@@ -69,7 +55,7 @@ with pkgs;
             commands = {
                 gamescope = mkOption {
                     type = types.str;
-                    default = "${gamescope}/bin/gamescope ${escapeShellArgs config.ethorbit.components.gaming.steam.flatpak.gamescope.flags}";
+                    default = "${gamescope}/bin/gamescope ${config.ethorbit.components.gaming.steam.flatpak.gamescope.flags}";
                 };
 
                 gamemode = mkOption {
