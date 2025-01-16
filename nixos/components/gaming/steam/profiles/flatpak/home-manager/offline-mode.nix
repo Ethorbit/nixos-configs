@@ -9,32 +9,34 @@
 # as it waits to connect indefinitely with an uncloseable menu, forcing you
 # to quit the game
 
-{ config, ... }:
+{ config, lib, ... }:
 
 {
-    home-manager.sharedModules = [ {
-        xdg.desktopEntries."steam-offline" = {
-            name = "Steam (Offline)";
-            comment = "Application for managing and playing games on Steam without internet";
-            exec = "flatpak run --unshare=network --branch=stable --arch=x86_64 --command=/app/bin/steam --file-forwarding com.valvesoftware.Steam @@u %U @@";
-            icon = "com.valvesoftware.Steam";
-            terminal = false;
-            type = "Application";
-            categories = [
-                "FileTransfer"
-                "Game"
-            ];
-            mimeType = [
-                "x-scheme-handler/steam"
-                "x-scheme-handler/steamlink"
-            ];
-            settings = {
-                X-Desktop-File-Install-Version = "0.27";
-                StartupWMClass = "Steam";
-                X-Flatpak-RenamedFrom = "steam-offline.desktop";
-                X-Flatpak-Tags = "proprietary";
-                X-Flatpak = "com.valvesoftware.Steam";
+    home-manager.sharedModules = (
+        if (config.ethorbit.components.gaming.steam.flatpak.offline.enable) then [ {
+            xdg.desktopEntries."steam-offline" = {
+                name = "Steam (Offline)";
+                comment = "Application for managing and playing games on Steam without internet";
+                exec = "flatpak run --unshare=network --branch=stable --arch=x86_64 --command=/app/bin/steam --file-forwarding com.valvesoftware.Steam @@u %U @@";
+                icon = "com.valvesoftware.Steam";
+                terminal = false;
+                type = "Application";
+                categories = [
+                    "FileTransfer"
+                    "Game"
+                ];
+                mimeType = [
+                    "x-scheme-handler/steam"
+                    "x-scheme-handler/steamlink"
+                ];
+                settings = {
+                    X-Desktop-File-Install-Version = "0.27";
+                    StartupWMClass = "Steam";
+                    X-Flatpak-RenamedFrom = "steam-offline.desktop";
+                    X-Flatpak-Tags = "proprietary";
+                    X-Flatpak = "com.valvesoftware.Steam";
+                };
             };
-        };
-    } ];
+        } ] else [ { } ]
+    );
 }

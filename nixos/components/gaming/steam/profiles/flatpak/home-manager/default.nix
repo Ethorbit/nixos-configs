@@ -16,7 +16,7 @@
 
 {
     imports = [
-        ./native-gamescope.nix
+        ./native-gamescope
         ./offline-mode.nix
     ];
 
