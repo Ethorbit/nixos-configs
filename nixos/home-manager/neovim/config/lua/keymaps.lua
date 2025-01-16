@@ -21,6 +21,10 @@ keymap("n", "<C-d>", ":t.<cr>", opts)
 keymap("n", "[d", ":lua vim.diagnostic.goto_prev()<cr>", opts)
 keymap("n", "]d", ":lua vim.diagnostic.goto_next()<cr>", opts)
 
+-- Faster Movement
+keymap("n", "k", "k3", opts)
+keymap("n", "j", "j3", opts)
+
 autocmd("LspAttach", {
     callback = function(ev)
         keymap("n", "gd", ":tab split | lua vim.lsp.buf.definition()<cr>", opts)
