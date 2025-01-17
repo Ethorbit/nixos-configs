@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
     id = "${config.ethorbit.components.gaming.steam.flatpak.appName}";
