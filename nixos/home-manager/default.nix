@@ -5,7 +5,7 @@
         ./flatpak
         ./shell
         ./xdg
-        ./htop-vim
+        ./htop
     ];
 
     home-manager = {
