@@ -52,7 +52,8 @@
         #godot_4-mono
         #dotnet-sdk
         #godot_4
-        gimp
+        #gimp
+        krita
         kdenlive
         obs-studio
     ];
