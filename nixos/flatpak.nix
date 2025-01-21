@@ -5,6 +5,12 @@ with lib;
 {
     services.flatpak = {
         uninstallUnmanaged = true;
+        packages = [
+            {
+                appId = "com.github.tchx84.Flatseal";
+                origin = "flathub";
+            }
+        ];
         remotes = mkDefault [
             {
                 name = "flathub";

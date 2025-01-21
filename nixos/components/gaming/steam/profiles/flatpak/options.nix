@@ -36,7 +36,7 @@ with pkgs;
 
             flags = mkOption {
                 type = types.str;
-                default = "-w 1920 -h 1080 -W 1920 -H 1080 -f --force-windows-fullscreen --force-grab-cursor -o 20 --adaptive-sync --immediate-flips";
+                default = "-w 1920 -h 1080 -W 1920 -H 1080 -b --force-windows-fullscreen --force-grab-cursor -o 20 --adaptive-sync --immediate-flips";
             };
 
             mangohud = {
@@ -90,6 +90,7 @@ with pkgs;
 
                         # Extract which display number this gamescope process is using so that we can run Steam on it later
                         GAMESCOPE_DISPLAY=$(cat "$LOG_PATH" | grep 'Starting Xwayland on :[0-9]' | grep -o ':[0-9]$')
+                        export DISPLAY="$GAMESCOPE_DISPLAY"
 
                         # Kill our Gamescope process if our wrapper script exits (e.g if Steam closes)
                         function cleanup()
@@ -106,7 +107,7 @@ with pkgs;
                     default = writeShellScriptBin "gamescope-steam.sh" ''
                         source "${config.ethorbit.components.gaming.steam.flatpak.gamescope.wrappers.prefix}/bin/script"
                         ${config.ethorbit.components.gaming.steam.flatpak.gamescope.commands.gamemode} \
-                            DISPLAY="$GAMESCOPE_DISPLAY" flatpak run --branch=stable --arch=x86_64 --env=DISPLAY="$GAMESCOPE_DISPLAY" \
+                            flatpak run --branch=stable --arch=x86_64 --env=DISPLAY="$GAMESCOPE_DISPLAY" \
                                 --command=${config.ethorbit.components.gaming.steam.flatpak.gamescope.wrappers.flatpak}/bin/wrapper ${config.ethorbit.components.gaming.steam.flatpak.appName}
                     '';
                 };
@@ -116,7 +117,7 @@ with pkgs;
                     default = writeShellScriptBin "gamescope-steam-offline.sh" ''
                         source "${config.ethorbit.components.gaming.steam.flatpak.gamescope.wrappers.prefix}/bin/script"
                         ${config.ethorbit.components.gaming.steam.flatpak.gamescope.commands.gamemode} \
-                            DISPLAY="$GAMESCOPE_DISPLAY" flatpak run --unshare=network --branch=stable --arch=x86_64 --env=DISPLAY="$GAMESCOPE_DISPLAY" \
+                            flatpak run --unshare=network --branch=stable --arch=x86_64 --env=DISPLAY="$GAMESCOPE_DISPLAY" \
                                 --command=${config.ethorbit.components.gaming.steam.flatpak.gamescope.wrappers.flatpak}/bin/wrapper ${config.ethorbit.components.gaming.steam.flatpak.appName}
                     '';
                 };

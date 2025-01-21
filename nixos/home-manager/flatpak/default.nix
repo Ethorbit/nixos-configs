@@ -1,9 +1,15 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
     config.home-manager.sharedModules = [ {
         services.flatpak = {
             uninstallUnmanaged = true;
+            packages = [
+                {
+                    appId = "com.github.tchx84.Flatseal";
+                    origin = "flathub";
+                }
+            ];
         };
 
         # Because apparently setting context in services.flatpak doesn't do anything :/
