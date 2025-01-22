@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ../../../home-manager/feh
         ../../../home-manager/polybar
         ../../../home-manager/rofi
         ../../../home-manager/picom
