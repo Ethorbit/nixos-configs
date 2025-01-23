@@ -30,7 +30,8 @@
             lock = lib.mkOption {
                 type = types.package;
                 default = (pkgs.writeShellScript "script" ''
-                    ${pkgs.lightdm}/bin/dm-tool switch-to-greeter
+                    ${pkgs.i3lock-fancy}/bin/i3lock-fancy -g
+                    # ${pkgs.lightdm}/bin/dm-tool switch-to-greeter
                 '');
             };
         };
@@ -274,9 +275,6 @@
                     # Screenshot
                     bindsym --release Print exec flameshot screen -c -p $HOME/Downloads/Screenshots/
                     bindsym $mod+Print exec flameshot gui  
-
-                    # light-locker cannot start on its own, so we must do it manually
-                    exec_always --no-startup-id /usr/bin/env bash -c "[ $(command -v light-locker) ] && ${config.ethorbit.pkgs.script.light-locker.script}/bin/script"
 
                     # exec_always --no-startup-id picom #--experimental-backends
 
