@@ -5,13 +5,11 @@ with lib;
 {
     services.xserver.windowManager.i3.enable = true;
 
-    services.xserver.xautolock = {
+    programs.xss-lock = {
         enable = true;
-        #time = mkDefault 60;
-        locker = config.ethorbit.home-manager.i3.scripts.lock.outPath;
-        nowlocker = config.ethorbit.home-manager.i3.scripts.lock.outPath;
+        lockerCommand = config.ethorbit.home-manager.i3.scripts.lock.outPath;
         extraOptions = [
-            "-detectsleep"
+
         ];
     };
 }
