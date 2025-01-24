@@ -30,7 +30,7 @@
             lock = lib.mkOption {
                 type = types.package;
                 default = (pkgs.writeShellScript "script" ''
-                    ${pkgs.i3lock-fancy}/bin/i3lock-fancy -g
+                    ${pkgs.i3lock-fancy-rapid}/bin/i3lock-fancy-rapid 10 20
                     # ${pkgs.lightdm}/bin/dm-tool switch-to-greeter
                 '');
             };
