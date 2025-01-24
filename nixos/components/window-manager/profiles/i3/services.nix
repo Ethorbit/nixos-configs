@@ -7,12 +7,11 @@ with lib;
 
     services.xserver.xautolock = {
         enable = true;
-        time = mkDefault 120;
+        #time = mkDefault 60;
         locker = config.ethorbit.home-manager.i3.scripts.lock.outPath;
         nowlocker = config.ethorbit.home-manager.i3.scripts.lock.outPath;
         extraOptions = [
             "-detectsleep"
-            "-lockaftersleep"
         ];
     };
 }
