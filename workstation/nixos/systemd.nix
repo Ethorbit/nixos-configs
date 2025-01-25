@@ -13,6 +13,8 @@
                 CPUWeight = 100;
                 IOWeight = 100;
                 BlockIOWeight = 100;
+                MemoryHigh = "50%";
+                MemoryMax = "60%";
             };
 
             "system".sliceConfig = {
@@ -22,6 +24,8 @@
                 CPUWeight = 100;
                 IOWeight = 100;
                 BlockIOWeight = 100;
+                MemoryHigh = "50%";
+                MemoryMax = "60%";
             };
 
             # Containers, leave some resources for host
