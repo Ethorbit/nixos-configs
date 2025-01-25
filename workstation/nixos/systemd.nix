@@ -37,7 +37,8 @@
                 StartupCPUWeight = 60;
                 IOWeight = 80;
                 BlockIOWeight = 80;
-                MemoryMax = "90%";
+                MemoryHigh = "50%";
+                MemoryMax = "60%";
             };
 
             "container" = {
