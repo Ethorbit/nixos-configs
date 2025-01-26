@@ -65,8 +65,8 @@ in
         };
     };
 
-    config.systemd.user.services."xidlehook" = {
-        enable = cfg.enable;
+    config.systemd.user.services."xidlehook" = mkIf cfg.enable {
+        enable = true;
         description = "Automatic Screen Locker";
 
         environment = {
