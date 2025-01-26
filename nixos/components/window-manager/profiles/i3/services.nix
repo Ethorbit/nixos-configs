@@ -14,7 +14,13 @@ with lib;
     #};
     ethorbit.services.xidlehook = {
         enable = mkDefault true;
-        command = mkDefault config.ethorbit.home-manager.i3.scripts.lock.outPath;
+        timers = [
+            {
+                config = {
+                    command = mkDefault config.ethorbit.home-manager.i3.scripts.lock.outPath;
+                };
+            }
+        ];
     };
 
     programs.xss-lock = {
