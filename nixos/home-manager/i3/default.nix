@@ -83,9 +83,6 @@
                     # https://wiki.archlinux.org/index.php/XDG_Autostart
                     exec --no-startup-id dex --autostart --environment i3
 
-                    # Lock after inactivity
-                    # exec --no-startup-id ${pkgs.xidlehook}/bin/xidlehook --timer 
-
                     # NetworkManager is the most popular way to manage wireless networks on Linux,
                     # and nm-applet is a desktop environment-independent system tray GUI for it.
                     exec --no-startup-id nm-applet
