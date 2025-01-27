@@ -25,6 +25,7 @@
             for_window [class="steam"] move to workspace b1, layout tabbed
             for_window [class="steam" title="^(?!Steam|Friends List).*$"] floating enable
             for_window [class="steam" title="Friends List"] focus, move right, move right, move right, move right, move right, move right, move right, resize set width 20 ppt
+            for_window [title="Sign in to Steam"] floating disable, move to workspace b1, resize set width 20, resize set height 20
             for_window [class=".gamescope-wrapped"] move to workspace b1
             for_window [class="steam_app_*"] move to workspace b1
             for_window [class="gamescope-brokey"] move to workspace b1
