@@ -15,6 +15,10 @@ in
                 "${id}" = {
                     "Context" = {
                         filesystems = config.ethorbit.workstation.home-manager.flatpak.overrides.games.filesystems;
+
+                        # It can still do inter-process communication with its own container processes.
+                        # There's really no need for it to need this for my use case
+                        shared = "!ipc";
                     };
                     
                     # Steam has shown that it misbehaves itself when given control over the screen saver
