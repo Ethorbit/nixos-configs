@@ -12,8 +12,17 @@ in
     home-manager.users.${config.ethorbit.users.primary.username} = {
         services.flatpak = {
             overrides = {
-                "${id}".Context = {
-                    filesystems = config.ethorbit.workstation.home-manager.flatpak.overrides.games.filesystems;
+                "${id}" = {
+                    "Context" = {
+                        filesystems = config.ethorbit.workstation.home-manager.flatpak.overrides.games.filesystems;
+                    };
+                    
+                    # Steam has shown that it misbehaves itself when given control over the screen saver
+                    # It permanently keeps the system active and it never locks because of it..
+                    "Session Bus Policy" = {
+                        "org.freedesktop.ScreenSaver" = "none";
+                        "org.freedesktop.PowerManagement" = "none";
+                    };
                 };
             };
         };
