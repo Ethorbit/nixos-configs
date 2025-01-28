@@ -1,7 +1,11 @@
-{ config, lib, ... }:
+{ config, pkgs, lib, ... }:
 
+with pkgs;
 with lib;
 
+let
+    cfg = config.ethorbit.components.gaming.minecraft.launcher.flatpak;
+in
 {
     options.ethorbit.components.gaming.minecraft.launcher.flatpak = {
         appName = mkOption {
@@ -12,21 +16,54 @@ with lib;
         gamescope = {
             enable = mkOption {
                 type = types.bool;
+                description = ''
+                    Whether or not to launch Minecraft and its launchers inside native Gamescope.
+                '';
                 default = false;
             };
 
-            flags = mkOption {
-                type = types.listOf types.str;
-                default = [
-                    "-r 60"
-                    "-w 1920"
-                    "-h 1080"
-                    "-W 1920"
-                    "-H 1080"
-                    "-f"
-                    "--immediate-flips"
-                    "--force-grab-cursor"
-                ];
+            commands = {
+                gamemode = mkOption {
+                    type = types.str;
+                    default = "${gamemode}/bin/gamemoderun";
+                };
+            };
+            
+            scripts = {
+                normal = mkOption {
+                    type = types.package;
+                    default = (writeShellScript "script" ''
+                        ${cfg.gamescope.commands.gamemode} \
+                            flatpak run --branch=stable --arch=x86_64 --env=DISPLAY="$GAMESCOPE_DISPLAY" ${cfg.appName}
+                    '');
+                };
+            };
+
+            desktop = {
+                defaultProps = mkOption {
+                    type = types.attrs;
+                    default = {
+                        icon = "org.prismlauncher.PrismLauncher";
+                        terminal = false;
+                        type = "Application";
+                        categories = [
+                            "Game"
+                            "ActionGame"
+                            "AdventureGame"
+                            "Simulation"
+                        ];
+                        mimeType = [
+                            "application/zip"
+                            "application/x-modrinth-modpack+zip"
+                            "x-scheme-handler/curseforge"
+                            "x-scheme-handler/prismlauncher"
+                        ];
+                        settings = {
+                            StartupWMClass = "PrismLauncher";
+                            X-Flatpak = "org.prismlauncher.PrismLauncher";
+                        };
+                    };
+                };
             };
         };
     };
