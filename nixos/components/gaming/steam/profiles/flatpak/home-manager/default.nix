@@ -14,6 +14,9 @@
 
 { config, pkgs, ... }:
 
+let
+    cfg = config.ethorbit.components.gaming.steam.flatpak;
+in
 {
     imports = [
         ./native-gamescope
@@ -24,13 +27,13 @@
         services.flatpak = {
             packages = [
                 {
-                    appId = "${config.ethorbit.components.gaming.steam.flatpak.appName}";
+                    appId = "${cfg.appName}";
                     origin = "flathub";
                 }
             ];
 
             overrides = {
-                "${config.ethorbit.components.gaming.steam.flatpak.appName}" = {
+                "${cfg.appName}" = {
                     # Give it access to the Flatpak Gamescope portal
                     Context = {
                         filesystems = [ "xdg-run/gamescope-0:ro" ];
@@ -46,6 +49,6 @@
 
     # Symlink to ~/.steam
     systemd.user.tmpfiles.rules = [
-        ''L %h/.var/app/${config.ethorbit.components.gaming.steam.flatpak.appName} - - - - %h/.steam''
+        ''L %h/.var/app/${cfg.appName} - - - - %h/.steam''
     ];
 }

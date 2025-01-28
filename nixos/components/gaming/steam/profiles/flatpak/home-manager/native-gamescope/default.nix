@@ -11,23 +11,22 @@
 with lib;
 with pkgs;
 
+let
+    cfg = config.ethorbit.components.gaming.steam.flatpak.gamescope;
+in
+
 {
     imports = [
         ./offline.nix
-        ./mangohud.nix
     ];
 
-    environment.systemPackages = with pkgs; [
-        config.ethorbit.components.gaming.steam.flatpak.gamescope.wrappers.normal
-    ];
-
-    home-manager.sharedModules = mkIf config.ethorbit.components.gaming.steam.flatpak.gamescope.enable [ {
+    home-manager.sharedModules = mkIf cfg.enable [ {
         xdg.desktopEntries."gamescope-steam" = mkMerge [
-            config.ethorbit.components.gaming.steam.flatpak.gamescope.desktop.defaultProps
+            cfg.desktop.defaultProps
             {
                 name = "Steam (Gamescope)";
                 comment = "Application for managing and playing games on Steam, inside Gamescope";
-                exec = "${config.ethorbit.components.gaming.steam.flatpak.gamescope.wrappers.normal}/bin/gamescope-steam.sh";
+                exec = config.ethorbit.components.gaming.dependencies.gamescope.wrappers."steam".wrapper.outPath;
             }
         ];
     } ];

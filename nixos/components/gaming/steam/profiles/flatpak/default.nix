@@ -8,10 +8,22 @@
 
 { config, pkgs, ... }:
 
+let
+    cfg = config.ethorbit.components.gaming.steam.flatpak.gamescope;
+in
 {
     imports = [
+        ../.
         ../../../dependencies/profiles/flatpak
         ./options.nix
         ./home-manager
     ];
+
+    ethorbit.components.gaming.dependencies.gamescope.wrappers."steam" = {
+        script = cfg.scripts.normal;
+    };
+
+    ethorbit.components.gaming.dependencies.gamescope.wrappers."steam-offline" = {
+        script = cfg.scripts.offline;
+    };
 }

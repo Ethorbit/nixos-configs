@@ -22,5 +22,4 @@ with pkgs;
         mangohud
         protontricks
     ];
-
 }
