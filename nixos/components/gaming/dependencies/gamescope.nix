@@ -7,7 +7,7 @@ with pkgs;
     options.ethorbit.components.gaming.dependencies.gamescope = {
         wrappers = mkOption {
             description = ''
-                This is used for making crafting gamescope wrappers
+                This is used for making gamescope wrappers
                 These are useful for attaching processes to existing gamescope sessions.
 
                 Create a wrapper, define a script or source the {script} inside YOUR script
