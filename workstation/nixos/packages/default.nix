@@ -7,7 +7,6 @@
         ../../../nixos/packages/script/yt-dlp-wrapper
         ../../../nixos/packages/script/mount-sshfs-run-service
         ../../../nixos/packages/node/filen-cli
-        ../../../nixos/packages/python/codebase-to-text
     ];
 
     programs.adb.enable = true;
@@ -27,7 +26,6 @@
 
         keepassxc
 
-        config.ethorbit.pkgs.python.codebase-to-text
         config.ethorbit.pkgs.node.filen-cli
         filezilla
         sshfs
