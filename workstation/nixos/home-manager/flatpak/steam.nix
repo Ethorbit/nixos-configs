@@ -21,11 +21,14 @@ in
                         shared = "!ipc";
                     };
                     
-                    # Steam has shown that it misbehaves itself when given control over the screen saver
+                    # Steam has shown that it misbehaves itself when given control over these
                     # It permanently keeps the system active and it never locks because of it..
                     "Session Bus Policy" = {
                         "org.freedesktop.ScreenSaver" = "none";
                         "org.freedesktop.PowerManagement" = "none";
+                        "org.gnome.SettingsDaemon.MediaKeys" = "none";
+                        "org.freedesktop.Notifications" = "none";
+                        "org.kde.StatusNotifierWatcher" = "none";
                     };
                 };
             };
