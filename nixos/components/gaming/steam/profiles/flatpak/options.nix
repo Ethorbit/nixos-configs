@@ -45,17 +45,11 @@ in
             };
             
             scripts = {
-                flatpak = mkOption {
-                    type = types.package;
-                    default = (writeShellScript "wrapper" ''steam'');
-                };
-
                 normal = mkOption {
                     type = types.package;
                     default = (writeShellScript "gamescope-steam.sh" ''
                         ${cfg.gamescope.commands.gamemode} \
-                            flatpak run --branch=stable --arch=x86_64 --env=DISPLAY="$GAMESCOPE_DISPLAY" \
-                                --command=${cfg.gamescope.scripts.flatpak.outPath} ${cfg.appName}
+                            flatpak run --branch=stable --arch=x86_64 --env=DISPLAY="$GAMESCOPE_DISPLAY" ${cfg.appName}
                     '');
                 };
 
@@ -63,8 +57,7 @@ in
                     type = types.package;
                     default = (writeShellScript "gamescope-steam-offline.sh" ''
                         ${cfg.gamescope.commands.gamemode} \
-                            flatpak run --unshare=network --branch=stable --arch=x86_64 --env=DISPLAY="$GAMESCOPE_DISPLAY" \
-                                --command=${cfg.gamescope.scripts.flatpak.outPath} ${cfg.appName}
+                            flatpak run --unshare=network --branch=stable --arch=x86_64 --env=DISPLAY="$GAMESCOPE_DISPLAY" ${cfg.appName}
                     '');
                 };
             };
