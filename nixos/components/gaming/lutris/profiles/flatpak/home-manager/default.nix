@@ -20,6 +20,10 @@
 { config, pkgs, ... }:
 
 {
+    imports = [
+        ./native-gamescope
+    ];
+
     home-manager.sharedModules = [ {
         services.flatpak = {
             packages = [

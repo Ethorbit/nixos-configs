@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ../.
         ../../../dependencies/profiles/native
     ];
 
