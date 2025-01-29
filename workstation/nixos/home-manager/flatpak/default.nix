@@ -4,6 +4,7 @@ with lib;
 
 {
     imports = [
+        ./moonlight.nix
         ./protontricks.nix
         ./steam.nix
         ./lutris.nix

@@ -3,6 +3,7 @@
 {
     imports = [
         ./vlc.nix
+        ../../../nixos/components/gaming/moonlight/profiles/flatpak
         ../../../nixos/components/gaming/steam/profiles/flatpak
         ../../../nixos/components/gaming/lutris/profiles/flatpak
         ../../../nixos/components/gaming/minecraft/profiles/flatpak
@@ -24,13 +25,6 @@
             # I will have this bug fixed ASAP! I will not sit on this for years.
             {
                 appId = "com.spotify.Client";
-                origin = "flathub";
-            }
-
-            # Useful for accessing Windows VM(s?) or remote systems
-            # maybe even GPU passthrough --> Windows --> GPU-PV --> multiple Windows guests w/ Sunshine
-            {
-                appId = "com.moonlight_stream.Moonlight";
                 origin = "flathub";
             }
         ];
