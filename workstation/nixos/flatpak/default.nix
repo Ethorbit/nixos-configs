@@ -27,6 +27,11 @@
                 appId = "com.spotify.Client";
                 origin = "flathub";
             }
+
+            {
+                appId = "org.remmina.Remmina";
+                origin = "flathub";
+            }
         ];
     };
 }
