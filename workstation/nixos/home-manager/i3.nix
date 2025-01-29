@@ -17,7 +17,10 @@
             for_window [class="KeePassXC"] floating enable, resize set width 20 ppt, resize set height 20 ppt, sticky enable
             for_window [class="chromium-browser"] layout tabbed
 
-            # Second monitor will be used for casual gaming
+            # Second monitor will be used for streaming Windows Partitioned Graphics
+            for_window [class="Moonlight"] move to workspace b1, layout tabbed
+
+            # Second monitor will also be used for casual gaming
             for_window [title="^Protontricks$"] move to workspace b1
             for_window [class="steam_proton"] move to workspace b1
             for_window [class="Lutris"] move to workspace b1, layout tabbed
