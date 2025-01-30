@@ -34,6 +34,8 @@
             programs.bash = {
                 enable = true;
                 enableCompletion = true;
+                historySize = 10000000;
+                historyFileSize = 10000000; 
                 bashrcExtra = ''
                     [ $(command -v bleopt) ] && source ~/.config/ble.sh --noattach
                     prompt_color=${config.ethorbit.home-manager.bash.prompt.color}

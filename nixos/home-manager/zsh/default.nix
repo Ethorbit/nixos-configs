@@ -40,6 +40,8 @@
                 autosuggestion.enable = true;
                 #enableAutosuggestions = true;
                 history = {
+                    size = 10000000;
+                    save = 10000000;
                     share = true;
                     ignoreDups = true;
                     ignoreSpace = true;
