@@ -25,6 +25,13 @@ in
             };
         };
 
+        steam-acolyte = {
+            command = mkOption {
+                type = types.str;
+                default = "${config.ethorbit.pkgs.python.steam-acolyte}/bin/steam-acolyte --prefix $HOME/.var/app/com.valvesoftware.Steam/.steam";
+            };
+        };
+
         gamescope = {
             enable = mkOption {
                 type = types.bool;
@@ -59,6 +66,22 @@ in
                         ${cfg.gamescope.commands.gamemode} \
                             flatpak run --unshare=network --branch=stable --arch=x86_64 --env=DISPLAY="$GAMESCOPE_DISPLAY" ${cfg.appName}
                     '');
+                };
+
+                acolyte = {
+                    normal = mkOption {
+                        type = types.package;
+                        default = (writeShellScript "" ''
+                            ${cfg.steam-acolyte.command} --exe ${cfg.gamescope.scripts.normal.outPath}
+                        '');
+                    };
+
+                    offline = mkOption {
+                        type = types.package;
+                        default = (writeShellScript "" ''
+                            ${cfg.steam-acolyte.command} --exe ${cfg.gamescope.scripts.offline.outPath}
+                        '');
+                    };
                 };
             };
 

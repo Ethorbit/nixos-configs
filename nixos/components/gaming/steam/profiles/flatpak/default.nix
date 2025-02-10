@@ -20,10 +20,10 @@ in
     ];
 
     ethorbit.components.gaming.dependencies.gamescope.wrappers."steam" = {
-        script = cfg.scripts.normal;
+        script = cfg.scripts.acolyte.normal;
     };
 
     ethorbit.components.gaming.dependencies.gamescope.wrappers."steam-offline" = {
-        script = cfg.scripts.offline;
+        script = cfg.scripts.acolyte.offline;
     };
 }
