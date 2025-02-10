@@ -5,7 +5,7 @@
         # Always have boot verbosity
         consoleLogLevel = mkDefault 3;
         initrd.verbose = mkDefault true;
-        # Enable Sysrq REISUB
-        kernel.sysctl."kernel.sysrq" = mkDefault 502;
+        # Enable Sysrq fully
+        kernel.sysctl."kernel.sysrq" = mkDefault 1;
     };
-}
+
