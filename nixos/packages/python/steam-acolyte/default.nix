@@ -1,8 +1,3 @@
-# This is broken, segmentation error on launch
-# and its .desktop entry isn't added
-#
-# Will fix later, for now built-in Steam switcher is fine.
-
 { config, lib, pkgs, ... }:
 
 with lib;
@@ -31,6 +26,7 @@ in
                     vdf
                     docopt
                     importlib-resources
+                    qt5.full
                 ];
             });
         };
