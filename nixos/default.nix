@@ -19,11 +19,19 @@
         ./libinput.nix
     ];
 
-    nix.settings = {
-        auto-optimise-store = true;
-    };
+    nix = with lib; {
+        settings = {
+            auto-optimise-store = mkDefault true;
+        };
 
-    nix.extraOptions = ''
-        experimental-features = nix-command flakes
-    '';
+        gc = {
+            automatic = mkDefault true;
+            dates = mkDefault "weekly";
+            options = mkDefault "--delete-generations +50";
+        };
+
+        extraOptions = ''
+            experimental-features = nix-command flakes
+        '';
+    };
 }
