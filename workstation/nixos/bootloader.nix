@@ -2,9 +2,10 @@
 
 {
     boot = {
-        consoleLogLevel = 3;
-        initrd.verbose = true;
-        
+        kernelParams = [
+            "processor.max_cstate=1"
+            "idle=nomwait"
+        ];
         loader = {
             efi.canTouchEfiVariables = true;
             systemd-boot.enable = true;

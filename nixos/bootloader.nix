@@ -8,4 +8,4 @@
         # Enable Sysrq fully
         kernel.sysctl."kernel.sysrq" = mkDefault 1;
     };
-
+}
