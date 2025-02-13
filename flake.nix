@@ -22,9 +22,16 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        # WSL support
         NixOS-WSL = {
             url = "github:nix-community/NixOS-WSL";
             inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        # Steam Deck support
+        Jovian-NixOS = {
+            url = "github:Jovian-Experiments/Jovian-NixOS";
+            inputs.nixpkgs.follows = "nixpkgs-unstable";
         };
     };
 
@@ -37,7 +44,8 @@
         agenix,
         flatpaks,
         nvidia-patch,
-        NixOS-WSL
+        NixOS-WSL,
+        Jovian-NixOS
     } @inputs: let
         inherit (self) outputs;
         system = "x86_64-linux";
@@ -93,6 +101,17 @@
                 modules = [
                     ./workstation/nixos
                     ./nixosmodules.nix
+                ];
+            };
+
+            # Steamdeck, the limitless handheld experience
+            "steamdeck" = nixpkgs-unstable.lib.nixosSystem {
+                inherit system;
+                specialArgs = { inherit inputs outputs system; };
+                modules = [
+                    ./steamdeck/nixos
+                    ./nixosmodules.nix
+                    Jovian-NixOS.nixosModules.default
                 ];
             };
 
