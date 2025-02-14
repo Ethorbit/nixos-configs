@@ -1,5 +1,26 @@
 {
   "nodes": {
+    "Jovian-NixOS": {
+      "inputs": {
+        "nix-github-actions": "nix-github-actions",
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1739514403,
+        "narHash": "sha256-g5+w009KIHfOH8SK2t/54MYzbgTs4Xn5P1QOCGCuUl0=",
+        "owner": "Jovian-Experiments",
+        "repo": "Jovian-NixOS",
+        "rev": "740e8e359a21b4d0ab5421f33ba328a43e768652",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Jovian-Experiments",
+        "repo": "Jovian-NixOS",
+        "type": "github"
+      }
+    },
     "NixOS-WSL": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -117,6 +138,47 @@
         "type": "github"
       }
     },
+    "home-manager-old": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-old"
+        ]
+      },
+      "locked": {
+        "lastModified": 1726989464,
+        "narHash": "sha256-Vl+WVTJwutXkimwGprnEtXc/s/s8sMuXzqXaspIGlwM=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "2f23fa308a7c067e52dfcc30a0758f47043ec176",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-24.05",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager-unstable": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1739470101,
+        "narHash": "sha256-NxNe32VB4XI/xIXrsKmIfrcgtEx5r/5s52pL3CpEcA4=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "5031c6d2978109336637977c165f82aa49fa16a7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "home-manager_2": {
       "inputs": {
         "nixpkgs": [
@@ -135,6 +197,28 @@
         "owner": "nix-community",
         "ref": "release-24.11",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nix-github-actions": {
+      "inputs": {
+        "nixpkgs": [
+          "Jovian-NixOS",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1729697500,
+        "narHash": "sha256-VFTWrbzDlZyFHHb1AlKRiD/qqCJIripXKiCSFS8fAOY=",
+        "owner": "zhaofengli",
+        "repo": "nix-github-actions",
+        "rev": "e418aeb728b6aa5ca8c5c71974e7159c2df1d8cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zhaofengli",
+        "ref": "matrix-name",
+        "repo": "nix-github-actions",
         "type": "github"
       }
     },
@@ -225,10 +309,13 @@
     },
     "root": {
       "inputs": {
+        "Jovian-NixOS": "Jovian-NixOS",
         "NixOS-WSL": "NixOS-WSL",
         "agenix": "agenix",
         "flatpaks": "flatpaks",
         "home-manager": "home-manager_2",
+        "home-manager-old": "home-manager-old",
+        "home-manager-unstable": "home-manager-unstable",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-old": "nixpkgs-old",
         "nixpkgs-unstable": "nixpkgs-unstable",
