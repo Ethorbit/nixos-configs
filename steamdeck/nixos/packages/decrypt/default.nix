@@ -49,16 +49,16 @@ with lib;
             esac
 
             if [[ "$1" = "proceed" ]]; then
-                home_device=$(${coreutils-full}/bin/df /home | tail -1 | cut -d " " -f 1) 
-                
+                services=$(${systemd}/bin/systemctl list-dependencies --no-pager --plain --state running,enabled,exited \
+                   | grep -E '.(service|mount)$' | tac | awk '{ print $1 }')
+
                 # Kill any processes trying to write to /home
-                while read -r name pid _; do 
-                    kill -9 "$pid" 
-                done < <(${lsof}/bin/lsof +f -- "$home_device")
+                for pid in $(${lsof}/bin/lsof +D /home | grep 'w' | awk '{print $2}'); do
+                    ${coreutils-full}/bin/kill -9 "$pid"
+                done
 
                 # Unmount everything on /home
-                swapoff /home/swapfile 2> /dev/null
-                for mount in $(grep "$home_device" /proc/mounts | cut -d " " -f 2); do 
+                for ${mount}/bin/mount in $(grep "$home_device" /proc/mounts | ${coreutils-full}/bin/cut -d " " -f 2); do 
                     ${umount}/bin/umount "$mount" 2> /dev/null
                 
                     if [[ $(grep "$mount" /proc/mounts) ]]; then
@@ -66,15 +66,13 @@ with lib;
                         ${umount}/bin/umount -l "$mount" 2> /dev/null
                     fi
                 done
-                
+
                 # Mount our encrypted stuff
                 "$mount_pass_script"
                 "$unlock_key_script"
                 "$mount_key_script"
-                
+
                 # Restart services, so SteamOS can do its usual /home changes
-                services=$(${systemd}/bin/systemctl list-dependencies --no-pager --plain --state running,enabled,exited \
-                   | grep -E '.(service|mount)$' | tac | awk '{ print $1 }')
                 for service in $services; do
                 case $service in
                         home.mount)
