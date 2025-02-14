@@ -11,6 +11,16 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        home-manager-old = {
+            url = "github:nix-community/home-manager/release-24.05";
+            inputs.nixpkgs.follows = "nixpkgs-old";
+        };
+
+        home-manager-unstable = {
+            url = "github:nix-community/home-manager";
+            inputs.nixpkgs.follows = "nixpkgs-unstable";
+        };
+
         agenix.url = "github:ryantm/agenix";
         # having endless problems trying to get this working in Home Manager
         #flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
@@ -41,6 +51,8 @@
         nixpkgs-old,
         nixpkgs-unstable,
         home-manager,
+        home-manager-old,
+        home-manager-unstable,
         agenix,
         flatpaks,
         nvidia-patch,
@@ -56,6 +68,7 @@
                 inherit system;
                 specialArgs = { inherit inputs outputs system; };
                 modules = [
+                    home-manager.nixosModules.default
                     ./homenas/nixos
                     ./nixos/hardware/vm/qemu
                     ./nixosmodules.nix
@@ -68,6 +81,7 @@
                 inherit system;
                 specialArgs = { inherit inputs outputs system; };
                 modules = [
+                    home-manager.nixosModules.default
                     ./nixos/components/programming/ide/profiles/standalone/profiles/cli
                     ./nixos/hardware/container/wsl
                     ./nixosmodules.nix
@@ -77,6 +91,7 @@
                 inherit system;
                 specialArgs = { inherit inputs outputs system; };
                 modules = [
+                    home-manager.nixosModules.default
                     ./nixos/components/programming/ide/profiles/standalone/profiles/desktop
                     ./nixos/hardware/vm/qemu
                     ./nixosmodules.nix
@@ -89,6 +104,7 @@
                 inherit system;
                 specialArgs = { inherit inputs outputs system; };
                 modules = [
+                    home-manager.nixosModules.default
                     ./headless-nvidia/nixos
                     ./nixosmodules.nix
                 ];
@@ -99,6 +115,7 @@
                 inherit system;
                 specialArgs = { inherit inputs outputs system; };
                 modules = [
+                    home-manager.nixosModules.default
                     ./workstation/nixos
                     ./nixosmodules.nix
                 ];
@@ -109,6 +126,7 @@
                 inherit system;
                 specialArgs = { inherit inputs outputs system; };
                 modules = [
+                    home-manager-unstable.nixosModules.default
                     ./steamdeck/nixos
                     ./nixosmodules.nix
                     Jovian-NixOS.nixosModules.default
@@ -120,6 +138,7 @@
                 inherit system;
                 specialArgs = { inherit inputs outputs system; };
                 modules = [
+                    home-manager.nixosModules.default
                     ./nzc/nixos/profiles/production
                     ./nixos/hardware/vm/qemu
                     ./nixosmodules.nix
@@ -131,6 +150,7 @@
                 inherit system;
                 specialArgs = { inherit inputs outputs system; };
                 modules = [
+                    home-manager.nixosModules.default
                     ./nzc/nixos/profiles/selfhosted
                     ./nixos/hardware/vm/qemu
                     ./nixosmodules.nix
@@ -142,6 +162,7 @@
                 inherit system;
                 specialArgs = { inherit inputs outputs system; };
                 modules = [
+                    home-manager.nixosModules.default
                     ./nzc/nixos/profiles/dev
                     ./nixos/hardware/vm/qemu
                     ./nixosmodules.nix

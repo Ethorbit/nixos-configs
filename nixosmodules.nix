@@ -5,7 +5,6 @@ with inputs;
 {
     imports = [
         ./nixos
-        home-manager.nixosModules.default
         agenix.nixosModules.default
         flatpaks.nixosModules.nix-flatpak
         NixOS-WSL.nixosModules.wsl
@@ -20,6 +19,11 @@ with inputs;
     nixpkgs.overlays = [
         (self: super: {
             old = (import inputs.nixpkgs-old {
+                system = super.system;
+                config.allowUnfree = true;
+            });
+
+            stable = (import inputs.nixpkgs {
                 system = super.system;
                 config.allowUnfree = true;
             });
