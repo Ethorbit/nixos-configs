@@ -2,7 +2,7 @@
 
 {
     environment.systemPackages = with pkgs; [
-        cinnamon.cinnamon-common
-        gnome.gnome-keyring
+        cinnamon-common
+        gnome-keyring
     ];
 }
