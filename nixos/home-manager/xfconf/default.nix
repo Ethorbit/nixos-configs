@@ -9,6 +9,7 @@
             };
 
             xfwm4 = {
+                "general/SaveOnExit" = true;
                 "general/popup_opacity" = 95;
                 "general/frame_opacity" = 95;
                 "general/move_opacity" = 70;
