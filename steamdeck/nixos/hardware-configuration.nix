@@ -1,5 +1,5 @@
 # Basically full-disk encryption would be super inconvenient with a Steam Deck, so I use a script
-# located in (packages/decrypt) to conveniently unlock and mount encrypted partitions (/home and sdcard)
+# located in (packages/scripts/decrypt) to conveniently unlock and mount encrypted partitions (/home and sdcard)
 
 { config, lib, pkgs, modulesPath, ... }:
 
