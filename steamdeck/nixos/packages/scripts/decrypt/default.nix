@@ -57,15 +57,13 @@ with lib;
                     ${coreutils-full}/bin/kill -9 "$pid"
                 done
 
-                # Unmount everything on /home
-                for ${mount}/bin/mount in $(grep "$home_device" /proc/mounts | ${coreutils-full}/bin/cut -d " " -f 2); do 
-                    ${umount}/bin/umount "$mount" 2> /dev/null
-                
-                    if [[ $(grep "$mount" /proc/mounts) ]]; then
-                        echo "Unmounting $mount failed, it will be lazily unmounted instead."
-                        ${umount}/bin/umount -l "$mount" 2> /dev/null
-                    fi
-                done
+                # Unmount /home
+                ${umount}/bin/umount /home 2> /dev/null
+            
+                if [[ $(grep /home /proc/mounts) ]]; then
+                    echo "Unmounting $mount failed, it will be lazily unmounted instead."
+                    ${umount}/bin/umount -l /home 2> /dev/null
+                fi
 
                 # Mount our encrypted stuff
                 "$mount_pass_script"
