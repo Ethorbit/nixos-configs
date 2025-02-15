@@ -4,7 +4,7 @@ with lib;
 
 {
     services.flatpak = {
-        uninstallUnmanaged = true;
+        uninstallUnmanaged = mkDefault true;
         packages = [
             {
                 appId = "com.github.tchx84.Flatseal";

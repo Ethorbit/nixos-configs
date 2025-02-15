@@ -3,7 +3,7 @@
 {
     config.home-manager.sharedModules = [ {
         services.flatpak = {
-            uninstallUnmanaged = true;
+            uninstallUnmanaged = lib.mkDefault true;
             packages = [
                 {
                     appId = "com.github.tchx84.Flatseal";
