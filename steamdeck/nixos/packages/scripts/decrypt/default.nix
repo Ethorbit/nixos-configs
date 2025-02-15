@@ -49,9 +49,6 @@ with lib;
             esac
 
             if [[ "$1" = "proceed" ]]; then
-                services=$(${systemd}/bin/systemctl list-dependencies --no-pager --plain --state running,enabled,exited \
-                   | grep -E '.(service|mount)$' | tac | awk '{ print $1 }')
-
                 # Kill any processes trying to write to /home
                 for pid in $(${lsof}/bin/lsof +D /home | grep 'w' | awk '{print $2}'); do
                     ${coreutils-full}/bin/kill -9 "$pid"
@@ -59,9 +56,9 @@ with lib;
 
                 # Unmount /home
                 ${umount}/bin/umount /home 2> /dev/null
-            
+
                 if [[ $(grep /home /proc/mounts) ]]; then
-                    echo "Unmounting $mount failed, it will be lazily unmounted instead."
+                    echo "Unmounting /home failed, it will be lazily unmounted instead."
                     ${umount}/bin/umount -l /home 2> /dev/null
                 fi
 
@@ -70,16 +67,13 @@ with lib;
                 "$unlock_key_script"
                 "$mount_key_script"
 
-                # Restart services, so SteamOS can do its usual /home changes
-                for service in $services; do
-                case $service in
-                        home.mount)
-                        ;;
-                        *)
-                          ${systemd}/bin/systemctl restart "$service" &
-                        ;;
-                    esac
-                done
+                # Restart systemd and its services
+                ${systemd}/bin/systemctl daemon-reexec
+                ${systemd}/bin/systemctl isolate default.target
+
+                # Kill all user processes
+                sleep 2
+                pkill -u $(who | awk '{print $1}' | sort -u)
             else
                 cd /tmp
                 ${coreutils-full}/bin/nohup "$0" proceed > /dev/null 2>&1
