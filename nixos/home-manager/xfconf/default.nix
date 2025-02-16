@@ -9,7 +9,6 @@
             };
 
             xfwm4 = {
-                "general/SaveOnExit" = true;
                 "general/popup_opacity" = 95;
                 "general/frame_opacity" = 95;
                 "general/move_opacity" = 70;
@@ -17,6 +16,10 @@
                 "general/box_resize" = true;
                 "general/wrap_windows" = false;
                 "general/snap_to_windows" = true;
+            };
+
+            xfce4-session = {
+                "general/SaveOnExit" = true;
             };
 
             xfce4-panel = {
