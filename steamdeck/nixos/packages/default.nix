@@ -6,6 +6,7 @@
     ];
 
     environment.systemPackages = with pkgs; [
+        onboard
         neofetch
         keepassxc
         yt-dlp
