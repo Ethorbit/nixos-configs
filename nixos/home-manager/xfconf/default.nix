@@ -33,9 +33,10 @@
             };
 
             xfce4-power-manager = {
-                "xfce4-power-manager/blank-on-ac" = 0;
-                "xfce4-power-manager/dpms-on-ac-off" = 120;
-                "xfce4-power-manager/dpms-on-ac-sleep" = 120;
+                "blank-on-ac" = 0;
+                "dpms-on-ac-off" = 120;
+                "dpms-on-ac-sleep" = 120;
+                "show-tray-icon" = true;
             };
         };
     } ];
