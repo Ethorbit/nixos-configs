@@ -3,7 +3,7 @@
 {
     home-manager.sharedModules = [ {
         xfconf.settings = {
-            # Rotate screen
+            # Setup screen
             displays = {
                 "Rotation" = 0;
                 "Default/eDP-1" = "laptop";
