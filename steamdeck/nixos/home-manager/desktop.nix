@@ -6,6 +6,9 @@
             # Rotate screen
             displays = {
                 "Rotation" = 0;
+                "Default/eDP-1" = "laptop";
+                "Default/eDP-1/Active" = true;
+                "Default/eDP-1/Resolution" = "800x1280";
                 "Default/eDP-1/Rotation" = 270;
                 "Default/eDP-1/Reflection" = "0";
             };
