@@ -6,11 +6,15 @@
             # Setup screen
             displays = {
                 "Rotation" = 0;
-                "Default/eDP-1" = "laptop";
+                "Default/eDP-1" = "Laptop";
                 "Default/eDP-1/Active" = true;
                 "Default/eDP-1/Resolution" = "800x1280";
+                "Default/eDP-1/RefreshRate" = 59.998544859890792;
                 "Default/eDP-1/Rotation" = 270;
                 "Default/eDP-1/Reflection" = "0";
+                "Default/eDP-1/Scale" = 1;
+                "Default/eDP-1/Position/X" = 0;
+                "Default/eDP-1/Position/Y" = 0;
             };
 
             # On-screen keyboard for Lock Screen

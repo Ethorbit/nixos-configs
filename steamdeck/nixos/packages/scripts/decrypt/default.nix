@@ -3,6 +3,9 @@
 #
 # Based on my documentation I made for encrypting SteamOS:
 # https://github.com/Ethorbit/SteamDeck-SteamOS-Guides/tree/main/Encrypting-With-LUKS
+# Except I improved it since it was kinda broken anyway
+#
+# It's not foolproof, but it's the best thing I can write without going insane
 
 { config, pkgs, lib, ... }:
 
@@ -24,6 +27,9 @@ with lib;
             readonly mount_pass_script="${config.ethorbit.steamdeck.packages.decrypt.mount-pass.outPath}"
             readonly unlock_key_script="${config.ethorbit.steamdeck.packages.decrypt.unlock-key.outPath}"
             readonly mount_key_script="${config.ethorbit.steamdeck.packages.decrypt.mount-key.outPath}"
+
+            readonly argument="$1"
+            # set -uo pipefail
 
             if [[ $(id -u) -ne 0 ]]; then 
                echo "You need root"
@@ -48,42 +54,39 @@ with lib;
                 ;;
             esac
 
-            if [[ "$1" = "proceed" ]]; then
-                # Kill any processes trying to write to /home
-                # for pid in $(${lsof}/bin/lsof +D /home | grep 'w' | awk '{print $2}'); do
-                #     ${coreutils-full}/bin/kill -9 "$pid"
-                # done
+            if [[ "$argument" = "proceed" ]]; then
+                # Pause all active processes of the primary user, and queue them to die when this script finishes
+                pkill -STOP -u "${config.ethorbit.users.primary.username}"
+                trap 'pkill -KILL -u "${config.ethorbit.users.primary.username}"' EXIT
+                sleep 1
 
-                # There is a serious issue that this section will fix
-                # The issue is processes auto restarting WHILE we change the mount
-                #
-                # The issue caused strange problems like Steam forgetting accounts every time
-                #
-                # We need a "rescue" environment during these operations..
+                # Unmount /home (with 5 attempts)
+                for i in {1..5}; do
+                    ${umount}/bin/umount -f /home 2> /dev/null
+                    sleep 1
+                    grep -q "/home" /proc/mounts || break
+                done
                 
-                # Unmount /home
-                ${umount}/bin/umount /home 2> /dev/null
-
-                if [[ $(grep /home /proc/mounts) ]]; then
+                # If attempts to unmount failed, lazily unmount instead (This is cursed)
+                if grep -q "/home" /proc/mounts 2>/dev/null; then
                     echo "Unmounting /home failed, it will be lazily unmounted instead."
                     ${umount}/bin/umount -l /home 2> /dev/null
                 fi
+
+                sleep 2
 
                 # Mount our encrypted stuff
                 "$mount_pass_script"
                 "$unlock_key_script"
                 "$mount_key_script"
+                sleep 2
 
                 # Restart systemd and its services
                 ${systemd}/bin/systemctl daemon-reexec
                 ${systemd}/bin/systemctl isolate default.target
-
-                # Kill all user processes
-                sleep 2
-                pkill -u $(who | awk '{print $1}' | sort -u)
             else
                 cd /tmp
-                ${coreutils-full}/bin/nohup "$0" proceed > /dev/null 2>&1
+                ${coreutils-full}/bin/nohup "$0" proceed > /dev/null 2>&1 & disown
             fi
         '');
     };
