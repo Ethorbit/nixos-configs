@@ -4,6 +4,7 @@
     imports = [
         ./prompt.nix
         ./desktop.nix
+        ./flatpak
     ];
 
     # Idk home-manager is a bit brain dead and won't update sharedModules
