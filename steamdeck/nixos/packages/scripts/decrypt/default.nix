@@ -50,10 +50,17 @@ with lib;
 
             if [[ "$1" = "proceed" ]]; then
                 # Kill any processes trying to write to /home
-                for pid in $(${lsof}/bin/lsof +D /home | grep 'w' | awk '{print $2}'); do
-                    ${coreutils-full}/bin/kill -9 "$pid"
-                done
+                # for pid in $(${lsof}/bin/lsof +D /home | grep 'w' | awk '{print $2}'); do
+                #     ${coreutils-full}/bin/kill -9 "$pid"
+                # done
 
+                # There is a serious issue that this section will fix
+                # The issue is processes auto restarting WHILE we change the mount
+                #
+                # The issue caused strange problems like Steam forgetting accounts every time
+                #
+                # We need a "rescue" environment during these operations..
+                
                 # Unmount /home
                 ${umount}/bin/umount /home 2> /dev/null
 

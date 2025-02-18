@@ -39,14 +39,14 @@
     options = [ "defaults" "nosuid" "nodev" "noexec" ];
   };
 
-  fileSystems."/" = { 
-    device = "/dev/disk/by-uuid/305f8f54-3406-4fe5-a50e-5046b4f6af23";
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/a82ea2bb-bb0f-431a-8e1f-cfcf7214d627";
     fsType = "btrfs";
     options = [ "defaults" "compress-force=zstd:16" "noatime" "discard" ];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/0678-FDF8";
+    device = "/dev/disk/by-uuid/9CFB-EC54";
     fsType = "vfat";
     options = [ "fmask=0077" "dmask=0077" "defaults" ];
   };

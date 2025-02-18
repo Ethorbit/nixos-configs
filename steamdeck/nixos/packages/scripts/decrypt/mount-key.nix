@@ -9,7 +9,6 @@ with pkgs;
         type = types.package;
         default = (pkgs.writeShellScript "script" ''
             ${mount}/bin/mount -o subvol=home,compress-force=zstd:12,noatime,discard /dev/mapper/crypt_sdcard /home
-
             ${coreutils-full}/bin/mkdir -p /mnt/{sdcard_games,sdcard_storage,sdcard_high}
             ${mount}/bin/mount -o subvol=games,compress-force=zstd:12,noatime,discard /dev/mapper/crypt_sdcard /mnt/sdcard_games
             ${mount}/bin/mount -o subvol=storage,compress-force=zstd:12,noatime,discard /dev/mapper/crypt_sdcard /mnt/sdcard_storage
