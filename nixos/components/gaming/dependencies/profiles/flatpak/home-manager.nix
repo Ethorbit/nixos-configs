@@ -17,7 +17,11 @@
                     origin = "flathub";
                 }
                 {
-                    appId = "${config.ethorbit.components.gaming.dependencies.flatpak.appNames.mangohud}";
+                    appId = "${config.ethorbit.components.gaming.dependencies.flatpak.appNames.mangohud23}";
+                    origin = "flathub";
+                }
+                {
+                    appId = "${config.ethorbit.components.gaming.dependencies.flatpak.appNames.mangohud24}";
                     origin = "flathub";
                 }
                 {

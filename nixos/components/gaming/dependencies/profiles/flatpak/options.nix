@@ -31,7 +31,12 @@ with lib;
                 default = "runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08";
             };
 
-            "mangohud" = mkOption {
+            "mangohud23" = mkOption {
+                type = types.str;
+                default = "runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08";
+            };
+
+            "mangohud24" = mkOption {
                 type = types.str;
                 default = "runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08";
             };
