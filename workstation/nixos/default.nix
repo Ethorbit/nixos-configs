@@ -14,7 +14,7 @@
         ./xorg.conf
         ./flatpak
         ./home-manager
-        ../../nixos/components/web-browsing/chromium
+        ../../nixos/components/web-browsing/chromium/profiles/brave
         ../../nixos/components/containers/docker
         ../../nixos/components/programming/ide
         ../../nixos/components/file-browser/profiles/nautilus

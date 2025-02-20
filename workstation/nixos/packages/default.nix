@@ -35,6 +35,17 @@
 
         #firefox
         (symlinkJoin {
+            name = "brave-wrapped";
+            paths = [
+                brave
+            ];
+            buildInputs = [ makeWrapper ];
+            postBuild = ''
+                ${config.ethorbit.components.web-browsing.brave.wrappers.videoEncoding}
+            '';
+        })
+
+        (symlinkJoin {
             name = "ungoogled-chromium-wrapped";
             paths = [
                 ungoogled-chromium
