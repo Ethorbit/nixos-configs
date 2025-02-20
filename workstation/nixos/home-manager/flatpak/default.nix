@@ -5,6 +5,7 @@ with lib;
 {
     imports = [
         ./moonlight.nix
+        ./steamlink.nix
         ./protontricks.nix
         ./steam.nix
         ./lutris.nix
