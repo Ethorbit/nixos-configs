@@ -3,6 +3,7 @@
 {
     imports = [
         ./lutris.nix
+        ./minecraft.nix
     ];
 
     options.ethorbit.workstation.home-manager.flatpak = with lib; {
