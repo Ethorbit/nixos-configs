@@ -29,6 +29,10 @@
             user = "${config.ethorbit.users.primary.username}";
         };
 
+        devices.steamdeck = {
+            enableXorgRotation = true;
+        };
+
         # sh: line 1: /build/source/frontend/node_modules/.bin/rollup: Permission denied
         # ELIFECYCLE  Command failed with exit code 126.
         # Problem with their derivation? Maybe, but I value my time so I'm moving on..
