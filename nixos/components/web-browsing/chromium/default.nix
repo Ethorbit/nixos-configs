@@ -9,15 +9,16 @@
         programs.chromium = {
             enable = true;
 
+            # Apparently Brave won't let users uninstall these
+            # Even if it's done in Home Manager
+            #
+            # Let's just keep security-focused ones here
+            # Let user install anything else.
             extensions = lib.mkDefault [
                 # Ublock Origin
                 "cjpalhdlnbpafiamejdnhcphjbkeiagm"
                 # NoScript
                 "doojmbjmlfjjnbmnoijecmcbfeoakpjm"
-                # SponsorBlock
-                "mnjggcdmjocbbbhaepdhchncahnbgone"
-                # Return YouTube Dislike
-                "gebbhagfogifgggkldgodflihgfeippi"
             ];
 
             # Improve security and privacy, disallow saving / filling of sensitive data
