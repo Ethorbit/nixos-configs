@@ -12,13 +12,13 @@
         yt-dlp
 
         (symlinkJoin {
-            name = "ungoogled-chromium-wrapped";
+            name = "brave-wrapped";
             paths = [
-                ungoogled-chromium
+                brave
             ];
             buildInputs = [ makeWrapper ];
             postBuild = ''
-                ${config.ethorbit.components.web-browsing.chromium.wrappers.videoEncoding}
+                ${config.ethorbit.components.web-browsing.brave.wrappers.videoEncoding}
             '';
         })
     ];

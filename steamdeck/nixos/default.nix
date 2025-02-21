@@ -13,7 +13,7 @@
         ./home-manager
         ../../nixos/components/programming/ide
         ../../nixos/components/containers/podman
-        ../../nixos/components/web-browsing/chromium
+        ../../nixos/components/web-browsing/chromium/profiles/brave
         ../../nixos/components/desktop-streaming/profiles/sunshine
     ];
 
