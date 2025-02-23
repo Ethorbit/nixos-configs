@@ -32,9 +32,5 @@
         devices.steamdeck = {
             enableXorgRotation = true;
         };
-
-        decky-loader = {
-            enable = true;
-        };
     };
 }
