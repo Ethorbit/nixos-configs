@@ -36,7 +36,7 @@
   fileSystems."/tmp" = {
     device = "tmpfs";
     fsType = "tmpfs";
-    options = [ "defaults" "nosuid" "nodev" "noexec" ];
+    options = [ "defaults" "nosuid" "nodev" ]; # "noexec" causes build errors with jovian settings
   };
 
   fileSystems."/" = {
