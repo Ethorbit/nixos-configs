@@ -10,7 +10,7 @@
         wantedBy = [ "graphical.target" ];
         before = [ "greetd.service" ];
         script = ''
-            home_dir=$(${pkgs.getent}/bin/getent passwd "${config.ethorbit.users.primary.username}" | cut -d: -f6)
+            home_dir=$(${pkgs.getent}/bin/getent passwd "${config.jovian.steam.user}" | cut -d: -f6)
             echo "${config.jovian.steam.desktopSession}" > "$home_dir/.local/state/steamos-session-select"
         '';
     };
