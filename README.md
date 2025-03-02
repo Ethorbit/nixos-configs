@@ -10,6 +10,6 @@ The nixos/ directory is shared between all configs, it contains defaults and reu
 * Minimal, containing only what you put on it
 * Hardware agnostic reproducibility, only put effort into setting something up ONCE!
 * Immutability, changes only when you explicitly build it
-* Atomic Updates, does not apply changes until the updates are complete and successful
+* Atomicity, does not apply changes from updates until they are complete and successful
 * Package isolation, free from file conflicts
 * Snapshot management and automated snapshots, select any build during boot
