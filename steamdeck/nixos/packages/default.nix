@@ -6,10 +6,12 @@
     ];
 
     environment.systemPackages = with pkgs; [
+        cryptsetup
         onboard
         neofetch
         keepassxc
         yt-dlp
+        krita
 
         (symlinkJoin {
             name = "brave-wrapped";
