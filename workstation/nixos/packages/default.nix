@@ -12,6 +12,7 @@
     programs.adb.enable = true;
 
     environment.systemPackages = with pkgs; [
+        distrobox
         flatpak-builder
 
         coturn
@@ -19,8 +20,6 @@
 
         libreoffice-qt
 
-        # weird ToolBar.qml error, I'll just install it as a Flatpak instead
-        #moonlight-qt
         virtiofsd
         virt-viewer
 
