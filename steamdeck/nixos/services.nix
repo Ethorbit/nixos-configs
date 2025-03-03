@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
     # Set SteamOS session preference to Desktop at startup
