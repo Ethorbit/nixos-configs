@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./retrodeck.nix
         ./lutris.nix
         ./minecraft.nix
     ];
