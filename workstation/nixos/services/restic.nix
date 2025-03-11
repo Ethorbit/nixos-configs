@@ -6,6 +6,7 @@
     age.secrets."nixos/restic/repos/android_pixel_primary/pass" = { file = ../../../nixos/secrets/restic/repos/android_pixel_primary/pass.age; };
     age.secrets."nixos/restic/repos/android_pixel_high/pass" = { file = ../../../nixos/secrets/restic/repos/android_pixel_high/pass.age; };
     age.secrets."nixos/restic/repos/android_pixel_dark/pass" = { file = ../../../nixos/secrets/restic/repos/android_pixel_dark/pass.age; };
+    age.secrets."nixos/restic/repos/android_pixel_doc/pass" = { file = ../../../nixos/secrets/restic/repos/android_pixel_doc/pass.age; };
 
     environment.etc."restic_workstation_pass" = {
         mode = "0600";
@@ -41,6 +42,12 @@
         mode = "0600";
         user = config.ethorbit.users.primary.username;
         source = config.age.secrets."nixos/restic/repos/android_pixel_dark/pass".path;
+    };
+
+    environment.etc."restic_android_pixel_doc_pass" = {
+        mode = "0600";
+        user = config.ethorbit.users.primary.username;
+        source = config.age.secrets."nixos/restic/repos/android_pixel_doc/pass".path;
     };
 
     services.restic = {
@@ -167,6 +174,21 @@
                 paths = [ "/home/${config.ethorbit.users.primary.username}/mnt/android_pixel_dark" ];
                 repository = "/mnt/homenas/Restic_Backups/android_pixel_dark";
                 passwordFile = "/etc/restic_android_pixel_dark_pass";
+                extraBackupArgs = [
+                    "--compression=max"
+                    "--verbose=2"
+                    "--one-file-system=true"
+                    "--ignore-ctime"
+                    "--ignore-inode"
+                ];
+            };
+
+            "android-pixel-doc" = {
+                user = config.ethorbit.users.primary.username;
+                initialize = true;
+                paths = [ "/home/${config.ethorbit.users.primary.username}/mnt/android_pixel_doc" ];
+                repository = "/mnt/homenas/Restic_Backups/android_pixel_doc";
+                passwordFile = "/etc/restic_android_pixel_doc_pass";
                 extraBackupArgs = [
                     "--compression=max"
                     "--verbose=2"

@@ -12,6 +12,7 @@ in
     "nixos/secrets/restic/repos/android_pixel_primary/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/android_pixel_dark/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/android_pixel_high/pass.age".publicKeys = [ ethorbit nixos ];
+    "nixos/secrets/restic/repos/android_pixel_doc/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/users/primary/pass.age".publicKeys = [ ethorbit nixos steamdeck ];
 
     "homenas/nixos/secrets/samba/users/ethorbit/creds.age".publicKeys = [ ethorbit nixos ];

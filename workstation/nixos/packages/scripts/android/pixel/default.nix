@@ -5,5 +5,6 @@
         ./primary
         ./high
         ./dark
+        ./doc
     ];
 }
