@@ -12,7 +12,7 @@
             type = types.package;
             default = pkgs.writeShellScriptBin "timer.sh" ''
             #!/usr/bin/env bash
-            termdown $(("$1")) && cvlc -L "${config.ethorbit.termdown-wrapper.soundPath}"
+            ${pkgs.termdown}/bin/termdown $(("$1")) && ${pkgs.vlc}/bin/cvlc -L "${config.ethorbit.termdown-wrapper.soundPath}"
             '';
         };
     };
