@@ -30,6 +30,14 @@ with lib;
             };
 
             networks = {
+                # Host network bridge, only available when needed
+                "20-eth1" = {
+                    DHCP = "yes";
+                    matchConfig.Name = "eth1";
+                    dns = [ "192.168.254.254" ];
+                    gateway = [ "192.168.254.254" ];
+                };
+
                 "30-eth0" = {
                     DHCP = "no";
                     matchConfig.Name = "eth0";
