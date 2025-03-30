@@ -22,6 +22,7 @@
             for_window [class="SteamLink"] move to workspace b1, layout tabbed
 
             # Second monitor will also be used for gaming
+            for_window [title="Steam Acolyte"] layout tabbed
             for_window [title="^Protontricks$"] move to workspace b1
             for_window [class="steam_proton"] move to workspace b1
             for_window [class="Lutris"] move to workspace b1, layout tabbed
