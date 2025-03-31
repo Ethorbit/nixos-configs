@@ -16,8 +16,12 @@ with lib;
     };
 
     config = {
-        # Private bridge interface, Gateway VM
-        networking.defaultGateway.address = "172.16.1.1";
+        networking = {
+            usePredictableInterfaceNames = true;
+
+            # Private bridge interface, Gateway VM
+            defaultGateway.address = "172.16.1.1";
+        };
 
         # Create a bridge and connect eth0 to it
         # This bridge can then be shared with containers
@@ -31,16 +35,17 @@ with lib;
 
             networks = {
                 # Host network bridge, only available when needed
-                "20-eth1" = {
+                "20-enp6s19" = {
                     DHCP = "yes";
-                    matchConfig.Name = "eth1";
+                    matchConfig.Name = "enp6s19";
                     dns = [ "192.168.254.254" ];
                     gateway = [ "192.168.254.254" ];
                 };
 
-                "30-eth0" = {
+                # Work network bridge
+                "30-enp6s18" = {
                     DHCP = "no";
-                    matchConfig.Name = "eth0";
+                    matchConfig.Name = "enp6s18";
                     networkConfig.Bridge = "br0";
                     linkConfig.RequiredForOnline = "enslaved";
                 };
@@ -52,6 +57,13 @@ with lib;
                     matchConfig.Name = "br0";
                     bridgeConfig = {};
                     linkConfig.RequiredForOnline = "carrier";
+                };
+
+                # For USB/IP
+                "100-enp6s20" = {
+                    DHCP = "no";
+                    matchConfig.Name = "enp6s20";
+                    address = [ "172.200.1.150/24" ];
                 };
             };
         };

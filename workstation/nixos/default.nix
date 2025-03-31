@@ -30,6 +30,8 @@
         # to give games full access to user files.
         #../../nixos/components/gaming/steam/profiles/native
         #../../nixos/components/gaming/lutris/profiles/native
+    
+        ../../nixos/components/input-streaming/usbip
     ];
 
     networking.hostName = "workstation";
