@@ -63,6 +63,17 @@
         system = "x86_64-linux";
     in {
         nixosConfigurations = {
+            # Work, yeah there's nothing fancy to describe this with..
+            "work" = nixpkgs.lib.nixosSystem {
+                inherit system;
+                specialArgs = { inherit inputs outputs system; };
+                modules = [
+                    home-manager.nixosModules.default
+                    ./work/nixos
+                    ./nixosmodules.nix
+                ];
+            };
+
             # Home NAS, the centralized source of storage.
             "homenas" = nixpkgs.lib.nixosSystem {
                 inherit system;
