@@ -5,9 +5,10 @@
         ../../../../packages/python/watch-xfce-xfconf
     ];
 
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = with pkgs; with xfce; [
         config.ethorbit.pkgs.python.watch-xfce-xfconf
-        xfce.xfce4-whiskermenu-plugin
-        xfce.xfce4-docklike-plugin
+        xfce4-whiskermenu-plugin
+        xfce4-docklike-plugin
+        xfce4-timer-plugin
     ];
 }

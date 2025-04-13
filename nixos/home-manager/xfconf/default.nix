@@ -24,6 +24,7 @@
 
             xfce4-panel = {
                 "plugins/plugin-4" = "whiskermenu";
+                "plugins/plugin-7" = "xfce4-timer-plugin";
             };
 
             xfce4-terminal = {
