@@ -10,5 +10,5 @@
         };
 
         blueman.enable = true;
-    }
+    };
 }
