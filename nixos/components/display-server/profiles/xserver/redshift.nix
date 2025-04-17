@@ -1,4 +1,4 @@
-# 11pm, night light mode
+# midnight, night light mode
 # 7am, normal blue light
 # Transitions immediately
 # Mimics my setup on Android with its "Night Light"
