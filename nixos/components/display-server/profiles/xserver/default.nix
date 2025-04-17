@@ -3,6 +3,7 @@
 {
     imports = [
         ../..
+        ./redshift.nix
     ];
 
     services.xserver = {
