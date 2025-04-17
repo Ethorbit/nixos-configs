@@ -35,7 +35,7 @@
             "redshift-nighttime" = {
                 enable = true;
                 timerConfig = {
-                    OnCalendar = lib.mkDefault "23:00";
+                    OnCalendar = lib.mkDefault "00:00";
                     Persistent = true;
                 };
                 wantedBy = [ "timers.target" ];
