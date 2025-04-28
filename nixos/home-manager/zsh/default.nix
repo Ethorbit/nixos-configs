@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
     options = {
@@ -55,6 +55,7 @@
                     prompt_symbol=${config.ethorbit.home-manager.shell.prompt.symbol}
                     PROMPT_ALTERNATIVE=${config.ethorbit.home-manager.shell.prompt.alternative}
                     NEWLINE_BEFORE_PROMPT=${config.ethorbit.home-manager.shell.prompt.newline}
+                    source ${pkgs.zsh-z}/share/zsh-z/zsh-z.plugin.zsh
                     source ~/.zshrc_text
                 '';
             };
