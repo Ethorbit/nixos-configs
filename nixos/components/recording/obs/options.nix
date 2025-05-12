@@ -4,16 +4,14 @@ with lib;
 
 {
     options.ethorbit.components.recording.obs = {
-        command = {
-            gamescope = mkOption {
-                type = types.str;
-                default = strings.concatStringsSep " " (
-                    [
-                        "obs"
-                    ]
-                    ++ config.ethorbit.components.recording.obs.flags
-                );
-            };
+        command = mkOption {
+            type = types.str;
+            default = (strings.concatStringsSep " " (
+                [
+                    "obs"
+                ]
+                ++ config.ethorbit.components.recording.obs.flags
+            ));
         };
 
         flags = mkOption {

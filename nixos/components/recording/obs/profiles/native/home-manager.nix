@@ -4,12 +4,8 @@ with lib;
 
 let
     cfg = config.ethorbit.components.recording.obs;
-
-    obsCommand = pkgs.writeShellScript "command.sh" ''
-        ${cfg.command}
-    '';
     desktopScript = pkgs.writeShellScript "script.sh" ''
-        flatpak run --command="${obsCommand.outPath}" ${cfg.flatpak.appIds.obs}
+        ${cfg.command}
     '';
 in
 {
@@ -23,7 +19,7 @@ in
          xdg.desktopEntries = {
              "com.obsproject.Studio2" = {
                  name = "OBS Studio (Custom)";
-                 icon = cfg.flatpak.appIds.obs;
+                 icon = ""; # TODO: actually set this..
                  genericName = "Streaming/Recording Software";
                  exec = desktopScript.outPath;
                  categories = [
