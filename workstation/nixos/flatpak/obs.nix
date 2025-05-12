@@ -26,7 +26,7 @@ in
             };
         };
         # LOL if you want to actually hide the original desktop entry, it cannot be done declaratively..
-        # So to avoid original OBS from appearing on top, you have to mutably create the desktop entry in your home,
+        # So to avoid original OBS from appearing on top, you have to imperatively create the desktop entry in your home,
         # hide it with NoDisplay=true so that this custom entry is the only one that shows.
         #home.file."~/.local/share/applications/com.obsproject.Studio.desktop".source = desktopFile;
     } ];
