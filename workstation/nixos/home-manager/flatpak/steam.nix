@@ -13,6 +13,10 @@ in
         services.flatpak = {
             overrides = {
                 "${id}" = {
+                    "Environment" = {
+                        "OBS_VKCAPTURE" = "1";
+                    };
+
                     "Context" = {
                         filesystems = config.ethorbit.workstation.home-manager.flatpak.overrides.games.filesystems;
 
