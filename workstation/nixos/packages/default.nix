@@ -63,6 +63,5 @@
         #gimp
         krita
         kdenlive
-        obs-studio
     ];
 }
