@@ -4,7 +4,7 @@
     imports = [
         ./hardware-configuration.nix
         ./bootloader.nix
-        ./audio.nix
+        ./audio
         ./packages
         ./users.nix
         ./services

@@ -5,7 +5,8 @@ with lib;
 let
     cfg = config.ethorbit.components.recording.obs;
     desktopScript = pkgs.writeShellScript "script.sh" ''
-        ${cfg.command}
+        nohup ${cfg.command} 2>&1 &
+        ${cfg.extraCommands}
     '';
 in
 {
