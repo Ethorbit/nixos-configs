@@ -14,6 +14,12 @@ with lib;
             ));
         };
 
+        extraCommands = mkOption {
+            type = types.lines;
+            default = '''';
+            description = ''Additional commands called after obs'';
+        };
+
         flags = mkOption {
             type = types.listOf types.str;
             description = ''The flags to pass to OBS. Do obs --help'';

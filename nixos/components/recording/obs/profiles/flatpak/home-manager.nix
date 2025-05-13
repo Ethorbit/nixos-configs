@@ -9,7 +9,8 @@ let
         ${cfg.command}
     '';
     desktopScript = pkgs.writeShellScript "script.sh" ''
-        flatpak run --command="${obsCommand.outPath}" ${cfg.flatpak.appIds.obs}
+        nohup flatpak run --command="${obsCommand.outPath}" ${cfg.flatpak.appIds.obs} 2>&1 &
+        ${cfg.extraCommands}
     '';
 in
 {
