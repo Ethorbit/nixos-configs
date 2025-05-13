@@ -26,12 +26,5 @@ in
                  origin = "flathub";
              }
          ];
-         overrides = {
-            "${cfg.appIds.obs}" = {
-                "Context" = {
-                    filesystems = [ "/var/lib/flatpak/runtime/com.obsproject.Studio.Plugin.PulseAudioAppCapture:ro" ];
-                };
-            };
-         };
-     };
+    };
 }
