@@ -32,7 +32,20 @@
         yt-dlp
         config.ethorbit.pkgs.script.yt-dlp-wrapper
 
+        # steals your data
         #firefox
+        # can't play YouTube correctly
+        #(symlinkJoin {
+        #    name = "ungoogled-chromium-wrapped";
+        #    paths = [
+        #        ungoogled-chromium
+        #    ];
+        #    buildInputs = [ makeWrapper ];
+        #    postBuild = ''
+        #        ${config.ethorbit.components.web-browsing.chromium.wrappers.videoEncoding}
+        #    '';
+        #})
+        # so far, so good...
         (symlinkJoin {
             name = "brave-wrapped";
             paths = [
@@ -41,17 +54,6 @@
             buildInputs = [ makeWrapper ];
             postBuild = ''
                 ${config.ethorbit.components.web-browsing.brave.wrappers.videoEncoding}
-            '';
-        })
-
-        (symlinkJoin {
-            name = "ungoogled-chromium-wrapped";
-            paths = [
-                ungoogled-chromium
-            ];
-            buildInputs = [ makeWrapper ];
-            postBuild = ''
-                ${config.ethorbit.components.web-browsing.chromium.wrappers.videoEncoding}
             '';
         })
 
