@@ -16,7 +16,6 @@
         ./udev-rules.nix
         ./networking.nix
         ./sudo.nix
-        ./libinput.nix
     ];
 
     nix = with lib; {
