@@ -21,6 +21,12 @@ with pkgs;
 
             type = types.attrsOf (types.submodule ({ name, config, ... }: {
                 options = {
+                    package = mkOption {
+                        type = types.package;
+                        default = pkgs.gamescope;
+                        description = "The Gamescope package to use.";
+                    };
+                
                     flags = mkOption {
                         type = types.listOf types.str;
                         description = ''The flags to pass to gamescope. Do gamescope --help'';
@@ -47,7 +53,7 @@ with pkgs;
                             type = types.str;
                             default = strings.concatStringsSep " " (
                                 [
-                                    "${gamescope}/bin/gamescope"
+                                    "${config.package}/bin/gamescope"
                                 ]
                                 ++ config.flags
                             );
