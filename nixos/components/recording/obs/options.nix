@@ -27,6 +27,9 @@ with lib;
                 # Ideal setup if you just want to save last X secs when something cool happens
                 "--startreplaybuffer"
                 "--minimize-to-tray"
+                # It does this if you kill the process instead of exiting by GUI,
+                # but that's how Linux shutdown works..
+                "--disable-shutdown-check"
             ];
         };
     };
