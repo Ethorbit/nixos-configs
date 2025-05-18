@@ -50,6 +50,10 @@
                 name = "DOOMEternalx64v";
                 type = "Game";
             }
+            {
+                name = "Win64\\Paladins.exe";
+                type = "Game";
+            }
         ];
     };
 }
