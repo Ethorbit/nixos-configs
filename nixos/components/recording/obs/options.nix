@@ -4,6 +4,18 @@ with lib;
 
 {
     options.ethorbit.components.recording.obs = {
+        service.enable = mkOption {
+            type = types.bool;
+            default = false;
+            description = "Set this to true if you want the custom OBS to run at startup.";
+        };
+
+        script = mkOption {
+            type = types.package;
+            default = null;
+            description = "The script that things such as the Desktop Entry should execute.";
+        };
+
         command = mkOption {
             type = types.str;
             default = (strings.concatStringsSep " " (

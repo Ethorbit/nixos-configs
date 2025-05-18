@@ -10,6 +10,8 @@
         ../../../nixos/components/gaming/minecraft/profiles/flatpak
     ];
 
+    ethorbit.components.recording.obs.service.enable = true;
+
     services.flatpak = {
         enable = true;
         packages = [

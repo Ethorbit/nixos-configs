@@ -8,25 +8,26 @@ let
     obsCommand = pkgs.writeShellScript "command.sh" ''
         ${cfg.command}
     '';
-    desktopScript = pkgs.writeShellScript "script.sh" ''
-        nohup flatpak run --command="${obsCommand.outPath}" ${cfg.flatpak.appIds.obs} 2>&1 &
-        ${cfg.extraCommands}
-    '';
 in
 {
-     #home.file."~/.local/share/applications/com.obsproject.Studio.desktop".source = this_does_not_do_anything;
-     # If you want to actually hide the original OBS desktop entry, it cannot be done declaratively..
-     #
-     # So to avoid original OBS from appearing on top in the app launcher, you have to imperatively
-     # create the desktop entry in your home, and hide it with NoDisplay=true
+    #home.file."~/.local/share/applications/com.obsproject.Studio.desktop".source = this_does_not_do_anything;
+    # If you want to actually hide the original OBS desktop entry, it cannot be done declaratively..
+    #
+    # So to avoid original OBS from appearing on top in the app launcher, you have to imperatively
+    # create the desktop entry in your home, and hide it with NoDisplay=true
 
-     home-manager.sharedModules = [ {
+    ethorbit.components.recording.obs.script = pkgs.writeShellScript "command.sh" ''
+        nohup ${pkgs.flatpak}/bin/flatpak run --command="${obsCommand.outPath}" ${cfg.flatpak.appIds.obs} >/dev/null 2>&1
+        ${cfg.extraCommands}
+    '';
+
+    home-manager.sharedModules = [ {
          xdg.desktopEntries = {
              "com.obsproject.Studio2" = {
                  name = "OBS Studio (Custom)";
                  icon = cfg.flatpak.appIds.obs;
                  genericName = "Streaming/Recording Software";
-                 exec = desktopScript.outPath;
+                 exec = cfg.script.outPath;
                  categories = [
                      "AudioVideo"
                      "Recorder"
@@ -34,5 +35,5 @@ in
                  startupNotify = true;
              };
          };
-     } ];
+    } ];
 }
