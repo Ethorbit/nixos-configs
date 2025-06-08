@@ -11,6 +11,8 @@
         trash-cli
         git-lfs
         qt6.full
+        nil
+        unstable.mdx-language-server
         python311Packages.grip
         (python3.withPackages (p: (with p; [
             python-lsp-server
