@@ -8,6 +8,8 @@
                 config.ethorbit.pkgs.vimPlugins.confirm-quit
                 #config.ethorbit.pkgs.vimPlugins.tabbyml
 
+                markdown-preview-nvim
+
                 transparent-nvim
 
                 vim-rooter
