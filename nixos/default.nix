@@ -21,6 +21,9 @@
     nix = with lib; {
         settings = {
             auto-optimise-store = mkDefault true;
+            # Fixes 'warning: download buffer is full'
+            # https://github.com/NixOS/nix/issues/11728
+            download-buffer-size = 524288000;
         };
 
         gc = {
