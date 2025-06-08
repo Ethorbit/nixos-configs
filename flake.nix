@@ -28,7 +28,9 @@
         flatpaks.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
 
         nvidia-patch = {
-            url = "github:icewind1991/nvidia-patch-nixos";
+            # Using specific commit to avoid the 'attribute 565.77 missing' error
+            # I'm thinking of just removing this flake entirely and not patching nvidia, since that's less annoying
+            url = "github:icewind1991/nvidia-patch-nixos?rev=d3271f203f5d748df8f137a5c5cc5fd28a0e7681";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
