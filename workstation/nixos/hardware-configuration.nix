@@ -54,7 +54,7 @@
   };
 
   swapDevices = [ 
-    { device = "/dev/disk/by-uuid/456b2bf1-7d80-47e8-9086-79103f2c134c"; }
+    { device = "/dev/disk/by-uuid/8b4ed715-ee4f-4ecd-a535-9ae381966127"; }
   ];
 
   age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../../homenas/nixos/secrets/samba/users/ethorbit/creds.age; };
