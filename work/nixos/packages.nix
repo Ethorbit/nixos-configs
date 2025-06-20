@@ -1,15 +1,11 @@
 { config, pkgs, ... }:
 
 {
-    imports = [
-        ../../nixos/packages/node/filen-cli
-    ];
-
     environment.systemPackages = with pkgs; [
         libreoffice-qt
         keepassxc
 
-        config.ethorbit.pkgs.node.filen-cli
+        ethorbit.filen-cli
 
         yt-dlp
         ethorbit.yt-dlp-wrapper

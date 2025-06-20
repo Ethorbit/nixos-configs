@@ -4,7 +4,6 @@
     imports = [
         ./scripts
         ../../../nixos/packages/script/mount-sshfs-run-service
-        ../../../nixos/packages/node/filen-cli
     ];
 
     programs.adb.enable = true;
@@ -23,7 +22,7 @@
 
         keepassxc
 
-        config.ethorbit.pkgs.node.filen-cli
+        ethorbit.filen-cli
         filezilla
         sshfs
 
