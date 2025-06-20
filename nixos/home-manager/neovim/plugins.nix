@@ -1,12 +1,16 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
     home-manager.sharedModules = [ {
         programs.neovim = {
             withNodeJs = true;
-            plugins = with pkgs.vimPlugins; [
-                config.ethorbit.pkgs.vimPlugins.confirm-quit
-                #config.ethorbit.pkgs.vimPlugins.tabbyml
+            plugins = 
+                with pkgs; 
+                with vimPlugins; 
+                with ethorbit.vimPlugins;
+            [
+                
+                confirm-quit
 
                 markdown-preview-nvim
 

@@ -5,6 +5,7 @@ with inputs;
 {
     imports = [
         ./nixos
+        ethorbit.nixosModules.default
         agenix.nixosModules.default
         flatpaks.nixosModules.nix-flatpak
         NixOS-WSL.nixosModules.wsl
@@ -33,6 +34,8 @@ with inputs;
                 config.allowUnfree = true;
             });
         })
+
+        ethorbit.overlays.default
         nvidia-patch.overlays.default
     ];
 
