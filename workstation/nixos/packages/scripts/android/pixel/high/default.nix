@@ -28,7 +28,7 @@
                 )
             fi
 
-            if [[ $("${config.ethorbit.pkgs.script.mount-wait}/bin/mount-wait.sh" "$FILEN_MOUNT_PATH" 5) ]]; then
+            if [[ $("${pkgs.ethorbit.mount-wait}/bin/mount-wait.sh" "$FILEN_MOUNT_PATH" 5) ]]; then
                 LOCAL_REPO_PATH="${config.services.restic.backups."android-pixel-high".repository}"
                 FILEN_REPO_PATH="''${FILEN_MOUNT_PATH}/Restic-Repos/android-high"
 
