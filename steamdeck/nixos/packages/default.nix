@@ -12,6 +12,7 @@
         neofetch
         keepassxc
         yt-dlp
+        ethorbit.yt-dlp-wrapper
         krita
         (symlinkJoin {
             name = "brave-wrapped";
