@@ -3,7 +3,6 @@
 {
     imports = [
         ../../nixos/packages/node/filen-cli
-        ../../nixos/packages/script/yt-dlp-wrapper
     ];
 
     environment.systemPackages = with pkgs; [
@@ -13,7 +12,7 @@
         config.ethorbit.pkgs.node.filen-cli
 
         yt-dlp
-        config.ethorbit.pkgs.script.yt-dlp-wrapper
+        ethorbit.yt-dlp-wrapper
 
         (symlinkJoin {
             name = "brave-wrapped";

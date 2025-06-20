@@ -3,7 +3,6 @@
 {
     imports = [
         ./scripts
-        ../../../nixos/packages/script/yt-dlp-wrapper
         ../../../nixos/packages/script/mount-sshfs-run-service
         ../../../nixos/packages/node/filen-cli
     ];
@@ -29,7 +28,7 @@
         sshfs
 
         yt-dlp
-        config.ethorbit.pkgs.script.yt-dlp-wrapper
+        ethorbit.yt-dlp-wrapper
 
         # steals your data
         #firefox
