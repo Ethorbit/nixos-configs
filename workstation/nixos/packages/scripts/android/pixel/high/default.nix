@@ -23,7 +23,7 @@
                 fi
 
                 (
-                    nohup "${config.ethorbit.pkgs.node.filen-cli}/bin/filen" \
+                    nohup "${pkgs.ethorbit.filen-cli}/bin/filen" \
                     mount "$FILEN_MOUNT_PATH" / > /dev/null 2>&1 &
                 )
             fi
