@@ -4,7 +4,6 @@
     imports = [
         ../../packages/rofi
         ../../packages/script/termdown-wrapper
-        ../../packages/mousejail
     ];
 
     environment.systemPackages = with pkgs; [
@@ -17,6 +16,6 @@
         libnotify
         termdown
         config.ethorbit.pkgs.script.termdown-wrapper
-        config.ethorbit.pkgs.mousejail
+        ethorbit.mousejail
     ];
 }
