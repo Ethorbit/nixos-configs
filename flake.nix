@@ -6,6 +6,11 @@
         nixpkgs-old.url = "github:nixos/nixpkgs/nixos-24.05";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+        ethorbit = {
+            url = "github:ethorbit/nix-packages";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
         home-manager = {
             url = "github:nix-community/home-manager/release-24.11";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -52,6 +57,7 @@
         nixpkgs,
         nixpkgs-old,
         nixpkgs-unstable,
+        ethorbit,
         home-manager,
         home-manager-old,
         home-manager-unstable,

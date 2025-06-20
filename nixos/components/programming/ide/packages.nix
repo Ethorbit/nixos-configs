@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 
 {
-    imports = [
-        ../../../packages/vim
-        ../../../packages/nvim
-    ];
-
     environment.systemPackages = with pkgs; [
         ranger
         trash-cli
