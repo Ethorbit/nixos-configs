@@ -1,12 +1,8 @@
-{ config, ... }:
+{ pkgs, ... }:
 
 {
-    imports = [
-        ../../../../packages/python/steam-acolyte
-    ];
-
     environment.systemPackages = [
-        config.ethorbit.pkgs.python.steam-acolyte
+        pkgs.ethorbit.steam-acolyte
     ];
 
     ethorbit.components.gaming.dependencies.gamescope.wrappers."steam" = {};

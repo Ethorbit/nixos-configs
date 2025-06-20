@@ -28,7 +28,7 @@ in
         steam-acolyte = {
             command = mkOption {
                 type = types.str;
-                default = "${config.ethorbit.pkgs.python.steam-acolyte}/bin/steam-acolyte --prefix $HOME/.var/app/com.valvesoftware.Steam/.steam";
+                default = "${pkgs.ethorbit.steam-acolyte}/bin/steam-acolyte --prefix $HOME/.var/app/com.valvesoftware.Steam/.steam";
             };
         };
 
