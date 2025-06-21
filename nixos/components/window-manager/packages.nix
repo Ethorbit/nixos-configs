@@ -2,7 +2,6 @@
 
 {
     imports = [
-        ../../packages/rofi
         ../../packages/script/termdown-wrapper
     ];
 
