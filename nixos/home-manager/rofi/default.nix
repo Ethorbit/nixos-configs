@@ -22,7 +22,7 @@
 
         # Symlink the directories from adi1090x's rofi repository that we installed via custom package
         home.file.".config/rofi" = {
-            source = "${config.ethorbit.pkgs.rofi-adi1090x}/.config/rofi";
+            source = "${pkgs.ethorbit.rofi-adi1090x}/.config/rofi";
             recursive = true;
         };
     } ];
