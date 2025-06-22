@@ -3,7 +3,6 @@
 {
     imports = [
         ./scripts
-        ../../../nixos/packages/script/mount-sshfs-run-service
     ];
 
     programs.adb.enable = true;
