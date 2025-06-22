@@ -5,7 +5,7 @@
     environment.systemPackages = with pkgs; [
         (pkgs.writeShellScriptBin "backup-android-pixel-dark.sh" ''
             IP="$1" && [ -z "$IP" ] && echo "Please specify the IP." && exit 0
-            ${config.ethorbit.pkgs.script.mount-sshfs-run-service}/bin/mount-sshfs-run-service.sh \
+            ${pkgs.ethorbit.mount-sshfs-run-service}/bin/mount-sshfs-run-service.sh \
                 --host android_pixel_dark \
                 --ip "$IP" \
                 --remote-dir ./ \

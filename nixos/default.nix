@@ -5,7 +5,7 @@
         ./nixpkgs
         ./options.nix
         ./bootloader.nix
-        ./packages
+        ./packages.nix
         ./flatpak.nix
         ./programs
         ./users.nix
