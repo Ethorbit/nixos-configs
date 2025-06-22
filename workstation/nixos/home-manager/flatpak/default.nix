@@ -9,6 +9,7 @@ with lib;
         ./protontricks.nix
         ./steam.nix
         ./lutris.nix
+        ./roblox.nix
         ./minecraft.nix
         ./limo.nix
     ];
