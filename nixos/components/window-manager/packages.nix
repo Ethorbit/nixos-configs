@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
 {
-    imports = [
-        ../../packages/script/termdown-wrapper
-    ];
+    programs.termdown-wrapper.enable = true;
 
     environment.systemPackages = with pkgs; [
         ranger
@@ -14,7 +12,6 @@
         lm_sensors
         libnotify
         termdown
-        config.ethorbit.pkgs.script.termdown-wrapper
         ethorbit.mousejail
     ];
 }
