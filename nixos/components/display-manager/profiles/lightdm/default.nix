@@ -3,7 +3,6 @@
 {
     imports = [
         ../..
-        ../../../../packages/script/light-locker
     ];
 
     services.xserver.displayManager.lightdm = {
