@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-    programs.termdown-wrapper.enable = true;
+    ethorbit.programs.termdown-wrapper.enable = true;
 
     environment.systemPackages = with pkgs; [
         ranger
