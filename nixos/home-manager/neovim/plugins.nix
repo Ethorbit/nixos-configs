@@ -9,7 +9,6 @@
                 with vimPlugins; 
                 with ethorbit.vimPlugins;
             [
-                
                 confirm-quit
 
                 markdown-preview-nvim
