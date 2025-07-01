@@ -9,6 +9,7 @@ in
 {
     imports = [
         ./plugins.nix
+        ./packages.nix
         ./options.nix
     ];
 
