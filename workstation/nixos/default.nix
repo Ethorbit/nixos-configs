@@ -22,9 +22,7 @@
         ../../nixos/components/networking/systemd
         #../../nixos/components/service-discovery/profiles/avahi
 
-        ../../nixos/components/graphics-drivers/opengl
-        ../../nixos/components/graphics-drivers/nvidia/profiles/proprietary
-        ../../nixos/components/graphics-drivers/nvidia/profiles/cuda
+        ./graphics.nix
         
         # Suffers from weird issues such as flickers, also it's less secure
         # to give games full access to user files.
@@ -37,8 +35,6 @@
     networking.hostName = "workstation";
     #programs.virt-manager.enable = true;
     #virtualisation.libvirtd.enable = true;
-
-    ethorbit.graphics.nvidia.proprietary.selectedPackage = config.boot.kernelPackages.nvidiaPackages.stable;
 
     ethorbit.programs.termdown-wrapper.soundPath = "/home/${config.ethorbit.users.primary.username}/Documents/timer.opus";
 }
