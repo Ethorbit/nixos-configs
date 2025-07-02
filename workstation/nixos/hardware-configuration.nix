@@ -7,7 +7,7 @@
   boot.extraModulePackages = [ ];
   hardware.bluetooth.enable = true;
   hardware.steam-hardware.enable = true;
- 
+
   imports = [
     ../../nixos/hardware/vm/virtio
   ];
