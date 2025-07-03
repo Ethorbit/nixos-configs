@@ -2,6 +2,7 @@
 
 {
     environment.systemPackages = with pkgs; [
+        home-manager
         bash
         zsh
         screen

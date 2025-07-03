@@ -1,4 +1,4 @@
-require("nix")
+#require("nix")
 require("options")
 require("keymaps")
 require("setup")
