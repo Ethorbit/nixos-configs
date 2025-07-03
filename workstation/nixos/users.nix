@@ -2,13 +2,23 @@
 
 {
     ethorbit.users.primary.username = "workstation";
-    
+
     users = {
         mutableUsers = false;
+
+        groups = {
+            "builder" = {};
+        };
 
         users = {
             "workstation" = {
                 extraGroups = [ "wheel" "libvirtd" "docker" "container" "audio" "video" "input" ];
+            };
+
+            "builder" = {
+                isNormalUser = true;
+                group = "builder";
+                hashedPasswordFile = config.users.users."workstation".hashedPasswordFile;
             };
         };
 

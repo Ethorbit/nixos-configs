@@ -6,8 +6,13 @@
         nixpkgs-old.url = "github:nixos/nixpkgs/nixos-24.05";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-        ethorbit = {
+        ethorbit-packages = {
             url = "github:ethorbit/nix-packages";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        ethorbit-home = {
+            url = "github:ethorbit/hm-modules";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
@@ -57,7 +62,8 @@
         nixpkgs,
         nixpkgs-old,
         nixpkgs-unstable,
-        ethorbit,
+        ethorbit-packages,
+        ethorbit-home,
         home-manager,
         home-manager-old,
         home-manager-unstable,
@@ -69,12 +75,16 @@
     } @inputs: let
         inherit (self) outputs;
         system = "x86_64-linux";
+        defaultSpecialArgs = {
+            inherit inputs outputs system;
+            homeModules = inputs.ethorbit-home.homeModules.${system};
+        };
     in {
         nixosConfigurations = {
             # Work, yeah there's nothing fancy to describe this with..
             "work" = nixpkgs.lib.nixosSystem {
                 inherit system;
-                specialArgs = { inherit inputs outputs system; };
+                specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
                     ./work/nixos
@@ -85,7 +95,7 @@
             # Home NAS, the centralized source of storage.
             "homenas" = nixpkgs.lib.nixosSystem {
                 inherit system;
-                specialArgs = { inherit inputs outputs system; };
+                specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
                     ./homenas/nixos
@@ -98,7 +108,7 @@
             # Not intended to be used directly, but it can be used as an independent OS if desired.
             "ide/cli" = nixpkgs.lib.nixosSystem {
                 inherit system;
-                specialArgs = { inherit inputs outputs system; };
+                specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
                     ./nixos/components/programming/ide/profiles/standalone/profiles/cli
@@ -108,7 +118,7 @@
             };
             "ide/desktop" = nixpkgs.lib.nixosSystem {
                 inherit system;
-                specialArgs = { inherit inputs outputs system; };
+                specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
                     ./nixos/components/programming/ide/profiles/standalone/profiles/desktop
@@ -121,7 +131,7 @@
             # also useful for virtual desktop streaming
             "headless-nvidia" = nixpkgs.lib.nixosSystem {
                 inherit system;
-                specialArgs = { inherit inputs outputs system; };
+                specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
                     ./headless-nvidia/nixos
@@ -132,7 +142,7 @@
             # Workstation OS, the general-purpose powerhouse for monster rigs
             "workstation" = nixpkgs.lib.nixosSystem {
                 inherit system;
-                specialArgs = { inherit inputs outputs system; };
+                specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
                     ./workstation/nixos
@@ -143,7 +153,7 @@
             # Steamdeck, the limitless handheld experience
             "steamdeck" = nixpkgs-unstable.lib.nixosSystem {
                 inherit system;
-                specialArgs = { inherit inputs outputs system; };
+                specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager-unstable.nixosModules.default
                     ./steamdeck/nixos
@@ -155,7 +165,7 @@
             # NZC Game Community
             "nzc" = nixpkgs.lib.nixosSystem {
                 inherit system;
-                specialArgs = { inherit inputs outputs system; };
+                specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
                     ./nzc/nixos/profiles/production
@@ -167,7 +177,7 @@
             # NZC Game Community, but hosted at home
             "nzc/selfhosted" = nixpkgs.lib.nixosSystem {
                 inherit system;
-                specialArgs = { inherit inputs outputs system; };
+                specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
                     ./nzc/nixos/profiles/selfhosted
@@ -179,7 +189,7 @@
             # NZC Game Community, but for local development / testing
             "nzc/dev" = nixpkgs.lib.nixosSystem {
                 inherit system;
-                specialArgs = { inherit inputs outputs system; };
+                specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
                     ./nzc/nixos/profiles/dev

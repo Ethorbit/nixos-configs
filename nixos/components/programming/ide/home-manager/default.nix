@@ -1,9 +1,13 @@
-{ config, ... }:
+{  homeModules, ... }:
 
 {
     imports = [
         ../../../../home-manager/git
         ../../../../home-manager/ranger
-        ../../../../home-manager/neovim
     ];
+
+    home-manager.sharedModules = 
+        with homeModules; [
+            neovim
+        ];
 }
