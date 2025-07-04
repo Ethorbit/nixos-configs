@@ -75,12 +75,28 @@
     } @inputs: let
         inherit (self) outputs;
         system = "x86_64-linux";
+
         defaultSpecialArgs = {
             inherit inputs outputs system;
             homeModules = inputs.ethorbit-home.homeModules.${system};
         };
+
+        defaultModules = [
+            ./nixosmodules.nix
+        ];
     in {
         nixosConfigurations = {
+            # For maintaining the hm-modules input repo
+            # I only run this VM when I need to test a GUI
+            "hm-builder" = nixpkgs.lib.nixosSystem {
+                inherit system;
+                specialArgs = defaultSpecialArgs;
+                modules = [
+                    home-manager.nixosModules.default
+                    ./hm-builder/nixos
+                ] ++ defaultModules;
+            };
+
             # Work, yeah there's nothing fancy to describe this with..
             "work" = nixpkgs.lib.nixosSystem {
                 inherit system;
@@ -88,8 +104,7 @@
                 modules = [
                     home-manager.nixosModules.default
                     ./work/nixos
-                    ./nixosmodules.nix
-                ];
+                ] ++ defaultModules;
             };
 
             # Home NAS, the centralized source of storage.
@@ -100,8 +115,7 @@
                     home-manager.nixosModules.default
                     ./homenas/nixos
                     ./nixos/hardware/vm/qemu
-                    ./nixosmodules.nix
-                ];
+                ] ++ defaultModules;
             };
 
             # Integrated Development Environment.
@@ -113,8 +127,7 @@
                     home-manager.nixosModules.default
                     ./nixos/components/programming/ide/profiles/standalone/profiles/cli
                     ./nixos/hardware/container/wsl
-                    ./nixosmodules.nix
-                ];
+                ] ++ defaultModules;
             };
             "ide/desktop" = nixpkgs.lib.nixosSystem {
                 inherit system;
@@ -123,8 +136,7 @@
                     home-manager.nixosModules.default
                     ./nixos/components/programming/ide/profiles/standalone/profiles/desktop
                     ./nixos/hardware/vm/qemu
-                    ./nixosmodules.nix
-                ];
+                ] ++ defaultModules;
             };
 
             # For quick NVIDIA container computation work
@@ -135,8 +147,7 @@
                 modules = [
                     home-manager.nixosModules.default
                     ./headless-nvidia/nixos
-                    ./nixosmodules.nix
-                ];
+                ] ++ defaultModules;
             };
 
             # Workstation OS, the general-purpose powerhouse for monster rigs
@@ -146,8 +157,7 @@
                 modules = [
                     home-manager.nixosModules.default
                     ./workstation/nixos
-                    ./nixosmodules.nix
-                ];
+                ] ++ defaultModules;
             };
 
             # Steamdeck, the limitless handheld experience
@@ -157,9 +167,8 @@
                 modules = [
                     home-manager-unstable.nixosModules.default
                     ./steamdeck/nixos
-                    ./nixosmodules.nix
                     Jovian-NixOS.nixosModules.default
-                ];
+                ] ++ defaultModules;
             };
 
             # NZC Game Community
@@ -170,8 +179,7 @@
                     home-manager.nixosModules.default
                     ./nzc/nixos/profiles/production
                     ./nixos/hardware/vm/qemu
-                    ./nixosmodules.nix
-                ];
+                ] ++ defaultModules;
             };
 
             # NZC Game Community, but hosted at home
@@ -182,8 +190,7 @@
                     home-manager.nixosModules.default
                     ./nzc/nixos/profiles/selfhosted
                     ./nixos/hardware/vm/qemu
-                    ./nixosmodules.nix
-                ];
+                ] ++ defaultModules;
             };
 
             # NZC Game Community, but for local development / testing
@@ -194,8 +201,7 @@
                     home-manager.nixosModules.default
                     ./nzc/nixos/profiles/dev
                     ./nixos/hardware/vm/qemu
-                    ./nixosmodules.nix
-                ];
+                ] ++ defaultModules;
             };
         };
     };
