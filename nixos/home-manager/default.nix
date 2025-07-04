@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
     imports = [
@@ -8,12 +8,14 @@
         ./htop
     ];
 
-    home-manager = {
-        useGlobalPkgs = true;
-        backupFileExtension = ".bak";
+    config = lib.mkIf (config ? home-manager) {
+        home-manager = {
+            useGlobalPkgs = true;
+            backupFileExtension = ".bak";
 
-        sharedModules = [ {
-            home.stateVersion = "23.11";
-        } ];
+            sharedModules = [ {
+                home.stateVersion = "23.11";
+            } ];
+        };
     };
 }

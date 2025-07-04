@@ -1,2 +1,4 @@
 .tmp
 nohup.out
+result
+*.qcow2
