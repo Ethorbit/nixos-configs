@@ -4,7 +4,6 @@
     imports = [
         ./flatpak
         ./xdg
-        ./htop
     ];
 
     home-manager = {
@@ -14,6 +13,7 @@
         sharedModules = 
         with homeModules; [
             shell
+            htop
             {
                 home.stateVersion = "23.11";
             }
