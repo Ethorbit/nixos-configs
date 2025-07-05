@@ -1,21 +1,22 @@
-{ config, lib, ... }:
+{ homeModules, ... }:
 
 {
     imports = [
         ./flatpak
-        ./shell
         ./xdg
         ./htop
     ];
 
-    config = lib.mkIf (config ? home-manager) {
-        home-manager = {
-            useGlobalPkgs = true;
-            backupFileExtension = ".bak";
+    home-manager = {
+        useGlobalPkgs = true;
+        backupFileExtension = ".bak";
 
-            sharedModules = [ {
+        sharedModules = 
+        with homeModules; [
+            shell
+            {
                 home.stateVersion = "23.11";
-            } ];
-        };
+            }
+        ];
     };
 }
