@@ -2,13 +2,15 @@
 
 {
     imports = [
-        ./networking.nix
+        ../../nixos/components/programming/ide
+        ./virtualisation.nix
         ./packages.nix
         ./desktop.nix
         ./users.nix
     ];
 
     networking.hostName = "builder";
+    networking.useDHCP = true;
 
     hardware.pulseaudio.enable = true;
     services.pipewire.enable = lib.mkForce false;
