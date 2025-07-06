@@ -1,18 +1,18 @@
 { config, ... }:
 
 {
-    ethorbit.home-manager = {
-        i3 = {
-            workspace.monitor = {
-                one = "HDMI-0";
-                two = "DVI-D-0";
-            };
-
-            music.refreshDirectory = "/mnt/storage/Music/Mp3 Player";
-        };
-    };
-
     home-manager.sharedModules = [ {
+        ethorbit.home-manager = {
+            i3 = {
+                workspace.monitor = {
+                    one = "HDMI-0";
+                    two = "DVI-D-0";
+                };
+
+                music.refreshDirectory = "/mnt/storage/Music/Mp3 Player";
+            };
+        };
+ 
         home.file.".config/i3/config_system".text = ''
             for_window [class="KeePassXC"] floating enable, resize set width 20 ppt, resize set height 20 ppt, sticky enable
             for_window [class="chromium-browser"] layout tabbed

@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, homeModules, ... }:
 
 {
-    imports = [
-        ../../../../home-manager/i3
+    home-manager.sharedModules = with homeModules; [
+        i3
     ];
 
     ethorbit.polybar.scripts.lock = lib.mkDefault (pkgs.writeShellScript "lock.sh" ''
-        ${config.ethorbit.home-manager.i3.scripts.lock.outPath}
+         ${pkgs.i3lock-fancy-rapid}/bin/i3lock-fancy-rapid 10 20
     '');
 }
