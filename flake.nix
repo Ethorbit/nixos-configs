@@ -86,17 +86,6 @@
         ];
     in {
         nixosConfigurations = {
-            # For maintaining the hm-modules input repo
-            # I only run this VM when I need to test a GUI
-            "hm-builder" = nixpkgs.lib.nixosSystem {
-                inherit system;
-                specialArgs = defaultSpecialArgs;
-                modules = [
-                    home-manager.nixosModules.default
-                    ./hm-builder/nixos
-                ] ++ defaultModules;
-            };
-
             # Work, yeah there's nothing fancy to describe this with..
             "work" = nixpkgs.lib.nixosSystem {
                 inherit system;
