@@ -1,10 +1,21 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
-    id = "${config.ethorbit.components.gaming.minecraft.launcher.flatpak.appName}";
+    cfg = config.ethorbit.components.gaming.minecraft.launcher.flatpak;
+    id = cfg.appName;
 in
 {
-    ethorbit.components.gaming.minecraft.launcher.flatpak.gamescope.enable = true;
+    ethorbit.components.gaming.minecraft.launcher.flatpak.gamescope = {
+        enable = true;
+        # For OBS capture support
+        # (https://github.com/nowrep/obs-vkcapture/issues/228)
+        scripts.normal = pkgs.writeShellScript "script" ''
+            ${cfg.gamescope.commands.gamemode} \
+                flatpak run --branch=stable --arch=x86_64 --env=DISPLAY="$GAMESCOPE_DISPLAY" \
+                  --command=sh org.prismlauncher.PrismLauncher -c '/usr/lib/extensions/vulkan/OBSVkCapture/bin/obs-gamecapture prismlauncher' \
+                  ${id}
+        '';
+    };
 
     home-manager.users.${config.ethorbit.users.primary.username} = {
         services.flatpak = {
