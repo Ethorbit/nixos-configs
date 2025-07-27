@@ -5,12 +5,12 @@
         ethorbit.polybar.colors = {
             background = lib.mkOption {
                 type = types.str;
-                default = "#aa500";
+                default = "#80000000";
             };
             
             background-alt = lib.mkOption {
                 type = types.str;
-                default = "#444";
+                default = "#444444";
             };
 
             foreground = lib.mkOption {
@@ -20,7 +20,7 @@
 
             foreground-alt = lib.mkOption {
                 type = types.str;
-                default = "#555";
+                default = "#555555";
             };
  
             primary = lib.mkOption {
