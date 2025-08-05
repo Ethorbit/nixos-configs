@@ -35,9 +35,10 @@
   };
 
   fileSystems."/mnt/games" = {
-    device = "/dev/disk/by-uuid/f18727c3-822e-4747-a874-d61e784250ad";
+    device = "/dev/disk/by-uuid/0663b8bf-898e-46cb-a8ce-1741ddf7a938";
     fsType = "ext4";
-  };
+    options = [ "nofail" ];  
+};
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/9B3C-70DE";
@@ -85,27 +86,27 @@
   fileSystems."/mnt/homenas" = {
     fsType = "cifs";
     device = "//${config.ethorbit.network.homenas.ip}/ethorbit";
-    options = [ "credentials=/etc/nascreds" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
+    options = [ "credentials=/etc/nascreds" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "_netdev" "x-systemd.automount" ];
   };
   fileSystems."/mnt/homenas_videos" = {
     fsType = "cifs";
     device = "//${config.ethorbit.network.homenas.ip}/videos";
-    options = [ "credentials=/etc/nascreds_videos" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
+    options = [ "credentials=/etc/nascreds_videos" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "_netdev" "x-systemd.automount" ];
   };
   fileSystems."/mnt/homenas_ai" = {
     fsType = "cifs";
     device = "//${config.ethorbit.network.homenas.ip}/ai";
-    options = [ "credentials=/etc/nascreds_ai" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
+    options = [ "credentials=/etc/nascreds_ai" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "_netdev" "x-systemd.automount" ];
   };
   fileSystems."/mnt/homenas_hax" = {
     fsType = "cifs";
     device = "//${config.ethorbit.network.homenas.ip}/hax";
-    options = [ "credentials=/etc/nascreds_hax" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
+    options = [ "credentials=/etc/nascreds_hax" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "_netdev" "x-systemd.automount" ];
   };
   fileSystems."/mnt/homenas_gaming" = {
     fsType = "cifs";
     device = "//${config.ethorbit.network.homenas.ip}/gaming";
-    options = [ "credentials=/etc/nascreds_gaming" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "x-systemd.automount" ];
+    options = [ "credentials=/etc/nascreds_gaming" "uid=1000" "gid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" "_netdev" "x-systemd.automount" ];
   };
   
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
