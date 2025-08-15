@@ -16,7 +16,7 @@
             };
 
             # just needed for emergency boots.
-            "root".hashedPassword = config.users.users."workstation".hashedPasswordFile;
+            "root".hashedPasswordFile = config.users.users."workstation".hashedPasswordFile;
 
             "builder" = {
                 isNormalUser = true;

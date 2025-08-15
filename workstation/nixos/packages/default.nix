@@ -24,6 +24,7 @@
         ethorbit.filen-cli
         filezilla
         sshfs
+        ntfs3g
 
         yt-dlp
         ethorbit.yt-dlp-wrapper
@@ -55,11 +56,13 @@
 
         audacity
         blender
+        lmms
         #godot_4-mono
         #dotnet-sdk
         #godot_4
-        #gimp
         krita
+        ethorbit.taggui
+        
         kdenlive
     ];
 }
