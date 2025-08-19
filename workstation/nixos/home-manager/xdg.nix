@@ -1,9 +1,9 @@
 { config, ... }:
 
 {
-    ethorbit.home-manager.xdg.defaults.browser = "chromium-browser.desktop";
-
     home-manager.sharedModules = [ {
+        ethorbit.home-manager.xdg.defaults.browser = "chromium-browser.desktop";
+
         xdg.userDirs.enable = true;
         xdg.userDirs.music = "/mnt/storage/Music";
         xdg.userDirs.pictures = "/mnt/storage/Pictures";
