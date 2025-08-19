@@ -15,10 +15,10 @@
       with homeModules; [
         polybar
         rofi
-    ];
-
-    ethorbit.home-manager.xdg.defaults = {
-        file = "ranger.desktop";
-        audio = "moc.desktop";
-    };
+    ] ++ [ {
+        ethorbit.home-manager.xdg.defaults = {
+            file = "ranger.desktop";
+            audio = "moc.desktop";
+        };
+    } ];
 }
