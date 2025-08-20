@@ -1,4 +1,4 @@
-{ homeModules, ... }:
+{ config, homeModules, ... }:
 
 {
     imports = [
@@ -6,19 +6,23 @@
         ../../../home-manager/kitty
         ../../../home-manager/moc
         ../../../home-manager/ranger
-        ../../../home-manager/flameshot
     ];
 
-    home-manager.sharedModules = 
+    home-manager.sharedModules =
       with homeModules; [
         feh
+        flameshot
         polybar
         picom
         rofi
-    ] ++ [ {
-        ethorbit.home-manager.xdg.defaults = {
-            file = "ranger.desktop";
-            audio = "moc.desktop";
-        };
-    } ];
+    ] ++ [
+        {
+            ethorbit.home-manager.flameshot.saveDirectory = "/home/${config.ethorbit.users.primary.username}/Pictures";
+
+            ethorbit.home-manager.xdg.defaults = {
+                file = "ranger.desktop";
+                audio = "moc.desktop";
+            };
+        }
+    ];
 }
