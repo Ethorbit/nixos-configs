@@ -2,7 +2,6 @@
 
 {
     imports = [
-        ../../../home-manager/picom
         ../../../home-manager/dunst
         ../../../home-manager/kitty
         ../../../home-manager/moc
@@ -14,6 +13,7 @@
       with homeModules; [
         feh
         polybar
+        picom
         rofi
     ] ++ [ {
         ethorbit.home-manager.xdg.defaults = {
