@@ -1,10 +1,6 @@
 { config, homeModules, ... }:
 
 {
-    imports = [
-        ../../../home-manager/ranger
-    ];
-
     home-manager.sharedModules =
       with homeModules; [
         dunst
@@ -14,6 +10,7 @@
         moc
         polybar
         picom
+        ranger
         rofi
     ] ++ [
         {
