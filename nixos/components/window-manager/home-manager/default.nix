@@ -2,13 +2,13 @@
 
 {
     imports = [
-        ../../../home-manager/dunst
         ../../../home-manager/kitty
         ../../../home-manager/ranger
     ];
 
     home-manager.sharedModules =
       with homeModules; [
+        dunst
         feh
         flameshot
         moc
