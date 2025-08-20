@@ -2,7 +2,6 @@
 
 {
     imports = [
-        ../../../home-manager/kitty
         ../../../home-manager/ranger
     ];
 
@@ -11,6 +10,7 @@
         dunst
         feh
         flameshot
+        kitty
         moc
         polybar
         picom
