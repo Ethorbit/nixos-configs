@@ -1,9 +1,9 @@
 { homeModules, ... }:
 
 {
-    imports = [
-        ../../../../home-manager/pipewire
-    ];
-
-    home-manager.sharedModules = [ homeModules.easyeffects ];
+    home-manager.sharedModules = 
+        with homeModules; [
+            pipewire
+            easyeffects
+        ];
 }
