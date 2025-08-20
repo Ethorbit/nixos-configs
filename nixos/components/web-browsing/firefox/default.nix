@@ -1,9 +1,7 @@
-{ config, ... }:
+{ homeModules, ... }:
 
 {
-    imports = [
-        ../../../home-manager/firefox
-    ];
+    home-manager.sharedModules = [ homeModules.firefox ];
 
     # Disable data collection, sponsors and the saving of sensitive info
     # You should be using an encrypted password manager to save stuff, not Firefox.
