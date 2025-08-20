@@ -4,7 +4,6 @@
     imports = [
         ../../../home-manager/dunst
         ../../../home-manager/kitty
-        ../../../home-manager/moc
         ../../../home-manager/ranger
     ];
 
@@ -12,6 +11,7 @@
       with homeModules; [
         feh
         flameshot
+        moc
         polybar
         picom
         rofi
