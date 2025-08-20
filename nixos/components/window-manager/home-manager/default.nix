@@ -2,7 +2,6 @@
 
 {
     imports = [
-        ../../../home-manager/feh
         ../../../home-manager/picom
         ../../../home-manager/dunst
         ../../../home-manager/kitty
@@ -13,6 +12,7 @@
 
     home-manager.sharedModules = 
       with homeModules; [
+        feh
         polybar
         rofi
     ] ++ [ {
