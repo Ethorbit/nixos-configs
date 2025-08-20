@@ -95,11 +95,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1755666628,
-        "narHash": "sha256-Hy8WODlPuxBu1aI/bRhk2yI3eubtxN+Tuubm0Z9fsO4=",
+        "lastModified": 1755666932,
+        "narHash": "sha256-c1eR3G2kpSdkyktsXOnm7rPL1OYr6psYBrR8BKVmovA=",
         "owner": "ethorbit",
         "repo": "hm-modules",
-        "rev": "981742f8bbfb906a8a3519f2ff8009d69a7897ed",
+        "rev": "3f715a1eaf26200c757f01dc9d8eb628898ebe65",
         "type": "github"
       },
       "original": {
