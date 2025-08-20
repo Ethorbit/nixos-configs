@@ -1,8 +1,9 @@
-{ config, ... }:
+{ homeModules, ... }:
 
 {
     imports = [
         ../../../../home-manager/pipewire
-        ../../../../home-manager/easyeffects
     ];
+
+    home-manager.sharedModules = [ homeModules.easyeffects ];
 }

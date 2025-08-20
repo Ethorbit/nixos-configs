@@ -1,10 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ lib, homeModules, ... }:
 
 {
     imports = [
-        ./home-manager.nix
         ./packages.nix
     ];
+
+    home-manager.sharedModules = [ homeModules.pulseeffects ];
 
     hardware.pulseaudio = {
         enable = true;
