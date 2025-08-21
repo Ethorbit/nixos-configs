@@ -11,12 +11,10 @@
 
         sharedModules = 
         with homeModules; [
+            default
             shell
             htop
             xdg
-            {
-                home.stateVersion = "23.11";
-            }
         ];
     };
 }
