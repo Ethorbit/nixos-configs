@@ -102,7 +102,7 @@
                 specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
-                    ./homenas/nixos
+                    ./homenas
                     ./nixos/hardware/vm/qemu
                 ] ++ defaultModules;
             };
