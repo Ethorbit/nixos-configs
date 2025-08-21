@@ -166,7 +166,7 @@
                 specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
-                    ./nzc/nixos/profiles/production
+                    ./nzc/profiles/production
                     ./nixos/hardware/vm/qemu
                 ] ++ defaultModules;
             };
