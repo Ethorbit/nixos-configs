@@ -11,9 +11,9 @@
         ./flatpak.nix
         ./services.nix
         ./users.nix
-        ../../nixos/components/web-browsing/chromium/profiles/brave
-        ../../nixos/components/programming/ide
-        ../../nixos/components/containers/podman
+        ../nixos/components/web-browsing/chromium/profiles/brave
+        ../nixos/components/programming/ide
+        ../nixos/components/containers/podman
     ];
 
     networking.hostName = "work-pc";

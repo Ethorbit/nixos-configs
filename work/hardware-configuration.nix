@@ -40,7 +40,7 @@
     size = 6 * 1024;
   }];
 
-  age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../../homenas/secrets/samba/users/ethorbit/creds.age; };
+  age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../homenas/secrets/samba/users/ethorbit/creds.age; };
   environment.etc."nascreds" = {
     mode = "0600";
     source = config.age.secrets."homenas/samba/users/ethorbit/creds".path;

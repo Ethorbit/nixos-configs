@@ -2,8 +2,8 @@
 
 {
     imports = [
-        ../../nixos/components/gaming/lutris/profiles/flatpak
-        ../../nixos/components/gaming/minecraft/profiles/flatpak
+        ../nixos/components/gaming/lutris/profiles/flatpak
+        ../nixos/components/gaming/minecraft/profiles/flatpak
     ];
 
     services.flatpak = {
