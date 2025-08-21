@@ -3,12 +3,12 @@
 {
     imports = [
         ./vlc.nix
-        ../../../nixos/components/recording/obs/profiles/flatpak
-        ../../../nixos/components/gaming/moonlight/profiles/flatpak
-        ../../../nixos/components/gaming/steam/profiles/flatpak
-        ../../../nixos/components/gaming/lutris/profiles/flatpak
-        ../../../nixos/components/gaming/roblox/profiles/flatpak
-        ../../../nixos/components/gaming/minecraft/profiles/flatpak
+        ../../nixos/components/recording/obs/profiles/flatpak
+        ../../nixos/components/gaming/moonlight/profiles/flatpak
+        ../../nixos/components/gaming/steam/profiles/flatpak
+        ../../nixos/components/gaming/lutris/profiles/flatpak
+        ../../nixos/components/gaming/roblox/profiles/flatpak
+        ../../nixos/components/gaming/minecraft/profiles/flatpak
     ];
 
     ethorbit.components.recording.obs.service.enable = true;

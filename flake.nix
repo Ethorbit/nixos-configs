@@ -145,7 +145,7 @@
                 specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
-                    ./workstation/nixos
+                    ./workstation
                 ] ++ defaultModules;
             };
 

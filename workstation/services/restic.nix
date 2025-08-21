@@ -1,12 +1,12 @@
 { config, pkgs, ... }:
 
 {
-    age.secrets."nixos/restic/repos/workstation/pass" = { file = ../../../nixos/secrets/restic/repos/workstation/pass.age; };
-    age.secrets."nixos/restic/repos/main_os_storage/pass" = { file = ../../../nixos/secrets/restic/repos/main_os_storage/pass.age; };
-    age.secrets."nixos/restic/repos/android_pixel_primary/pass" = { file = ../../../nixos/secrets/restic/repos/android_pixel_primary/pass.age; };
-    age.secrets."nixos/restic/repos/android_pixel_high/pass" = { file = ../../../nixos/secrets/restic/repos/android_pixel_high/pass.age; };
-    age.secrets."nixos/restic/repos/android_pixel_dark/pass" = { file = ../../../nixos/secrets/restic/repos/android_pixel_dark/pass.age; };
-    age.secrets."nixos/restic/repos/android_pixel_doc/pass" = { file = ../../../nixos/secrets/restic/repos/android_pixel_doc/pass.age; };
+    age.secrets."nixos/restic/repos/workstation/pass" = { file = ../../nixos/secrets/restic/repos/workstation/pass.age; };
+    age.secrets."nixos/restic/repos/main_os_storage/pass" = { file = ../../nixos/secrets/restic/repos/main_os_storage/pass.age; };
+    age.secrets."nixos/restic/repos/android_pixel_primary/pass" = { file = ../../nixos/secrets/restic/repos/android_pixel_primary/pass.age; };
+    age.secrets."nixos/restic/repos/android_pixel_high/pass" = { file = ../../nixos/secrets/restic/repos/android_pixel_high/pass.age; };
+    age.secrets."nixos/restic/repos/android_pixel_dark/pass" = { file = ../../nixos/secrets/restic/repos/android_pixel_dark/pass.age; };
+    age.secrets."nixos/restic/repos/android_pixel_doc/pass" = { file = ../../nixos/secrets/restic/repos/android_pixel_doc/pass.age; };
 
     environment.etc."restic_workstation_pass" = {
         mode = "0600";
