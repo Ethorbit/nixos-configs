@@ -1,11 +1,14 @@
-{ config, ... }:
+{ homeModules, ... }:
 
 {
-    imports = [
-        ../../../../nixos/home-manager/wallpapers/zombies_at_phoneburnia
-    ];
+    home-manager.sharedModules = 
+     with homeModules; [
+        wallpapers
+    ] ++ [ {
+        ethorbit.home-manager.wallpapers = [
+            "zombies_at_phoneburnia"
+        ];
 
-    home-manager.users.${config.ethorbit.users.primary.username} = {
         xdg.mimeApps = {
             enable = true;
             defaultApplications = {
@@ -15,5 +18,5 @@
                 "x-scheme-handler/https" = [ "firefox.desktop" ];
             };
         };
-    };
+    } ];
 }
