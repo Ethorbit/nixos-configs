@@ -135,7 +135,7 @@
                 specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
-                    ./headless-nvidia/nixos
+                    ./headless-nvidia
                 ] ++ defaultModules;
             };
 

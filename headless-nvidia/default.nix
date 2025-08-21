@@ -4,8 +4,8 @@
     imports = [
         ./hardware-configuration.nix
         ./users.nix
-        ../../nixos/components/containers/docker
-        ../../nixos/components/graphics-drivers/nvidia/profiles/proprietary
+        ../nixos/components/containers/docker
+        ../nixos/components/graphics-drivers/nvidia/profiles/proprietary
     ];
 
     services.openssh = {
