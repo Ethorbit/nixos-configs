@@ -9,7 +9,7 @@
   hardware.steam-hardware.enable = true;
 
   imports = [
-    ../../nixos/hardware/vm/virtio
+    ../nixos/hardware/vm/virtio
   ];
 
   fileSystems."/proc" = {
@@ -58,11 +58,11 @@
     { device = "/dev/disk/by-uuid/8b4ed715-ee4f-4ecd-a535-9ae381966127"; }
   ];
 
-  age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../../homenas/nixos/secrets/samba/users/ethorbit/creds.age; };
-  age.secrets."homenas/samba/users/gaming/creds" = { file = ../../homenas/nixos/secrets/samba/users/gaming/creds.age; };
-  age.secrets."homenas/samba/users/videos/creds" = { file = ../../homenas/nixos/secrets/samba/users/videos/creds.age; };
-  age.secrets."homenas/samba/users/ai/creds" = { file = ../../homenas/nixos/secrets/samba/users/ai/creds.age; };
-  age.secrets."homenas/samba/users/hax/creds" = { file = ../../homenas/nixos/secrets/samba/users/hax/creds.age; };
+  age.secrets."homenas/samba/users/ethorbit/creds" = { file = ../homenas/nixos/secrets/samba/users/ethorbit/creds.age; };
+  age.secrets."homenas/samba/users/gaming/creds" = { file = ../homenas/nixos/secrets/samba/users/gaming/creds.age; };
+  age.secrets."homenas/samba/users/videos/creds" = { file = ../homenas/nixos/secrets/samba/users/videos/creds.age; };
+  age.secrets."homenas/samba/users/ai/creds" = { file = ../homenas/nixos/secrets/samba/users/ai/creds.age; };
+  age.secrets."homenas/samba/users/hax/creds" = { file = ../homenas/nixos/secrets/samba/users/hax/creds.age; };
   environment.etc."nascreds" = {
     mode = "0600";
     source = config.age.secrets."homenas/samba/users/ethorbit/creds".path;
