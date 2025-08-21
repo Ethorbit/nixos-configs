@@ -7,7 +7,7 @@
   boot.extraModulePackages = [ ];
 
   imports = [
-    ../../nixos/hardware/vm/virtio
+    ../nixos/hardware/vm/virtio
   ];
 
   fileSystems."/proc" = {
