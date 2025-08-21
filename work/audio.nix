@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ../../nixos/components/audio-server/profiles/pulseaudio
+        ../nixos/components/audio-server/profiles/pulseaudio
     ];
 
     hardware.pulseaudio.package = pkgs.pulseaudioFull;

@@ -2,8 +2,8 @@
 
 {
     imports = [
-        ../../nixos/components/display-server/profiles/xserver
-        ../../nixos/components/desktop-environment/profiles/xfce
+        ../nixos/components/display-server/profiles/xserver
+        ../nixos/components/desktop-environment/profiles/xfce
     ];
 
     # Add 'startx' or else desktop mode won't work

@@ -92,7 +92,7 @@
                 specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
-                    ./work/nixos
+                    ./work
                 ] ++ defaultModules;
             };
 
@@ -155,7 +155,7 @@
                 specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager-unstable.nixosModules.default
-                    ./steamdeck/nixos
+                    ./steamdeck
                     Jovian-NixOS.nixosModules.default
                 ] ++ defaultModules;
             };
