@@ -1,11 +1,12 @@
-{ config, ... }:
+{ homeModules, ... }:
 
 {
-    imports = [
-        ../../../../../home-manager/wallpapers/space/4k_1
-    ];
+    home-manager.sharedModules = 
+     with homeModules; [
+            wallpapers
+    ] ++ [ {
+        ethorbit.home-manager.wallpapers = [ "space/4k_1" ];
 
-    home-manager.users.${config.ethorbit.users.primary.username} = {
         xdg.mimeApps = {
             enable = true;
             defaultApplications = {
@@ -15,5 +16,5 @@
                 "x-scheme-handler/https" = [ "firefox.desktop" ];
             };
         };
-    };
+    } ];
 }
