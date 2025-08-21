@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-    age.secrets."nixos/restic/repos/nzc/pass" = { file = ../../../nixos/secrets/restic/repos/nzc/pass.age; };
+    age.secrets."nixos/restic/repos/nzc/pass" = { file = ../../nixos/secrets/restic/repos/nzc/pass.age; };
     environment.etc."restic_pass" = {
         mode = "0600";
         user = config.ethorbit.users.primary.username;
