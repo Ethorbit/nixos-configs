@@ -20,6 +20,9 @@
         whois
         wget
         git
+        # Thirdparty tool that's recommended by git
+        # instead of using git filter-branch
+        python313Packages.git-filter-repo
         gh
         sudo
         vim
