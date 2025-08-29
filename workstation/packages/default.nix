@@ -61,8 +61,6 @@
         #dotnet-sdk
         #godot_4
         krita
-        ethorbit.taggui
-        
-        kdenlive
+        ethorbit.taggui  
     ];
 }

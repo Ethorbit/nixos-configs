@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
     imports = [
@@ -17,6 +17,7 @@
         ../nixos/components/web-browsing/chromium/profiles/brave
         ../nixos/components/containers/docker
         ../nixos/components/programming/ide
+        ../nixos/components/video-editing/profiles/kdenlive
         ../nixos/components/file-browser/profiles/nautilus
 
         ../nixos/components/networking/systemd

@@ -2,8 +2,8 @@
     description = "Ethorbit's NixOS Systems";
 
     inputs = {
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-        nixpkgs-old.url = "github:nixos/nixpkgs/nixos-24.05";
+        nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+        nixpkgs-old.url = "github:nixos/nixpkgs/nixos-24.11";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
         ethorbit-packages = {
@@ -17,12 +17,12 @@
         };
 
         home-manager = {
-            url = "github:nix-community/home-manager/release-24.11";
+            url = "github:nix-community/home-manager/release-25.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
         home-manager-old = {
-            url = "github:nix-community/home-manager/release-24.05";
+            url = "github:nix-community/home-manager/release-24.11";
             inputs.nixpkgs.follows = "nixpkgs-old";
         };
 
@@ -38,9 +38,7 @@
         flatpaks.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
 
         nvidia-patch = {
-            # Using specific commit to avoid the 'attribute 565.77 missing' error
-            # I'm thinking of just removing this flake entirely and not patching nvidia, since that's less annoying
-            url = "github:icewind1991/nvidia-patch-nixos?rev=d3271f203f5d748df8f137a5c5cc5fd28a0e7681";
+            url = "github:icewind1991/nvidia-patch-nixos?rev=780af7357d942fad2ddd9f325615a5f6ea7e37ee";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 

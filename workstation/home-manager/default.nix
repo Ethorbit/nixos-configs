@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./neovim
         ./systemd.nix
         ./flatpak
         ./xdg.nix
