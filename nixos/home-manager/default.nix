@@ -17,7 +17,7 @@
             xdg
         ] ++ [ {
             # https://discourse.nixos.org/t/brave-browser-and-kde-wallet-on-25-05/64915
-            # After NixOS 25.05, many KDE packages will put kwallet into your system path
+            # Starting on NixOS 25.05, many KDE packages will put kwallet into your system path
             #
             # Since I never needed kwallet and because it's causing slowness problems,
             # I'm disabling it for all systems by default.
