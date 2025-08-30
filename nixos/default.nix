@@ -20,13 +20,27 @@ with lib;
         ./sudo.nix
     ];
 
-    # Since I build on the systems I use, I'm setting
-    # RESOURCE LIMITS so that builds don't FREEZE
-    # SYSTEMS!
     #
-    # This config should allow desktop usage during large builds :D
+    # Below are some settings to prevent lag / stutter during
+    # rebuilds.
+    #
 
     nix = {
+        # I use a Proxmox virtual machine as a "Build Node"
+        # because Proxmox's resource schedulers balances
+        # the resource load between VMs WAY BETTER than
+        # a standalone Linux kernel could ever handle
+        # load between its user processes and the Nix daemon
+        #
+        # This is the only option for top performance (I promise):
+        distributedBuilds = mkDefault true;
+        buildMachines = mkDefault [ {
+            hostName = mkDefault "nixos.internal";
+            sshUser = mkDefault "builder";
+            system = mkDefault "x86_64-linux";
+            publicHostKey = mkDefault "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDsJralwCIT8MB1cSxzmXTzIfVks6YyVZSF4lr/54S3X root@workstation";
+        } ];
+
         daemonCPUSchedPolicy = mkDefault "idle";
         daemonIOSchedClass = mkDefault "idle";
 
