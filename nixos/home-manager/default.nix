@@ -17,10 +17,10 @@
             xdg
         ] ++ [ {
             # https://discourse.nixos.org/t/brave-browser-and-kde-wallet-on-25-05/64915
-            # NixOS 25.05 seems to have polluted my systems with kwallet
-            # and kwallet is delaying browser launch by ~60 secs
+            # After NixOS 25.05, many KDE packages will put kwallet into your system path
             #
-            # Until I can find out the root cause:
+            # Since I never needed kwallet and because it's causing slowness problems,
+            # I'm disabling it for all systems by default.
             home.file.".config/kwalletrc".text = ''
                 [Wallet]
                 Enabled=false
