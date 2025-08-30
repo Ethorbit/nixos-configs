@@ -6,6 +6,8 @@ let
     steamdeck = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPfwGjrtzcX2ELQah0uQAbFEv0eAjAHPvRHMB7Jkegx3 root@nixos";
 in
 {
+    "nixos/secrets/build-machines/primary/sshkey.age".publicKeys = [ ethorbit nixos steamdeck ];
+    "nixos/secrets/users/primary/pass.age".publicKeys = [ ethorbit nixos steamdeck ];
     "nixos/secrets/restic/repos/workstation/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/nzc/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/main_os_storage/pass.age".publicKeys = [ ethorbit nixos ];
@@ -13,7 +15,6 @@ in
     "nixos/secrets/restic/repos/android_pixel_dark/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/android_pixel_high/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/android_pixel_doc/pass.age".publicKeys = [ ethorbit nixos ];
-    "nixos/secrets/users/primary/pass.age".publicKeys = [ ethorbit nixos steamdeck ];
 
     "homenas/nixos/secrets/samba/users/ethorbit/creds.age".publicKeys = [ ethorbit nixos ];
     "homenas/nixos/secrets/samba/users/headlessnvidia/creds.age".publicKeys = [ ethorbit nixos ];

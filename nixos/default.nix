@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 with lib;
 
@@ -25,6 +25,8 @@ with lib;
     # rebuilds.
     #
 
+    age.secrets."build-machines/primary/sshkey" = { file = ./secrets/build-machines/primary/sshkey.age; };
+
     nix = {
         # I use a Proxmox virtual machine as a "Build Node"
         # because Proxmox's resource schedulers balances
@@ -38,7 +40,7 @@ with lib;
             hostName = mkDefault "nixos.internal";
             sshUser = mkDefault "builder";
             system = mkDefault "x86_64-linux";
-            publicHostKey = mkDefault "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDsJralwCIT8MB1cSxzmXTzIfVks6YyVZSF4lr/54S3X root@workstation";
+            sshKey = mkDefault config.age.secrets."build-machines/primary/sshkey".path;
         } ];
 
         daemonCPUSchedPolicy = mkDefault "idle";
