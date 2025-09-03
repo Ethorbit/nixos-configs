@@ -9,6 +9,7 @@ in
     "nixos/secrets/build-machines/primary/sshkey.age".publicKeys = [ ethorbit nixos steamdeck ];
     "nixos/secrets/users/primary/pass.age".publicKeys = [ ethorbit nixos steamdeck ];
     "nixos/secrets/restic/repos/workstation/pass.age".publicKeys = [ ethorbit nixos ];
+    "nixos/secrets/restic/repos/ai/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/nzc/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/main_os_storage/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/android_pixel_primary/pass.age".publicKeys = [ ethorbit nixos ];
