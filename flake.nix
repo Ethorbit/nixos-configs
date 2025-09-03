@@ -94,6 +94,17 @@
                 ] ++ defaultModules;
             };
 
+            # Artificial Intelligence Production system:
+            # Develop the products of the future
+            "ai" = nixpkgs.lib.nixosSystem {
+                inherit system;
+                specialArgs = defaultSpecialArgs;
+                modules = [
+                    home-manager.nixosModules.default
+                    ./ai
+                ] ++ defaultModules;
+            };
+
             # Home NAS, the centralized source of storage.
             "homenas" = nixpkgs.lib.nixosSystem {
                 inherit system;
@@ -123,17 +134,6 @@
                     home-manager.nixosModules.default
                     ./nixos/components/programming/ide/profiles/standalone/profiles/desktop
                     ./nixos/hardware/vm/qemu
-                ] ++ defaultModules;
-            };
-
-            # For quick NVIDIA container computation work
-            # also useful for virtual desktop streaming
-            "headless-nvidia" = nixpkgs.lib.nixosSystem {
-                inherit system;
-                specialArgs = defaultSpecialArgs;
-                modules = [
-                    home-manager.nixosModules.default
-                    ./headless-nvidia
                 ] ++ defaultModules;
             };
 
