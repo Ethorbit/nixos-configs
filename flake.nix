@@ -11,10 +11,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        ethorbit-home = {
-            url = "github:ethorbit/hm-modules";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+        ethorbit-home.url = "github:ethorbit/hm-modules";
 
         home-manager = {
             url = "github:nix-community/home-manager/release-25.05";

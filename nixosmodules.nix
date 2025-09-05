@@ -21,17 +21,17 @@ with inputs;
         (self: super: {
             old = (import inputs.nixpkgs-old {
                 system = super.system;
-                config.allowUnfree = true;
+                config.allowunfree = true;
             });
 
             stable = (import inputs.nixpkgs {
                 system = super.system;
-                config.allowUnfree = true;
+                config.allowunfree = true;
             });
 
             unstable = (import inputs.nixpkgs-unstable {
                 system = super.system;
-                config.allowUnfree = true;
+                config.allowunfree = true;
             });
         })
 
