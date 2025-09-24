@@ -1,8 +1,11 @@
-{ config, ... }:
+{ ... }:
 
 {
+    networking.defaultGateway.address = "172.16.1.1";
+
     systemd.network.networks."eth0" = {
-        address = [ "192.168.254.222/24" ];
+        address = [ "172.16.1.222/24" ];
+        # address = [ "192.168.254.222/24" ];
     };
 
     environment.etc."resolv.conf".text = ''

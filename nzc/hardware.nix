@@ -13,7 +13,7 @@
         options = [ "defaults" "nosuid" "nodev" "noexec" ];
     };
 
-    age.secrets."homenas/samba/users/nzc/creds" = { file = ../../homenas/secrets/samba/users/nzc/creds.age; };
+    age.secrets."homenas/samba/users/nzc/creds" = { file = ../homenas/secrets/samba/users/nzc/creds.age; };
     environment.etc."nascreds" = {
         mode = "0600";
         source = config.age.secrets."homenas/samba/users/nzc/creds".path;

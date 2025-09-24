@@ -14,6 +14,8 @@
 
         keepassxc
 
+        virt-viewer
+
         ethorbit.filen-cli
         filezilla
         sshfs

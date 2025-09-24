@@ -24,6 +24,7 @@
             iptables -A NIXOS_INPUT -i eth0 -m tcp -p tcp --dport 53 -j ACCEPT
             iptables -A NIXOS_INPUT -i eth0 -m udp -p udp --dport 53 -j ACCEPT
             iptables -A NIXOS_INPUT -i eth0 -s 192.168.254.1/24 -j ACCEPT
+            iptables -A NIXOS_INPUT -i eth0 -s 172.16.1.1/24 -j ACCEPT
             iptables -A NIXOS_INPUT -s $(cat ${config.age.secrets."networking/firewall/ISP_CIDR_one.age".path}) -j ACCEPT
             iptables -A NIXOS_INPUT -s $(cat ${config.age.secrets."networking/firewall/ISP_CIDR_two.age".path}) -j ACCEPT
         '';
