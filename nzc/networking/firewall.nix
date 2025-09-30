@@ -15,7 +15,7 @@
         extraCommands = ''
             iptables -P INPUT DROP
             iptables -P OUTPUT ACCEPT
-            iptables -P FORWARD DROP
+            iptables -P FORWARD ACCEPT
             iptables -N NIXOS_INPUT
             iptables -I INPUT 1 -j NIXOS_INPUT
             iptables -A NIXOS_INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
