@@ -15,6 +15,7 @@
         keepassxc
 
         virt-viewer
+        distrobox
 
         ethorbit.filen-cli
         filezilla
