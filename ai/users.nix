@@ -9,6 +9,7 @@
         users = {
             "ai" = {
                 extraGroups = [ "wheel" "docker" "container" ];
+                linger = true;
             };
 
             # just needed for emergency boots.
