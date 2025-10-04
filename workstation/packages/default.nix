@@ -21,7 +21,7 @@
         filezilla
         sshfs
 
-        yt-dlp
+        unstable.yt-dlp
         ethorbit.yt-dlp-wrapper
 
         # so far, so good...
