@@ -40,6 +40,7 @@
         blender
         lmms
         krita
+        kid3
         ethorbit.taggui  
     ];
 }
