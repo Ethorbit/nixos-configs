@@ -25,6 +25,6 @@
 
     systemd.network.networks."eth0" = {
         matchConfig.Name = "eth0";
-        networkConfig.DHCP = "ipv4";
+        networkConfig.DHCP = false;
     };
 }
