@@ -9,15 +9,10 @@
         };
 
         "eth1" = {
+            matchConfig.Name = "eth1";
             address = [ "192.168.254.222/24" ];
             gateway = [ "192.168.254.254" ];
         };
-    };
-
-
-    systemd.network.networks."eth1" = {
-        matchConfig.Name = "eth1";
-        networkConfig.DHCP = "ipv4";
     };
 
     environment.etc."resolv.conf".text = ''
