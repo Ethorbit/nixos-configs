@@ -12,7 +12,7 @@ with lib;
 
             obsVkCapture = mkOption {
                 type = types.str;
-                default = "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08";
+                default = "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/25.08";
             };
 
             obsVkCapturePlugin = mkOption {
