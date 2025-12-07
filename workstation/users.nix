@@ -1,5 +1,12 @@
 { config, lib, pkgs, ... }:
 
+let
+    altUser = {
+        isNormalUser = true;
+        extraGroups = [ "games" ];
+        hashedPasswordFile = config.users.users."workstation".hashedPasswordFile;
+    };
+in
 {
     ethorbit.users.primary.username = "workstation";
 
@@ -8,21 +15,21 @@
 
         groups = {
             "builder" = {};
+            "games" = {};
         };
 
         users = {
             "workstation" = {
-                extraGroups = [ "wheel" "libvirtd" "docker" "container" "audio" "video" "input" ];
+                extraGroups = [ "games" "wheel" "libvirtd" "docker" "container" "audio" "video" "input" ];
+            };
+
+            # Alt accounts
+            "builder" = altUser // {
+                group = "builder";
             };
 
             # just needed for emergency boots.
             "root".hashedPasswordFile = config.users.users."workstation".hashedPasswordFile;
-
-            "builder" = {
-                isNormalUser = true;
-                group = "builder";
-                hashedPasswordFile = config.users.users."workstation".hashedPasswordFile;
-            };
         };
     };
 

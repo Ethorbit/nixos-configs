@@ -16,15 +16,16 @@
 
         virt-viewer
         distrobox
+        flatpak-xdg-utils
 
         ethorbit.filen-cli
         filezilla
         sshfs
+        mariadb
 
         unstable.yt-dlp
         ethorbit.yt-dlp-wrapper
 
-        # so far, so good...
         (symlinkJoin {
             name = "brave-wrapped";
             paths = [
@@ -41,6 +42,7 @@
         lmms
         krita
         kid3
-        ethorbit.taggui  
+        ethorbit.taggui
+        ethorbit.gm-autorun-ng
     ];
 }
