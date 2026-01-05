@@ -15,7 +15,6 @@
             shell
             htop
             xdg
-            espanso
         ] ++ [ {
             # https://discourse.nixos.org/t/brave-browser-and-kde-wallet-on-25-05/64915
             # Starting on NixOS 25.05, many KDE packages will put kwallet into your system path
