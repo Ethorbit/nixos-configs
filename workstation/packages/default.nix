@@ -40,6 +40,7 @@
         audacity
         blender
         godotPackages_4_4.godot
+        vpkedit
         lmms
         krita
         kid3
