@@ -46,5 +46,8 @@
         kid3
         ethorbit.taggui
         ethorbit.gm-autorun-ng
+    
+        pre-commit
+        stylua
     ];
 }
