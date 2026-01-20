@@ -48,6 +48,5 @@
         ethorbit.gm-autorun-ng
     
         pre-commit
-        stylua
     ];
 }
