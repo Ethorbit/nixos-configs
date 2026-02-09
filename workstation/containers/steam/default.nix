@@ -1,15 +1,42 @@
 { config, pkgs, lib, system, inputs, ... }:
 
+let
+    name = "steam";
+
+    # Currently there's no way to control which socket gamescope creates
+    # We'd have to patch it and add a --nested-display
+    # For now, we'll assume gamescope is :1 :(
+    gamescopeDisplay = 1;
+
+    start = {
+        command = "sudo nixos-container start ${name}";
+        time = 5; # estimation of how long it takes to be ready \o/
+    };
+
+    run = c: "sudo nixos-container run ${name} -- su steam -c 'cd ~/ && ${c}'";
+in
 {
     home-manager.users.${config.ethorbit.users.primary.username} = {
-        home.packages = let
-            command = c: "sudo nixos-container run steam -- su steam -c 'cd ~/ && ${c}'";
-        in [
-            (pkgs.writeShellScriptBin "container-steam-gamescope" ''
-                ${command "steam-acolyte-gamescope"}
-            '')
+        home.packages = [
             (pkgs.writeShellScriptBin "container-steam" ''
-                ${command "steam-acolyte"}
+                add_delay=0
+                delay=0
+
+                if [ ! -f "/tmp/.X11-unix/X1" ]; then
+                    ${config.ethorbit.components.gaming.dependencies.gamescope.wrappers."steam".wrapper}
+                    add_delay=1
+                fi
+
+                if nixos-container status steam | grep -q 'down'; then
+                    ${start.command}
+                    add_delay=1
+                fi
+
+                if [ $add_delay -eq 1 ]; then
+                    sleep ${toString start.time}
+                fi
+
+                ${run "steam-acolyte"}
             '')
         ];
 
@@ -22,11 +49,6 @@
                 comment = "Launches Steam inside the 'steam' container using the su-login method.";
             };
         in {
-            "steam-gamescope-nspawn" = desktopShared // {
-                name = "Steam - Gamescope (Nspawn)";
-                exec = "container-steam-gamescope";
-            };
-
             "steam-nspawn" = desktopShared // {
                 name = "Steam (Nspawn)";
                 exec = "container-steam";
@@ -34,7 +56,7 @@
         };
     };
 
-    containers.steam = let
+    containers."${name}" = let
         devices = [
             "/dev/shm"
             "/dev/dri"
@@ -52,8 +74,9 @@
               isReadOnly = true;
             };
 
-            "/tmp/.X11-unix" = {
-                hostPath = "/tmp/.X11-unix";
+            "/tmp/.X11-unix/X0" = {
+                # Only give it access to gamescope's X socket
+                hostPath = "/tmp/.X11-unix/X${toString gamescopeDisplay}";
                 isReadOnly = false;
             };
 
@@ -77,7 +100,7 @@
         };
 
         config = { config, pkgs, ... }: let
-            username = "steam";
+            username = "${name}";
             uid = config.users.users."${config.ethorbit.users.primary.username}".uid;
         in {
             imports = [
@@ -108,20 +131,6 @@
             };
 
             services.getty.autologinUser = username;
-
-            # Make gaming steam's gamescope wrapper run steam-acolyte
-            ethorbit.components.gaming.dependencies.gamescope.wrappers."steam".script 
-            = pkgs.writeShellScript "script" ''
-                steam-acolyte
-            '';
-            # Make a script called steam-acolyte-gamescope that runs the gamescope wrapper we defined above
-            home-manager.users.${config.ethorbit.users.primary.username} = {
-                home.packages = [
-                    (pkgs.writeShellScriptBin "steam-acolyte-gamescope" ''
-                        exec "${config.ethorbit.components.gaming.dependencies.gamescope.wrappers."steam".wrapper}"
-                    '')
-                ];
-            };
         };
     };
 }
