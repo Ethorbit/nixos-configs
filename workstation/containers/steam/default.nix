@@ -20,7 +20,6 @@ in
         home.packages = [
             (pkgs.writeShellScriptBin "container-steam" ''
                 add_delay=0
-                delay=0
 
                 if [ ! -f "/tmp/.X11-unix/X1" ]; then
                     ${config.ethorbit.components.gaming.dependencies.gamescope.wrappers."steam".wrapper}
