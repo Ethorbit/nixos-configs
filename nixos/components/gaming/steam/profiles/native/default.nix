@@ -36,7 +36,7 @@ with pkgs;
             ];
         };
         extraCompatPackages = with pkgs; [
-            proton-ge-bin-8-14
+            proton-ge-bin
         ];
     };
 }

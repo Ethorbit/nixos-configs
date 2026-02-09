@@ -9,7 +9,7 @@ with pkgs.xorg;
         serviceConfig = {
             Type = "oneshot";
             ExecStart = [
-                "${xhost}/bin/xhost +SI:localuser:builder"
+                "${xhost}/bin/xhost +SI:localuser:builder:steam"
             ];
             Environment = "DISPLAY=:0";
         };

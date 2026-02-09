@@ -5,6 +5,7 @@
         ./hardware-configuration.nix
         ./bootloader.nix
         ./audio
+        ./containers
         ./packages
         ./users.nix
         ./services
@@ -36,6 +37,7 @@
     networking.hostName = "workstation";
     #programs.virt-manager.enable = true;
     #virtualisation.libvirtd.enable = true;
+    virtualisation.lxc.lxcfs.enable = true;
 
     ethorbit.programs.termdown-wrapper.soundPath = "/home/${config.ethorbit.users.primary.username}/Documents/timer.opus";
 }
