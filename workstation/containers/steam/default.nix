@@ -149,7 +149,6 @@ in
                     XDG_RUNTIME_DIR = "/run/user/${toString uid}";
                     DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/${toString uid}/bus";
                     XAUTHORITY = "/home/${username}/.Xauthority";
-                    XCURSOR_THEME = "DMZ-Black";
                 };
 
                 systemPackages = with pkgs; [
