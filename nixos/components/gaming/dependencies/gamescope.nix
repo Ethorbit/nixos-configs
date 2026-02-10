@@ -93,7 +93,6 @@ with pkgs;
                             fi
 
                             echo "Captured PID: $GAMESCOPE_PID" >> "$LOG_PATH"
-                            echo "Actual process name for $GAMESCOPE_PID: [$ACTUAL_NAME]" >> "$LOG_PATH"
 
                             # Wait a little for the startup logs to accumulate
                             sleep 1

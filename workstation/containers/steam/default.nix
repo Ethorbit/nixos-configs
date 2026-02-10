@@ -2,6 +2,7 @@
 
 let
     name = "steam";
+    debug = true;
 
     # Currently there's no way to control which socket gamescope creates
     # We'd have to patch it and add a --nested-display
@@ -9,6 +10,7 @@ let
     gamescopeDisplay = 1;
 
     commands = {
+        link = "sudo ip link delete vb-steam";
         stop = "sudo nixos-container stop ${name}";
         start = "sudo nixos-container start ${name}";
         run = c: "sudo nixos-container run ${name} -- su steam -c 'cd ~/ && ${c}'";
@@ -18,7 +20,8 @@ in
     # Since we only run the wrapper when :1 doesn't exist, we can make the script empty
     ethorbit.components.gaming.dependencies.gamescope.wrappers."steam".script
     = lib.mkForce (pkgs.writeShellScript "script" ''
-        ${commands.stop}
+        ${commands.link} 2> /dev/null
+        ${commands.stop} 2> /dev/null
         ${commands.start}
         ${commands.run "steam-acolyte"}
     '');
@@ -48,7 +51,7 @@ in
 
     containers."${name}" = let
         devices = [
-            "/dev/shm"
+            #"/dev/shm"
             "/dev/dri"
             "/dev/nvidia0"
             "/dev/nvidia-modeset"
@@ -106,7 +109,8 @@ in
                     inherit inputs system lib;
                 })
 
-                ../../../nixos/components/gaming/${username}/profiles/native
+                ../../../nixos/components/display-server/profiles/xserver
+                ../../../nixos/components/gaming/steam/profiles/native
                 ../../graphics.nix
             ];
 
@@ -124,8 +128,8 @@ in
             systemd.network.networks."40-eth0" = {
                 matchConfig.Name = "eth0";
                 address = [ "172.16.1.211/24" ];
-                gateway = [ "172.16.1.1" ];
-                dns = [ "172.16.1.1" ];
+                gateway = [ config.networking.defaultGateway.address ];
+                dns = [ config.networking.defaultGateway.address ];
                 linkConfig.RequiredForOnline = "no";
             };
 
@@ -139,17 +143,20 @@ in
                 };
             };
 
-            environment.sessionVariables = {
-                DISPLAY = ":1";
-                XDG_RUNTIME_DIR = "/run/user/${toString uid}";
-                DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/${toString uid}/bus";
-                XAUTHORITY = "/home/${username}/.Xauthority";
-            };
+            environment = {
+                sessionVariables = {
+                    DISPLAY = ":1";
+                    XDG_RUNTIME_DIR = "/run/user/${toString uid}";
+                    DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/${toString uid}/bus";
+                    XAUTHORITY = "/home/${username}/.Xauthority";
+                    XCURSOR_THEME = "DMZ-Black";
+                };
 
-            # For debugging
-            environment.systemPackages = [
-                pkgs.xorg.xwininfo
-            ];
+                systemPackages = with pkgs; [
+                ] ++ (if debug then [
+                    xorg.xwininfo
+                ] else []);
+            };
 
             services.getty.autologinUser = username;
         };

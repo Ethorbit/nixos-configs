@@ -20,6 +20,7 @@
         ../nixos/components/programming/ide
         ../nixos/components/video-editing/profiles/kdenlive
         ../nixos/components/file-browser/profiles/nautilus
+        ../nixos/components/gaming/steam/profiles/native
 
         ../nixos/components/networking/systemd
         #../nixos/components/service-discovery/profiles/avahi

@@ -7,7 +7,6 @@ with lib;
         ./moonlight.nix
         ./steamlink.nix
         ./protontricks.nix
-        ./steam.nix
         ./lutris.nix
         ./roblox.nix
         ./minecraft.nix
