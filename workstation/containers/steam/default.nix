@@ -8,34 +8,25 @@ let
     # For now, we'll assume gamescope is :1 :(
     gamescopeDisplay = 1;
 
-    start = {
-        command = "sudo nixos-container start ${name}";
-        time = 5; # estimation of how long it takes to be ready \o/
+    commands = {
+        stop = "sudo nixos-container stop ${name}";
+        start = "sudo nixos-container start ${name}";
+        run = c: "sudo nixos-container run ${name} -- su steam -c 'cd ~/ && ${c}'";
     };
-
-    run = c: "sudo nixos-container run ${name} -- su steam -c 'cd ~/ && ${c}'";
 in
 {
+    # Since we only run the wrapper when :1 doesn't exist, we can make the script empty
+    ethorbit.components.gaming.dependencies.gamescope.wrappers."steam".script
+    = lib.mkForce (pkgs.writeShellScript "script" ''
+        ${commands.stop}
+        ${commands.start}
+        ${commands.run "steam-acolyte"}
+    '');
+
     home-manager.users.${config.ethorbit.users.primary.username} = {
         home.packages = [
             (pkgs.writeShellScriptBin "container-steam" ''
-                add_delay=0
-
-                if [ ! -f "/tmp/.X11-unix/X1" ]; then
-                    ${config.ethorbit.components.gaming.dependencies.gamescope.wrappers."steam".wrapper}
-                    add_delay=1
-                fi
-
-                if nixos-container status steam | grep -q 'down'; then
-                    ${start.command}
-                    add_delay=1
-                fi
-
-                if [ $add_delay -eq 1 ]; then
-                    sleep ${toString start.time}
-                fi
-
-                ${run "steam-acolyte"}
+                ${config.ethorbit.components.gaming.dependencies.gamescope.wrappers."steam".wrapper}
             '')
         ];
 
@@ -67,16 +58,22 @@ in
             "/dev/nvidia-caps"
         ];
     in {
+        # This is needed or else a container process
+        # can access the host's X display through
+        # the network! (ss -xl | grep X11)
+        privateNetwork = true;
+        hostBridge = "br0";
+
         bindMounts = {
             "/home/steam/.Xauthority" = {
               hostPath = "/home/workstation/.Xauthority";
               isReadOnly = true;
             };
 
-            "/tmp/.X11-unix/X0" = {
-                # Only give it access to gamescope's X socket
+            # Only give it access to gamescope's X socket
+            "/tmp/.X11-unix/X${toString gamescopeDisplay}" = {
                 hostPath = "/tmp/.X11-unix/X${toString gamescopeDisplay}";
-                isReadOnly = false;
+                isReadOnly = true;
             };
 
             "/mnt/games" = {
@@ -113,7 +110,27 @@ in
                 ../../graphics.nix
             ];
 
-            ethorbit.users.primary.username = "${username}";
+            # Network
+            networking = {
+                useHostResolvConf = false;
+                useNetworkd = true;
+                useDHCP = false;
+                defaultGateway = lib.mkForce {
+                    address = "172.16.1.1";
+                    interface = "eth0";
+                };
+            };
+
+            systemd.network.networks."40-eth0" = {
+                matchConfig.Name = "eth0";
+                address = [ "172.16.1.211/24" ];
+                gateway = [ "172.16.1.1" ];
+                dns = [ "172.16.1.1" ];
+                linkConfig.RequiredForOnline = "no";
+            };
+
+            # User
+            ethorbit.users.primary.username = username;
             users = {
                 allowNoPasswordLogin = true;
                 users."${username}" = {
@@ -123,11 +140,16 @@ in
             };
 
             environment.sessionVariables = {
-                DISPLAY = ":0";
+                DISPLAY = ":1";
                 XDG_RUNTIME_DIR = "/run/user/${toString uid}";
                 DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/${toString uid}/bus";
                 XAUTHORITY = "/home/${username}/.Xauthority";
             };
+
+            # For debugging
+            environment.systemPackages = [
+                pkgs.xorg.xwininfo
+            ];
 
             services.getty.autologinUser = username;
         };

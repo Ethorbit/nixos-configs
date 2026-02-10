@@ -84,10 +84,16 @@ with pkgs;
                             LOG_PATH="$XDG_RUNTIME_DIR/${name}-gamescope.txt"
                             echo "$0 $(${toybox}/bin/date)" > "$LOG_PATH"
 
-                            GAMESCOPE_PID=$(
-                                ${config.commands.gamescope} >> "$LOG_PATH" 2>> "$LOG_PATH" &
-                                echo $(($BASHPID+1))
-                            )
+                            setsid ${config.commands.gamescope} >> "$LOG_PATH" 2>> "$LOG_PATH" < /dev/null &
+                            GAMESCOPE_PID=$!
+
+                            if [ -z "$GAMESCOPE_PID" ]; then
+                                echo "Failed to start gamescope" >> "$LOG_PATH"
+                                exit 1
+                            fi
+
+                            echo "Captured PID: $GAMESCOPE_PID" >> "$LOG_PATH"
+                            echo "Actual process name for $GAMESCOPE_PID: [$ACTUAL_NAME]" >> "$LOG_PATH"
 
                             # Wait a little for the startup logs to accumulate
                             sleep 1
@@ -96,10 +102,20 @@ with pkgs;
                             GAMESCOPE_DISPLAY=$(cat "$LOG_PATH" | grep 'Starting Xwayland on :[0-9]' | grep -o ':[0-9]$')
                             export DISPLAY="$GAMESCOPE_DISPLAY"
 
+                            GAMESCOPE_DISPLAY_NUM=''${GAMESCOPE_DISPLAY#:}
+
                             # Kill our Gamescope process if our wrapper script exits (e.g if Steam closes)
                             function cleanup()
                             {
-                                kill -KILL "$GAMESCOPE_PID"
+                                rm -f /tmp/.X''${GAMESCOPE_DISPLAY_NUM}-lock
+                                rm -f /tmp/.X11-unix/X''${GAMESCOPE_DISPLAY_NUM}
+                                rm -f $XDG_RUNTIME_DIR/gamescope-''${GAMESCOPE_DISPLAY_NUM}.lock
+
+                                kill -TERM -"$GAMESCOPE_PID" 2>/dev/null
+                                sleep 0.5
+                                if kill -0 -"$GAMESCOPE_PID" 2>/dev/null; then
+                                    kill -KILL -"$GAMESCOPE_PID" 2>/dev/null
+                                fi
                             }
 
                             trap cleanup EXIT
