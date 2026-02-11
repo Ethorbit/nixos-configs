@@ -14,6 +14,7 @@ in
 
     ethorbit.components.gaming.dependencies.gamescope.wrappers."steam".script
     = mkForce (pkgs.writeShellScript "script" ''
+        DISPLAY=:${toString cfg.gamescope.display} xhost +local:
         ${commands.link} 2> /dev/null
         ${commands.stop} 2> /dev/null
         ${commands.start}
@@ -54,25 +55,34 @@ in
             "/dev/nvidia-caps"
         ];
     in {
-        # This is needed or else a container process
+        privateUsers = "pick";
+
+        # Or else a container process
         # can access the host's X display through
         # the network! (ss -xl | grep X11)
         privateNetwork = true;
         hostBridge = "br0";
 
         bindMounts = {
-            "/home/steam/.Xauthority" = {
-              hostPath = "/home/workstation/.Xauthority";
-              isReadOnly = true;
-            };
+            # idmap hack since it's not supported by NixOS container module
+            # https://github.com/NixOS/nixpkgs/issues/419007#issuecomment-2994320632
+            # https://github.com/NixOS/nixpkgs/issues/329530#issuecomment-2513815925
 
             # Only give it access to gamescope's X socket
             "/tmp/.X11-unix/X${toString cfg.gamescope.display}" = {
+                mountPoint = "/tmp/.X11-unix/X${toString cfg.gamescope.display}:idmap";
                 hostPath = "/tmp/.X11-unix/X${toString cfg.gamescope.display}";
                 isReadOnly = true;
             };
 
+            "/home/steam/.Xauthority" = {
+                mountPoint = "/home/steam/.Xauthority:idmap";
+                hostPath = "/home/workstation/.Xauthority";
+                isReadOnly = true;
+            };
+
             "/mnt/games" = {
+                mountPoint = "/mnt/games:idmap";
                 hostPath = "/mnt/games/Steam";
                 isReadOnly = false;
             };
