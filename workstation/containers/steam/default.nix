@@ -1,25 +1,19 @@
 { config, pkgs, lib, system, inputs, ... }:
 
+with lib;
+
 let
-    name = "steam";
-    debug = true;
-
-    # Currently there's no way to control which socket gamescope creates
-    # We'd have to patch it and add a --nested-display
-    # For now, we'll assume gamescope is :1 :(
-    gamescopeDisplay = 1;
-
-    commands = {
-        link = "sudo ip link delete vb-steam";
-        stop = "sudo nixos-container stop ${name}";
-        start = "sudo nixos-container start ${name}";
-        run = c: "sudo nixos-container run ${name} -- su steam -c 'cd ~/ && ${c}'";
-    };
+    cfg = config.ethorbit.workstation.container.steam;
+    name = cfg.name;
+    commands = cfg.commands;
 in
 {
-    # Since we only run the wrapper when :1 doesn't exist, we can make the script empty
+    imports = [
+        ./options.nix
+    ];
+
     ethorbit.components.gaming.dependencies.gamescope.wrappers."steam".script
-    = lib.mkForce (pkgs.writeShellScript "script" ''
+    = mkForce (pkgs.writeShellScript "script" ''
         ${commands.link} 2> /dev/null
         ${commands.stop} 2> /dev/null
         ${commands.start}
@@ -51,7 +45,6 @@ in
 
     containers."${name}" = let
         devices = [
-            #"/dev/shm"
             "/dev/dri"
             "/dev/nvidia0"
             "/dev/nvidia-modeset"
@@ -74,8 +67,8 @@ in
             };
 
             # Only give it access to gamescope's X socket
-            "/tmp/.X11-unix/X${toString gamescopeDisplay}" = {
-                hostPath = "/tmp/.X11-unix/X${toString gamescopeDisplay}";
+            "/tmp/.X11-unix/X${toString cfg.gamescope.display}" = {
+                hostPath = "/tmp/.X11-unix/X${toString cfg.gamescope.display}";
                 isReadOnly = true;
             };
 
@@ -83,7 +76,7 @@ in
                 hostPath = "/mnt/games/Steam";
                 isReadOnly = false;
             };
-        } // lib.genAttrs devices (d: {
+        } // genAttrs devices (d: {
             hostPath = d;
             isReadOnly = false;
         });
@@ -98,10 +91,7 @@ in
             homeModules = inputs.ethorbit-home.homeModules.${system};
         };
 
-        config = { config, pkgs, ... }: let
-            username = "${name}";
-            uid = config.users.users."${config.ethorbit.users.primary.username}".uid;
-        in {
+        config = { config, pkgs, ... }: {
             imports = [
                 inputs.home-manager.nixosModules.default
 
@@ -109,55 +99,12 @@ in
                     inherit inputs system lib;
                 })
 
+                ./options.nix
+                ./config
                 ../../../nixos/components/display-server/profiles/xserver
                 ../../../nixos/components/gaming/steam/profiles/native
                 ../../graphics.nix
             ];
-
-            # Network
-            networking = {
-                useHostResolvConf = false;
-                useNetworkd = true;
-                useDHCP = false;
-                defaultGateway = lib.mkForce {
-                    address = "172.16.1.1";
-                    interface = "eth0";
-                };
-            };
-
-            systemd.network.networks."40-eth0" = {
-                matchConfig.Name = "eth0";
-                address = [ "172.16.1.211/24" ];
-                gateway = [ config.networking.defaultGateway.address ];
-                dns = [ config.networking.defaultGateway.address ];
-                linkConfig.RequiredForOnline = "no";
-            };
-
-            # User
-            ethorbit.users.primary.username = username;
-            users = {
-                allowNoPasswordLogin = true;
-                users."${username}" = {
-                    linger = true;
-                    extraGroups = [ "video" "input" "audio" ];
-                };
-            };
-
-            environment = {
-                sessionVariables = {
-                    DISPLAY = ":1";
-                    XDG_RUNTIME_DIR = "/run/user/${toString uid}";
-                    DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/${toString uid}/bus";
-                    XAUTHORITY = "/home/${username}/.Xauthority";
-                };
-
-                systemPackages = with pkgs; [
-                ] ++ (if debug then [
-                    xorg.xwininfo
-                ] else []);
-            };
-
-            services.getty.autologinUser = username;
         };
     };
 }
