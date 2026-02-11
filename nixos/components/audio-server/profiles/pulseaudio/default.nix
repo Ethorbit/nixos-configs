@@ -10,6 +10,7 @@
     hardware.pulseaudio = {
         enable = true;
         extraConfig = "unload-module module-suspend-on-idle";
+        support32Bit = true;
     };
 
     # Using PipeWire as the sound server conflicts with PulseAudio. This option requires `hardware.pulseaudio.enable` to be set to false

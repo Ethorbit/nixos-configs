@@ -89,6 +89,12 @@ in
                 hostPath = "/mnt/games/Steam";
                 isReadOnly = false;
             };
+
+            "/home/${cfg.username}/.pulse" = {
+                mountPoint = "/home/${cfg.username}/.pulse:idmap";
+                hostPath = "/tmp/pulse";
+                isReadOnly = false;
+            };
         } // genAttrs devices (d: {
             hostPath = d;
             isReadOnly = false;
@@ -115,6 +121,7 @@ in
                 ./options.nix
                 ./config
                 ../../../nixos/components/display-server/profiles/xserver
+                ../../../nixos/components/audio-server/profiles/pulseaudio
                 ../../../nixos/components/gaming/steam/profiles/native
                 ../../graphics.nix
             ];
