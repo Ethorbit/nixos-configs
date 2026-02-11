@@ -75,11 +75,14 @@ in
                 isReadOnly = true;
             };
 
-            "/home/steam/.Xauthority" = {
-                mountPoint = "/home/steam/.Xauthority:idmap";
-                hostPath = "/home/workstation/.Xauthority";
-                isReadOnly = true;
-            };
+            # Not compatible with privateUsers "pick"
+            # For now, our solution is to allow any local
+            # user to snoop on us. We're just Steam afterall
+            # "/home/steam/.Xauthority" = {
+            #     mountPoint = "/home/steam/.Xauthority:idmap";
+            #     hostPath = "/home/workstation/.Xauthority";
+            #     isReadOnly = true;
+            # };
 
             "/mnt/games" = {
                 mountPoint = "/mnt/games:idmap";
