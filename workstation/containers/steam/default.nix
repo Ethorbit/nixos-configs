@@ -32,14 +32,14 @@ in
             desktopShared = {
                 genericName = "Steam Container";
                 icon = "steam";
-                terminal = true; # Keep true to see the sudo prompt, or use NOPASSWD in sudoers
+                terminal = false;
                 categories = [ "Game" ];
                 comment = "Launches Steam inside the 'steam' container using the su-login method.";
             };
         in {
             "steam-nspawn" = desktopShared // {
                 name = "Steam (Nspawn)";
-                exec = "container-steam";
+                exec = "${pkgs.kitty}/bin/kitty container-steam";
             };
         };
     };
@@ -120,10 +120,15 @@ in
 
                 ./options.nix
                 ./config
+                ../../graphics.nix
+                ../../../nixos/components/gaming/steam/profiles/native
                 ../../../nixos/components/display-server/profiles/xserver
                 ../../../nixos/components/audio-server/profiles/pulseaudio
-                ../../../nixos/components/gaming/steam/profiles/native
-                ../../graphics.nix
+                # Since passing XDG grants privileges over host, we need
+                # our own toolset for accessing and viewing our files
+                ../../../nixos/components/window-manager
+                ../../../nixos/components/programming/ide
+                ../../../nixos/components/file-browser/profiles/nautilus
             ];
         };
     };

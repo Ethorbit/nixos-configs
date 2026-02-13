@@ -12,5 +12,6 @@ in
         #XAUTHORITY = "/home/${cfg.username}/.Xauthority";
         PULSE_SERVER = "/home/${cfg.username}/.pulse";
         SDL_AUDIODRIVER = "pulse";
+        XTERM = "xterm-256color";
     };
 }

@@ -27,11 +27,6 @@
 
         ./graphics.nix
         
-        # Suffers from weird issues such as flickers, also it's less secure
-        # to give games full access to user files.
-        #../nixos/components/gaming/steam/profiles/native
-        #../nixos/components/gaming/lutris/profiles/native
-    
         ../nixos/components/input-streaming/usbip
     ];
 

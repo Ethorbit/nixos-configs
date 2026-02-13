@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 
+with pkgs;
+
 let
     cfg = config.ethorbit.workstation.container.steam;
 in
