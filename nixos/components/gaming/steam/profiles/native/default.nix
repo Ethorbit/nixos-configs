@@ -18,6 +18,7 @@ in
 
     programs.steam = {
         enable = true;
+        protontricks.enable = true;
         #gamescopeSession.enable = true;
         package = pkgs.steam.override {
             extraEnv = cfg.extraEnvironment;

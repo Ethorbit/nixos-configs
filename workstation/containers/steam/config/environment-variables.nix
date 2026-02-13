@@ -13,5 +13,6 @@ in
         PULSE_SERVER = "/home/${cfg.username}/.pulse";
         SDL_AUDIODRIVER = "pulse";
         XTERM = "xterm-256color";
+        PROTON_VERSION = "Proton 8.0"; # Satisfies protontricks
     };
 }
