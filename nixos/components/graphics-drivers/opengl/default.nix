@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ../.
         ./before-24.11.nix
         ./24.11-or-later.nix
     ];

@@ -4,6 +4,4 @@
     imports = [
         ../.
     ];
-
-    services.xserver.videoDrivers = [ "qxl" ];
 }
