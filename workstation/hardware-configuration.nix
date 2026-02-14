@@ -46,14 +46,6 @@
     options = [ "fmask=0077" "dmask=0077" "defaults" ];
   };
 
-  # shitty Flatpak won't simply allow us to symlink to our home folder
-  # so I am forced to create a system-level bind mount instead, smh
-  # anyway, I just need an easy way to navigate to gmod lua inside flatpak steam
-  fileSystems."/mnt/glua" = {
-    device = "/mnt/games/SteamLibrary/steamapps/common/GarrysMod/garrysmod/lua";
-    options = [ "bind" ];
-  };
-
   swapDevices = [ 
     { device = "/dev/disk/by-uuid/8b4ed715-ee4f-4ecd-a535-9ae381966127"; }
   ];

@@ -8,6 +8,8 @@ in
 {
     environment.systemPackages = with pkgs; [
     ] ++ (if cfg.debug then [
+        mesa-demos
+        vulkan-tools
         xorg.xwininfo
     ] else []);
 }

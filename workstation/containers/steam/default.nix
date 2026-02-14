@@ -63,14 +63,15 @@ in
         privateNetwork = true;
         hostBridge = "br0";
 
-        bindMounts = {
+        bindMounts = let
             # idmap hack since it's not supported by NixOS container module
             # https://github.com/NixOS/nixpkgs/issues/419007#issuecomment-2994320632
             # https://github.com/NixOS/nixpkgs/issues/329530#issuecomment-2513815925
-
+            idmap = s: "${s}:idmap";
+        in {
             # Only give it access to gamescope's X socket
             "/tmp/.X11-unix/X${toString cfg.gamescope.display}" = {
-                mountPoint = "/tmp/.X11-unix/X${toString cfg.gamescope.display}:idmap";
+                mountPoint = idmap "/tmp/.X11-unix/X${toString cfg.gamescope.display}";
                 hostPath = "/tmp/.X11-unix/X${toString cfg.gamescope.display}";
                 isReadOnly = true;
             };
@@ -79,19 +80,29 @@ in
             # For now, our solution is to allow any local
             # user to snoop on us. We're just Steam afterall
             # "/home/steam/.Xauthority" = {
-            #     mountPoint = "/home/steam/.Xauthority:idmap";
+            #     mountPoint = idmap "/home/steam/.Xauthority";
             #     hostPath = "/home/workstation/.Xauthority";
             #     isReadOnly = true;
             # };
 
+            # Steam Client
+            "/home/${toString cfg.username}/.local/share/Steam" = {
+                mountPoint = idmap "/home/${toString cfg.username}/.local/share/Steam";
+                hostPath = "/mnt/games/Steam/.steam";
+                isReadOnly = false;
+            };
+
+            # Steam Games
             "/mnt/games" = {
-                mountPoint = "/mnt/games:idmap";
+                mountPoint = idmap "/mnt/games";
                 hostPath = "/mnt/games/Steam";
                 isReadOnly = false;
             };
 
+            # Share audio with host
+            # (TODO: figure out how to isolate a container's audio safely)
             "/home/${cfg.username}/.pulse" = {
-                mountPoint = "/home/${cfg.username}/.pulse:idmap";
+                mountPoint = idmap "/home/${cfg.username}/.pulse";
                 hostPath = "/tmp/pulse";
                 isReadOnly = false;
             };
