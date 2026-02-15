@@ -53,7 +53,7 @@ in
 
         debug = mkOption {
             description = ''Whether or not the container is in debugging mode'';
-            default = true;
+            default = false;
         };
 
         gamescope = {

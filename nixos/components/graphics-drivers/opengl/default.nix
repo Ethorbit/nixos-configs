@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, ... }:
 
 {
     imports = [
@@ -17,5 +17,7 @@
     # https://discourse.nixos.org/t/nixos-issues-with-vulkan-after-upgrading-from-24-05-to-24-11/56949/8
     # I don't think it's related to 24.11 though, pretty sure stupid me always had the problem and I only
     # just found out by running vulkaninfo, lol
-    environment.sessionVariables.VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+    environment.sessionVariables.VK_ICD_FILENAMES =
+      "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json:"
+      + "/run/opengl-driver-32/share/vulkan/icd.d/nvidia_icd.i686.json";
 }

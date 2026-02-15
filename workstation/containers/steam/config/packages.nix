@@ -10,6 +10,8 @@ in
     ] ++ (if cfg.debug then [
         mesa-demos
         vulkan-tools
+        pkgsi686Linux.mesa-demos
+        pkgsi686Linux.vulkan-tools
         xorg.xwininfo
     ] else []);
 }
