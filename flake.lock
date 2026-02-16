@@ -139,11 +139,11 @@
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1763688784,
-        "narHash": "sha256-/E79disKCgPeJuQaChuNxqRmmau3DO9mGeq5R3dvBjg=",
+        "lastModified": 1763698199,
+        "narHash": "sha256-XzgLNqWvzyeBwCWCbt7NvcZEPSMssd3iLufT0lmXcQw=",
         "owner": "ethorbit",
         "repo": "nix-packages",
-        "rev": "120694f5dbc461c598fc70fd5a478f7a3dc2b122",
+        "rev": "f2fa2f52a3c3a7477ebbe242644c81e0ac844388",
         "type": "github"
       },
       "original": {
@@ -393,11 +393,11 @@
     },
     "nixpkgs-unstable_3": {
       "locked": {
-        "lastModified": 1763421233,
-        "narHash": "sha256-Stk9ZYRkGrnnpyJ4eqt9eQtdFWRRIvMxpNRf4sIegnw=",
+        "lastModified": 1771008912,
+        "narHash": "sha256-gf2AmWVTs8lEq7z/3ZAsgnZDhWIckkb+ZnAo5RzSxJg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "89c2b2330e733d6cdb5eae7b899326930c2c0648",
+        "rev": "a82ccc39b39b621151d6732718e3e250109076fa",
         "type": "github"
       },
       "original": {
