@@ -4,6 +4,10 @@ let
     cfg = config.ethorbit.components.recording.obs;
 in
 {
+    imports = [
+        ./sockets.nix
+    ];
+
     systemd.user.services."obs" = {
         enable = cfg.service.enable;
         description = "Custom OBS at startup";

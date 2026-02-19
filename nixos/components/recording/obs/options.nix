@@ -44,5 +44,33 @@ with lib;
                 "--disable-shutdown-check"
             ];
         };
+
+        sockets = {
+            capture = {
+                user = mkOption {
+                    type = types.str;
+                    description = ''User'';
+                    default = config.ethorbit.users.primary.username;
+                };
+
+                server.enable = mkOption {
+                    type = types.bool;
+                    description = ''
+                        Whether or not to create a socket file for vkcapture
+                        This would allow you to share game capturing with containers
+                    '';
+                    default = false;
+                };
+
+                client.enable = mkOption {
+                    type = types.bool;
+                    description = ''
+                        Whether or not to listen to a socket file for vkcapture
+                        This would allow you to share game capturing with containers
+                    '';
+                    default = false;
+                };
+            };
+        };
     };
 }

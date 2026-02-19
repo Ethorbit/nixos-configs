@@ -1,6 +1,4 @@
-# TODO: actually test this..
-
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -12,16 +10,16 @@ with lib;
 
     programs.obs-studio = {
         enable = true;
-        plugins = 
-        with pkgs;
-        with obs-studio-plugins;
-        with ethorbit.obs-studio-plugins; 
+        plugins =
+            with pkgs;
+            with obs-studio-plugins;
+            with ethorbit.obs-studio-plugins; 
         [
             obs-vkcapture
-        ] ++ mkIf services.pipewire.enable [
+        ] ++ (if config.services.pipewire.enable then [
             obs-pipewire-audio-capture
-        ] ++ mkIf hardware.pulseaudio.enable [
+        ] else []) ++ (if config.hardware.pulseaudio.enable then [
             obs-pulseaudio-app-capture
-        ];
+        ] else []);
     };
 }
