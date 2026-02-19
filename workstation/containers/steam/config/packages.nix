@@ -7,6 +7,7 @@ let
 in
 {
     environment.systemPackages = with pkgs; [
+        (callPackage ./entrypoint.nix {})
     ] ++ (if cfg.debug then [
         mesa-demos
         vulkan-tools

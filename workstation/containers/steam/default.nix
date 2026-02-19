@@ -15,10 +15,12 @@ in
     ethorbit.components.gaming.dependencies.gamescope.wrappers."steam".script
     = mkForce (pkgs.writeShellScript "script" ''
         DISPLAY=:${toString cfg.gamescope.display} xhost +local:
+        # cfg.commands for interacting with container
         ${commands.link} 2> /dev/null
         ${commands.stop} 2> /dev/null
         ${commands.start}
-        ${commands.run "steam-acolyte"}
+        # defined in ./config/
+        ${commands.run "entrypoint.sh"}
     '');
 
     home-manager.users.${config.ethorbit.users.primary.username} = {
@@ -69,8 +71,7 @@ in
             # https://github.com/NixOS/nixpkgs/issues/329530#issuecomment-2513815925
             idmap = s: "${s}:idmap";
         in {
-            # Only give it access to gamescope's X socket
-            "/tmp/.X11-unix/X${toString cfg.gamescope.display}" = {
+            "Gamescope X Socket" = {
                 mountPoint = idmap "/tmp/.X11-unix/X${toString cfg.gamescope.display}";
                 hostPath = "/tmp/.X11-unix/X${toString cfg.gamescope.display}";
                 isReadOnly = true;
@@ -79,31 +80,35 @@ in
             # Not compatible with privateUsers "pick"
             # For now, our solution is to allow any local
             # user to snoop on us. We're just Steam afterall
-            # "/home/steam/.Xauthority" = {
+            # "Xauthority" = {
             #     mountPoint = idmap "/home/steam/.Xauthority";
             #     hostPath = "/home/workstation/.Xauthority";
             #     isReadOnly = true;
             # };
 
-            # Steam Client
-            "/home/${toString cfg.username}/.local/share/Steam" = {
+            # Share audio with host
+            # (TODO: figure out how to isolate a container's audio safely)
+            "Pulseaudio Socket" = {
+                mountPoint = idmap "/home/${cfg.username}/.pulse";
+                hostPath = "/tmp/pulse";
+                isReadOnly = false;
+            };
+
+            "Steam" = {
                 mountPoint = idmap "/home/${toString cfg.username}/.local/share/Steam";
                 hostPath = "/mnt/games/Steam/.steam";
                 isReadOnly = false;
             };
 
-            # Steam Games
-            "/mnt/games" = {
+            "Steam Games" = {
                 mountPoint = idmap "/mnt/games";
                 hostPath = "/mnt/games/Steam";
                 isReadOnly = false;
             };
 
-            # Share audio with host
-            # (TODO: figure out how to isolate a container's audio safely)
-            "/home/${cfg.username}/.pulse" = {
-                mountPoint = idmap "/home/${cfg.username}/.pulse";
-                hostPath = "/tmp/pulse";
+            "Recordings" = {
+                mountPoint = idmap "/mnt/storage/Videos/gaming";
+                hostPath = "/mnt/storage/Videos/gaming";
                 isReadOnly = false;
             };
         } // genAttrs devices (d: {
@@ -135,6 +140,7 @@ in
                 ../../../nixos/components/gaming/steam/profiles/native
                 ../../../nixos/components/display-server/profiles/xserver
                 ../../../nixos/components/audio-server/profiles/pulseaudio
+                ../../../nixos/components/recording/obs/profiles/native
                 # Since passing XDG grants privileges over host, we need
                 # our own toolset for accessing and viewing our files
                 ../../../nixos/components/window-manager

@@ -3,7 +3,7 @@
 {
     imports = [
         ./users.nix
-        ./networking.nix
+        ./networking
         ./audio.nix
         ./packages.nix
         ./environment-variables.nix

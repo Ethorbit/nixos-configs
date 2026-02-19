@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+    imports = [
+        ./services
+    ];
+
     systemd = {
         # We need to optimize existing slices to reduce lag
         # during resource contention

@@ -1,6 +1,10 @@
 { config, lib, ... }:
 
 {
+    imports = [
+        ./firewall.nix
+    ];
+
     networking = {
         useHostResolvConf = false;
         useNetworkd = true;

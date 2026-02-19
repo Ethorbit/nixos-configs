@@ -2,7 +2,7 @@
 
 {
     home-manager.users.${config.ethorbit.users.primary.username} = {
-        home.file."hm-update".text = "update";
+        home.file."hm-update".text = "update2";
 
         # Fix for ranger not working inside of Steam
         # We just need to modify the exec to launch ranger

@@ -14,6 +14,7 @@
 
         keepassxc
 
+        obs-cmd
         virt-viewer
         distrobox
         flatpak-xdg-utils

@@ -13,5 +13,8 @@ in
         PULSE_SERVER = "/home/${cfg.username}/.pulse";
         SDL_AUDIODRIVER = "pulse";
         XTERM = "xterm-256color";
+        # It's safer to just run our own OBS
+        #PRESSURE_VESSEL_FILESYSTEMS_RW = "/run/obs-capture";
+        OBS_VKCAPTURE = 1;
     };
 }
