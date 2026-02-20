@@ -13,8 +13,12 @@ in
      # create the desktop entry in your home, and hide it with NoDisplay=true
 
     ethorbit.components.recording.obs.script = pkgs.writeShellScript "command.sh" ''
-        nohup ${cfg.command} 2>&1 &
+        ${cfg.command} &
+        COMMAND_PID=$!
+
         ${cfg.extraCommands}
+
+        wait $COMMAND_PID
     '';
 
     home-manager.sharedModules = [ {
