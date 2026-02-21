@@ -22,7 +22,8 @@
         ../nixos/components/programming/ide
         ../nixos/components/file-browser/profiles/nautilus
         ../nixos/components/recording/obs/profiles/native
-        ../nixos/components/video-editing/profiles/kdenlive
+        ../nixos/components/audio-editing/audacity
+        ../nixos/components/video-editing/kdenlive
         ../nixos/components/gaming/steam/profiles/native
         #../nixos/components/service-discovery/profiles/avahi
     ];
