@@ -475,7 +475,28 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-old": "nixpkgs-old_2",
         "nixpkgs-unstable": "nixpkgs-unstable_3",
-        "nvidia-patch": "nvidia-patch"
+        "nvidia-patch": "nvidia-patch",
+        "scopebuddy": "scopebuddy"
+      }
+    },
+    "scopebuddy": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770975253,
+        "narHash": "sha256-8YFGyRtVOWTWfQp4BD0sUaicUeBhEW127e1kTZuUi4c=",
+        "owner": "OpenGamingCollective",
+        "repo": "ScopeBuddy",
+        "rev": "5b64e1747f268a1b35a5a5d8dfd377799036365b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "OpenGamingCollective",
+        "repo": "ScopeBuddy",
+        "type": "github"
       }
     },
     "systems": {

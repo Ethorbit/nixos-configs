@@ -21,6 +21,7 @@ with pkgs;
             # Tools useful for launch options
             mangohud
             gamescope
+            scopebuddy
             gamemode
 
             # Needed to fix gamescope issues

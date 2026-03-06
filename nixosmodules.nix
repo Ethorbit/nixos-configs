@@ -35,6 +35,10 @@ with inputs;
             });
         })
 
+        (final: prev: {
+            scopebuddy = scopebuddy.packages.${prev.system}.default;
+        })
+
         ethorbit-packages.overlays.default
         nvidia-patch.overlays.default
     ];

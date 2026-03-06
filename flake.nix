@@ -50,6 +50,11 @@
             url = "github:Jovian-Experiments/Jovian-NixOS";
             inputs.nixpkgs.follows = "nixpkgs-unstable";
         };
+
+        scopebuddy = {
+            url = "github:OpenGamingCollective/ScopeBuddy";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = { 
@@ -66,7 +71,8 @@
         flatpaks,
         nvidia-patch,
         NixOS-WSL,
-        Jovian-NixOS
+        Jovian-NixOS,
+        scopebuddy
     } @inputs: let
         inherit (self) outputs;
         system = "x86_64-linux";
