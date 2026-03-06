@@ -7,6 +7,8 @@
         ../../../../nixos/components/display-server/profiles/xserver
         ../../../../nixos/components/audio-server/profiles/pulseaudio
         ../../../../nixos/components/recording/obs/profiles/native
+        # Can create steam shortcuts of non-steam Windows games
+        ../../../../nixos/components/gaming/lutris/profiles/native
         # Since passing XDG grants privileges over host, we need
         # our own toolset for accessing and viewing our files
         ../../../../nixos/components/window-manager
