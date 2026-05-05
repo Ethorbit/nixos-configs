@@ -4,6 +4,7 @@ with lib;
 
 {
     imports = [
+        ./kernel.nix
         ./nixpkgs
         ./options.nix
         ./bootloader.nix

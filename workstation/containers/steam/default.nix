@@ -106,6 +106,12 @@ in
                 isReadOnly = false;
             };
 
+            "Autorun-ng" = {
+                mountPoint = idmap "/mnt/Autorun-ng";
+                hostPath = "/mnt/games/Autorun-ng";
+                isReadOnly = false;
+            };
+
             "Recordings" = {
                 mountPoint = idmap "/mnt/storage/Videos/gaming";
                 hostPath = "/mnt/storage/Videos/gaming";

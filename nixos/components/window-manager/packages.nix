@@ -6,7 +6,7 @@
     environment.systemPackages = with pkgs; [
         ranger
         trash-cli
-        xdragon
+        dragon-drop
         moc
         jq
         lm_sensors

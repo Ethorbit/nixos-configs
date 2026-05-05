@@ -2,8 +2,8 @@
     description = "Ethorbit's NixOS Systems";
 
     inputs = {
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-        nixpkgs-old.url = "github:nixos/nixpkgs/nixos-24.11";
+        nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+        nixpkgs-old.url = "github:nixos/nixpkgs/nixos-25.05";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
         ethorbit-packages = {
@@ -14,12 +14,12 @@
         ethorbit-home.url = "github:ethorbit/hm-modules";
 
         home-manager = {
-            url = "github:nix-community/home-manager/release-25.05";
+            url = "github:nix-community/home-manager/release-25.11";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
         home-manager-old = {
-            url = "github:nix-community/home-manager/release-24.11";
+            url = "github:nix-community/home-manager/release-25.05";
             inputs.nixpkgs.follows = "nixpkgs-old";
         };
 
@@ -35,7 +35,7 @@
         flatpaks.url = "github:gmodena/nix-flatpak/?ref=v0.4.1";
 
         nvidia-patch = {
-            url = "github:icewind1991/nvidia-patch-nixos?rev=780af7357d942fad2ddd9f325615a5f6ea7e37ee";
+            url = "github:icewind1991/nvidia-patch-nixos?rev=fd85dda93f7747bfac317a2411e3a971f4f53853";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 

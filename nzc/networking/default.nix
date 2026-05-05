@@ -1,7 +1,6 @@
-{ config, ... }:
+{ ... }:
 
 {
-    # This might need to be tweaked, it's not compatible for everyone's setup.
     imports = [
         ./firewall.nix
     ];
@@ -12,19 +11,18 @@
         useDHCP = false;
         useNetworkd = true;
         usePredictableInterfaceNames = false;
-        resolvconf = {
-            enable = true;
-        };
     };
-
-    environment.etc."resolv.conf".text = ''
-    # Created with environment.etc.'resolv.conf' NixOS option
-    nameserver ${config.networking.defaultGateway.address}
-    options edns0
-    '';
 
     systemd.network.networks."eth0" = {
         matchConfig.Name = "eth0";
-        networkConfig.DHCP = false;
+        networkConfig = {
+            DHCP = false;
+            DNS = [
+                "1.1.1.1"
+                "1.0.0.1"
+                "8.8.8.8"
+                "8.8.4.4"
+            ];
+        };
     };
 }
