@@ -97,11 +97,14 @@ with lib;
                     linkConfig.RequiredForOnline = "carrier";
                 };
 
-                "50-wg-vps" = {
+                "50-wg-nzc" = {
                     matchConfig.Name = "wg-nzc";
                     address = [ "10.66.66.3/24" ];
                     dns = [];
-                    linkConfig.RequiredForOnline = "no";
+                    linkConfig = {
+                        RequiredForOnline = "no";
+                        ActivationPolicy = "manual";
+                    };
                 };
 
                 # For USB/IP
