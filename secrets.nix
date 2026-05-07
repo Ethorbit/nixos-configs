@@ -17,16 +17,19 @@ in
     "nixos/secrets/restic/repos/android_pixel_high/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/android_pixel_doc/pass.age".publicKeys = [ ethorbit nixos ];
 
-    "homenas/nixos/secrets/samba/users/ethorbit/creds.age".publicKeys = [ ethorbit nixos ];
-    "homenas/nixos/secrets/samba/users/headlessnvidia/creds.age".publicKeys = [ ethorbit nixos ];
-    "homenas/nixos/secrets/samba/users/nzc/creds.age".publicKeys = [ ethorbit nixos ];
-    "homenas/nixos/secrets/samba/users/hax/creds.age".publicKeys = [ ethorbit nixos ];
-    "homenas/nixos/secrets/samba/users/gaming/creds.age".publicKeys = [ ethorbit nixos ];
-    "homenas/nixos/secrets/samba/users/videos/creds.age".publicKeys = [ ethorbit nixos ];
-    "homenas/nixos/secrets/samba/users/ai/creds.age".publicKeys = [ ethorbit nixos ];
+    "workstation/secrets/networking/vpn/nzc/private.key.age".publicKeys = [ ethorbit nixos ];
+    "workstation/secrets/networking/vpn/nzc/preshared.key.age".publicKeys = [ ethorbit nixos ];
 
-    "nzc/nixos/secrets/networking/firewall/ISP_CIDR_one.age".publicKeys = [ ethorbit nixos ];
-    "nzc/nixos/secrets/networking/firewall/ISP_CIDR_two.age".publicKeys = [ ethorbit nixos ];
-    "nzc/nixos/profiles/selfhosted/secrets/networking/vpn/private.key.age".publicKeys = [ ethorbit nixos ];
-    "nzc/nixos/profiles/selfhosted/secrets/networking/vpn/preshared.key.age".publicKeys = [ ethorbit nixos ];
+    "homenas/secrets/samba/users/ethorbit/creds.age".publicKeys = [ ethorbit nixos ];
+    "homenas/secrets/samba/users/headlessnvidia/creds.age".publicKeys = [ ethorbit nixos ];
+    "homenas/secrets/samba/users/nzc/creds.age".publicKeys = [ ethorbit nixos ];
+    "homenas/secrets/samba/users/hax/creds.age".publicKeys = [ ethorbit nixos ];
+    "homenas/secrets/samba/users/gaming/creds.age".publicKeys = [ ethorbit nixos ];
+    "homenas/secrets/samba/users/videos/creds.age".publicKeys = [ ethorbit nixos ];
+    "homenas/secrets/samba/users/ai/creds.age".publicKeys = [ ethorbit nixos ];
+
+    "nzc/secrets/networking/firewall/ISP_CIDR_one.age".publicKeys = [ ethorbit nixos ];
+    "nzc/secrets/networking/firewall/ISP_CIDR_two.age".publicKeys = [ ethorbit nixos ];
+    "nzc/profiles/selfhosted/secrets/networking/vpn/private.key.age".publicKeys = [ ethorbit nixos ];
+    "nzc/profiles/selfhosted/secrets/networking/vpn/preshared.key.age".publicKeys = [ ethorbit nixos ];
 }
