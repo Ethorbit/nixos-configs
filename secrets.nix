@@ -17,9 +17,6 @@ in
     "nixos/secrets/restic/repos/android_pixel_high/pass.age".publicKeys = [ ethorbit nixos ];
     "nixos/secrets/restic/repos/android_pixel_doc/pass.age".publicKeys = [ ethorbit nixos ];
 
-    "workstation/secrets/networking/vpn/nzc/private.key.age".publicKeys = [ ethorbit nixos ];
-    "workstation/secrets/networking/vpn/nzc/preshared.key.age".publicKeys = [ ethorbit nixos ];
-
     "homenas/secrets/samba/users/ethorbit/creds.age".publicKeys = [ ethorbit nixos ];
     "homenas/secrets/samba/users/headlessnvidia/creds.age".publicKeys = [ ethorbit nixos ];
     "homenas/secrets/samba/users/nzc/creds.age".publicKeys = [ ethorbit nixos ];

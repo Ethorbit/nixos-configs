@@ -13,24 +13,9 @@ with lib;
             type = types.str;
             default = "172.16.1.210";
         };
-
-        vpn.nzc.ip = mkOption {
-            type = types.str;
-            default = "158.69.214.109";
-        };
     };
 
     config = {
-        age.secrets."networking/vpn/nzc/private.key" = {
-            file = ../secrets/networking/vpn/nzc/private.key.age;
-            owner = "systemd-network";
-        };
-
-        age.secrets."networking/vpn/nzc/preshared.key" = {
-            file = ../secrets/networking/vpn/nzc/preshared.key.age;
-            owner = "systemd-network";
-        };
-
         networking = {
             usePredictableInterfaceNames = true;
 
@@ -47,27 +32,6 @@ with lib;
                         Kind = "bridge";
                         Name = "br0";
                     };
-                };
-
-                "50-wg-nzc" = {
-                    netdevConfig = {
-                        Kind = "wireguard";
-                        Name = "wg-nzc";
-                    };
-
-                    wireguardConfig = {
-                        PrivateKeyFile = config.age.secrets."networking/vpn/nzc/private.key".path;
-                    };
-
-                    wireguardPeers = [
-                        {
-                            PublicKey = "WNLcxvGnKkhWOs111G4/WYkz2AzTlXFytTYNqTsiLQ8=";
-                            PresharedKeyFile = config.age.secrets."networking/vpn/nzc/preshared.key".path;
-                            Endpoint = "${config.ethorbit.workstation.network.vpn.nzc.ip}:51117";
-                            AllowedIPs = [ "10.66.66.0/24" ];
-                            PersistentKeepalive = 25;
-                        }
-                    ];
                 };
             };
 
@@ -95,16 +59,6 @@ with lib;
                     matchConfig.Name = "br0";
                     bridgeConfig = {};
                     linkConfig.RequiredForOnline = "carrier";
-                };
-
-                "50-wg-nzc" = {
-                    matchConfig.Name = "wg-nzc";
-                    address = [ "10.66.66.3/24" ];
-                    dns = [];
-                    linkConfig = {
-                        RequiredForOnline = "no";
-                        ActivationPolicy = "manual";
-                    };
                 };
 
                 # For USB/IP
