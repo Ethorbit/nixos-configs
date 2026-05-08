@@ -14,7 +14,7 @@ with lib;
             ip6tables -P FORWARD DROP
 
             # By default, SSH is allowed by any system. We only need the central admin system to SSH.
-            iptables -I INPUT 4 -p tcp -m tcp --dport 22 ! -s ${config.ethorbit.network.admin.ip} -j DROP
+            iptables -I INPUT 1 -p tcp -m tcp --dport 22 ! -s ${config.ethorbit.network.admin.ip} -j DROP
         '';
 
         extraStopCommands = ''
