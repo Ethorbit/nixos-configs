@@ -25,6 +25,17 @@
         { device = "/dev/disk/by-uuid/f9be5093-fc06-45f6-9a0b-0368edeb0020"; }
     ];
 
+    age.secrets."homenas/samba/users/nzc/creds" = { file = ../../homenas/secrets/samba/users/nzc/creds.age; };
+    environment.etc."nascreds" = {
+        mode = "0600";
+        source = config.age.secrets."homenas/samba/users/nzc/creds".path;
+    };
+    fileSystems."/mnt/homenas" = {
+        fsType = "cifs";
+        device = "//${config.ethorbit.network.homenas.ip}/nzc";
+        options = [ "credentials=/etc/nascreds" "uid=1000" "file_mode=0660" "dir_mode=0770" "forceuid" "forcegid" ];
+    };
+
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
     # (the default) this is the recommended approach. When using systemd-networkd it's
     # still possible to use this option, but it's recommended to use it in conjunction

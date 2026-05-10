@@ -4,13 +4,20 @@
 { pkgs, lib, ... }:
 
 {
-    # Protect against the exploit by blacklisting the affected kernel modules
     boot.blacklistedKernelModules = [
+        # Protect against Copyfail
         "af_alg"
         "algif_hash"
         "algif_skcipher"
         "algif_rng"
         "algif_aead"
+        # Protect against Dirty Frag
+        # https://youtu.be/AsoBmy-Hcxc?si=YQ_bs1ZbRAoJTCsp&t=155
+        "esp4"
+        "esp6"
+        "rxrpc"
+        "ipcomp4"
+        "ipcomp6"
     ];
 
     # Upgrade to a safe kernel

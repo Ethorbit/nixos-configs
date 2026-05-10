@@ -14,7 +14,7 @@
     fileSystems."/boot" = {
         device = "/dev/disk/by-uuid/0C61-A81E";
         fsType = "vfat";
-        options = [ "fmask=0022" "dmask=0022" ];
+        options = [ "fmask=0077" "dmask=0077" ];
     };
 
     swapDevices = [
@@ -23,4 +23,6 @@
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+    system.stateVersion = "25.11";
 }

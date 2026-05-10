@@ -5,13 +5,7 @@
         ./firewall.nix
     ];
 
-    systemd.network.enable = true;
-
-    networking = {
-        useDHCP = false;
-        useNetworkd = true;
-        usePredictableInterfaceNames = false;
-    };
+    networking.useDHCP = false;
 
     systemd.network.networks."eth0" = {
         matchConfig.Name = "eth0";
