@@ -3,7 +3,9 @@
 {
     boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
     boot.initrd.kernelModules = [ ];
-    boot.kernelModules = [ "kvm-amd" ];
+    #boot.kernelModules = [ "kvm-amd" ];
+    boot.kernelParams = [ "radeon.modeset=0" ];
+
     boot.extraModulePackages = [ ];
 
     fileSystems."/" = {
@@ -18,7 +20,10 @@
     };
 
     swapDevices = [
-
+        {
+            device = "/swapfile";
+            size = 16 * 1024;
+        }
     ];
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

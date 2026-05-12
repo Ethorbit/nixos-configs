@@ -17,8 +17,8 @@
                 routes = [
                     {
                         routeConfig = {
-                            Gateway = config.networking.defaultGateway.address;
-                            Destination = config.ethorbit.nzc.vpn.ip;
+                            Gateway = config.ethorbit.nzc.network.ethernet.gateway;
+                            Destination = config.ethorbit.nzc.network.vpn.ip;
                         };
                     }
                 ];
@@ -32,20 +32,7 @@
                 addresses = [
                     {
                         addressConfig = {
-                            Address = "${config.ethorbit.nzc.vpn.privateCIDR}";
-                        };
-                    }
-                ];
-
-                routes = [
-                    {
-                        routeConfig = {
-                            Destination = "${config.ethorbit.nzc.vpn.privateCIDR}";
-                        };
-                    }
-                    {
-                        routeConfig = {
-                            Gateway = "${config.ethorbit.nzc.vpn.defaultGateway}";
+                            Address = "${config.ethorbit.nzc.network.vpn.privateCIDR}";
                         };
                     }
                 ];
@@ -64,7 +51,7 @@
 
                 wireguardConfig = {
                     PrivateKeyFile = config.age.secrets."networking/vpn/private.key".path;
-                    ListenPort = config.ethorbit.nzc.vpn.port;
+                    ListenPort = config.ethorbit.nzc.network.vpn.port;
                 };
 
                 wireguardPeers = [{
@@ -72,7 +59,7 @@
                         PublicKey = "WNLcxvGnKkhWOs111G4/WYkz2AzTlXFytTYNqTsiLQ8=";
                         PresharedKeyFile = config.age.secrets."networking/vpn/preshared.key".path;
                         AllowedIPs = [ "10.66.66.0/24" ];
-                        Endpoint = "${config.ethorbit.nzc.vpn.ip}:${config.ethorbit.nzc.vpn.port}";
+                        Endpoint = "${config.ethorbit.nzc.network.vpn.ip}:${config.ethorbit.nzc.network.vpn.port}";
                         PersistentKeepalive = 25;
                     };
                 }];

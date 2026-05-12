@@ -10,22 +10,24 @@
     systemd.network.networks."eth0" = {
         addresses = [
             {
-                addressConfig.Address = "192.168.254.225/24";
+                addressConfig.Address = "${config.ethorbit.nzc.network.ethernet.ip}/24";
             }
         ];
 
         routes = [
             {
-                routeConfig.Gateway = "192.168.254.254";
+                routeConfig.Gateway = config.ethorbit.nzc.network.ethernet.gateway;
             }
         ];
     };
 
-    ethorbit.nzc.sshd.port = "22";
-    services.openssh.listenAddresses = [
-        {
-            addr = "192.168.254.225";
-            port = lib.toInt config.ethorbit.nzc.sshd.port;
-        }
-    ];
+    ethorbit.nzc.network.sshd.port = "22";
+    # this creates a race condition that locks the sysadmin out
+    # it is completely useless, just use the firewall
+    # services.openssh.listenAddresses = [
+    #     {
+    #         addr = config.ethorbit.nzc.network.ethernet.ip;
+    #         port = 22;
+    #     }
+    # ];
 }

@@ -2,8 +2,20 @@
 
 {
     options = with lib; {
-        ethorbit = {
-            nzc.vpn = {
+        ethorbit.nzc.network = {
+            ethernet = {
+                ip = mkOption {
+                    type = types.str;
+                    default = "192.168.254.225";
+                };
+
+                gateway = mkOption {
+                    type = types.str;
+                    default = "192.168.254.254";
+                };
+            };
+
+            vpn = {
                 ip = mkOption {
                     type = types.str;
                     default = "158.69.214.109";

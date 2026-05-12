@@ -54,7 +54,11 @@ with lib;
 
                 "40-br0" = {
                     address = [ "${config.ethorbit.workstation.network.host.ip}/24" ];
-                    dns = [ config.networking.defaultGateway.address ];
+                    dns = [
+                        config.networking.defaultGateway.address
+                        "1.1.1.1"
+                        "1.0.0.1"
+                    ];
                     gateway = [ config.networking.defaultGateway.address ];
                     matchConfig.Name = "br0";
                     bridgeConfig = {};
