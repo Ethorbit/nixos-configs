@@ -36,6 +36,14 @@
                         };
                     }
                 ];
+
+                routes = [
+                    {
+                        routeConfig = {
+                            Destination = "10.66.66.0/24";
+                        };
+                    }
+                ];
             };
         };
 
