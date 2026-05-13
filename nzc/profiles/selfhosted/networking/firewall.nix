@@ -1,11 +1,6 @@
 { config, lib, ... }:
 
 {
-    systemd.services.firewall = {
-        after = [ "docker.service" ];
-        requires = [ "docker.service" ];
-    };
-
     networking.firewall = {
         enable = lib.mkForce true;
 
@@ -36,12 +31,13 @@
             iptables -A FORWARD -i eth0 -o docker0 -j ACCEPT
             # Containers -> Internet (Not LAN)
             iptables -A FORWARD -i docker0 -o eth0 ! -d 192.168.254.0/24 -j ACCEPT
-            # containers → LAN responses
-            iptables -A FORWARD -i docker0 -o eth0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+            iptables -A FORWARD -i br+ -o eth0 ! -d 192.168.254.0/24 -j ACCEPT
 
             # VPN → containers
             iptables -A FORWARD -i wg0 -o docker0 -j ACCEPT
+            iptables -A FORWARD -i wg0 -o br+ -j ACCEPT
             iptables -A FORWARD -i docker0 -o wg0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+            iptables -A FORWARD -i br+ -o wg0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
             iptables -A NZC_INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
             iptables -A NZC_INPUT -i lo -j ACCEPT
@@ -66,6 +62,8 @@
             iptables -A DOCKER-USER -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
             iptables -A DOCKER-USER -i wg0 -p udp --dport 27000:28000 -j ACCEPT
             iptables -A DOCKER-USER -i wg0 -p tcp --dport 27000:28000 -j ACCEPT
+            iptables -A DOCKER-USER -i wg0 -o br+ -p udp --dport 27000:28000 -j ACCEPT
+            iptables -A DOCKER-USER -i wg0 -o br+ -p tcp --dport 27000:28000 -j ACCEPT
             iptables -A DOCKER-USER -j DROP
             iptables -A FORWARD -j DROP
         '';
@@ -80,5 +78,12 @@
             iptables -X NZC_INPUT 2>/dev/null || true
             iptables -X NZC_OUTPUT 2>/dev/null || true
         '';
+    };
+
+    virtualisation.docker.daemon.settings.iptables = false;
+
+    systemd.services.firewall = {
+        after = [ "docker.service" ];
+        requires = [ "docker.service" ];
     };
 }

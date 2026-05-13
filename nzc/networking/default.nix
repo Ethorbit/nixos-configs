@@ -5,7 +5,10 @@
         ./firewall.nix
     ];
 
-    networking.useDHCP = false;
+    networking = {
+        nameservers = [];
+        useDHCP = false;
+    };
 
     systemd.network.networks."eth0" = {
         matchConfig.Name = "eth0";
