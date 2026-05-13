@@ -187,8 +187,8 @@
             };
         };
 
-        apps = {
-            x86_64-linux = self.nixosConfigurations."nzc/selfhosted".config.nzc.apps;
+        apps.x86_64-linux = {
+            "nzc/selfhosted" = self.nixosConfigurations."nzc/selfhosted".config.nzc.apps;
         };
     };
 }
