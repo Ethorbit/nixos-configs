@@ -10,7 +10,7 @@ The nixos/ directory is shared between all configs, it contains defaults and reu
 * Makes setup **fully reproducible across machines**. You can recreate the same system anywhere from a single configuration.
 * Changes are **explicit**. Your system only updates when you choose to apply changes.
 * Updates are **safe and predictable**. If something fails during an update, it will not switch to the broken version.
-* You can apply the same configuration repeatedly without causing **duplicates or unintended changes**.
 * Software runs in **isolated environments**, preventing package conflicts.
 * Supports **rollbacks and system history**. You can boot into previous working versions if something breaks.
 * Keeps your system **minimal**. You only declare what you want, and dependencies are handled automatically.
+* You can apply the same configuration repeatedly without causing **duplicates or unintended changes**.
