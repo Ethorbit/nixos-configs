@@ -80,8 +80,6 @@
         '';
     };
 
-    virtualisation.docker.daemon.settings.iptables = false;
-
     systemd.services.firewall = {
         after = [ "docker.service" ];
         requires = [ "docker.service" ];
