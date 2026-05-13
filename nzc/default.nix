@@ -5,6 +5,7 @@
         ../nixos/components/networking/systemd
         ../nixos/components/programming/ide
         ../nixos/components/containers/docker
+        ./options.nix
         ./hardware.nix
         ./boot.nix
         ./packages

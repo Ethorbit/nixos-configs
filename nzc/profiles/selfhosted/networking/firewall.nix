@@ -34,6 +34,8 @@
             iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
             # LAN → containers
             iptables -A FORWARD -i eth0 -o docker0 -j ACCEPT
+            # Containers -> Internet (Not LAN)
+            iptables -A FORWARD -i docker0 -o eth0 ! -d 192.168.254.0/24 -j ACCEPT
             # containers → LAN responses
             iptables -A FORWARD -i docker0 -o eth0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 

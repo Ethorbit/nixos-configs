@@ -55,6 +55,8 @@
             url = "github:OpenGamingCollective/ScopeBuddy";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        nzc-nix-docker.url = "github:Ethorbit/nzc-nix-docker";
     };
 
     outputs = { 
@@ -72,7 +74,8 @@
         nvidia-patch,
         NixOS-WSL,
         Jovian-NixOS,
-        scopebuddy
+        scopebuddy,
+        nzc-nix-docker
     } @inputs: let
         inherit (self) outputs;
         system = "x86_64-linux";
@@ -161,18 +164,7 @@
                 ] ++ defaultModules;
             };
 
-            # NZC Game Community
-            "nzc" = nixpkgs.lib.nixosSystem {
-                inherit system;
-                specialArgs = defaultSpecialArgs;
-                modules = [
-                    home-manager.nixosModules.default
-                    ./nzc/profiles/production
-                    ./nixos/hardware/vm/qemu
-                ] ++ defaultModules;
-            };
-
-            # NZC Game Community, but hosted at home
+            # NZC Game Community, hosted at home
             "nzc/selfhosted" = nixpkgs.lib.nixosSystem {
                 inherit system;
                 specialArgs = defaultSpecialArgs;
@@ -193,6 +185,10 @@
                     ./nixos/hardware/vm/qemu
                 ] ++ defaultModules;
             };
+        };
+
+        apps = {
+            x86_64-linux = self.nixosConfigurations."nzc/selfhosted".config.nzc.apps;
         };
     };
 }
