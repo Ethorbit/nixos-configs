@@ -43,7 +43,7 @@
 
             iptables -A NZC_INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
             iptables -A NZC_INPUT -i lo -j ACCEPT
-            iptables -A NZC_INPUT -i wg0 -s 10.66.66.0/24 -j ACCEPT
+            iptables -A NZC_INPUT -i wg0 -j DROP
             iptables -A NZC_INPUT -i eth0 -p tcp -m tcp --dport ${config.ethorbit.nzc.network.sshd.port} -s 192.168.254.0/24 -j ACCEPT
             iptables -A NZC_INPUT -i eth0 -p udp -m udp --dport ${config.ethorbit.nzc.network.vpn.port} -j ACCEPT
             iptables -A NZC_INPUT -i eth0 -j DROP
@@ -61,9 +61,9 @@
             iptables -A NZC_OUTPUT -o eth0 -j DROP
 
             # VPN -> game servers
-            iptables -I DOCKER-USER -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-            iptables -I DOCKER-USER -i wg0 -p udp --dport 27000:28000 -j ACCEPT
-            iptables -I DOCKER-USER -i wg0 -p tcp --dport 27000:28000 -j ACCEPT
+            iptables -A DOCKER-USER -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+            iptables -A DOCKER-USER -i wg0 -p udp --dport 27000:28000 -j ACCEPT
+            iptables -A DOCKER-USER -i wg0 -p tcp --dport 27000:28000 -j ACCEPT
             iptables -A DOCKER-USER -j DROP
             iptables -A FORWARD -j DROP
         '';
