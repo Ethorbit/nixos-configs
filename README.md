@@ -3,14 +3,14 @@ My personal NixOS system configs
 
 The nixos/ directory is shared between all configs, it contains defaults and reusable snippets to accelerate the creation of system configs
 
-## Why NixOS?
+## Why NixOS? ❄️
 
-* Nix, which is a feature-rich package manager, as well as a powerful, declarative, and easy-to-read programming language
-* Stable, yet bleeding edge at the same time
-* Minimal, containing only what you put on it
-* Hardware agnostic reproducibility, only put effort into setting something up ONCE!
-* Immutability, changes only when you explicitly build it
-* Idempotence, apply configuration repeatedly without unintended side effects
-* Atomicity, does not apply changes from updates until they are complete and successful
-* Package isolation, free from file conflicts
-* Snapshot management and automated snapshots, select any build during boot
+* Uses [Nix](https://nixos.org/guides/how-nix-works/), a powerful package manager and configuration system where everything is defined in **readable configuration files**.
+* Lets you stay **stable and up to date at the same time**. You can use recent software without breaking your system.
+* Makes setup **fully reproducible across machines**. You can recreate the same system anywhere from a single configuration.
+* Changes are **explicit**. Your system only updates when you choose to apply changes.
+* Updates are **safe and predictable**. If something fails during an update, it will not switch to the broken version.
+* You can apply the same configuration repeatedly without causing **duplicates or unintended changes**.
+* Software runs in **isolated environments**, preventing package conflicts.
+* Supports **rollbacks and system history**. You can boot into previous working versions if something breaks.
+* Keeps your system **minimal**. You only declare what you want, and dependencies are handled automatically.
