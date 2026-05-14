@@ -13,31 +13,33 @@
             iptables -P INPUT DROP
             iptables -P OUTPUT DROP
             iptables -P FORWARD DROP
-            iptables -F FORWARD 2>/dev/null || true
-            iptables -F DOCKER-USER 2>/dev/null || true
             iptables -D INPUT -j NZC_INPUT 2>/dev/null || true
+            iptables -D FORWARD -j NZC_FORWARD 2>/dev/null || true
             iptables -D OUTPUT -j NZC_OUTPUT 2>/dev/null || true
             iptables -F NZC_INPUT 2>/dev/null || true
+            iptables -F NZC_FORWARD 2>/dev/null || true
             iptables -F NZC_OUTPUT 2>/dev/null || true
             iptables -X NZC_INPUT 2>/dev/null || true
+            iptables -X NZC_FORWARD 2>/dev/null || true
             iptables -X NZC_OUTPUT 2>/dev/null || true
             iptables -N NZC_INPUT
+            iptables -N NZC_FORWARD
             iptables -N NZC_OUTPUT
             iptables -I INPUT 1 -j NZC_INPUT
             iptables -I OUTPUT 1 -j NZC_OUTPUT
+            iptables -I FORWARD 1 -j NZC_FORWARD
 
-            iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-            # LAN → containers
-            iptables -A FORWARD -i eth0 -o docker0 -j ACCEPT
-            # Containers -> Internet (Not LAN)
-            iptables -A FORWARD -i docker0 -o eth0 ! -d 192.168.254.0/24 -j ACCEPT
-            iptables -A FORWARD -i br+ -o eth0 ! -d 192.168.254.0/24 -j ACCEPT
+            iptables -A NZC_FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+            # container → internet
+            iptables -A NZC_FORWARD -s 172.16.0.0/12 -o eth0 -j ACCEPT
+
+            # block container → LAN
+            iptables -A NZC_FORWARD -s 172.16.0.0/12 -d 192.168.254.0/24 -j DROP
 
             # VPN → containers
-            iptables -A FORWARD -i wg0 -o docker0 -j ACCEPT
-            iptables -A FORWARD -i wg0 -o br+ -j ACCEPT
-            iptables -A FORWARD -i docker0 -o wg0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-            iptables -A FORWARD -i br+ -o wg0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+            iptables -A NZC_FORWARD -i wg0 -d 172.16.0.0/12 -j ACCEPT
+            iptables -A NZC_FORWARD -s 172.16.0.0/12 -o wg0 -j ACCEPT
 
             iptables -A NZC_INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
             iptables -A NZC_INPUT -i lo -j ACCEPT
@@ -62,20 +64,20 @@
             iptables -A DOCKER-USER -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
             iptables -A DOCKER-USER -i wg0 -p udp --dport 27000:28000 -j ACCEPT
             iptables -A DOCKER-USER -i wg0 -p tcp --dport 27000:28000 -j ACCEPT
-            iptables -A DOCKER-USER -i wg0 -o br+ -p udp --dport 27000:28000 -j ACCEPT
-            iptables -A DOCKER-USER -i wg0 -o br+ -p tcp --dport 27000:28000 -j ACCEPT
             iptables -A DOCKER-USER -j DROP
-            iptables -A FORWARD -j DROP
         '';
 
         extraStopCommands = lib.mkForce ''
             iptables -P INPUT DROP
             iptables -P OUTPUT DROP
             iptables -D INPUT -j NZC_INPUT 2>/dev/null || true
+            iptables -D FORWARD -j NZC_FORWARD 2>/dev/null || true
             iptables -D OUTPUT -j NZC_OUTPUT 2>/dev/null || true
             iptables -F NZC_INPUT 2>/dev/null || true
+            iptables -F NZC_FORWARD 2>/dev/null || true
             iptables -F NZC_OUTPUT 2>/dev/null || true
             iptables -X NZC_INPUT 2>/dev/null || true
+            iptables -X NZC_FORWARD 2>/dev/null || true
             iptables -X NZC_OUTPUT 2>/dev/null || true
         '';
     };
