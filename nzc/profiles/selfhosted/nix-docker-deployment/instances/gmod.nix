@@ -1,9 +1,10 @@
 { config, ... }:
 
 let
+    cfg = config.ethorbit.nzc;
     ips = {
-        eth = config.ethorbit.nzc.network.ethernet.ip;
-        vpn = config.ethorbit.nzc.network.vpn.ip.private;
+        eth = cfg.network.ethernet.ip;
+        vpn = cfg.network.vpn.ip.private.address;
     };
     count = 1;
     initialPort = 27020;
@@ -12,6 +13,8 @@ let
         uid = 2000;
         gid = 2000;
     };
+
+    cpu = cfg.nix-docker.cpu;
 
     gmods = (
         builtins.listToAttrs (
@@ -25,6 +28,16 @@ let
                     project = "gameserver/gmod";
                     instance = {
                         inherit user;
+                        limit = {
+                            enable = true;
+                            cpu = {
+                                # Gmod is singlethreaded:
+                                threads = [
+                                    (cpu.threadOf cpu.threads.game i)
+                                ];
+                                weight = 1024;
+                            };
+                        };
                         storage.volumes = {
                             gmod = {
                                 volume = name;
@@ -73,6 +86,16 @@ in {
                 network.ports.sftp = {
                     number = ftpPort;
                     ip.tcp = "${ips.eth}";
+                };
+                limit = {
+                    enable = true;
+                    cpu = {
+                        # 5% CPU utilization allowed
+                        threads = cpu.threads.all;
+                        quota = 0.6;
+                        # 75% less CPU time than gmod
+                        weight = 256;
+                    };
                 };
                 storage.volumes = builtins.listToAttrs (
                     builtins.concatLists (
