@@ -14,6 +14,7 @@ let
         gid = 2000;
     };
 
+    disk.device = cfg.nix-docker.disk.primary;
     cpu = cfg.nix-docker.cpu;
 
     gmods = (
@@ -37,6 +38,21 @@ let
                                 ];
                                 weight = 1024;
                             };
+                            memory = 1500;
+                            bandwidth = 10;
+                            disk = [
+                                {
+                                    inherit (disk) device;
+                                    read = {
+                                        speed = 120;
+                                        iops = 10000;
+                                    };
+                                    write = {
+                                        speed = 60;
+                                        iops = 5000;
+                                    };
+                                }
+                            ];
                         };
                         storage.volumes = {
                             gmod = {
@@ -96,6 +112,21 @@ in {
                         # 75% less CPU time than gmod
                         weight = 256;
                     };
+                    memory = 512;
+                    bandwidth = 20;
+                    disk = [
+                        {
+                            inherit (disk) device;
+                            read = {
+                                speed = 160;
+                                iops = 20000;
+                            };
+                            write = {
+                                speed = 80;
+                                iops = 15000;
+                            };
+                        }
+                    ];
                 };
                 storage.volumes = builtins.listToAttrs (
                     builtins.concatLists (
