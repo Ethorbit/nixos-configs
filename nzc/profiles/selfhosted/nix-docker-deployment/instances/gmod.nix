@@ -26,7 +26,10 @@ let
                     instance = {
                         inherit user;
                         storage.volumes = {
-                            gmod.volume = name;
+                            gmod = {
+                                volume = name;
+                                scope = "global"; 
+                            };
                             shared = {
                                 volume = "gmod_shared";
                                 scope = "global";
