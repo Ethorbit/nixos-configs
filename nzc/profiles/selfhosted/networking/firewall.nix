@@ -31,11 +31,15 @@
 
             iptables -A NZC_FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
+            # block containers → RFC1918 ranges
+            iptables -A NZC_FORWARD -s 172.16.0.0/12 -d 10.0.0.0/8 -j DROP
+            iptables -A NZC_FORWARD -s 172.16.0.0/12 -d 192.168.0.0/16 -j DROP
+
             # container → internet
             iptables -A NZC_FORWARD -s 172.16.0.0/12 -o eth0 -j ACCEPT
 
-            # block container → LAN
-            iptables -A NZC_FORWARD -s 172.16.0.0/12 -d 192.168.254.0/24 -j DROP
+            # block VPN -> RFC1918 LAN range
+            iptables -A NZC_FORWARD -i wg0 -d 192.168.0.0/16 -j DROP
 
             # VPN → containers
             iptables -A NZC_FORWARD -i wg0 -d 172.16.0.0/12 -j ACCEPT
