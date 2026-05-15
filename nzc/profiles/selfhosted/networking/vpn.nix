@@ -32,7 +32,7 @@
                 addresses = [
                     {
                         addressConfig = {
-                            Address = "${config.ethorbit.nzc.network.vpn.ip.privateCIDR}";
+                            Address = "${config.ethorbit.nzc.network.vpn.ip.private.addressCIDR}";
                         };
                     }
                 ];
@@ -40,7 +40,7 @@
                 routes = [
                     {
                         routeConfig = {
-                            Destination = "10.66.66.0/24";
+                            Destination = config.ethorbit.nzc.network.vpn.ip.private.subnet;
                         };
                     }
                 ];
@@ -64,9 +64,9 @@
 
                 wireguardPeers = [{
                     wireguardPeerConfig = {
-                        PublicKey = "WNLcxvGnKkhWOs111G4/WYkz2AzTlXFytTYNqTsiLQ8=";
+                        PublicKey = config.ethorbit.nzc.network.vpn.publicKey;
                         PresharedKeyFile = config.age.secrets."networking/vpn/preshared.key".path;
-                        AllowedIPs = [ "10.66.66.0/24" ];
+                        AllowedIPs = [ config.ethorbit.nzc.network.vpn.ip.private.subnet ];
                         Endpoint = "${config.ethorbit.nzc.network.vpn.ip.public}:${config.ethorbit.nzc.network.vpn.port}";
                         PersistentKeepalive = 25;
                     };
