@@ -86,6 +86,5 @@
 
     systemd.services.firewall = {
         after = [ "docker.service" ];
-        requires = [ "docker.service" ];
     };
 }
