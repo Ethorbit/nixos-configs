@@ -24,6 +24,11 @@
 
                     private = mkOption {
                         type = types.str;
+                        default = "10.66.66.2";
+                    };
+
+                    privateCIDR = mkOption {
+                        type = types.str;
                         default = "10.66.66.2/32";
                     };
                 };

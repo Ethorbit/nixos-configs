@@ -32,7 +32,7 @@
                 addresses = [
                     {
                         addressConfig = {
-                            Address = "${config.ethorbit.nzc.network.vpn.ip.private}";
+                            Address = "${config.ethorbit.nzc.network.vpn.ip.privateCIDR}";
                         };
                     }
                 ];

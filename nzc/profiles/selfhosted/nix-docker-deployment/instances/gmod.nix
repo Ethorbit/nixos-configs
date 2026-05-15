@@ -1,6 +1,10 @@
 { config, ... }:
 
 let
+    ips = {
+        eth = config.ethorbit.nzc.network.ethernet.ip;
+        vpn = config.ethorbit.nzc.network.vpn.ip.private;
+    };
     count = 1;
     initialPort = 27020;
     ftpPort = 40000;
@@ -31,7 +35,10 @@ let
                         network.ports.gmod = {
                             number = portNumber;
                             # Don't expose RCON
-                            ip.tcp = "127.0.0.1";
+                            ip = {
+                                udp = ips.vpn;
+                                tcp = "127.0.0.1";
+                            };
                         };
                         secrets = {
                             "password.rcon" = config.age.secrets."nzc-nix-docker/gmod/rcon_password".path;
@@ -62,7 +69,7 @@ in {
                 inherit user;
                 network.ports.sftp = {
                     number = ftpPort;
-                    ip.tcp = "${config.ethorbit.nzc.network.ethernet.ip}";
+                    ip.tcp = "${ips.eth}";
                 };
                 storage.volumes = builtins.listToAttrs (
                     builtins.concatLists (
@@ -77,7 +84,17 @@ in {
                         ) (builtins.attrValues gmods)
                     )
                 );
-                secrets."password" = config.age.secrets."nzc-nix-docker/gmod/sftp_password".path;
+                secrets = {
+                    "password" = config.age.secrets."nzc-nix-docker/gmod/sftp_password".path;
+                    # ethorbit
+                    "sftp.public.key" = builtins.toFile "key" ''
+                    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID/m67X4bZrhN86eFAAp3RGEzhzUp0k1WAP7dw31fAVS ethorbit@nixos
+                    '';
+                    # nixos
+                    "ssh.public.key" = builtins.toFile "key" ''
+                    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIMGNAhCknWm5sYlpao654MffJx4I6HNlZhocSatNrss ethorbit@space
+                    '';
+                };
             };
         };
     };
