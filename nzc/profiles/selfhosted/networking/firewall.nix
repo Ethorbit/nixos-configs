@@ -45,6 +45,8 @@
             iptables -A NZC_FORWARD -i wg0 -d 172.16.0.0/12 -j ACCEPT
             iptables -A NZC_FORWARD -s 172.16.0.0/12 -o wg0 -j ACCEPT
 
+            iptables -A NZC_FORWARD -j DROP
+
             iptables -A NZC_INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
             iptables -A NZC_INPUT -i lo -j ACCEPT
             iptables -A NZC_INPUT -i wg0 -j DROP
@@ -64,11 +66,7 @@
             iptables -A NZC_OUTPUT -o eth0 -p udp -m udp --dport 123 -j ACCEPT
             iptables -A NZC_OUTPUT -o eth0 -j DROP
 
-            # VPN -> game servers
-            iptables -A DOCKER-USER -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-            iptables -A DOCKER-USER -i wg0 -p udp --dport 27000:28000 -j ACCEPT
-            iptables -A DOCKER-USER -i wg0 -p tcp --dport 27000:28000 -j ACCEPT
-            iptables -A DOCKER-USER -j DROP
+            # Docker's NAT will take it from here
         '';
 
         extraStopCommands = lib.mkForce ''
