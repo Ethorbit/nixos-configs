@@ -67,10 +67,7 @@ let
                         network.ports.gmod = {
                             number = portNumber;
                             # Don't expose RCON
-                            ip = {
-                                udp = ips.vpn;
-                                tcp = "127.0.0.1";
-                            };
+                            ip.tcp = "127.0.0.1";
                         };
                         secrets = {
                             "password.rcon" = config.age.secrets."nzc-nix-docker/gmod/rcon_password".path;
