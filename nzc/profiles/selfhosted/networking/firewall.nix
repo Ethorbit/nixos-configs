@@ -36,7 +36,7 @@
             iptables -A NZC_FORWARD -s 172.16.0.0/12 -d 192.168.0.0/16 -j DROP
 
             # LAN -> container SSH
-            iptables -A NZC_FORWARD -i eth0 -s 192.168.254.0/24 -d 172.16.0.0/12 -m tcp -p tcp --dport 40000 -j ACCEPT
+            iptables -A NZC_FORWARD -i eth0 -s 192.168.254.0/24 -d 172.16.0.0/12 -m tcp -p tcp --dport 22 -j ACCEPT
 
             # block VPN -> RFC1918 LAN range
             iptables -A NZC_FORWARD -i wg0 -d 192.168.0.0/16 -j DROP
