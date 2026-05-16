@@ -1,19 +1,19 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 let
+    count = 1;
+    initialPort = 27020;
+    ftpPort = 40000;
+
     cfg = config.ethorbit.nzc;
     ips = {
         eth = cfg.network.ethernet.ip;
         vpn = cfg.network.vpn.ip.private.address;
     };
-    count = 1;
-    initialPort = 27020;
-    ftpPort = 40000;
     user = {
         uid = 2000;
         gid = 2000;
     };
-
     disk.device = cfg.nix-docker.disk.primary;
     cpu = cfg.nix-docker.cpu;
 
@@ -74,6 +74,7 @@ let
                         };
                         secrets = {
                             "password.rcon" = config.age.secrets."nzc-nix-docker/gmod/rcon_password".path;
+                            "token.steam" = config.age.secrets."nzc-nix-docker/gmod/${toString serverNumber}/token".path;
                         };
                     };
                 };
@@ -81,14 +82,29 @@ let
         )
     );
 in {
-    age.secrets."nzc-nix-docker/gmod/rcon_password" = {
-        file = ../../secrets/nzc-nix-docker/gmod/rcon_password.age;
-        owner = "nzc";
-    };
+    age.secrets = (
+        lib.genAttrs
+            (map
+                (n: "nzc-nix-docker/gmod/${toString n}/token")
+                (lib.range 1 count)
+            )
+            (name: {
+                file = ../../secrets/${name}.age;
+                owner = toString user.uid;
+                group = toString user.gid;
+            })
+    ) // {
+        "nzc-nix-docker/gmod/rcon_password" = {
+            file = ../../secrets/nzc-nix-docker/gmod/rcon_password.age;
+            owner = toString user.uid;
+            group = toString user.gid;
+        };
 
-    age.secrets."nzc-nix-docker/gmod/sftp_password" = {
-        file = ../../secrets/nzc-nix-docker/gmod/sftp_password.age;
-        owner = "nzc";
+        "nzc-nix-docker/gmod/sftp_password" = {
+            file = ../../secrets/nzc-nix-docker/gmod/sftp_password.age;
+            owner = toString user.uid;
+            group = toString user.gid;
+        };
     };
 
     # Gmod cluster
