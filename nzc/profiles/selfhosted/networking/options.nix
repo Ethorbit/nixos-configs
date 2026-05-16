@@ -22,12 +22,23 @@
                 };
 
                 ip = {
-                    public = mkOption {
-                        type = types.str;
-                        default = "158.69.214.109";
+                    public = let
+                        address = "158.69.214.109";
+                    in {
+                        address = mkOption {
+                            type = types.str;
+                            default = address;
+                        };
+
+                        addressCIDR = mkOption {
+                            type = types.str;
+                            default = "${address}/32";
+                        };
                     };
 
-                    private = {
+                    private = let
+                        address = "10.66.66.2";
+                    in {
                         subnet = mkOption {
                             type = types.str;
                             default = "10.66.66.0/24";
@@ -35,12 +46,12 @@
 
                         address = mkOption {
                             type = types.str;
-                            default = "10.66.66.2";
+                            default = address;
                         };
 
                         addressCIDR = mkOption {
                             type = types.str;
-                            default = "10.66.66.2/32";
+                            default = "${address}/32";
                         };
                     };
                 };

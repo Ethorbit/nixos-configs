@@ -35,11 +35,8 @@
             iptables -A NZC_FORWARD -s 172.16.0.0/12 -d 10.0.0.0/8 -j DROP
             iptables -A NZC_FORWARD -s 172.16.0.0/12 -d 192.168.0.0/16 -j DROP
 
-            # container → internet
-            iptables -A NZC_FORWARD -s 172.16.0.0/12 -o eth0 -j ACCEPT
-
-            # LAN -> containers
-            iptables -A NZC_FORWARD -i eth0 -s 192.168.254.0/24 -d 172.16.0.0/12 -j ACCEPT
+            # LAN -> container SSH
+            iptables -A NZC_FORWARD -i eth0 -s 192.168.254.0/24 -d 172.16.0.0/12 -m tcp -p tcp --dport 40000 -j ACCEPT
 
             # block VPN -> RFC1918 LAN range
             iptables -A NZC_FORWARD -i wg0 -d 192.168.0.0/16 -j DROP
@@ -62,11 +59,6 @@
             iptables -A NZC_OUTPUT -o lo -j ACCEPT
             iptables -A NZC_OUTPUT -o wg0 -j ACCEPT
             iptables -A NZC_OUTPUT -o eth0 -p udp -m udp --dport ${config.ethorbit.nzc.network.vpn.port} -j ACCEPT
-            iptables -A NZC_OUTPUT -o eth0 -p udp -m udp --dport 53 -j ACCEPT
-            iptables -A NZC_OUTPUT -o eth0 -p tcp -m tcp --dport 53 -j ACCEPT
-            iptables -A NZC_OUTPUT -o eth0 -p tcp -m tcp --dport 80 -j ACCEPT
-            iptables -A NZC_OUTPUT -o eth0 -p tcp -m tcp --dport 443 -j ACCEPT
-            iptables -A NZC_OUTPUT -o eth0 -p udp -m udp --dport 123 -j ACCEPT
             iptables -A NZC_OUTPUT -o eth0 -j DROP
 
             # Docker's NAT will take it from here

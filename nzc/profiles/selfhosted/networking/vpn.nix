@@ -1,5 +1,11 @@
-{ config, lib, ... }:
+{ config, ... }:
 
+let
+    cfgs = {
+        vpn = config.ethorbit.nzc.network.vpn;
+        eth = config.ethorbit.nzc.network.ethernet;
+    };
+in
 {
     age.secrets."networking/vpn/private.key" = {
         file = ../secrets/networking/vpn/private.key.age;
@@ -17,13 +23,19 @@
                 routes = [
                     {
                         routeConfig = {
-                            Gateway = config.ethorbit.nzc.network.ethernet.gateway;
-                            Destination = config.ethorbit.nzc.network.vpn.ip.public;
+                            Destination = cfgs.vpn.ip.public.addressCIDR;
+                            Gateway = cfgs.eth.gateway;
+                        };
+                    }
+                    {
+                        routeConfig = {
+                            Destination = "192.168.0.0/16";
+                            Gateway = cfgs.eth.gateway;
                         };
                     }
                 ];
             };
-        
+
             "wg0" = {
                 matchConfig = {
                     Name = "wg0";
@@ -32,7 +44,7 @@
                 addresses = [
                     {
                         addressConfig = {
-                            Address = "${config.ethorbit.nzc.network.vpn.ip.private.addressCIDR}";
+                            Address = cfgs.vpn.ip.private.addressCIDR;
                         };
                     }
                 ];
@@ -40,7 +52,12 @@
                 routes = [
                     {
                         routeConfig = {
-                            Destination = config.ethorbit.nzc.network.vpn.ip.private.subnet;
+                            Destination = "0.0.0.0/0";
+                        };
+                    }
+                    {
+                        routeConfig = {
+                            Destination = cfgs.vpn.ip.private.subnet;
                         };
                     }
                 ];
@@ -59,15 +76,15 @@
 
                 wireguardConfig = {
                     PrivateKeyFile = config.age.secrets."networking/vpn/private.key".path;
-                    ListenPort = config.ethorbit.nzc.network.vpn.port;
+                    ListenPort = cfgs.vpn.port;
                 };
 
                 wireguardPeers = [{
                     wireguardPeerConfig = {
                         PublicKey = config.ethorbit.nzc.network.vpn.publicKey;
                         PresharedKeyFile = config.age.secrets."networking/vpn/preshared.key".path;
-                        AllowedIPs = [ config.ethorbit.nzc.network.vpn.ip.private.subnet ];
-                        Endpoint = "${config.ethorbit.nzc.network.vpn.ip.public}:${config.ethorbit.nzc.network.vpn.port}";
+                        AllowedIPs = [ "0.0.0.0/0" ];
+                        Endpoint = "${cfgs.vpn.ip.public.address}:${cfgs.vpn.port}";
                         PersistentKeepalive = 25;
                     };
                 }];

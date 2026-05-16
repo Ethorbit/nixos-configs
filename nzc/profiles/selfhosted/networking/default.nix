@@ -16,7 +16,10 @@
 
         routes = [
             {
-                routeConfig.Gateway = config.ethorbit.nzc.network.ethernet.gateway;
+                routeConfig = {
+                    Gateway = config.ethorbit.nzc.network.ethernet.gateway;
+                    Destination = "192.168.0.0/16";
+                };
             }
         ];
     };
