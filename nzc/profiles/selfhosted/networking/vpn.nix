@@ -72,6 +72,7 @@ in
                     Name = "wg0";
                     Kind = "wireguard";
                     Description = "Wireguard tunnel";
+                    #MTUBytes = "1280";
                 };
 
                 wireguardConfig = {

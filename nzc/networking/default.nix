@@ -17,6 +17,7 @@ in
     networking = {
         nameservers = [];
         useDHCP = false;
+        #enableIPv6 = true;
     };
 
     systemd.network.networks."eth0" = {

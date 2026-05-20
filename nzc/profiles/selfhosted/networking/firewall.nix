@@ -9,6 +9,10 @@
         allowedUDPPorts = lib.mkForce [];
 
         extraCommands = lib.mkForce ''
+            ip6tables -P INPUT DROP
+            ip6tables -P OUTPUT DROP
+            ip6tables -P FORWARD DROP
+
             # Essentials
             iptables -P INPUT DROP
             iptables -P OUTPUT DROP
@@ -80,6 +84,7 @@
     };
 
     systemd.services.firewall = {
+        requires = [ "docker.service" ];
         after = [ "docker.service" ];
     };
 }
