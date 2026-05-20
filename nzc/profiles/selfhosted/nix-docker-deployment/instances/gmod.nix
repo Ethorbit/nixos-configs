@@ -1,19 +1,41 @@
 { config, lib, ... }:
 
+# Gmod cluster
 let
-    count = 1;
-    initialPort = 27020;
+    cfg = config.ethorbit.nzc;
+
     ftpPort = 40000;
 
-    cfg = config.ethorbit.nzc;
-    ips = {
-        eth = cfg.network.ethernet.ip;
-        vpn = cfg.network.vpn.ip.private.address;
+    count = 1;
+
+    initialPorts = {
+        query = 27020;
+        client = 27120;
     };
+    initialPort = 27020;
+    group = rec {
+        assignment = {
+            alpha = [ ];
+            bravo = [ 1 ];
+        };
+
+        get = number:
+            lib.findFirst
+                (group: builtins.elem number assignment.${group})
+                (throw "no group for server ${toString number}")
+                (builtins.attrNames assignment);
+    };
+
     user = {
         uid = 2000;
         gid = 2000;
     };
+
+    ips = {
+        eth = cfg.network.ethernet.ip;
+        vpn = cfg.network.vpn.ip.private.address;
+    };
+
     disk.device = cfg.nix-docker.disk.primary;
     cpu = cfg.nix-docker.cpu;
 
@@ -21,7 +43,10 @@ let
         builtins.listToAttrs (
             builtins.genList (i: let
                 serverNumber = i + 1;
-                portNumber = initialPort + i;
+                portNumbers = {
+                    query = initialPorts.query + i;
+                    client = initialPorts.client + i;
+                };
                 name = "gmod_${toString serverNumber}";
             in {
                 inherit name;
@@ -60,16 +85,23 @@ let
                                 scope = "global"; 
                             };
                             shared = {
-                                volume = "gmod_shared";
+                                volume = "gmod_${group.get serverNumber}_shared";
                                 scope = "global";
                             };
                         };
-                        network.ports.gmod = {
-                            number = portNumber;
-                            # Don't expose RCON
-                            ip = {
-                                udp = ips.vpn;
-                                tcp = "127.0.0.1";
+                        network.ports = {
+                            query = {
+                                number = portNumbers.query;
+                                # Don't expose RCON
+                                ip = {
+                                    udp = ips.vpn;
+                                    tcp = "127.0.0.1";
+                                };
+                            };
+
+                            client = {
+                                number = portNumbers.client;
+                                ip.udp = ips.vpn;
                             };
                         };
                         secrets = {
@@ -82,6 +114,24 @@ let
         )
     );
 in {
+    assertions = [
+        {
+            assertion = builtins.all
+            (n: builtins.any
+                (numbers: builtins.elem n numbers)
+                (builtins.attrValues group.assignment)
+            )
+            (lib.range 1 count);
+            message = "Not all gmod servers have a group assigned";
+        }
+        {
+            assertion =
+                let numbers = builtins.concatLists (builtins.attrValues group.assignment);
+                in builtins.length numbers == builtins.length (lib.unique numbers);
+            message = "Duplicate server numbers found in group assignment";
+        }
+    ];
+
     age.secrets = (
         lib.genAttrs
             (map
@@ -107,9 +157,8 @@ in {
         };
     };
 
-    # Gmod cluster
     nzc.instances = gmods 
-    // # Remotely manage its files
+    // # Remotely manage files
     {
         gmod_sftp = {
             project = "sftp";
@@ -145,17 +194,26 @@ in {
                     ];
                 };
                 storage.volumes = builtins.listToAttrs (
-                    builtins.concatLists (
-                        builtins.map (v:
-                            builtins.map (vol: {
-                                name = vol.volume;
-                                value = {
-                                    volume = vol.volume;
-                                    scope = "global";
-                                };
-                            }) (builtins.attrValues v.instance.storage.volumes)
-                        ) (builtins.attrValues gmods)
-                    )
+                    # individual server
+                    (map (n: let
+                        groupName = group.get n;
+                        volume = "gmod_${toString n}";
+                    in {
+                        name = "${groupName}_${volume}";
+                        value = {
+                            volume = volume;
+                            scope = "global";
+                        };
+                    }) (lib.range 1 count))
+                    ++
+                    # shared storage
+                    (map (groupName: {
+                        name = "gmod_${groupName}_shared";
+                        value = {
+                            volume = "gmod_${groupName}_shared";
+                            scope = "global";
+                        };
+                    }) (builtins.attrNames group.assignment))
                 );
                 secrets = {
                     "password" = config.age.secrets."nzc-nix-docker/gmod/sftp_password".path;
