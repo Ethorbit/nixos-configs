@@ -199,7 +199,7 @@ in {
                         groupName = group.get n;
                         volume = "gmod_${toString n}";
                     in {
-                        name = "${groupName}_${volume}";
+                        name = "${volume}_${groupName}";
                         value = {
                             volume = volume;
                             scope = "global";
@@ -208,7 +208,7 @@ in {
                     ++
                     # shared storage
                     (map (groupName: {
-                        name = "gmod_${groupName}_shared";
+                        name = "gmod_shared_${groupName}";
                         value = {
                             volume = "gmod_${groupName}_shared";
                             scope = "global";
@@ -221,9 +221,9 @@ in {
                     "sftp.public.key" = builtins.toFile "key" ''
                     ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID/m67X4bZrhN86eFAAp3RGEzhzUp0k1WAP7dw31fAVS ethorbit@nixos
                     '';
-                    # nixos
+                    # backups
                     "ssh.public.key" = builtins.toFile "key" ''
-                    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIMGNAhCknWm5sYlpao654MffJx4I6HNlZhocSatNrss ethorbit@space
+                    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPxiv+/P62qflc3e03W8EOdeXqV7wIQxGUU52zbJO28V workstation@workstation
                     '';
                 };
             };
