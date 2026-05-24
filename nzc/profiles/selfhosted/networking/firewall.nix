@@ -20,18 +20,29 @@
             iptables -D INPUT -j NZC_INPUT 2>/dev/null || true
             iptables -D FORWARD -j NZC_FORWARD 2>/dev/null || true
             iptables -D OUTPUT -j NZC_OUTPUT 2>/dev/null || true
+            iptables -t mangle -D FORWARD -j NZC_MANGLE 2>/dev/null || true
+            iptables -t mangle -D OUTPUT -j NZC_MANGLE 2>/dev/null || true
             iptables -F NZC_INPUT 2>/dev/null || true
             iptables -F NZC_FORWARD 2>/dev/null || true
             iptables -F NZC_OUTPUT 2>/dev/null || true
+            iptables -t mangle -F NZC_MANGLE 2>/dev/null || true
             iptables -X NZC_INPUT 2>/dev/null || true
             iptables -X NZC_FORWARD 2>/dev/null || true
             iptables -X NZC_OUTPUT 2>/dev/null || true
+            iptables -t mangle -X NZC_MANGLE 2>/dev/null || true
             iptables -N NZC_INPUT
             iptables -N NZC_FORWARD
             iptables -N NZC_OUTPUT
+            iptables -t mangle -N NZC_MANGLE
             iptables -I INPUT 1 -j NZC_INPUT
             iptables -I OUTPUT 1 -j NZC_OUTPUT
             iptables -I FORWARD 1 -j NZC_FORWARD
+            iptables -t mangle -A FORWARD -j NZC_MANGLE
+            iptables -t mangle -A OUTPUT -j NZC_MANGLE
+
+            # Clamp TCP MSS to prevent PMTUD blackhole through WireGuard
+            # Fixes SRCDS outgoing connections hanging for 5 mins after server start
+            iptables -t mangle -A NZC_MANGLE -o wg0 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
 
             iptables -A NZC_FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
@@ -74,12 +85,16 @@
             iptables -D INPUT -j NZC_INPUT 2>/dev/null || true
             iptables -D FORWARD -j NZC_FORWARD 2>/dev/null || true
             iptables -D OUTPUT -j NZC_OUTPUT 2>/dev/null || true
+            iptables -t mangle -D FORWARD -j NZC_MANGLE 2>/dev/null || true
+            iptables -t mangle -D OUTPUT -j NZC_MANGLE 2>/dev/null || true
             iptables -F NZC_INPUT 2>/dev/null || true
             iptables -F NZC_FORWARD 2>/dev/null || true
             iptables -F NZC_OUTPUT 2>/dev/null || true
+            iptables -t mangle -F NZC_MANGLE 2>/dev/null || true
             iptables -X NZC_INPUT 2>/dev/null || true
             iptables -X NZC_FORWARD 2>/dev/null || true
             iptables -X NZC_OUTPUT 2>/dev/null || true
+            iptables -t mangle -X NZC_MANGLE 2>/dev/null || true
         '';
     };
 
