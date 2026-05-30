@@ -5,6 +5,7 @@
         nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
         nixpkgs-old.url = "github:nixos/nixpkgs/nixos-25.05";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+        nixpkgs-gamedev.url = "github:nixos/nixpkgs/25f538306313eae3927264466c70d7001dcea1df";
 
         ethorbit-packages = {
             url = "github:ethorbit/nix-packages";
@@ -64,6 +65,7 @@
         nixpkgs,
         nixpkgs-old,
         nixpkgs-unstable,
+        nixpkgs-gamedev,
         ethorbit-packages,
         ethorbit-home,
         home-manager,

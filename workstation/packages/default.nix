@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
     imports = [
@@ -38,16 +38,17 @@
             '';
         })
 
-        blender
-        godotPackages_4_4.godot
-        vpkedit
-        vtfedit
         lmms
         krita
         kid3
-        ethorbit.taggui
-    
+        #ethorbit.taggui
+
         pre-commit
         luajitPackages.ldoc
-    ];
+    ] ++ (with inputs.nixpkgs-gamedev.legacyPackages.${pkgs.system}; [
+        godot-mono
+        blender
+        vpkedit
+        vtfedit
+    ]);
 }
