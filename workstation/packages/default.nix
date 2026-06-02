@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
     imports = [
@@ -45,10 +45,5 @@
 
         pre-commit
         luajitPackages.ldoc
-    ] ++ (with inputs.nixpkgs-gamedev.legacyPackages.${pkgs.system}; [
-        godot-mono
-        blender
-        vpkedit
-        vtfedit
-    ]);
+    ];
 }
