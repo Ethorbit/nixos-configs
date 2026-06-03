@@ -3,7 +3,7 @@
 with lib;
 
 {
-    options.ethorbit.ai.network = {
+    options.ethorbit.gen.network = {
         host.ip = mkOption {
             type = types.str;
             default = "172.16.1.205";
@@ -38,7 +38,7 @@ with lib;
                 };
 
                 "40-br0" = {
-                    address = [ "${config.ethorbit.ai.network.host.ip}/24" ];
+                    address = [ "${config.ethorbit.gen.network.host.ip}/24" ];
                     dns = [ config.networking.defaultGateway.address ];
                     gateway = [ config.networking.defaultGateway.address ];
                     matchConfig.Name = "br0";

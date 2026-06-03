@@ -14,5 +14,5 @@
         ../nixos/components/containers/docker
     ];
 
-    networking.hostName = "ai";
+    networking.hostName = "gen";
 }

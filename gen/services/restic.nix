@@ -1,12 +1,12 @@
 { config, ... }:
 
 {
-    age.secrets."nixos/restic/repos/ai/pass" = { file = ../../nixos/secrets/restic/repos/ai/pass.age; };
+    age.secrets."nixos/restic/repos/gen/pass" = { file = ../../nixos/secrets/restic/repos/gen/pass.age; };
 
-    environment.etc."restic_ai_pass" = {
+    environment.etc."restic_gen_pass" = {
         mode = "0600";
         user = "root";
-        source = config.age.secrets."nixos/restic/repos/ai/pass".path;
+        source = config.age.secrets."nixos/restic/repos/gen/pass".path;
     };
 
     services.restic = {

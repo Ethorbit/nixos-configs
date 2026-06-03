@@ -116,11 +116,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1780387168,
-        "narHash": "sha256-WjQgnMvssVDcB74hfwF4HpX2UwB8+3MCTIxobXRUcN8=",
+        "lastModified": 1780477342,
+        "narHash": "sha256-mTVqcNXIuesoqJr01muLxs52R9DgiWN5m1Y/6Lh02lw=",
         "owner": "ethorbit",
         "repo": "hm-modules",
-        "rev": "a53159c0024092ebe4b2ea4320de9dbe322ab5cb",
+        "rev": "633701fd985bb75312956b6f2f58483a627c19bc",
         "type": "github"
       },
       "original": {
@@ -139,11 +139,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1780380061,
-        "narHash": "sha256-7XUimDNFBCeJVHJnxzcFIu7JsrwCSbmLNrWUuWuax7E=",
+        "lastModified": 1780475942,
+        "narHash": "sha256-YKVar49RnEEWQLAp5/SHDAN00Q2JVwH1p0YXMNZ95Fs=",
         "owner": "ethorbit",
         "repo": "nix-packages",
-        "rev": "679d3a1a92ae19fc0fd76482c3b5f106a8c07a0d",
+        "rev": "eb7d7226d6074c5c520f107736bf982f2ea5ce1d",
         "type": "github"
       },
       "original": {
@@ -161,11 +161,11 @@
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1780380061,
-        "narHash": "sha256-7XUimDNFBCeJVHJnxzcFIu7JsrwCSbmLNrWUuWuax7E=",
+        "lastModified": 1780475942,
+        "narHash": "sha256-YKVar49RnEEWQLAp5/SHDAN00Q2JVwH1p0YXMNZ95Fs=",
         "owner": "ethorbit",
         "repo": "nix-packages",
-        "rev": "679d3a1a92ae19fc0fd76482c3b5f106a8c07a0d",
+        "rev": "eb7d7226d6074c5c520f107736bf982f2ea5ce1d",
         "type": "github"
       },
       "original": {

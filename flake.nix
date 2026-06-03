@@ -92,24 +92,13 @@
         ];
     in {
         nixosConfigurations = {
-            # Work, yeah there's nothing fancy to describe this with..
+            # Work, yeah there's nothing fancy to describe this with..      
             "work" = nixpkgs.lib.nixosSystem {
                 inherit system;
                 specialArgs = defaultSpecialArgs;
                 modules = [
                     home-manager.nixosModules.default
                     ./work
-                ] ++ defaultModules;
-            };
-
-            # Artificial Intelligence Production system:
-            # Develop the products of the future
-            "ai" = nixpkgs.lib.nixosSystem {
-                inherit system;
-                specialArgs = defaultSpecialArgs;
-                modules = [
-                    home-manager.nixosModules.default
-                    ./ai
                 ] ++ defaultModules;
             };
 
@@ -125,7 +114,8 @@
             };
 
             # Integrated Development Environment.
-            # Not intended to be used directly, but it can be used as an independent OS if desired.
+            # Not intended to be used directly, but it 
+            # can be used as an independent OS if desired.
             "ide/cli" = nixpkgs.lib.nixosSystem {
                 inherit system;
                 specialArgs = defaultSpecialArgs;
@@ -145,7 +135,8 @@
                 ] ++ defaultModules;
             };
 
-            # Workstation OS, the general-purpose powerhouse for monster rigs
+            # Workstation OS, the general-purpose powerhouse 
+            # for monster rigs
             "workstation" = nixpkgs.lib.nixosSystem {
                 inherit system;
                 specialArgs = defaultSpecialArgs;
@@ -166,7 +157,16 @@
                 ] ++ defaultModules;
             };
 
-            # NZC Game Community, hosted at home
+            "gen" = nixpkgs.lib.nixosSystem {
+                inherit system;
+                specialArgs = defaultSpecialArgs;
+                modules = [
+                    home-manager.nixosModules.default
+                    ./gen
+                ] ++ defaultModules;
+            };
+
+            # nZC Game Community, but self hosted
             "nzc/selfhosted" = nixpkgs.lib.nixosSystem {
                 inherit system;
                 specialArgs = defaultSpecialArgs;
@@ -177,7 +177,7 @@
                 ] ++ defaultModules;
             };
 
-            # NZC Game Community, but for local development / testing
+            # nZC Game Community, but for local development / testing
             "nzc/dev" = nixpkgs.lib.nixosSystem {
                 inherit system;
                 specialArgs = defaultSpecialArgs;
