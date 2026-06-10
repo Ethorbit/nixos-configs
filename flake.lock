@@ -116,11 +116,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1780523389,
-        "narHash": "sha256-NjoK7/PSVEdbqzqaot4cHR4pRHQAXo5+I7IocXuWz+I=",
+        "lastModified": 1780965270,
+        "narHash": "sha256-ifHzNpQ75WVYJk9oY/kCWEdsgucYMY8QHPl7lCLo3Pk=",
         "owner": "ethorbit",
         "repo": "hm-modules",
-        "rev": "eea8a6f51ddf85c533f4f63ae943e94b9f35b569",
+        "rev": "693993ad85469aad8ab3ca7ff0f218ccb6b3e995",
         "type": "github"
       },
       "original": {
@@ -405,22 +405,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-gamedev": {
-      "locked": {
-        "lastModified": 1779796641,
-        "narHash": "sha256-ZsIrKmhp4vbBXoXXmR/tBXA/UCsAQiJL9vsgZEduhVY=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "25f538306313eae3927264466c70d7001dcea1df",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "25f538306313eae3927264466c70d7001dcea1df",
-        "type": "github"
-      }
-    },
     "nixpkgs-old": {
       "locked": {
         "lastModified": 1768649915,
@@ -635,7 +619,6 @@
         "home-manager-old": "home-manager-old",
         "home-manager-unstable": "home-manager-unstable",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-gamedev": "nixpkgs-gamedev",
         "nixpkgs-old": "nixpkgs-old_2",
         "nixpkgs-unstable": "nixpkgs-unstable_4",
         "nvidia-patch": "nvidia-patch",

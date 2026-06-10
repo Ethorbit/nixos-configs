@@ -17,6 +17,8 @@
             workspace godot output $monitor_two
             for_window [instance="Godot_Editor"] floating disable, move to workspace godot
             for_window [workspace="godot"] floating disable
+            # Godot project names here (no way around this, its hardcoded as the class)
+            for_window [class="ocean"] move to workspace godot
 
             for_window [class="KeePassXC"] floating enable, resize set width 20 ppt, resize set height 20 ppt, sticky enable
             for_window [class="chromium-browser"] layout tabbed
