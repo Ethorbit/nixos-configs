@@ -19,7 +19,7 @@
 
             # Second monitor used for Game Development
             workspace godot output $monitor_two
-            assign [instance="^(Godot_Editor|Godot_Engine)$"] godot
+            assign [instance="^(Godot_Engine)$"] godot
             for_window [instance="^(Godot_Editor|Godot_Engine)$"] floating disable
 
             # Second monitor will be used for streaming games and/or Windows Partitioned Graphics
