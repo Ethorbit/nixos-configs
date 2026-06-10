@@ -14,14 +14,13 @@
         };
  
         home.file.".config/i3/config_system".text = ''
-            workspace godot output $monitor_two
-            for_window [instance="Godot_Editor"] floating disable, move to workspace godot
-            for_window [workspace="godot"] floating disable
-            # Godot project names here (no way around this, its hardcoded as the class)
-            for_window [class="ocean"] move to workspace godot
-
             for_window [class="KeePassXC"] floating enable, resize set width 20 ppt, resize set height 20 ppt, sticky enable
             for_window [class="chromium-browser"] layout tabbed
+
+            # Second monitor used for Game Development
+            workspace godot output $monitor_two
+            assign [instance="^(Godot_Editor|Godot_Engine)$"] godot
+            for_window [instance="^(Godot_Editor|Godot_Engine)$"] floating disable
 
             # Second monitor will be used for streaming games and/or Windows Partitioned Graphics
             for_window [class="Moonlight"] move to workspace b1, layout tabbed
