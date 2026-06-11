@@ -3,9 +3,6 @@
 {
     systemd.user.services."steamos-force-desktop-mode" = {
         description = "Set SteamOS session to Desktop at startup to avoid Steam auto-updates";
-        unitConfig = {
-            
-        };
         serviceConfig.Type = "oneshot";
         after = [ "default.target" ];
         before = [ "graphical-session.target" ];
