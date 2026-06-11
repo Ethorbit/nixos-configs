@@ -16,6 +16,8 @@
 
         obs-cmd
         virt-viewer
+        moonlight-qt
+
         distrobox
         flatpak-xdg-utils
 

@@ -23,9 +23,7 @@
         steam = {
             enable = true;
             autoStart = true;
-            # see desktop.nix and home-manager/desktop.nix
             desktopSession = "xfce";
-            # see users.nix
             user = "${config.ethorbit.users.primary.username}";
         };
 

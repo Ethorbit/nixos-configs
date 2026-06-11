@@ -3,6 +3,6 @@
 {
     environment.systemPackages = with pkgs; [
         git-lfs
-        python311Packages.grip
+        python3Packages.grip
     ];
 }

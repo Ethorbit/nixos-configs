@@ -9,7 +9,7 @@
         cryptsetup
         distrobox
         onboard
-        neofetch
+        old.neofetch
         keepassxc
         yt-dlp
         ethorbit.yt-dlp-wrapper

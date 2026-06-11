@@ -3,7 +3,6 @@
 {
     environment.systemPackages = 
         with pkgs;
-        with xfce;
         with ethorbit.xfce;
     [
         watch-xfce-xfconf

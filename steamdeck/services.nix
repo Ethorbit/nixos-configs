@@ -1,17 +1,19 @@
 { config, pkgs, ... }:
 
 {
-    # Set SteamOS session preference to Desktop at startup
-    # This way we're not dependent on Steam
-    # to use the system.
-    #
-    # This is useful if Steam decides to auto-update and take ages
-    systemd.services."steamos-force-desktop-mode" = {
-        wantedBy = [ "graphical.target" ];
-        before = [ "greetd.service" ];
-        script = ''
-            home_dir=$(${pkgs.getent}/bin/getent passwd "${config.jovian.steam.user}" | cut -d: -f6)
-            echo "${config.jovian.steam.desktopSession}" > "$home_dir/.local/state/steamos-session-select"
+    systemd.user.services."steamos-force-desktop-mode" = {
+        description = "Set SteamOS session to Desktop at startup to avoid Steam auto-updates";
+        unitConfig = {
+            
+        };
+        serviceConfig.Type = "oneshot";
+        after = [ "default.target" ];
+        before = [ "graphical-session.target" ];
+        wantedBy = [ "default.target" ];
+        script = let
+            steamosctl = "/run/current-system/sw/bin/steamosctl";
+        in ''
+            ${steamosctl} set-default-login-mode desktop
         '';
     };
 

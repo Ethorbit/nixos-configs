@@ -8,7 +8,7 @@
 
         ethorbit-packages = {
             url = "github:ethorbit/nix-packages";
-            inputs.nixpkgs.follows = "nixpkgs";
+            inputs.nixpkgs.follows = "";
         };
 
         ethorbit-home.url = "github:ethorbit/hm-modules";
