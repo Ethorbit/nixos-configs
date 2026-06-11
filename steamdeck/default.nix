@@ -14,7 +14,7 @@
         ../nixos/components/programming/ide
         ../nixos/components/containers/podman
         ../nixos/components/web-browsing/chromium/profiles/brave
-        ../nixos/components/desktop-streaming/profiles/sunshine
+        #../nixos/components/desktop-streaming/profiles/sunshine
     ];
 
     jovian = {
