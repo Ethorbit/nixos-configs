@@ -1,10 +1,13 @@
 { config, pkgs, lib, ... }:
 
+let
+    hasNvidia = config.hardware.nvidia.enabled;
+in
 {
     virtualisation = {
         podman = {
             enable = true;
-            enableNvidia = with lib; mkIf (config.hardware.nvidia.package != types.unspecified) true;
+            enableNvidia = hasNvidia;
         };
 
         oci-containers = {
