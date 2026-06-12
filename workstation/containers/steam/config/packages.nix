@@ -13,6 +13,6 @@ in
         vulkan-tools
         pkgsi686Linux.mesa-demos
         pkgsi686Linux.vulkan-tools
-        xorg.xwininfo
+        xwininfo
     ] else []);
 }

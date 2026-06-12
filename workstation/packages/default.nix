@@ -5,10 +5,8 @@
         ./scripts
     ];
 
-    programs.adb.enable = true;
-
     environment.systemPackages = with pkgs; [
-        neofetch
+        old.neofetch
 
         libreoffice-qt
 

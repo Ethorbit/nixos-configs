@@ -8,7 +8,8 @@
     ];
 
     ethorbit.graphics.nvidia.proprietary = {
-        selectedPackage = config.boot.kernelPackages.nvidiaPackages.stable;
+        # GTX 1060 is no longer supported
+        selectedPackage = config.boot.kernelPackages.nvidiaPackages.legacy_580;
         powerLimit = {
             enable = true;
             limit = 60;

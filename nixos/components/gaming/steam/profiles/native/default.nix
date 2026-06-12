@@ -6,6 +6,9 @@
 
 with pkgs;
 
+let
+    hasXorg = builtins.hasAttr "xorg" pkgs;
+in
 {
     imports = [
         ../.
@@ -25,10 +28,6 @@ with pkgs;
             gamemode
 
             # Needed to fix gamescope issues
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXinerama
-            xorg.libXScrnSaver
             libpng
             libpulseaudio
             pkgsi686Linux.libpulseaudio
@@ -38,7 +37,17 @@ with pkgs;
             stdenv.cc.cc.lib
             libkrb5
             keyutils
-        ];
+        ] ++ (if hasXorg then [
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXinerama
+            xorg.libXScrnSaver
+        ] else [
+            libXcursor
+            libXi
+            libXinerama
+            libXScrnSaver
+        ]);
 
         extraCompatPackages = with pkgs; [
             proton-ge-bin
