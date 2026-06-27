@@ -98,8 +98,8 @@
         '';
     };
 
-    systemd.services.firewall = {
-        requires = [ "docker.service" ];
-        after = [ "docker.service" ];
+    systemd.services.docker = {
+        after = [ "network-online.target" ];
+        wants = [ "network-online.target" ];
     };
 }
