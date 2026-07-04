@@ -6,16 +6,15 @@ let
 
     ftpPort = 40000;
 
-    count = 1;
+    count = 2;
 
     initialPorts = {
         query = 27020;
         client = 27120;
     };
-    initialPort = 27020;
     group = rec {
         assignment = {
-            alpha = [ ];
+            alpha = [ 2 ];
             bravo = [ 1 ];
         };
 
