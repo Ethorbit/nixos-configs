@@ -28,6 +28,7 @@ in
     "homenas/secrets/samba/users/ai/creds.age".publicKeys = [ ethorbit nixos ];
 
     "nzc/profiles/selfhosted/secrets/nzc-nix-docker/gmod/1/token.age".publicKeys = [ ethorbit nixos nzc ];
+    "nzc/profiles/selfhosted/secrets/nzc-nix-docker/gmod/2/token.age".publicKeys = [ ethorbit nixos nzc ];
     "nzc/profiles/selfhosted/secrets/nzc-nix-docker/gmod/sftp_password.age".publicKeys = [ ethorbit nixos nzc ];
     "nzc/profiles/selfhosted/secrets/nzc-nix-docker/gmod/rcon_password.age".publicKeys = [ ethorbit nixos nzc ];
     "nzc/profiles/selfhosted/secrets/networking/vpn/private.key.age".publicKeys = [ ethorbit nixos nzc ];
