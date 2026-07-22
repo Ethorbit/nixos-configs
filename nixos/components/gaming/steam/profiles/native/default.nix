@@ -50,7 +50,7 @@ in
         ]);
 
         extraCompatPackages = with pkgs; [
-            proton-ge-bin
+            proton-ge-bin-11-1
         ];
     };
 }
