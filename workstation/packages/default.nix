@@ -23,6 +23,7 @@
         filezilla
         sshfs
         mariadb
+        mutagen
 
         unstable.yt-dlp
         ethorbit.yt-dlp-wrapper
@@ -39,7 +40,7 @@
         })
 
         lmms
-        krita
+        old.krita
         kid3
         #ethorbit.taggui
 
