@@ -9,5 +9,6 @@
         xfce4-whiskermenu-plugin
         xfce4-docklike-plugin
         xfce4-timer-plugin
+        file-roller
     ];
 }
