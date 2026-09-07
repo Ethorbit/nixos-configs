@@ -17,6 +17,13 @@
         #../nixos/components/desktop-streaming/profiles/sunshine
     ];
 
+    buildMachines = [ {
+        hostName = "192.168.254.186";
+        sshUser = "builder";
+        system = "x86_64-linux";
+        sshKey = config.age.secrets."build-machines/primary/sshkey".path;
+    } ];
+
     jovian = {
         steamos.useSteamOSConfig = true;
 
@@ -28,6 +35,7 @@
         };
 
         devices.steamdeck = {
+            enable = true;
             enableXorgRotation = true;
         };
     };
