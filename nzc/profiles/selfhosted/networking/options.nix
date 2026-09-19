@@ -18,12 +18,12 @@
             vpn = {
                 publicKey = mkOption {
                     type = types.str;
-                    default = "akMpPacpgqdNhWboReNmDwnGgLIwRt70cdnV1Ra31i4=";
+                    default = "6yo+x5Bg0pzypVO37zyjK1HI08xfvGa88Re9Pa2QWEI=";
                 };
 
                 ip = {
                     public = let
-                        address = "158.69.214.109";
+                        address = "40.160.142.205";
                     in {
                         address = mkOption {
                             type = types.str;
