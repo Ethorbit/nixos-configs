@@ -18,7 +18,7 @@
             vpn = {
                 publicKey = mkOption {
                     type = types.str;
-                    default = "6yo+x5Bg0pzypVO37zyjK1HI08xfvGa88Re9Pa2QWEI=";
+                    default = "QsO+IS5um+psIsKnRofQmG+Lsbb7yv5umIHzn6FCxkE=";
                 };
 
                 ip = {
