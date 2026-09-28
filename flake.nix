@@ -55,8 +55,6 @@
             url = "github:OpenGamingCollective/ScopeBuddy";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-
-        nzc-nix-docker.url = "github:Ethorbit/nzc-nix-docker";
     };
 
     outputs = { 
@@ -74,8 +72,7 @@
         nvidia-patch,
         NixOS-WSL,
         Jovian-NixOS,
-        scopebuddy,
-        nzc-nix-docker
+        scopebuddy
     } @inputs: let
         inherit (self) outputs;
         system = "x86_64-linux";
@@ -185,10 +182,6 @@
                     ./nixos/hardware/vm/qemu
                 ] ++ defaultModules;
             };
-        };
-
-        apps.x86_64-linux = {
-            "nzc/selfhosted" = self.nixosConfigurations."nzc/selfhosted".config.nzc.apps;
         };
     };
 }

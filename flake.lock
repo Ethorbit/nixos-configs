@@ -591,11 +591,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1779737336,
-        "narHash": "sha256-Ff+CwiuRnidwwe3kg5LtoPKmQdW9BHhxVVoaIB7AvvU=",
+        "lastModified": 1789972338,
+        "narHash": "sha256-9txYZr2JiQ8bpCDpIBFo1XPLl6vKM33SybKu2afDuqw=",
         "owner": "Ethorbit",
         "repo": "nzc-nix-docker",
-        "rev": "cfc2bd8c34d59da036a464b38b7de295b9970c18",
+        "rev": "ae7f272e81261908a96ca7c6ea918aea58b9d1bb",
         "type": "github"
       },
       "original": {
