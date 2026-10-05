@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./audio.nix
         ./neovim
         ./systemd.nix
         ./flatpak
