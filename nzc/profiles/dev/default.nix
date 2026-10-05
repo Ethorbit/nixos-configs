@@ -10,5 +10,7 @@
         ./networking.nix
     ];
 
+    networking.hostName = "nzc-development";
+
     ethorbit.system.profile.name = "dev";
 }

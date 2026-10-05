@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
     imports = [
@@ -20,7 +20,7 @@
         buildMachines = [ ];
     };
 
-    networking.hostName = "nzc";
+    networking.hostName = lib.mkDefault "nzc";
     security.apparmor.enable = true;
     virtualisation.lxc.lxcfs.enable = true;
 }
