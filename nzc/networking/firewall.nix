@@ -4,7 +4,7 @@
     networking.firewall = {
         enable = true;
         allowedTCPPorts = [
-            config.ethorbit.nzc.sshd.port
+            config.ethorbit.nzc.network.sshd.port
         ];
     };
 }

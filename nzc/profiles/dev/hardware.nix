@@ -25,7 +25,7 @@
         { device = "/dev/disk/by-uuid/f9be5093-fc06-45f6-9a0b-0368edeb0020"; }
     ];
 
-    age.secrets."homenas/samba/users/nzc/creds" = { file = ../../homenas/secrets/samba/users/nzc/creds.age; };
+    age.secrets."homenas/samba/users/nzc/creds" = { file = ../../../homenas/secrets/samba/users/nzc/creds.age; };
     environment.etc."nascreds" = {
         mode = "0600";
         source = config.age.secrets."homenas/samba/users/nzc/creds".path;

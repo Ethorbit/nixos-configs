@@ -1,6 +1,8 @@
-{ ... }:
+{ lib, ... }:
 
 {
+    ethorbit.nzc.network.sshd.port = 2222;
+
     networking.defaultGateway.address = "172.16.1.1";
 
     systemd.network.networks = {
@@ -15,9 +17,9 @@
         };
     };
 
-    environment.etc."resolv.conf".text = ''
-    # Created with environment.etc.'resolv.conf' NixOS option
-    nameserver 127.0.0.1
-    options trust-ad
-    '';
+    # environment.etc."resolv.conf".text = ''
+    # # Created with environment.etc.'resolv.conf' NixOS option
+    # nameserver 127.0.0.1
+    # options trust-ad
+    # '';
 }

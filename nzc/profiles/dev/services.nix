@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 
 {
     services.resolved.enable = false;
@@ -15,4 +15,6 @@
         #    address=/nzc.local/127.0.0.1
         #'';
     };
+
+    services.resolved.settings.Resolve.DNSStubListener = lib.mkForce "no";
 }

@@ -24,7 +24,7 @@
         ];
     };
 
-    ethorbit.nzc.network.sshd.port = "22";
+    ethorbit.nzc.network.sshd.port = 22;
     # this creates a race condition that locks the sysadmin out
     # it is completely useless, just use the firewall
     # services.openssh.listenAddresses = [
