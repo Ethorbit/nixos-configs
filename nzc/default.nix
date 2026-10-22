@@ -18,6 +18,9 @@
     nix = {
         distributedBuilds = false;
         buildMachines = [ ];
+
+        # Garbage collector interferes with Arion nix file mounts
+        gc.automatic = false;
     };
 
     networking.hostName = lib.mkDefault "nzc";

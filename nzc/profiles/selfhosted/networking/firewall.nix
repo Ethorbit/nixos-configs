@@ -65,7 +65,7 @@
             iptables -A NZC_INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
             iptables -A NZC_INPUT -i lo -j ACCEPT
             iptables -A NZC_INPUT -i wg0 -j DROP
-            iptables -A NZC_INPUT -i eth0 -p tcp -m tcp --dport ${config.ethorbit.nzc.network.sshd.port} -s 192.168.254.0/24 -j ACCEPT
+            iptables -A NZC_INPUT -i eth0 -p tcp -m tcp --dport ${toString config.ethorbit.nzc.network.sshd.port} -s 192.168.254.0/24 -j ACCEPT
             iptables -A NZC_INPUT -i eth0 -p udp -m udp --dport ${config.ethorbit.nzc.network.vpn.port} -j ACCEPT
             iptables -A NZC_INPUT -i eth0 -j DROP
 
