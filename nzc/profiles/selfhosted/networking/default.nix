@@ -8,7 +8,10 @@
     ];
 
     services.resolved = {
-        settings.Resolve.LLMNR = lib.mkForce "false";
+        settings.Resolve = {
+            MulticastDNS = lib.mkForce "false";
+            LLMNR = lib.mkForce "false";
+        };
     };
 
     systemd.network.networks."eth0" = {

@@ -31,7 +31,11 @@ with lib;
 
     services.resolved = {
         enable = mkForce true;
-        # LLMNR is not needed for most systems and it increases attack surface
-        settings.Resolve.LLMNR = lib.mkForce "false";
+        # LLMNR and MDNS are not needed for most systems
+        # and they increase attack surface
+        settings.Resolve = {
+            MulticastDNS = lib.mkForce "false";
+            LLMNR = lib.mkForce "false";
+        };
     };
 }
