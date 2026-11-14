@@ -7,6 +7,10 @@
         ./firewall.nix
     ];
 
+    services.resolved = {
+        settings.Resolve.LLMNR = lib.mkForce "false";
+    };
+
     systemd.network.networks."eth0" = {
         addresses = [
             {

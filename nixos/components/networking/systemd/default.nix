@@ -29,5 +29,9 @@ with lib;
         useHostResolvConf = mkForce false;
     };
 
-    services.resolved.enable = mkForce true;
+    services.resolved = {
+        enable = mkForce true;
+        # LLMNR is not needed for most systems and it increases attack surface
+        settings.Resolve.LLMNR = lib.mkForce "false";
+    };
 }
