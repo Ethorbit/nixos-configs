@@ -31,7 +31,7 @@
         (symlinkJoin {
             name = "brave-wrapped";
             paths = [
-                brave
+                unstable.brave
             ];
             buildInputs = [ makeWrapper ];
             postBuild = ''

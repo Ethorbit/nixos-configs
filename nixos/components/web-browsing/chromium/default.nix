@@ -33,7 +33,9 @@
                 ];
                 "DefaultBrowserSettingEnabled" = false;
                 "DefaultGeolocationSetting" = 2;
-                "DnsOverHttpsMode" = "secure";
+                # Just use stubby, don't rely on Chrome to protect your DNS..
+                #"DnsOverHttpsMode" = "secure";
+                #"DnsOverHttpsTemplates" = "https://cloudflare-dns.com";
                 "HttpsOnlyMode" = "force_enabled";
                 "DefaultSearchProviderEnabled" = true;
                 "DefaultSearchProviderName" = "DuckDuckGo";
